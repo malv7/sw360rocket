@@ -11,14 +11,14 @@ import { Component, OnInit } from '@angular/core';
 
     <!-- Inline template -->
 
-    <p>
+    <p class="green">
       active component: malv.component.ts
     </p>
 
 
   `,
   // (optional) but mostly needed anyway, others: styleUrls: [`./malv.component.scss`]
-  styles: []
+  styles: [`.green { color: green; }`]
 })
 export class MalvComponent implements OnInit {
 
