@@ -1,3 +1,4 @@
+import { MalvModule } from './malv/malv.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -10,7 +11,8 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MalvModule
   ],
   providers: [],
   bootstrap: [AppComponent]
