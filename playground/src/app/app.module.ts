@@ -1,8 +1,14 @@
+import { PostEffects } from './posts/effects/post.effects';
+import { PostsModule } from './posts/posts.module';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http'
+import { StoreModule } from '@ngrx/store';
+import { reducers } from './reducers';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [
@@ -11,7 +17,14 @@ import { HttpClientModule } from '@angular/common/http'
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule,
+    // AppRoutingModule,
+    FormsModule,
+    StoreModule.forRoot(reducers),
+    EffectsModule.forRoot([
+      PostEffects
+    ]),
+    // Feature Modules
+    PostsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
