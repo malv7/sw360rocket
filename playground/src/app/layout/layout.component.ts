@@ -1,6 +1,6 @@
 class Yo {
   name: string;
   age: { name: number };
-  aisd: number
-  auishdasd: number
+  aisd: number;
+  blob: number;
 }
