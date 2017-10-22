@@ -10,6 +10,7 @@ import { StoreModule } from '@ngrx/store';
 import { reducers } from './reducers';
 import { EffectsModule } from '@ngrx/effects';
 import{ StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { SuiModule } from 'ng2-semantic-ui';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import{ StoreDevtoolsModule } from '@ngrx/store-devtools';
     ]),
     StoreDevtoolsModule.instrument(), // TODO: remove for production
     // Feature Modules
-    PostsModule
+    PostsModule,
+    SuiModule
   ],
   providers: [],
   bootstrap: [AppComponent]

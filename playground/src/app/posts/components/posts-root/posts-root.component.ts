@@ -15,7 +15,8 @@ import * as PostActions from './../../actions/post.actions';
       {{ post | json }}
     </div>
     <input class="input" [(ngModel)]="title">
-    <button class="button" (click)="post()">post</button>
+    <button class="ui primary button" (click)="post()">post</button>
+    <button class="ui button" suiDatepicker>Date</button>
   `
 })
 export class PostsRootComponent { 
