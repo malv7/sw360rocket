@@ -13,7 +13,8 @@ interface Bash {
 @Component({
   selector: 'posts-root',
   templateUrl: './posts-root.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  styles: [` .gap { margin-bottom: 2em } `]
 })
 export class PostsRootComponent { 
 
