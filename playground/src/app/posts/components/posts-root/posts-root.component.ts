@@ -12,6 +12,8 @@ interface Bash {
 
 @Component({
   selector: 'posts-root',
+  templateUrl: './posts-root.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PostsRootComponent { 
 
