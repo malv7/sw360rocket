@@ -19,7 +19,7 @@ import { SuiModule } from 'ng2-semantic-ui';
   imports: [
     BrowserModule,
     HttpClientModule,
-    // AppRoutingModule,
+    AppRoutingModule,
     FormsModule,
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot([
