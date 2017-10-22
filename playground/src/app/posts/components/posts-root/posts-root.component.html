@@ -1,0 +1,53 @@
+<h2 class="title" *ngIf="isFetching | async">IS FETCHING!!!!</h2>
+<button class="ui button" (click)="getPosts()">Get posts</button>
+<div class="ui input">
+  <input [(ngModel)]="title">
+</div>
+<button class="ui primary button" (click)="post()">post</button>
+<button class="ui button" suiDatepicker>Date</button>
+
+<form class="ui form" wtx-context="E0FA7AA4-4B5E-486F-926E-6F2EE00EAE6F">
+  <div class="field">
+    <label>First Name</label>
+    <input type="text" name="first-name" placeholder="First Name" wtx-context="C10D7F58-A490-411D-8A1D-FF8D07101614">
+  </div>
+  <div class="field">
+    <label>Last Name</label>
+    <input type="text" name="last-name" placeholder="Last Name" wtx-context="130B439A-99E9-4B65-8FCE-2264E4C831AF">
+  </div>
+  <div class="field">
+    <div class="ui checkbox">
+
+      <div class="field">
+        <sui-checkbox>Mirrors value of 1st checkbox</sui-checkbox>
+      </div>
+
+      <label>I agree to the Terms and Conditions</label>
+    </div>
+  </div>
+  <button class="ui button" type="submit">Submit</button>
+</form>
+
+<table class="ui celled padded table">
+  <thead>
+    <tr>
+      <!-- <th>User Id</th>
+      <th>Id</th> -->
+      <th>Title</th>
+      <th>Body</th>
+    </tr>
+  </thead>
+  <tbody>
+{{asdasd}}
+{{asdas}}
+    <tr *ngFor="let post of posts | async">
+      <!-- <td>
+        <h2 class="ui center aligned header">{{ post.userId }}</h2>
+      </td>
+      <td class="single line">{{ post.id }}</td> -->
+      <td>{{ post.title }}}</td>
+      <td>{{ post.body }}</td>
+    </tr>
+
+  </tbody>
+</table>

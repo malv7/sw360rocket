@@ -1,29 +1,25 @@
 import { PostsService } from './../../services/posts.service';
 import { Post } from './../../models/post.model';
 import { Observable } from 'rxjs/Observable';
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import * as fromRoot from './../../../reducers';
 import * as PostActions from './../../actions/post.actions';
 
+interface Bash {
+  n: number;
+}
+
 @Component({
   selector: 'posts-root',
-  template: `
-    <h2 class="title" *ngIf="isFetching | async">IS FETCHING!!!!</h2>
-    <button class="button" (click)="getPosts()">Get posts</button>
-    <div class="message" *ngFor="let post of posts | async">
-      {{ post | json }}
-    </div>
-    <input class="input" [(ngModel)]="title">
-    <button class="ui primary button" (click)="post()">post</button>
-    <button class="ui button" suiDatepicker>Date</button>
-  `
 })
 export class PostsRootComponent { 
 
   posts: Observable<Post[]>;
   isFetching: Observable<boolean>;
   title: string;
+  asdas: Bash;
+  asdasd: number;
 
   constructor(private store: Store<fromRoot.State>) {
     this.posts = this.store.select(fromRoot.selectPosts);
@@ -40,6 +36,8 @@ export class PostsRootComponent {
     }
 
     this.store.dispatch(new PostActions.CreatePost(post));
+    this.asdasd = Math.random();
+    this.asdas.n = Math.random();
   }
 
   getPosts(): void {
