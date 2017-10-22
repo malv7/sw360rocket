@@ -1,0 +1,34 @@
+
+@mixin display-grid {
+    display: -ms-grid;
+    display: grid;
+}
+
+@mixin grid-template-columns($values) {
+    -ms-grid-columns: $values;
+    grid-template-columns: $values;
+}
+
+@mixin grid-template-rows($values) {
+    -ms-grid-rows: $values;
+    grid-template-rows: $values;
+}
+
+@mixin grid-auto-rows($values) {
+    -ms-grid-rows: $values;
+    grid-auto-rows: $values;
+}
+
+@mixin grid-row ($row-start, $row-end) {
+    /* autoprefixer: off */
+    -ms-grid-row: $row-start;
+    -ms-grid-row-span: $row-end - $row-start;
+    grid-row: #{$row-start} / #{$row-end};
+  }
+
+@mixin grid-column ($col-start, $col-end) {
+    /* autoprefixer: off */
+    -ms-grid-column: $col-start;
+    -ms-grid-column-span: $col-end - $col-start;
+    grid-column: #{$col-start} / #{$col-end};
+  }
