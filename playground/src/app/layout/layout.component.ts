@@ -1,4 +1,4 @@
 class Yo {
-  name: string;
+  name: number;
   age: number;
 }
