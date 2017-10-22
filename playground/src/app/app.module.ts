@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http'
 import { StoreModule } from '@ngrx/store';
 import { reducers } from './reducers';
 import { EffectsModule } from '@ngrx/effects';
+import{ StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { EffectsModule } from '@ngrx/effects';
     EffectsModule.forRoot([
       PostEffects
     ]),
+    StoreDevtoolsModule.instrument(), // TODO: remove for production
     // Feature Modules
     PostsModule
   ],
