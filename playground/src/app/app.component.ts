@@ -5,7 +5,9 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
   // Lookout for the "root" routing module to find out what gets routed into this router-outlet.
-  template: `<router-outlet></router-outlet>`
+  template: `
+    yo
+  `
 })
 export class AppComponent { 
 

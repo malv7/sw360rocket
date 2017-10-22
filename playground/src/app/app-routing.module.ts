@@ -1,9 +1,9 @@
+import { AppComponent } from './app.component';
 import { NgModule } from '@angular/core';
 // Import Routes and the RouterModule.
 import { Routes, RouterModule } from '@angular/router';
 
 // Then import all components you would like to route within this module.
-import { MalvComponent } from './malv/malv.component';
 
 // Define route objects and rules.
 const routes: Routes = [
@@ -11,7 +11,7 @@ const routes: Routes = [
   // The "root" route.
   {
     path: '',
-    component: MalvComponent
+    component: AppComponent
   }
 
   // define more routes here
