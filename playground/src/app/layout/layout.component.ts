@@ -1,4 +1,4 @@
 class Yo {
-  name: boolean;
+  name: string;
   age: { name: number };
 }
