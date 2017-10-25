@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs/Observable';
-import { Post } from './../models/post.model';
+import { Post } from './../state/models/post.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 

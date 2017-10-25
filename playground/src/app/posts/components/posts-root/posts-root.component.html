@@ -1,35 +1,27 @@
 <h2 class="title" *ngIf="isFetching | async">IS FETCHING!!!!</h2>
 <button class="ui button" (click)="getPosts()">Get posts</button>
-<div class="ui input">
-  <input [(ngModel)]="title">
-</div>
-<button class="ui primary button" (click)="post()">post</button>
-<button class="ui button" suiDatepicker>Date</button>
 
+<!-- Posts table -->
 <table class="ui celled padded table" *ngIf="(posts | async).length > 0">
+  
+  <!-- Table headings -->
   <thead>
     <tr>
-      <!-- <th>User Id</th>
-      <th>Id</th> -->
-      <th>Title</th>
-      <th>Body</th>
+      <th>ID</th>
+      <th>TITLE</th>
+      <th>BODY</th>
     </tr>
   </thead>
+  
+  <!-- Table body -->
   <tbody>
-{{asdasd}}
-{{asdas}}
     <tr *ngFor="let post of posts | async">
-      <!-- <td>
-        <h2 class="ui center aligned header">{{ post.userId }}</h2>
-      </td>
-      <td class="single line">{{ post.id }}</td> -->
-      <td>{{ post.title }}}</td>
-      <td>{{ post.body }}</td>
+      <td class="single line">{{ post.id }}</td>
+      <td>                    {{ post.title }}}</td>
+      <td>                    {{ post.body }}</td>
     </tr>
-
   </tbody>
+
 </table>
 
-<div class="gap"></div>
-
-<new-post></new-post>
+<new-post *ngIf="(posts | async).length > 0"></new-post>
