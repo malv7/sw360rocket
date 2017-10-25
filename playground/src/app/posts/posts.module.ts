@@ -1,4 +1,5 @@
-import { FormsModule } from '@angular/forms';
+import { NewPostComponent } from './components/new-post/new-post.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PostsService } from './services/posts.service';
 import { PostsRootComponent } from './components/posts-root/posts-root.component';
 import { NgModule } from "@angular/core";
@@ -9,10 +10,12 @@ import { SuiModule } from 'ng2-semantic-ui';
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     SuiModule
   ],
   declarations: [
-    PostsRootComponent
+    PostsRootComponent,
+    NewPostComponent
   ],
   providers: [
     PostsService

@@ -4,9 +4,9 @@ import { Injectable } from '@angular/core';
 import { Store, Action } from '@ngrx/store';
 import { Actions, Effect } from '@ngrx/effects';
 
-import { PostsService } from './../services/posts.service';
+import { PostsService } from './../../services/posts.service';
 import { Post } from './../models/post.model';
-import * as fromRoot from './../../reducers';
+import * as fromRoot from './../../../reducers';
 import * as PostActions from './../actions/post.actions';
 
 // rxjs
