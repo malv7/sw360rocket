@@ -62,7 +62,11 @@ import 'rxjs/add/operator/delay';
 
 @Component({
   selector: 'rxjs',
-  template: `Open console!`
+  template: `Open console!`,
+  styles: [`
+    // :host { display: block; }
+  `]
+  
 })
 export class RxjsComponent {
 
@@ -96,7 +100,8 @@ export class RxjsComponent {
   /////////////////
 
   // map - Apply projection with each value from source.
-  map = Observable.from([1, 2, 3]).map(x => x * 3)
+  map = Observable.from([1, 2, 3])
+    .map(x => x * 3)
     // .subscribe(x => console.log(`map: ${x}`));
 
   // mapTo - Map emissions to constant value.

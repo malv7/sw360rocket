@@ -14,7 +14,6 @@ export const reducers = {
 // Selectors
 // Selector functions are used to retrieve data from the store.
 
-
 export function selectPosts(state: State): Post[] {
   return state.post.posts;
 }

@@ -1,0 +1,5 @@
+@import '~styles/toolkit';
+
+:host {
+  @include linear-gradient(rgb(33, 133, 208), rgb(15, 157, 154));
+}

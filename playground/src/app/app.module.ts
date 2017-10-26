@@ -17,7 +17,8 @@ import { EffectsModule }                from '@ngrx/effects';
 import { PostEffects }                  from './posts/state/effects/post.effects';
 
 // Feature Modules
-import { NavigationModule } from './navigation/navigation.module';
+// entire app layout
+import { LayoutModule }                 from './layout/layout.module';
 import { PostsModule }                  from './posts/posts.module';
 import { RxjsModule }                   from './rxjs/rxjs.module';
 import { AppRoutingModule }             from './app-routing.module';
@@ -41,10 +42,10 @@ import { SemanticPlaygroundModule }     from './semantic-playground/semantic-pla
     StoreDevtoolsModule.instrument(), // TODO: remove for production
     
     // Feature Modules
+    LayoutModule,
     PostsModule,
     RxjsModule,
     SemanticPlaygroundModule,
-    NavigationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

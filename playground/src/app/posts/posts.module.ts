@@ -19,9 +19,6 @@ import { SuiModule } from 'ng2-semantic-ui';
   ],
   providers: [
     PostsService
-  ],
-  exports: [
-    PostsRootComponent
   ]
 })
 export class PostsModule { }
