@@ -62,14 +62,27 @@ import 'rxjs/add/operator/delay';
 
 @Component({
   selector: 'rxjs',
-  template: `Open console!`,
+  template: `
+    <p>Open console and rxjs.component.ts side by side.</p>
+    <h3>Interval: {{ interval | async }}</h3>
+    <h3>Repeat: {{ repeat | async }}</h3>  
+  `,
   styles: [`
-    // :host { display: block; }
+    :host { display: block; padding: 1em; }
   `]
   
 })
 export class RxjsComponent {
 
+  // Tricks
+  /////////
+
+  // changes every 1 second and has range 0 - 4
+  // perfect for cycling through assets or components
+  repeat = Observable.interval(1000).map(x => x % 5);
+
+
+  
   // Creation
   ///////////
 

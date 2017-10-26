@@ -1,10 +1,14 @@
 :host {
-  background: #2185d0;
+  background: #5f666b;
   display: flex;
   justify-content: center;
 }
 
 .logo {
-  color: white;
+  color: #c7ffe1;
   align-self: center;
+}
+
+i {
+  cursor: pointer;
 }

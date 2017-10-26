@@ -10,7 +10,12 @@ import * as PostActions from './../../state/actions/post.actions';
   selector: 'posts-root',
   templateUrl: './posts-root.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  styles: [` .gap { margin-bottom: 2em } `]
+  styles: [` 
+    .gap { margin-bottom: 2em }
+    .host { padding: 1em; }
+    .flex { display: flex; } 
+    .title { margin-left: 1em }
+  `]
 })
 export class PostsRootComponent { 
 

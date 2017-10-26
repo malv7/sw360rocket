@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'brand',
   template: `
     <div class="logo">
-        <i class="fa fa-pied-piper fa-3x" aria-hidden="true"></i>
+      <i class="fa fa-cubes fa-3x" aria-hidden="true"></i>
     </div>`,
   styleUrls: ['./brand.component.scss']
 })

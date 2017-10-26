@@ -28,7 +28,7 @@ export class PostEffects {
   @Effect()
   posts: Observable<Action> = this.actions.ofType(PostActions.GET_POSTS)
     .switchMap((action: PostActions.GetPosts) => this.postService.getPosts())
-    // .delay(3000)
+    .delay(600)
     .map(posts => new PostActions.GetPostsSuccess(posts));
 
   @Effect()

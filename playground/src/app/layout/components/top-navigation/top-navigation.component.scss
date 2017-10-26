@@ -1,5 +1,24 @@
 @import '~styles/toolkit';
 
 :host {
-  @include linear-gradient(rgb(33, 133, 208), rgb(15, 157, 154));
+  @include linear-gradient(
+    rgb(63, 65, 64),
+    rgb(255, 255, 255)
+  );
+}
+
+.host {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 100%;
+}
+
+.el {
+  margin-right: 4em;
+  align-self: center;
+}
+
+i {
+  margin-left: 0.5em;
 }
