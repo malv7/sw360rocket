@@ -1,5 +1,5 @@
-import { Post } from './../models/post.model';
 import { Action } from '@ngrx/store';
+import { Post } from './../models/post.model';
 
 export const GET_POSTS =           '[Post] Get';
 export const GET_POSTS_SUCCESS =   '[Post] Get Success';

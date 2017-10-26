@@ -1,3 +1,4 @@
+import { PizzaOrderComponent } from './pizza/pizza-order/pizza-order.component';
 import { SemanticRootComponent } from './semantic-playground/components/root/semantic-root.component';
 import { LayoutRootComponent } from './layout/components/root/layout-root.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
@@ -9,7 +10,7 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    component: SemanticRootComponent
+    component: PizzaOrderComponent
   },
   {
     path: 'posts',
@@ -22,6 +23,10 @@ const routes: Routes = [
   {
     path: 'semantic',
     component: SemanticRootComponent
+  },
+  {
+    path: 'pizza',
+    component: PizzaOrderComponent
   }
 
 ];

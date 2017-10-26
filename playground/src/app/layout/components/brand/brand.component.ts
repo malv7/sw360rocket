@@ -8,6 +8,4 @@ import { Component } from '@angular/core';
     </div>`,
   styleUrls: ['./brand.component.scss']
 })
-export class BrandComponent {
-
-}
+export class BrandComponent { }

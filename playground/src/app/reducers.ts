@@ -1,5 +1,7 @@
+import { ActionReducerMap } from '@ngrx/store';
 import * as fromPost from './posts/state/reducers/post.reducer';
 import { Post } from './posts/state/models/post.model';
+import { pizzaReducer } from './pizza/pizza.reducer';
 
 // The store. This State collects all partial States.
 export interface State {
@@ -7,8 +9,9 @@ export interface State {
 }
 
 // Reducers. Collects all reducer functions.
-export const reducers = {
-  post: fromPost.reducer
+export const reducers: ActionReducerMap<any> = {
+  post: fromPost.reducer,
+  pizza: pizzaReducer
 }
 
 // Selectors

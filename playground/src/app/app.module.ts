@@ -23,6 +23,7 @@ import { PostsModule }                  from './posts/posts.module';
 import { RxjsModule }                   from './rxjs/rxjs.module';
 import { AppRoutingModule }             from './app-routing.module';
 import { SemanticPlaygroundModule }     from './semantic-playground/semantic-playground.module';
+import { PizzaModule } from './pizza/pizza.module';
 
 @NgModule({
   declarations: [
@@ -39,13 +40,16 @@ import { SemanticPlaygroundModule }     from './semantic-playground/semantic-pla
       PostEffects
       // <-- register new effects
     ]),
-    StoreDevtoolsModule.instrument(), // TODO: remove for production
+    StoreDevtoolsModule.instrument({
+      maxAge: 25
+    }), // TODO: remove for production
     
     // Feature Modules
     LayoutModule,
     PostsModule,
     RxjsModule,
     SemanticPlaygroundModule,
+    PizzaModule
   ],
   providers: [],
   bootstrap: [AppComponent]
