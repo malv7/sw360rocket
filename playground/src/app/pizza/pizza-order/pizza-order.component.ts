@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs/Observable';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import * as actions from '../pizza.actions';
 import * as fromPizza from '../pizza.reducer';
@@ -9,14 +9,21 @@ import * as fromPizza from '../pizza.reducer';
   templateUrl: './pizza-order.component.html',
   styleUrls: ['./pizza-order.component.scss']
 })
-export class PizzaOrderComponent implements OnInit {
-
+export class PizzaOrderComponent implements OnInit, OnDestroy {
+  
+  
   pizzas: Observable<any>;
-
-  constructor(private store: Store<fromPizza.State>) { }
-
+  
+  constructor(private store: Store<fromPizza.State>) {
+    
+  }
+  
   ngOnInit() {
     this.pizzas = this.store.select(fromPizza.selectAll);
+  }
+  
+  ngOnDestroy(): void {
+    // this.sub.unsubscribe();
   }
 
   createPizza() {

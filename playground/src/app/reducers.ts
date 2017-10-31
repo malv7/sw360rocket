@@ -11,7 +11,7 @@ export interface State {
 // Reducers. Collects all reducer functions.
 export const reducers: ActionReducerMap<any> = {
   post: fromPost.reducer,
-  pizza: pizzaReducer
+  // pizza: pizzaReducer
 }
 
 // Selectors

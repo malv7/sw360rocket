@@ -59,6 +59,7 @@ import 'rxjs/add/operator/share';
 // Utility
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/delay';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'rxjs',
@@ -81,8 +82,8 @@ export class RxjsComponent {
   // perfect for cycling through assets or components
   repeat = Observable.interval(1000).map(x => x % 5);
 
-
   
+
   // Creation
   ///////////
 
@@ -154,8 +155,8 @@ export class RxjsComponent {
   // 💡 This operator can cancel in-flight network requests!
   switchMap = Observable.timer(0, 5000)
     .switchMap(() => Observable.interval(500))
-    // .subscribe(x => console.log(`switchMap: ${x}`))
-
+    // .subscribe(x => console.log(`switchMap: ${x}`));
+  
   // scan - Reduce over time.
   scan = Observable.interval(500)
     .scan((acc, curr) => acc + curr)

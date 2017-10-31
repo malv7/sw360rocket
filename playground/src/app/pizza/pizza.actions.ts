@@ -10,6 +10,8 @@ export class Create implements Action {
   constructor(public pizza: Pizza) { }
 }
 
+// Read
+
 export class Update implements Action {
   readonly type = UPDATE;
   constructor(
