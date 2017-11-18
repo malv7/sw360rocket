@@ -24,17 +24,33 @@ import { RxjsModule }                   from './rxjs/rxjs.module';
 import { AppRoutingModule }             from './app-routing.module';
 import { SemanticPlaygroundModule }     from './semantic-playground/semantic-playground.module';
 import { PizzaModule } from './pizza/pizza.module';
+import { CompsComponent } from './sw-components/comps/comps.component';
+import { ReleasesComponent } from './sw-components/releases/releases.component';
+import { SummaryComponent } from './sw-components/summary/summary.component';
+import { VulnerabilitiesComponent } from './sw-components/vulnerabilities/vulnerabilities.component';
+import { ReleaseComponent } from './sw-components/release/release.component';
+import { TabNavigationComponent } from './sw-components/tab-navigation/tab-navigation.component';
+import { BreadcrumbComponent } from './sw-components/breadcrumb/breadcrumb.component';
+import { SidebarComponent } from './sw-components/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CompsComponent,
+    ReleasesComponent,
+    SummaryComponent,
+    VulnerabilitiesComponent,
+    ReleaseComponent,
+    TabNavigationComponent,
+    BreadcrumbComponent,
+    SidebarComponent
   ],
   imports: [
     FormsModule,
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    
+
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot([
       PostEffects
@@ -43,7 +59,7 @@ import { PizzaModule } from './pizza/pizza.module';
     StoreDevtoolsModule.instrument({
       maxAge: 25
     }), // TODO: remove for production
-    
+
     // Feature Modules
     LayoutModule,
     PostsModule,

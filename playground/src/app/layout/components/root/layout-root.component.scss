@@ -2,10 +2,8 @@
 
 :host {
   display: block;
-  width: 100vw;
   min-height: 100vh;
-
-  // font-size: 16px;
+  width: 100%;
 
   @include display-grid;
   @include grid-template-columns(15em 1fr);
@@ -17,16 +15,17 @@
 brand {
   @include grid-column(1,2);
   @include grid-row(1,2);
+
 }
 
 top-navigation {
     @include grid-column(2,3);
-    @include grid-row(1,2);
+	@include grid-row(1,2);
 }
 
 side-navigation {
     @include grid-column(1,2);
-    @include grid-row(2,3);
+	@include grid-row(2,3);
 }
 
 .content {

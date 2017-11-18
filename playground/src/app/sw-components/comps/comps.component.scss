@@ -1,0 +1,36 @@
+@import '~styles/toolkit';
+
+:host {
+	height: 100%;
+	width: 100%;
+	padding: 1em;
+
+	@include display-grid;
+	@include grid-template-columns(3fr 1fr);
+	@include grid-template-rows(3em 4.5em 1fr);
+}
+
+play-breadcrumb {
+	@include grid-column(1,3);
+	@include grid-row(1,2);
+}
+
+play-tab-navigation {
+	@include grid-column(1,2);
+	@include grid-row(2,3);
+}
+
+play-releases  {
+	@include grid-column(1,2);
+	@include grid-row(3,4);
+	background-color: #EEE;
+}
+
+play-sidebar {
+	@include grid-column(2,3);
+	@include grid-row(2,4);
+}
+
+
+
+

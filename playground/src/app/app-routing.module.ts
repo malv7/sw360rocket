@@ -7,6 +7,8 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { Routes, RouterModule } from '@angular/router';
 
+import { CompsComponent } from './sw-components/comps/comps.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -27,12 +29,16 @@ const routes: Routes = [
   {
     path: 'pizza',
     component: PizzaOrderComponent
+  },
+  {
+    path: 'comps',
+    component: CompsComponent
   }
 
 ];
 
 @NgModule({
-  imports: [ 
+  imports: [
     RouterModule.forRoot(routes)
   ],
   exports: [
