@@ -2,9 +2,6 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'sw-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  template: `<sw-structure-root></sw-structure-root>`
 })
-export class AppComponent {
-  title = 'sw';
-}
+export class AppComponent { }
