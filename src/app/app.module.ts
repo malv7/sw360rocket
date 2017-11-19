@@ -14,6 +14,8 @@ import { StoreModule } from '@ngrx/store';
 import { reducers } from './reducers';
 
 // Features
+// The lab module is the new playground!
+import { TheLabModule } from './the-lab/the-lab.module';
 import { ComponentModule } from './component/component.module';
 
 @NgModule({
@@ -34,7 +36,8 @@ import { ComponentModule } from './component/component.module';
     StructureModule,
 
     // Features
-    ComponentModule
+		ComponentModule,
+		TheLabModule
   ],
   providers: [],
   bootstrap: [ AppComponent ]
