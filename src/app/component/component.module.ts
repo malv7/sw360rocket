@@ -3,13 +3,14 @@ import { SharedModule } from '../shared/shared.module';
 import { StoreModule } from '@ngrx/store';
 import { componentReducer } from './state/component.reducer';
 import { ComponentListComponent } from './components/component-list/component-list.component';
-import { ComponentComponent } from './components/component/component.component';
+import { SingleComponentComponent } from './components/single-component/single-component.component';
+import { ComponentRootComponent } from './components/component-root/component-root.component';
 
 @NgModule({
   imports: [
     SharedModule,
     StoreModule.forFeature('component', componentReducer)
   ],
-  declarations: [ComponentListComponent, ComponentComponent]
+  declarations: [ComponentListComponent, SingleComponentComponent, ComponentRootComponent]
 })
 export class ComponentModule { }
