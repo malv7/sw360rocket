@@ -21,11 +21,11 @@ export class ComponentListComponent implements OnInit {
 	constructor() { }
 
 	ngOnInit() {
-		this.getDummyData();
+		// this.getDummyData();
 	}
 
-	getDummyData(): Observable<MichiDummyComponent> {
-		return Observable.of(DUMMY_COMPONENT);
-	}
+	// getDummyData(): Observable<MichiDummyComponent> {
+	// 	return Observable.of(DUMMY_COMPONENT);
+	// }
 
 }
