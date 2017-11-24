@@ -10,7 +10,7 @@ import { StructureModule } from './structure/structure.module';
 
 // Store
 import { StoreModule } from '@ngrx/store';
-// import { StoreDevtoolsModule } from '../../playground/node_modules/@ngrx/store-devtools';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { reducers } from './reducers';
 
 // Features
@@ -28,9 +28,9 @@ import { ComponentModule } from './component/component.module';
 
     // Store
     StoreModule.forRoot(reducers),
-    // StoreDevtoolsModule.instrument({
-    //   maxAge: 10 // retains only last 10 states.
-    // }),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25 // retains only last n states.
+    }),
 
     // Layout
     StructureModule,
