@@ -1,3 +1,5 @@
+import { markParentViewsForCheckProjectedViews } from "@angular/core/src/view/util";
+
 export enum ComponentTypes {
   INTERNAL = 'INTERNAL',
   OSS = 'OSS',
@@ -110,3 +112,261 @@ export const componentDataLayoutFactory = (amount: number)  => {
 }
 
 const randomArraySelector = (arrayLength: number) => Math.floor(Math.random() * arrayLength);
+
+export enum ClearingState {
+  NEW_CLEARING = 'NEW_CLEARING',
+  SENT_TO_FOSSOLOGY = 'SENT_TO_FOSSOLOGY',
+  UNDER_CLEARING = 'UNDER_CLEARING',
+  REPORT_AVAILABLE = 'REPORT_AVAILABLE',
+  APPROVED = 'APPROVED'
+}
+
+export const CLEARING_STATES = [
+  ClearingState.NEW_CLEARING,
+  ClearingState.SENT_TO_FOSSOLOGY,
+  ClearingState.UNDER_CLEARING,
+  ClearingState.REPORT_AVAILABLE,
+  ClearingState.APPROVED
+];
+
+export interface ReleaseDataLayout {
+  name: string;
+  version: string;
+  clearingState: ClearingState;
+  cpeId: string;
+  releaseDate: string;
+  createdOn: string;
+  type: string; // always 'release'
+  externalIds: ExternalIds;
+  _embedded: ResolvedModerator[];
+  // TODO: ???
+}
+
+interface ExternalIds {
+  [externalId: string]: string;
+}
+
+interface EmbeddedModerators {
+  // moderators: 
+}
+
+interface ResolvedModerator {
+  email: string;
+  href: string;
+}
+
+interface ReleaseResponse {
+  type: string;
+  name: string;
+  version: string;
+  releaseDate: string;
+  externalIds: ExternalIds;
+  createdOn: string;
+  clearingState: ClearingState;
+  cpeId: string;
+  _links: ReleaseLinks;
+  _embedded: ReleaseEmbedded;
+}
+
+interface ReleaseLinks {
+  'sw360:component': Link;
+  self: Link;
+  curies: Curie[];
+}
+
+interface Curie {
+  href: string;
+  name: string;
+  templated: boolean;
+}
+
+interface Link {
+  href: string;
+}
+
+interface ReleaseEmbedded {
+  moderators: Moderator[];
+}
+
+interface Moderator {
+  email: string;
+  // _links:
+  // TODO:
+}
+
+// TODO: clearing state parser
+// TODO: release data parser
+
+// 2.2.1 Listing users
+// _embedded.sw360:users
+
+interface UserResponse {
+  _embedded: EmbeddedUser[];
+  // _links: Links;
+}
+
+interface EmbeddedUsers {
+  'sw360:users': EmbeddedUser[];
+}
+
+interface EmbeddedUser {
+  email: string;
+  userGroup: UserGroups;
+}
+
+interface Links {
+  self?: SelfLink;
+  curies?: Curie[];
+}
+
+interface SelfLink {
+  href: string;
+}
+
+
+
+
+enum UserGroups {
+  USER = 'USER',
+  ADMIN = 'ADMIN',
+  CLEARING_ADMIN = 'CLEARING_ADMIN',
+  ECC_ADMIN = 'ECC_ADMIN',
+  SECURITY_ADMIN = 'SECURITY_ADMIN',
+  SW360_ADMI = 'SW360_ADMI'
+}
+
+export const USER_GROUPS = [
+  UserGroups.USER,
+  UserGroups.ADMIN,
+  UserGroups.CLEARING_ADMIN,
+  UserGroups.ECC_ADMIN,
+  UserGroups.SECURITY_ADMIN,
+  UserGroups.SW360_ADMI
+];
+
+// // 2.3.1 Listing projects
+// _embedded.sw360:projects
+// // 2.3.2 Get a single project
+// _embedded.createdBy
+// _embedded.moderators
+
+// // 2.4.1 Listing components
+// _embedded.sw360:components
+// // 2.4.2 Get a single component
+// _embedded.createdBy
+// _embedded.releases
+// _embedded.moderators
+// _embedded.vendors
+
+// // 2.5.1 Listing releases
+// _embedded.sw360:releases
+// // 2.5.2. Get a single release
+// _embedded.moderators
+
+// // 2.6.1. Get a single attachment
+// _embedded.createdBy
+// _embedded.release
+
+// // 2.7.1. Listing vendors
+// _embedded.sw360:vendors
+
+// // 2.8.1. Listing licenses
+// _embedded.sw360:licenses
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

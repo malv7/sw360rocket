@@ -5,6 +5,8 @@ import { Store } from "@ngrx/store";
 import * as fromRoot from './../reducers';
 import * as ComponentActions from './../component/state/component.actions';
 import { componentDataLayoutFactory } from './../component/state/component.models';
+import * as RandomModels from './../component/state/component.models';
+
 
 // Lets start with the interfaces to interact with the component feature
 // There are two differtent GET requests:
