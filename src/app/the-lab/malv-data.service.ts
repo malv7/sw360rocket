@@ -125,7 +125,7 @@ export class MalvDataService {
     private store: Store<fromRoot.State>
   ) {
     store.dispatch(new ComponentActions.ProvideMockData(componentDataLayoutFactory(20)));
-    this.store.select(fromRoot.selectComponents).subscribe(x => console.log(x));
+    // this.store.select(fromRoot.selectComponents).subscribe(x => console.log(x));
   }
 
 }

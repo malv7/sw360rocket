@@ -1,33 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
-
-
-interface sw360Component {
-	type: string,
-	vendorNames: string[],
-	name: string,
-	mainLicences: string,
-	componentType: string,
-	createdOn: string
-}
-
-const DUMMY_COMPONENT: sw360Component[] = [{
-	type: 'component',
-	vendorNames: ['Apache'],
-	name: 'Tomcat',
-	mainLicences: 'MIT',
-	componentType: 'OSS',
-	createdOn: '2010-09-08'
-},
-{
-	type: 'component',
-	vendorNames: ['Bosh'],
-	name: 'sw360',
-	mainLicences: 'CC',
-	componentType: 'OSS',
-	createdOn: '2017-11-24'
-}];
+import { Store } from '@ngrx/store';
+import * as fromRoot from './../../../reducers';
+import { ComponentDataLayout } from '../../state/component.models';
 
 @Component({
 	selector: 'sw-component-list',
@@ -36,24 +11,26 @@ const DUMMY_COMPONENT: sw360Component[] = [{
 })
 export class ComponentListComponent implements OnInit {
 
+  components: Observable<ComponentDataLayout[]>
+
 	settings = {
 		actions: {
-			add: false,
-			edit: true,
-			delete: true,
+			add: true,
+			edit: false,
+			delete: false,
 			position: 'right'
 		},
 		mode: 'external',
 		columns: {
-			vendorNames: {
+			vendors: {
 				title: 'Vendor'
 			},
 			name: {
-				title: 'Component Name'
+        title: 'Component Name'
 			},
-			mainLicences: {
-				title: 'Main Licences'
-			},
+			// mainLicences: {
+			// 	title: 'Main Licences'
+			// },
 			componentType: {
 				title: 'Component Type'
 			},
@@ -63,18 +40,10 @@ export class ComponentListComponent implements OnInit {
 		}
 	};
 
-
-	data:sw360Component[];
-
-	constructor() { }
+	constructor(private store: Store<fromRoot.State>) { }
 
 	ngOnInit() {
-		this.getDummyData().subscribe(data=>this.data = data);
-		console.log(this.settings);
-	}
-
-	getDummyData(): Observable<sw360Component[]> {
-		return Observable.of(DUMMY_COMPONENT);
+    this.components = this.store.select(fromRoot.selectComponents);
 	}
 
 }
