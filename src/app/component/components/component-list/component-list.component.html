@@ -1,2 +1,6 @@
-<ng2-smart-table [settings]="settings" [source]="components | async"></ng2-smart-table>
+<ng2-smart-table (userRowSelect)="rowSelected($event)" [settings]="settings" [source]="components | async"></ng2-smart-table>
+
+<button class="positive ui button active"><i class="file icon"></i>Add</button>
+<button class="ui yellow button disabled"><i class="edit icon"></i>Edit</button>
+<button class="negative ui button disabled"><i class="delete icon"></i>Delete</button>
 <!-- {{ components | async | json }} -->

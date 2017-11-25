@@ -3,7 +3,8 @@ import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
 import * as fromRoot from './../../../reducers';
 import { ComponentDataLayout } from '../../state/component.models';
-
+import { RenderArrayInNgSmartTableComponent } from './render-array-in-ng-smart-table.component';
+import { RenderCreatorInNgSmartTableComponent } from './render-creator-in-ng-smart-table.component';
 @Component({
 	selector: 'sw-component-list',
 	templateUrl: './component-list.component.html',
@@ -11,19 +12,23 @@ import { ComponentDataLayout } from '../../state/component.models';
 })
 export class ComponentListComponent implements OnInit {
 
-  components: Observable<ComponentDataLayout[]>
+  components: Observable<ComponentDataLayout[]>;
 
+	selected;
 	settings = {
 		actions: {
-			add: true,
+			add: false,
 			edit: false,
 			delete: false,
 			position: 'right'
 		},
+		selectMode: 'multi',
 		mode: 'external',
 		columns: {
 			vendors: {
-				title: 'Vendor'
+				title: 'Vendor',
+				type: 'custom',
+        renderComponent: RenderArrayInNgSmartTableComponent
 			},
 			name: {
         title: 'Component Name'
@@ -36,6 +41,11 @@ export class ComponentListComponent implements OnInit {
 			},
 			createdOn: {
 				title: 'created on'
+			},
+			createdBy: {
+				title: 'created by',
+				type: 'custom',
+        renderComponent: RenderCreatorInNgSmartTableComponent
 			}
 		}
 	};
@@ -44,6 +54,14 @@ export class ComponentListComponent implements OnInit {
 
 	ngOnInit() {
     this.components = this.store.select(fromRoot.selectComponents);
+	}
+
+	rowSelected (event) {
+		console.log('rowSelected')
+		console.log(event);
+		this.selected=event.selected;
+
+
 	}
 
 }
