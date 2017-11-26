@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ComponentRootComponent } from './component/components/component-root/component-root.component';
 import { SingleComponentComponent } from './component/components/single-component/single-component.component';
 
+
 const routes: Routes = [
 	{
 		path: 'components',
@@ -13,7 +14,8 @@ const routes: Routes = [
 	{
 		path: 'components/component',
 		component: SingleComponentComponent
-	}
+	},
+
 ];
 
 @NgModule({

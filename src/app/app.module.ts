@@ -12,7 +12,7 @@ import { StructureModule } from './structure/structure.module';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { reducers } from './reducers';
-
+import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 // Features
 // The lab module is the new playground!
 import { TheLabModule } from './the-lab/the-lab.module';

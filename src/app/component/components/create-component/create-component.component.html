@@ -1,0 +1,107 @@
+<!---General-->
+<h3 class="ui block header">
+  General
+</h3>
+
+<div class="ui form">
+
+  <form [formGroup]="projectForm" #formDir="ngForm">
+    <div class="three fields">
+      <div class="required field">
+        <label>Name</label>
+        <input type="text" placeholder="Enter Name" formControlName="name">
+
+        <!-- Form Validation for Name-->
+        <div *ngIf="name.invalid && (name.dirty || name.touched)" class="ui form error">
+          <div *ngIf="name.errors.required" class="ui error message">
+            Name is required.
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Created by</label>
+        <input type="text" placeholder="Will be set automatically" disabled>
+      </div>
+
+      <div class="required field">
+        <label>Categories</label>
+        <input type="text" placeholder="eg., Library, cloud, mobile,..." formControlName="categorie">
+
+        <!-- Form Validation for Name-->
+        <div *ngIf="categorie.invalid && (categorie.dirty || categorie.touched)" class="ui form error">
+          <div *ngIf="categorie.errors.required" class="ui error message">
+            Categorie is required.
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+
+
+  <div class="three fields">
+    <div class="field">
+      <label>Categories</label>
+      <select class="ui fluid dropdown">
+        <option value="">OSS</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Homepage URL</label>
+      <input type="text" placeholder="Enter Home Url">
+    </div>
+    <div class="field">
+      <label>Blog URL</label>
+      <input type="text" placeholder="Enter Blog Url">
+    </div>
+  </div>
+
+  <div class="three fields">
+    <div class="field">
+      <label>Wiki RUL</label>
+      <input type="text" placeholder="Enter Wiki Url">
+    </div>
+    <div class="field">
+      <label>Mailing List URL</label>
+      <input type="text" placeholder="Enter Mailing List Url">
+    </div>
+    <div class="field">
+      <label>Short Description</label>
+      <input type="text" placeholder="Enter Description">
+    </div>
+  </div>
+</div>
+
+
+<!---Roles-->
+<h3 class="ui block header">
+  Roles
+</h3>
+
+<div class="ui form">
+  <div class="two fields">
+    <div class="field">
+      <label>Name</label>
+      <input type="text" placeholder="Click to edit" disabled>
+    </div>
+    <div class="field">
+      <label>Owner Accounting Unit</label>
+      <input type="text" placeholder="Will be set automatically" disabled>
+    </div>
+  </div>
+</div>
+
+<div class="ui form">
+  <div class="two fields">
+    <div class="field">
+      <label>Owner Billing Group</label>
+      <input type="text" placeholder="Enter Owner Billing Group" disabled>
+    </div>
+    <div class="field">
+      <label>Moderators</label>
+      <input type="text" placeholder="Click to edit" disabled>
+    </div>
+  </div>
+</div>
+<button class="ui button" type="submit">Submit</button>
+<button class="ui button" type="submit">Cancel</button>
