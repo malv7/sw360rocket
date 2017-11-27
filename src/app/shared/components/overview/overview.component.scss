@@ -12,3 +12,63 @@
 .card {
 	width: 100%;
 }
+
+.card .link-list a {
+	margin-right: 1.5em;
+}
+
+.github.icon {
+	transform: scale(1.2);
+}
+
+.card .meta {
+	display: flex;
+	flex-direction: column;
+}
+
+.card .meta span:not(:last-child) {
+	margin-bottom: 0.2em;
+}
+
+.color-blue {
+	color: #4183c4 !important;
+}
+
+.color-green {
+	color: #21ba45 !important;
+}
+
+.color-red {
+	color: #db2828 !important;
+}
+
+.color-dark {
+	color: rgba(0,0,0,.8) !important;
+}
+
+.content.list {
+	padding: 0;
+}
+
+.content.list td {
+	padding: 0.5em 1em !important;
+}
+
+.content.list th {
+	padding: 0.5em 1em !important;
+}
+
+table .last-item * {
+	padding: 0.2em 0.4em !important;
+	cursor: pointer;
+}
+
+.card .load-more-dots {
+	font-size: 2em;
+	color: rgba(0,0,0,.4);
+}
+
+.card .load-more-dots:hover {
+	font-size: 2em;
+	color: #4183c4;
+}
