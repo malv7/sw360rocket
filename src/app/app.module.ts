@@ -11,7 +11,10 @@ import { StructureModule } from './structure/structure.module';
 // Store
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { StoreRouterConnectingModule, routerReducer } from '@ngrx/router-store';
+import { EffectsModule } from '@ngrx/effects';
 import { reducers } from './reducers';
+import { RouterEffects } from './router/state/router.effects';
 
 // Features
 // The lab module is the new playground!
@@ -27,7 +30,11 @@ import { ComponentModule } from './component/component.module';
     AppRoutingModule,
 
     // Store
-    StoreModule.forRoot(reducers),
+    StoreModule.forRoot({ routerReducer: routerReducer }),
+    EffectsModule.forRoot([
+      RouterEffects
+    ]),
+    StoreRouterConnectingModule,
     StoreDevtoolsModule.instrument({
       maxAge: 25 // retains only last n states.
     }),
