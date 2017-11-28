@@ -8,11 +8,14 @@ import { RenderCreatorInNgSmartTableComponent } from './components/component-lis
 import { SingleComponentComponent } from './components/single-component/single-component.component';
 import { ComponentRootComponent } from './components/component-root/component-root.component';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
+import { RouterModule, Routes } from '@angular/router';
+
 @NgModule({
   imports: [
 		Ng2SmartTableModule,
     SharedModule,
 		StoreModule.forFeature('component', componentReducer),
+		RouterModule
 
 	],
 	entryComponents: [RenderArrayInNgSmartTableComponent,RenderCreatorInNgSmartTableComponent],

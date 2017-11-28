@@ -5,6 +5,8 @@ import * as fromRoot from './../../../reducers';
 import { ComponentDataLayout } from '../../state/component.models';
 import { RenderArrayInNgSmartTableComponent } from './render-array-in-ng-smart-table.component';
 import { RenderCreatorInNgSmartTableComponent } from './render-creator-in-ng-smart-table.component';
+import { RouterModule, Routes } from '@angular/router';
+
 @Component({
 	selector: 'sw-component-list',
 	templateUrl: './component-list.component.html',
@@ -50,7 +52,7 @@ export class ComponentListComponent implements OnInit {
 		}
 	};
 
-	constructor(private store: Store<fromRoot.State>) { }
+	constructor(private store: Store<fromRoot.State>, public router: RouterModule) { }
 
 	ngOnInit() {
     this.components = this.store.select(fromRoot.selectComponents);
@@ -60,8 +62,7 @@ export class ComponentListComponent implements OnInit {
 		console.log('rowSelected')
 		console.log(event);
 		this.selected=event.selected;
-
-
+		this.router.navigate(['your-route'])
 	}
 
 }

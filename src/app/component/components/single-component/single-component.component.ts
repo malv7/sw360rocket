@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Observable } from 'rxjs/Observable';
+import { Store } from '@ngrx/store';
+import * as fromRoot from './../../../reducers';
+import { ComponentDataLayout } from '../../state/component.models';
 @Component({
   selector: 'sw-single-component',
   templateUrl: './single-component.component.html',
@@ -7,9 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SingleComponentComponent implements OnInit {
 
-  constructor() { }
+	components: Observable<ComponentDataLayout[]>;
+	currentComponent: ComponentDataLayout;
+	constructor(private store: Store<fromRoot.State>) { }
 
-  ngOnInit() {
-  }
+	ngOnInit() {
+		this.components = this.store.select(fromRoot.selectComponents);
+		this.components.subscribe(componentData => this.currentComponent=componentData[0])
+
+		console.log(this.currentComponent);
+	}
 
 }

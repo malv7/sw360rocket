@@ -10,6 +10,7 @@ export class ComponentRootComponent implements OnInit {
 	constructor() { }
 
 	ngOnInit() {
+
 	}
 
 }
