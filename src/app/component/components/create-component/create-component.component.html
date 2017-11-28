@@ -26,50 +26,82 @@
 
       <div class="required field">
         <label>Categories</label>
-        <input type="text" placeholder="eg., Library, cloud, mobile,..." formControlName="categorie">
+        <input type="text" placeholder="eg., Library, cloud, mobile,..." formControlName="categories">
 
         <!-- Form Validation for Name-->
-        <div *ngIf="categorie.invalid && (categorie.dirty || categorie.touched)" class="ui form error">
-          <div *ngIf="categorie.errors.required" class="ui error message">
+        <div *ngIf="categories.invalid && (categories.dirty || categories.touched)" class="ui form error">
+          <div *ngIf="categories.errors.required" class="ui error message">
             Categorie is required.
           </div>
         </div>
       </div>
     </div>
-  </form>
 
 
-  <div class="three fields">
-    <div class="field">
-      <label>Categories</label>
-      <select class="ui fluid dropdown">
-        <option value="">OSS</option>
-      </select>
-    </div>
-    <div class="field">
-      <label>Homepage URL</label>
-      <input type="text" placeholder="Enter Home Url">
-    </div>
-    <div class="field">
-      <label>Blog URL</label>
-      <input type="text" placeholder="Enter Blog Url">
-    </div>
-  </div>
+    <div class="three fields">
+      <div class="field">
+        <label>ComponentType</label>
+        <select class="ui fluid dropdown" formControlName="componentType">
+          <option *ngFor="let componentType of componentTypes">{{componentType}}</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Homepage URL</label>
+        <input type="text" placeholder="Enter Home Url" formControlName="homepageURL">
 
-  <div class="three fields">
-    <div class="field">
-      <label>Wiki RUL</label>
-      <input type="text" placeholder="Enter Wiki Url">
+        <!-- Form Validation for homepageURL-->
+        <div *ngIf="homepageURL.invalid && (homepageURL.dirty || homepageURL.touched)" class="ui form error">
+          <div *ngIf="homepageURL.errors.pattern" class="ui error message">
+            Must be a valid URL.
+          </div>
+        </div>
+
+      </div>
+      <div class="field">
+        <label>Blog URL</label>
+        <input type="text" placeholder="Enter Blog Url" formControlName="blogURL">
+
+        <!-- Form Validation for blogURL-->
+        <div *ngIf="blogURL.invalid && (blogURL.dirty || blogURL.touched)" class="ui form error">
+          <div *ngIf="blogURL.errors.pattern" class="ui error message">
+            Must be a valid URL.
+          </div>
+        </div>
+
+      </div>
     </div>
-    <div class="field">
-      <label>Mailing List URL</label>
-      <input type="text" placeholder="Enter Mailing List Url">
+
+    <div class="two fields">
+      <div class="field">
+        <label>Wiki URL</label>
+        <input type="text" placeholder="Enter Wiki Url" formControlName="wikiURL">
+
+        <!-- Form Validation for wikiURL-->
+        <div *ngIf="wikiURL.invalid && (wikiURL.dirty || wikiURL.touched)" class="ui form error">
+          <div *ngIf="wikiURL.errors.pattern" class="ui error message">
+            Must be a valid URL.
+          </div>
+        </div>
+
+      </div>
+      <div class="field">
+        <label>Mailing List URL</label>
+        <input type="text" placeholder="Enter Mailing List Url" formControlName="mailingListURL">
+
+        <!-- Form Validation for mailingListURL-->
+        <div *ngIf="mailingListURL.invalid && (mailingListURL.dirty || mailingListURL.touched)" class="ui form error">
+          <div *ngIf="mailingListURL.errors.pattern" class="ui error message">
+            Must be a valid URL.
+          </div>
+        </div>
+      </div>
+
     </div>
     <div class="field">
       <label>Short Description</label>
-      <input type="text" placeholder="Enter Description">
+      <textarea type="text" placeholder="Enter Description" formControlName="shortDescription"> </textarea>
     </div>
-  </div>
+  </form>
 </div>
 
 
@@ -78,30 +110,32 @@
   Roles
 </h3>
 
-<div class="ui form">
-  <div class="two fields">
-    <div class="field">
-      <label>Name</label>
-      <input type="text" placeholder="Click to edit" disabled>
-    </div>
-    <div class="field">
-      <label>Owner Accounting Unit</label>
-      <input type="text" placeholder="Will be set automatically" disabled>
+<form [formGroup]="projectForm" #formDir="ngForm">
+  <div class="ui form">
+    <div class="two fields">
+      <div class="field">
+        <label>Name</label>
+        <input type="text" placeholder="Click to edit" disabled>
+      </div>
+      <div class="field">
+        <label>Owner Accounting Unit</label>
+        <input type="text" placeholder="Will be set automatically" disabled>
+      </div>
     </div>
   </div>
-</div>
 
-<div class="ui form">
-  <div class="two fields">
-    <div class="field">
-      <label>Owner Billing Group</label>
-      <input type="text" placeholder="Enter Owner Billing Group" disabled>
-    </div>
-    <div class="field">
-      <label>Moderators</label>
-      <input type="text" placeholder="Click to edit" disabled>
+  <div class="ui form">
+    <div class="two fields">
+      <div class="field">
+        <label>Owner Billing Group</label>
+        <input type="text" placeholder="Enter Owner Billing Group" disabled>
+      </div>
+      <div class="field">
+        <label>Moderators</label>
+        <input type="text" placeholder="Click to edit" disabled>
+      </div>
     </div>
   </div>
-</div>
-<button class="ui button" type="submit">Submit</button>
+</form>
+<button class="ui button" type="submit" (click)="submit()" [disabled]="!projectForm.valid">Submit</button>
 <button class="ui button" type="submit">Cancel</button>
