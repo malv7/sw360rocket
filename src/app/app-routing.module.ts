@@ -13,7 +13,7 @@ const routes: Routes = [
 		component: ComponentRootComponent
 	},
 	{
-		path: 'components/component',
+		path: 'component',
 		component: SingleComponentComponent
   },
   {
