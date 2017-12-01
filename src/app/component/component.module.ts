@@ -8,14 +8,16 @@ import { SingleComponentComponent } from './components/single-component/single-c
 import { ComponentRootComponent } from './components/component-root/component-root.component';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { CreateComponentComponent } from './components/create-component/create-component.component';
+import { EmployeListComponent, FilterPipe } from './components/create-component/employe-list/employe-list.component';
 @NgModule({
   imports: [
     Ng2SmartTableModule,
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
-    StoreModule.forFeature('component', componentReducer)
+    StoreModule.forFeature('component', componentReducer),
   ],
-  declarations: [ComponentListComponent, SingleComponentComponent, ComponentRootComponent, CreateComponentComponent]
+  declarations: [ComponentListComponent, SingleComponentComponent, ComponentRootComponent, CreateComponentComponent, EmployeListComponent, FilterPipe],
+  exports:[FilterPipe]
 })
 export class ComponentModule { }

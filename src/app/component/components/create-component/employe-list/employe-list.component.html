@@ -1,0 +1,59 @@
+<div class="ui centered grid">
+  <div class="colum">
+    <div class="ui fluid card">
+      <div class="content">
+        <div class="header">Employe List</div>
+      </div>
+      <div class="content">
+        <h4 class="ui sub header">search</h4>
+        <div class="ui small feed">
+          <div class="ui search">
+            <div class="ui icon input">
+              <input class="prompt" type="text" placeholder="Employe LastName ..."  name="searchString"  [(ngModel)]="searchString">
+              <i class="search icon"></i>
+            </div>
+            <div class="results"></div>
+          </div>
+          <div class="event">
+            <div class="content">
+
+
+              <table class="ui celled padded table">
+                <thead>
+                  <tr>
+                    <th>check</th>
+                    <th>Given Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Department</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let employe of list | filterEmployeLastName : 'lastName' : searchString; let i = index">
+                    <td>
+                        <div class="ui checkbox">
+                            <input type="checkbox" name="box" [(ngModel)]="employe.employeCheckBoxValue" (change)="addModerator(employe)">
+                            <label></label> 
+                          </div>
+                    </td>
+                      <td>{{employe.givenName}}</td>
+                      <td>{{employe.lastName}}</td>
+                      <td>{{employe.email}}</td>
+                      <td>{{employe.department}}</td>
+                  </tr> 
+
+                </tbody>
+              </table>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="extra content">
+        <button class="ui button" (click)="testus()">Add</button>
+        <button class="ui button">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

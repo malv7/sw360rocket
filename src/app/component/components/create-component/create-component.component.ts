@@ -45,12 +45,15 @@ export class CreateComponentComponent implements OnInit {
   componentTypes: String[];
   projectForm: FormGroup;
   newComponent: NewComponent;
+  employePopUp: boolean;
 
   constructor() { }
 
   ngOnInit() {
     //get values for DropDown componentTypes
     this.componentTypes = COMPONENT_TYPES;
+
+    this.employePopUp = false;
 
     //create Formcontrol for imput fields
     this.projectForm = new FormGroup({
@@ -62,7 +65,7 @@ export class CreateComponentComponent implements OnInit {
       [CATEGORIES]: new FormControl(null,
         Validators.required),
 
-      [COMPONENTTYPE]: new FormControl(COMPONENT_TYPES[0]),
+      [COMPONENTTYPE]: new FormControl(this.componentTypes[0]),
 
       [HOMEPAGEURL]: new FormControl(null,
         Validators.pattern('https?://.+')),
@@ -113,5 +116,10 @@ export class CreateComponentComponent implements OnInit {
       Moderators: this.projectForm.get(MODERATORS).value
     }
     console.log(this.newComponent);
+  }
+
+  testus(){
+    console.log("geht click");
+    this.employePopUp = true;
   }
 }

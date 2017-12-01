@@ -2,7 +2,11 @@
 <h3 class="ui block header">
   General
 </h3>
+<div *ngIf="employePopUp">
+<sw-employe-list>
 
+</sw-employe-list>
+</div>
 <div class="ui form">
 
   <form [formGroup]="projectForm" #formDir="ngForm">
@@ -130,7 +134,7 @@
         <label>Owner Billing Group</label>
         <input type="text" placeholder="Enter Owner Billing Group" disabled>
       </div>
-      <div class="field">
+      <div class="field" (click)="employePopUp = !employePopUp">
         <label>Moderators</label>
         <input type="text" placeholder="Click to edit" disabled>
       </div>
