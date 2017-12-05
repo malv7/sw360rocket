@@ -6,6 +6,10 @@ import { ComponentDataLayout } from '../../state/component.models';
 import { Router, Routes } from '@angular/router';
 import * as RouterActions from './../../../router/state/router.actions';
 
+interface Checked{
+[key:string]:string;
+}
+
 @Component({
 	selector: 'sw-component-list',
 	templateUrl: './component-list.component.html',
@@ -13,7 +17,7 @@ import * as RouterActions from './../../../router/state/router.actions';
 })
 export class ComponentListComponent implements OnInit {
 
-  checked = [];
+  checked: Checked = {};
 
   components: Observable<ComponentDataLayout[]>;
 
@@ -21,7 +25,8 @@ export class ComponentListComponent implements OnInit {
 
 	ngOnInit() {
 		this.components = this.store.select(fromRoot.selectComponents);
-		this.checked = [];
+		this.checked['Hallo']='test';
+		delete this.checked['Hallo'];
 	}
 
   goToComponent(component: ComponentDataLayout) {
@@ -35,12 +40,12 @@ export class ComponentListComponent implements OnInit {
 	}
 
 	checkComponent(component: ComponentDataLayout){
-		if(!this.checked.includes(component)){
-		this.checked.push(component);
-	}else {
+	// 	if(!this.checked.includes(component)){
+	// 	this.checked.push(component);
+	// }else {
 
-		this.checked.filter(item => item !== component)
-	}
+	// 	this.checked.filter(item => item !== component)
+	// }
 		console.log( this.checked);
 	}
 
