@@ -9,6 +9,8 @@ import { ComponentRootComponent } from './components/component-root/component-ro
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { CreateComponentComponent } from './components/create-component/create-component.component';
 import { EmployeListComponent, FilterPipe } from './components/create-component/employe-list/employe-list.component';
+import {SuiCheckboxModule, SuiRatingModule, SuiModule} from 'ng2-semantic-ui';
+import { PopUpService } from './components/create-component/pop-up.service';
 @NgModule({
   imports: [
     Ng2SmartTableModule,
@@ -16,8 +18,12 @@ import { EmployeListComponent, FilterPipe } from './components/create-component/
     ReactiveFormsModule,
     SharedModule,
     StoreModule.forFeature('component', componentReducer),
+    SuiModule, SuiRatingModule,SuiCheckboxModule
   ],
   declarations: [ComponentListComponent, SingleComponentComponent, ComponentRootComponent, CreateComponentComponent, EmployeListComponent, FilterPipe],
-  exports:[FilterPipe]
+  exports:[FilterPipe],
+  providers: [
+    PopUpService
+  ]
 })
 export class ComponentModule { }

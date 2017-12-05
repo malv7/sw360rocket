@@ -1,3 +1,4 @@
+import { PopUpService } from './pop-up.service';
 import { COMPONENT_TYPES, ComponentTypes } from './../../state/component.models';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -47,7 +48,7 @@ export class CreateComponentComponent implements OnInit {
   newComponent: NewComponent;
   employePopUp: boolean;
 
-  constructor() { }
+  constructor(private popUpService: PopUpService) { }
 
   ngOnInit() {
     //get values for DropDown componentTypes
@@ -116,10 +117,5 @@ export class CreateComponentComponent implements OnInit {
       Moderators: this.projectForm.get(MODERATORS).value
     }
     console.log(this.newComponent);
-  }
-
-  testus(){
-    console.log("geht click");
-    this.employePopUp = true;
   }
 }

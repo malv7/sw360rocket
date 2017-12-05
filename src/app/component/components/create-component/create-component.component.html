@@ -2,11 +2,13 @@
 <h3 class="ui block header">
   General
 </h3>
-<div *ngIf="employePopUp">
+
+<div *ngIf="popUpService.componentOwnerPopUp || popUpService.moderatorPopUp">
 <sw-employe-list>
 
 </sw-employe-list>
 </div>
+
 <div class="ui form">
 
   <form [formGroup]="projectForm" #formDir="ngForm">
@@ -117,8 +119,8 @@
 <form [formGroup]="projectForm" #formDir="ngForm">
   <div class="ui form">
     <div class="two fields">
-      <div class="field">
-        <label>Name</label>
+      <div class="field" (click)="popUpService.componentOwnerPopUp = !popUpService.componentOwnerPopUp">
+        <label>Component owner</label>
         <input type="text" placeholder="Click to edit" disabled>
       </div>
       <div class="field">
@@ -134,7 +136,7 @@
         <label>Owner Billing Group</label>
         <input type="text" placeholder="Enter Owner Billing Group" disabled>
       </div>
-      <div class="field" (click)="employePopUp = !employePopUp">
+      <div class="field" (click)="popUpService.moderatorPopUp = !popUpService.moderatorPopUp">
         <label>Moderators</label>
         <input type="text" placeholder="Click to edit" disabled>
       </div>
@@ -142,4 +144,4 @@
   </div>
 </form>
 <button class="ui button" type="submit" (click)="submit()" [disabled]="!projectForm.valid">Submit</button>
-<button class="ui button" type="submit">Cancel</button>
+<button class="ui button" type="submit" (click)="popUpService.moderatorPopUp = !popUpService.moderatorPopUp">Cancel</button>
