@@ -3,8 +3,6 @@ import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
 import * as fromRoot from './../../../reducers';
 import { ComponentDataLayout } from '../../state/component.models';
-import { RenderArrayInNgSmartTableComponent } from './render-array-in-ng-smart-table.component';
-import { RenderCreatorInNgSmartTableComponent } from './render-creator-in-ng-smart-table.component';
 import { Router, Routes } from '@angular/router';
 import * as RouterActions from './../../../router/state/router.actions';
 
@@ -15,20 +13,37 @@ import * as RouterActions from './../../../router/state/router.actions';
 })
 export class ComponentListComponent implements OnInit {
 
-  edit = false;
+  checked = [];
 
   components: Observable<ComponentDataLayout[]>;
-  
+
   constructor(private store: Store<fromRoot.State>, public router: Router) { }
 
 	ngOnInit() {
-    this.components = this.store.select(fromRoot.selectComponents);
+		this.components = this.store.select(fromRoot.selectComponents);
+		this.checked = [];
 	}
 
-  go(component: ComponentDataLayout) {
+  goToComponent(component: ComponentDataLayout) {
     this.store.dispatch(new RouterActions.Go({
       path: ['/component'],
     }));
-  }
+	}
+	all(){
+
+		console.log('all')
+	}
+
+	checkComponent(component: ComponentDataLayout){
+		if(!this.checked.includes(component)){
+		this.checked.push(component);
+	}else {
+
+		this.checked.filter(item => item !== component)
+	}
+		console.log( this.checked);
+	}
+
+
 
 }
