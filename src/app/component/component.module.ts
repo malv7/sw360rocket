@@ -9,6 +9,7 @@ import { SingleComponentComponent } from './components/single-component/single-c
 import { ComponentRootComponent } from './components/component-root/component-root.component';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { RouterModule, Routes } from '@angular/router';
+import { ComponentDetailComponent } from './components/component-detail/component-detail.component';
 
 @NgModule({
   imports: [
@@ -19,6 +20,6 @@ import { RouterModule, Routes } from '@angular/router';
 
 	],
 	entryComponents: [RenderArrayInNgSmartTableComponent,RenderCreatorInNgSmartTableComponent],
-  declarations: [ComponentListComponent, SingleComponentComponent, ComponentRootComponent, RenderArrayInNgSmartTableComponent,RenderCreatorInNgSmartTableComponent]
+  declarations: [ComponentListComponent, SingleComponentComponent, ComponentRootComponent, RenderArrayInNgSmartTableComponent,RenderCreatorInNgSmartTableComponent, ComponentDetailComponent]
 })
 export class ComponentModule { }
