@@ -1,12 +1,18 @@
+<!-- Item Summary -->
 <div class="ui card">
 	<div class="content">
 		<a class="header color-blue">Apache Component</a>
+		<a href="#" class="settings">
+			<i class="ui icon setting"></i>
+		</a>
 		<div class="meta">
-			<span class="date">Release Date: &nbsp; Sep 2014</span>
-			<span class="date">Component Type: &nbsp; Irgendwas</span>
 			<span class="date">Created by: &nbsp;
 				<a href="#">Peter Parado</a>
 			</span>
+			<span class="date">Created on: &nbsp; 03. Sep 2014</span>
+
+			<span class="date">Categories: &nbsp; CatA, CatB, CatC</span>
+			<span class="date">Component Type: &nbsp; Irgendwas</span>
 		</div>
 	</div>
 	<div class="extra content link-list">
@@ -25,7 +31,34 @@
 
 	</div>
 </div>
-<div class="ui card" fxLayout="row">
+
+<!-- Nice State  -->
+<div class="ui orange card nice-state">
+	<div class="nice-states" fxLayout="horizontal">
+		<div class="single-state" fxFlex="35%">
+			<span>0&thinsp;|&thinsp;</span>
+			<span class="secondary-value">5</span>
+			<i class="ui icon checkmark"></i>
+			<p>Clearings</p>
+		</div>
+		<div class="single-state" fxFlex="45%">
+			<span>0&thinsp;|&thinsp;</span>
+			<span class="secondary-value">3</span>
+			<i class="ui icon checkmark"></i>
+			<p>Vulnerabilities</p>
+		</div>
+		<div class="single-state" fxFlex="20%">
+			<span>2&thinsp;|&thinsp;</span>
+			<span class="secondary-value">0</span>
+			<i class="ui icon warning"></i>
+			<p>ECC</p>
+		</div>
+	</div>
+</div>
+
+
+<!-- Action Buttons  -->
+<!-- <div class="ui card" fxLayout="row">
 	<div class="ui buttons">
 		<button class="ui button green">
 			<i class="plus icon"></i>
@@ -40,7 +73,9 @@
 			Delete
 		</button>
 	</div>
-</div>
+</div> -->
+
+<!-- Releases  -->
 <div class="ui card">
 	<div class="extra content">
 		<a class="color-blue">
@@ -50,40 +85,43 @@
 	</div>
 	<div class="content list">
 		<table class="ui very basic table">
-				<thead>
-					<tr>
-						<th>Name</th>
-						<th>Version</th>
-						<th>State</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>commons-math</td>
-						<td>3.1.2</td>
-						<td class="color-red">New</td>
-					</tr>
-					<tr>
-						<td>commons-math</td>
-						<td>3.0.0</td>
-						<td class="color-red">New</td>
-					</tr>
-					<tr>
-						<td>commons-math</td>
-						<td>2.8.9</td>
-						<td class="color-green">Cleared</td>
-					</tr>
-					<tr class="last-item">
-						<td></td>
-						<td><a class="load-more-dots">···</a></td>
-						<td></td>
-					</tr>
-				</tbody>
-			</table>
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Version</th>
+					<th>State</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>commons-math</td>
+					<td>3.1.2</td>
+					<td class="color-red">New</td>
+				</tr>
+				<tr>
+					<td>commons-math</td>
+					<td>3.0.0</td>
+					<td class="color-red">New</td>
+				</tr>
+				<tr>
+					<td>commons-math</td>
+					<td>2.8.9</td>
+					<td class="color-green">Cleared</td>
+				</tr>
+				<tr class="last-item">
+					<td></td>
+					<td>
+						<a class="load-more-dots">···</a>
+					</td>
+					<td></td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
-
 </div>
-<div class="ui card">
+
+<!-- Vulnerabilties -->
+<!-- <div class="ui card">
 	<div class="extra content">
 		<a class="color-blue">
 			<i class="warning sign icon"></i>
@@ -91,5 +129,21 @@
 			&nbsp;&nbsp;Vulnerabilities
 		</a>
 	</div>
+</div> -->
+
+<div class="ui success message">
+	<i class="close icon"></i>
+	<div class="header">
+		Your user registration was successful.
+	</div>
+	<p>You may now log-in with the username you have chosen</p>
 </div>
 
+<div class="ui negative message">
+	<i class="close icon"></i>
+	<div class="header">
+		We're sorry we can't apply that discount
+	</div>
+	<p>That offer has expired
+	</p>
+</div>
