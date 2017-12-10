@@ -1,6 +1,3 @@
-<div class="four ui buttons">
-	<button class="ui button blue">Summary</button>
-	<button class="ui button red">Releases</button>
-	<button class="ui button green">Vulnerabilities</button>
-	<button class="ui button yellow">Attachments</button>
+<div class="four ui buttons blue">
+	<button class="ui button" *ngFor="let link of linkList">{{link.name}}</button>
 </div>
