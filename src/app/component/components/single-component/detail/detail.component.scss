@@ -5,11 +5,11 @@
 
 .table {
 	margin: 0 1em 1em 0;
-	width: 50%;
+	width: calc(33.3% - 1em);
+	// height: 200em;
 }
 
-.table:nth-child(2n+2)  {
+.table:nth-child(3n+3)  {
 	margin-right: 0;
-	width: calc(50% - 1em);
-	// background-color: red;
+	width: 33.3%;
 }

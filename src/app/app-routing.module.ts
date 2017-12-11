@@ -8,7 +8,7 @@ import { ReleasesComponent } from './component/components/single-component/relea
 import { VulnerabilitiesComponent } from './component/components/single-component/vulnerabilities/vulnerabilities.component';
 import { RouterTestComponent } from './the-lab/router-test-component/router-test.component';
 import { RxjsComponent } from './the-lab/rxjs.component';
-import { ComponentDetailComponent } from './component/components/single-component/component-detail/component-detail.component';
+import { DetailComponent } from './component/components/single-component/detail/detail.component';
 
 const routes: Routes = [
 	{
@@ -20,10 +20,10 @@ const routes: Routes = [
 		component: SingleComponentComponent,
 		children: [
       { path: '', redirectTo: 'details', pathMatch: 'full' },
-      { path: 'details', component: ComponentDetailComponent },
+      { path: 'details', component: DetailComponent },
       { path: 'releases', component: ReleasesComponent },
 			{ path: 'vulnerabilities', component: VulnerabilitiesComponent },
-			{ path: 'attachments', component: ComponentDetailComponent }
+			{ path: 'attachments', component: DetailComponent }
     ]
   },
   {
