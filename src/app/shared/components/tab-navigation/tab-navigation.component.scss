@@ -1,3 +1,5 @@
+@import '~styles/toolkit';
+
 :host {
 	display: block;
 	width: 100%;
@@ -7,5 +9,15 @@
 	border-right: 1px solid #EEE;
 }
 
-.button:hover {
+.buttons .button {
+	background-color: rgba($color-tab-navigation, 0.75);
 }
+
+.buttons .button:hover {
+	background-color: $color-tab-navigation;
+}
+
+.buttons .button:focus {
+	background-color: $color-tab-navigation;
+}
+
