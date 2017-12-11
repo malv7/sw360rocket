@@ -8,8 +8,8 @@ interface LinkItem {
 export interface Tab {
   routerlink:string;
   title:string;
-  classActive:string;
-  classInactive:string;
+  classActive?:string;
+  classInactive?:string;
 }
 
 @Component({

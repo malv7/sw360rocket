@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { ComponentDataLayout } from '../../../state/component.models';
+import { Store } from '@ngrx/store';
+import * as fromRoot from './../../../../reducers';
+import { Router } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';

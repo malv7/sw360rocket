@@ -12,7 +12,7 @@ import { AttachmentsComponent } from './components/single-component/attachments/
 
 import { VulnerabilitiesComponent } from './components/single-component/vulnerabilities/vulnerabilities.component';
 //import { AttachmentsComponent } from './components/single-component/attachments/attachments.component';
-import { ComponentDetailComponent } from './components/component-detail/component-detail.component';
+import { ComponentDetailComponent } from './components/single-component/component-detail/component-detail.component';
 
 @NgModule({
   imports: [
@@ -24,9 +24,9 @@ import { ComponentDetailComponent } from './components/component-detail/componen
     ComponentListComponent,
     SingleComponentComponent,
     ComponentRootComponent,
-    SummaryComponent,
     ReleasesComponent,
-    VulnerabilitiesComponent
+    VulnerabilitiesComponent,
+    ComponentDetailComponent
   ]
 
 })
