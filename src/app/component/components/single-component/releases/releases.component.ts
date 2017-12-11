@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { ComponentDataLayout } from '../../../state/component.models';
+import { Store } from '@ngrx/store';
+import * as fromRoot from './../../../../reducers';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'sw-releases',
@@ -7,9 +12,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReleasesComponent implements OnInit {
 
-  constructor() { }
+  components: Observable<ComponentDataLayout[]>;
+  
+  constructor(private store: Store<fromRoot.State>, public router: Router) { }
 
-  ngOnInit() {
-  }
-
+	ngOnInit() {
+    this.components = this.store.select(fromRoot.selectComponents);
+	}
 }

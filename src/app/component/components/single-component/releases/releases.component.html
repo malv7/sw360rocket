@@ -1,3 +1,20 @@
-<p>
-  releases works!
-</p>
+<table class="ui striped table">
+  <thead>
+    <tr>
+      <th>Vendor</th>
+      <th>Component Name</th>
+      <th>Component Type</th>
+      <th>Created On</th>
+      <th>Created By</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let c of components | async" (click)="go(c)">
+      <td>{{ c.vendors }}</td>
+      <td>{{ c.name }}</td>
+      <td>{{ c.componentType }}</td>
+      <td>{{ c.createdOn }}</td>
+      <td>{{ c.createdBy.email }}</td>
+    </tr>
+  </tbody>
+</table>

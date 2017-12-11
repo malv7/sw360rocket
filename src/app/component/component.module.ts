@@ -4,29 +4,27 @@ import { StoreModule } from '@ngrx/store';
 import { componentReducer } from './state/component.reducer';
 import { ComponentListComponent } from './components/component-list/component-list.component';
 import { SingleComponentComponent } from './components/single-component/single-component.component';
-import { SummaryComponent } from './components/single-component/summary/summary.component';
 import { ReleasesComponent } from './components/single-component/releases/releases.component';
 import { ComponentRootComponent } from './components/component-root/component-root.component';
 import { RouterModule, Routes } from '@angular/router';
 
 import { VulnerabilitiesComponent } from './components/single-component/vulnerabilities/vulnerabilities.component';
 //import { AttachmentsComponent } from './components/single-component/attachments/attachments.component';
-import { ComponentDetailComponent } from './components/component-detail/component-detail.component';
+import { ComponentDetailComponent } from './components/single-component/component-detail/component-detail.component';
 
 @NgModule({
   imports: [
     SharedModule,
 		StoreModule.forFeature('component', componentReducer),
 		RouterModule
-
 	],
   declarations: [
     ComponentListComponent,
     SingleComponentComponent,
     ComponentRootComponent,
-    SummaryComponent,
     ReleasesComponent,
-    VulnerabilitiesComponent
+    VulnerabilitiesComponent,
+    ComponentDetailComponent
   ]
 })
 export class ComponentModule { }
