@@ -1,48 +1,71 @@
-<!--
-<ng2-smart-table (userRowSelect)="rowSelected($event)" [settings]="settings" [source]="components | async"></ng2-smart-table>
-<button class="positive ui button active"><i class="file icon"></i>Add</button>
-<button class="ui yellow button disabled"><i class="edit icon"></i>Edit</button>
-<button class="negative ui button disabled"><i class="delete icon"></i>Delete</button>
-{{ components | async | json }}
--->
+<div fxLayout="row" fxLayoutGap="1em">
+  <div class="ui icon input" fxFlex="1 1 auto">
+    <input type="text" placeholder="Filter components...">
+    <i class="search icon"></i>
+  </div>
+
+  <div class="ui icon buttons">
+    <button class="ui button">
+      <i class="edit icon"></i>
+    </button>
+
+    <button class="ui button">
+      <i class="add circle icon"></i>
+    </button>
+
+    <button class="ui button">
+      <i class="trash icon"></i>
+    </button>
+
+  </div>
+</div>
 
 <table class="ui striped table">
   <thead>
     <tr>
-      <th>Vendor</th>
       <th>Component Name</th>
+      <th>Vendor</th>
       <th>Component Type</th>
       <th>Created On</th>
-	  <th>Created By</th>
-	  <th><input type="checkbox" name="components" value=all (click)="all()"></th>
+      <th>Created By</th>
+      <th>
+        <input type="checkbox" name="components" value=all (click)="all()">
+      </th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let c of components | async" >
-      <td>{{ c.vendors }}</td>
+    <tr *ngFor="let c of components | async">
       <td (click)="goToComponent(c)">{{ c.name }}</td>
+      <td>{{ c.vendors }}</td>
       <td>{{ c.componentType }}</td>
       <td>{{ c.createdOn }}</td>
-	  <td>{{ c.createdBy.email }}</td>
-	  <td>
-			<input type="checkbox" name="components" value={{c.name}} (click)=checkComponent(c)>
-		  </td>
+      <td>{{ c.createdBy.email }}</td>
+      <td>
+        <input type="checkbox" name="components" value={{c.name}} (click)=checkComponent(c)>
+      </td>
     </tr>
   </tbody>
   <tfoot>
-		<tr><th colspan="6">
-		  <div class="ui left floated pagination menu">
-			<a class="icon item">
-			  <i class="left chevron icon"></i>
-			</a>
-			<a class="item">1</a>
-			<a class="item">2</a>
-			<a class="item">3</a>
-			<a class="item">4</a>
-			<a class="icon item">
-			  <i class="right chevron icon"></i>
-			</a>
-		  </div>
-		</th>
-	  </tr></tfoot>
+    <tr>
+      <th colspan="200">
+        <div fxLayout="row"> <!-- fxLayoutAlign="center" -->
+          <div class="ui pagination menu">
+
+            <a class="icon item">
+              <i class="left chevron icon"></i>
+            </a>
+            <a class="item">1</a>
+            <a class="item">2</a>
+            <a class="item">3</a>
+            <a class="item">4</a>
+            <a class="icon item">
+              <i class="right chevron icon"></i>
+            </a>
+          </div>
+
+        </div>
+
+      </th>
+    </tr>
+  </tfoot>
 </table>

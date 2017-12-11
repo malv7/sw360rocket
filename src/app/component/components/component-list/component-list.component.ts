@@ -33,9 +33,9 @@ export class ComponentListComponent implements OnInit {
     this.store.dispatch(new RouterActions.Go({
       path: ['/component'],
     }));
-	}
+  }
+  
 	all(){
-
 		console.log('all')
 	}
 
