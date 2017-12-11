@@ -7,7 +7,7 @@ import { SingleComponentComponent } from './components/single-component/single-c
 import { ReleasesComponent } from './components/single-component/releases/releases.component';
 import { ComponentRootComponent } from './components/component-root/component-root.component';
 import { RouterModule, Routes } from '@angular/router';
-import { AttachmentsComponent } from './components/single-component/attachments/attachments/attachments.component';
+import { AttachmentsComponent } from './components/single-component/attachments/attachments.component';
 
 @NgModule({
   imports: [
