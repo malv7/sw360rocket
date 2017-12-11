@@ -1,19 +1,9 @@
-<!--<div class="height-100" fxLayout="row" fxLayoutGap="1em">
-	<div class="content" fxLayout="column" fxFlex="80%" fxLayoutGap="1em">
-    <sw-tab-navigation [tabs]=tabs>
-	</sw-tab-navigation>
-		<router-outlet ></router-outlet>
-	</div>
-</div>-->
 <div class="height-100" fxLayout="row" fxLayoutGap="1em">
 		<div class="content" fxLayout="column" fxFlex="80%" fxLayoutGap="1em">
-		<sw-tab-navigation [tabs]=tabs>
-		</sw-tab-navigation>
-
-		<div class="router-outlet">
-				<router-outlet></router-outlet>
-			</div>
+      <sw-tab-navigation [tabs]=tabs></sw-tab-navigation>
+      <div class="router-outlet">
+          <router-outlet></router-outlet>
+      </div>
 		</div>
-
-
+	<sw-overview fxFlex="20%"></sw-overview>
 </div>

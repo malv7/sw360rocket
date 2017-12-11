@@ -8,8 +8,10 @@ import { SummaryComponent } from './components/single-component/summary/summary.
 import { ReleasesComponent } from './components/single-component/releases/releases.component';
 import { ComponentRootComponent } from './components/component-root/component-root.component';
 import { RouterModule, Routes } from '@angular/router';
+
 import { VulnerabilitiesComponent } from './components/single-component/vulnerabilities/vulnerabilities.component';
 //import { AttachmentsComponent } from './components/single-component/attachments/attachments.component';
+import { ComponentDetailComponent } from './components/component-detail/component-detail.component';
 
 @NgModule({
   imports: [
@@ -18,6 +20,13 @@ import { VulnerabilitiesComponent } from './components/single-component/vulnerab
 		RouterModule
 
 	],
-  declarations: [ComponentListComponent, SingleComponentComponent, ComponentRootComponent,SummaryComponent,ReleasesComponent, VulnerabilitiesComponent]
+  declarations: [
+    ComponentListComponent,
+    SingleComponentComponent,
+    ComponentRootComponent,
+    SummaryComponent,
+    ReleasesComponent,
+    VulnerabilitiesComponent
+  ]
 })
 export class ComponentModule { }

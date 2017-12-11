@@ -1,4 +1,7 @@
-<div class="four ui buttons" >
-	<button *ngFor="let tab of tabs" [class]=tab.classActive   [routerLink]=tab.routerlink>{{tab.title}}</button>
-
+<div class="four ui buttons blue" >
+	<button *ngFor="let tab of tabs"
+          [class]=tab.classActive
+          [routerLink]=tab.routerlink>
+    {{tab.title}}
+  </button>
 </div>

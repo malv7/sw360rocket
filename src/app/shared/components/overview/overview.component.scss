@@ -1,3 +1,4 @@
+@import '~styles/toolkit';
 
 .wrapper {
 	width: 100%;
@@ -11,6 +12,13 @@
 
 .card {
 	width: 100%;
+}
+
+.settings {
+	position: absolute;
+	right: 0.25em;
+	top: 0.5em;
+	font-size: 1.5rem;
 }
 
 .card .link-list a {
@@ -27,7 +35,7 @@
 }
 
 .card .meta span:not(:last-child) {
-	margin-bottom: 0.2em;
+	margin-bottom: 0.3em;
 }
 
 .color-blue {
@@ -71,4 +79,29 @@ table .last-item * {
 .card .load-more-dots:hover {
 	font-size: 2em;
 	color: #4183c4;
+}
+
+
+/* Nice State */
+.nice-state {
+	padding: 1em 1.5em;
+}
+
+.single-state span {
+	font-weight: bold;
+	font-size: 1.2em;
+}
+
+.secondary-value {
+	opacity: 0.5;
+}
+
+.nice-state .checkmark {
+	margin-left: 0.3em;
+	color: #21ba45;
+}
+
+.nice-state .warning {
+	margin-left: 0.2em;
+	color: #db2828;
 }
