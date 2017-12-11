@@ -13,16 +13,36 @@
       <th>Component Name</th>
       <th>Component Type</th>
       <th>Created On</th>
-      <th>Created By</th>
+	  <th>Created By</th>
+	  <th><input type="checkbox" name="components" value=all (click)="all()"></th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let c of components | async" (click)="go(c)">
+    <tr *ngFor="let c of components | async" >
       <td>{{ c.vendors }}</td>
-      <td>{{ c.name }}</td>
+      <td (click)="goToComponent(c)">{{ c.name }}</td>
       <td>{{ c.componentType }}</td>
       <td>{{ c.createdOn }}</td>
-      <td>{{ c.createdBy.email }}</td>
+	  <td>{{ c.createdBy.email }}</td>
+	  <td>
+			<input type="checkbox" name="components" value={{c.name}} (click)=checkComponent(c)>
+		  </td>
     </tr>
   </tbody>
+  <tfoot>
+		<tr><th colspan="6">
+		  <div class="ui left floated pagination menu">
+			<a class="icon item">
+			  <i class="left chevron icon"></i>
+			</a>
+			<a class="item">1</a>
+			<a class="item">2</a>
+			<a class="item">3</a>
+			<a class="item">4</a>
+			<a class="icon item">
+			  <i class="right chevron icon"></i>
+			</a>
+		  </div>
+		</th>
+	  </tr></tfoot>
 </table>

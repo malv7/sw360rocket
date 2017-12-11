@@ -1,20 +1,20 @@
 <table class="ui striped table">
-  <thead>
-    <tr>
-      <th>Vendor</th>
-      <th>Component Name</th>
-      <th>Component Type</th>
-      <th>Created On</th>
-      <th>Created By</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let c of components | async" (click)="go(c)">
-      <td>{{ c.vendors }}</td>
-      <td>{{ c.name }}</td>
-      <td>{{ c.componentType }}</td>
-      <td>{{ c.createdOn }}</td>
-      <td>{{ c.createdBy.email }}</td>
-    </tr>
-  </tbody>
+		<thead>
+		  <tr>
+			<th>Release Name</th>
+			<th>Release Version</th>
+			<th>Link</th>
+			<th><input type="checkbox" name="releasesAll" value=all (click)="all()"></th>
+		  </tr>
+		</thead>
+		<tbody>
+		  <tr *ngFor="let release of currentComponent.releases" >
+			<td (click)="goToRelease(release)">{{ release.name }}</td>
+			<td>{{ release.version }}</td>
+			<td>{{ release.href }}</td>
+			<td>
+			<input type="checkbox" name="releases" value={{release.name}} (click)=check(release)>
+			</td>
+		  </tr>
+		</tbody>
 </table>
