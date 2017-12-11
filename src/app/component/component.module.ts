@@ -3,23 +3,30 @@ import { SharedModule } from '../shared/shared.module';
 import { StoreModule } from '@ngrx/store';
 import { componentReducer } from './state/component.reducer';
 import { ComponentListComponent } from './components/component-list/component-list.component';
-import { RenderArrayInNgSmartTableComponent } from './components/component-list/render-array-in-ng-smart-table.component';
-import { RenderCreatorInNgSmartTableComponent } from './components/component-list/render-creator-in-ng-smart-table.component';
 import { SingleComponentComponent } from './components/single-component/single-component.component';
+import { SummaryComponent } from './components/single-component/summary/summary.component';
+import { ReleasesComponent } from './components/single-component/releases/releases.component';
 import { ComponentRootComponent } from './components/component-root/component-root.component';
-import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { RouterModule, Routes } from '@angular/router';
+
+import { VulnerabilitiesComponent } from './components/single-component/vulnerabilities/vulnerabilities.component';
+//import { AttachmentsComponent } from './components/single-component/attachments/attachments.component';
 import { ComponentDetailComponent } from './components/component-detail/component-detail.component';
 
 @NgModule({
   imports: [
-		Ng2SmartTableModule,
     SharedModule,
 		StoreModule.forFeature('component', componentReducer),
 		RouterModule
 
 	],
-	entryComponents: [RenderArrayInNgSmartTableComponent,RenderCreatorInNgSmartTableComponent],
-  declarations: [ComponentListComponent, SingleComponentComponent, ComponentRootComponent, RenderArrayInNgSmartTableComponent,RenderCreatorInNgSmartTableComponent, ComponentDetailComponent]
+  declarations: [
+    ComponentListComponent,
+    SingleComponentComponent,
+    ComponentRootComponent,
+    SummaryComponent,
+    ReleasesComponent,
+    VulnerabilitiesComponent
+  ]
 })
 export class ComponentModule { }
