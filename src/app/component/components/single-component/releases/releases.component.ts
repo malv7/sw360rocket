@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
 import * as fromRoot from './../../../../reducers';
@@ -29,15 +30,13 @@ export class ReleasesComponent implements OnInit {
       path: ['/release'],
     }));
 	}
+  
 	all(){
-
 		console.log('All checked"')
 	}
 
 	check(release: ResolvedRelease){
 		console.log( 'Release checked!');
 	}
-
-
 
 }
