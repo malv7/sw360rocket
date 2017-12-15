@@ -13,16 +13,26 @@
       <th>Component Name</th>
       <th>Component Type</th>
       <th>Created On</th>
-      <th>Created By</th>
+	  <th>Created By</th>
+	  <th><div class="ui checkbox">
+		<input type="checkbox" [(ngModel)] = "this.tableSelectService.allSelected" (change)="toggleAll()">
+		<!--Should be empty, just shows that it works!-->
+		<label>Select All {{this.tableSelectService.getCountOfSelectedElements()}}</label>
+	  </div></th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let c of components | async" (click)="go(c)">
+    <tr *ngFor="let c of components | async" >
       <td>{{ c.vendors }}</td>
-      <td>{{ c.name }}</td>
+      <td (click)="go(c)">{{ c.name }}</td>
       <td>{{ c.componentType }}</td>
       <td>{{ c.createdOn }}</td>
-      <td>{{ c.createdBy.email }}</td>
-    </tr>
+	  <td>{{ c.createdBy.email }}</td>
+	  <td><div class="ui checkbox">
+		<input type="checkbox" [(ngModel)] = "this.tableSelectService.getElementById(c).state">
+		<!--Should be empty, just shows that it works!-->
+		<label>{{this.tableSelectService.getElementById(c).state}}</label>
+	  </div></td>
+	</tr>
   </tbody>
 </table>

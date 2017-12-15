@@ -7,18 +7,21 @@ import { RenderArrayInNgSmartTableComponent } from './components/component-list/
 import { RenderCreatorInNgSmartTableComponent } from './components/component-list/render-creator-in-ng-smart-table.component';
 import { SingleComponentComponent } from './components/single-component/single-component.component';
 import { ComponentRootComponent } from './components/component-root/component-root.component';
-import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { RouterModule, Routes } from '@angular/router';
-
+import { TableSelectService } from '../shared/services/tables/table-select.service';
+import { FormsModule } from '@angular/forms';
 @NgModule({
   imports: [
-		Ng2SmartTableModule,
     SharedModule,
 		StoreModule.forFeature('component', componentReducer),
-		RouterModule
-
+		RouterModule,
+		FormsModule
 	],
-	entryComponents: [RenderArrayInNgSmartTableComponent,RenderCreatorInNgSmartTableComponent],
-  declarations: [ComponentListComponent, SingleComponentComponent, ComponentRootComponent, RenderArrayInNgSmartTableComponent,RenderCreatorInNgSmartTableComponent]
+	providers:[TableSelectService],
+	declarations: [
+		ComponentListComponent,
+		SingleComponentComponent,
+		ComponentRootComponent,
+		]
 })
 export class ComponentModule { }

@@ -1,3 +1,4 @@
+import { TableSelectService } from './../../../shared/services/tables/table-select.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
@@ -15,14 +16,14 @@ import * as RouterActions from './../../../router/state/router.actions';
 })
 export class ComponentListComponent implements OnInit {
 
-  edit = false;
-
   components: Observable<ComponentDataLayout[]>;
-  
-  constructor(private store: Store<fromRoot.State>, public router: Router) { }
+
+  constructor(private store: Store<fromRoot.State>, public router: Router, public tableSelectService:TableSelectService) { }
 
 	ngOnInit() {
-    this.components = this.store.select(fromRoot.selectComponents);
+		this.components = this.store.select(fromRoot.selectComponents);
+		this.tableSelectService.reset();
+		this.tableSelectService.createSelectionArrayFromObservable(this.components);
 	}
 
   go(component: ComponentDataLayout) {
@@ -31,4 +32,7 @@ export class ComponentListComponent implements OnInit {
     }));
   }
 
+	toggleAll(){
+		this.tableSelectService.toggleAll();
+	}
 }
