@@ -4,7 +4,7 @@ import 'rxjs/add/operator/retry';
 import { Store } from "@ngrx/store";
 import * as fromRoot from './../reducers';
 import * as ComponentActions from './../component/state/component.actions';
-import { componentDataLayoutFactory } from './../component/state/component.models';
+import { componentDataLayoutFactory, attachmentDataLayoutFactory } from './../component/state/component.models';
 import * as RandomModels from './../component/state/component.models';
 
 
@@ -124,8 +124,9 @@ export class MalvDataService {
     private http: HttpClient,
     private store: Store<fromRoot.State>
   ) {
-    store.dispatch(new ComponentActions.ProvideMockData(componentDataLayoutFactory(15)));
-    // this.store.select(fromRoot.selectComponents).subscribe(x => console.log(x));
+		store.dispatch(new ComponentActions.ProvideMockData(componentDataLayoutFactory(15)));
+		store.dispatch(new ComponentActions.ProvideMockDataAttachments(attachmentDataLayoutFactory(5)));
+		//this.store.select(fromRoot.selectAttachments).subscribe(x => console.log(x));
   }
 
 }

@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { ComponentDataLayout } from './component.models';
+import { ComponentDataLayout, AttachmentDataLayout } from './component.models';
 
 export const QUERY  = '[Component] Query';
 export const CREATE = '[Component] Create';
@@ -10,6 +10,12 @@ export const PROVIDE_MOCK_DATA = 'ProvideMockData';
 export class ProvideMockData implements Action {
   readonly type = PROVIDE_MOCK_DATA;
   constructor(public components: ComponentDataLayout[]) { }
+}
+
+export const PROVIDE_MOCK_DATA_ATTACHMENTS = 'ProvideMockDataAttachments';
+export class ProvideMockDataAttachments implements Action {
+  readonly type = PROVIDE_MOCK_DATA_ATTACHMENTS;
+  constructor(public attachments: AttachmentDataLayout[]) { }
 }
 
 export class Query implements Action {
@@ -33,4 +39,4 @@ export class Delete implements Action {
 }
 
 export type All =
-  ProvideMockData;
+  ProvideMockData | ProvideMockDataAttachments;

@@ -1,9 +1,9 @@
 import { ActionReducerMap } from '@ngrx/store';
 import * as fromComponent from './component/state/component.reducer';
-import { ComponentDataLayout } from './component/state/component.models';
+import { ComponentDataLayout, AttachmentDataLayout } from './component/state/component.models';
 
 export interface State {
-  component: fromComponent.State;
+	component: fromComponent.State;
 }
 
 // Feature reducers
@@ -15,4 +15,8 @@ export const reducers: ActionReducerMap<any> = {
 
 export function selectComponents(state: State): ComponentDataLayout[] {
   return state.component.components;
+}
+
+export function selectAttachments(state: State): AttachmentDataLayout[] {
+  return state.component.attachments;
 }

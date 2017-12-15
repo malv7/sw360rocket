@@ -69,3 +69,61 @@
     </tr>
   </tfoot>
 </table>
+
+<table class="ui striped table">
+		<thead>
+		  <tr>
+			<th>Filename</th>
+			<th>AttachmentType</th>
+			<th>sha1</th>
+			<th>Created By</th>
+			<th>Created On</th>
+			<th>Check Status</th>
+			<th>Checked on</th>
+			<th>Checked Comment</th>
+			<th>Checked By</th>
+			<th>
+			  <input type="checkbox" name="attachments" value=all (click)="all()">
+			</th>
+		  </tr>
+		</thead>
+		<tbody>
+		  <tr *ngFor="let a of attachments | async">
+			<td >{{ a.filename }}</td>
+			<td >{{a.attachmentType }}</td>
+			<td >{{ a.sha1 }}</td>
+			<td >{{ a.createdTeam}}</td>
+			<td >{{a.createdOn }}</td>
+			<td >{{a.checkStatus }}</td>
+			<td >{{a.checkedOn }}</td>
+			<td >{{a.checkedComment }}</td>
+			<td >{{a.checkedTeam }}</td>
+			<td>
+			  <input type="checkbox">
+			</td>
+		  </tr>
+		</tbody>
+		<tfoot>
+		  <tr>
+			<th colspan="200">
+			  <div fxLayout="row"> <!-- fxLayoutAlign="center" -->
+				<div class="ui pagination menu">
+
+				  <a class="icon item">
+					<i class="left chevron icon"></i>
+				  </a>
+				  <a class="item">1</a>
+				  <a class="item">2</a>
+				  <a class="item">3</a>
+				  <a class="item">4</a>
+				  <a class="icon item">
+					<i class="right chevron icon"></i>
+				  </a>
+				</div>
+
+			  </div>
+
+			</th>
+		  </tr>
+		</tfoot>
+	  </table>

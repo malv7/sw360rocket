@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
 import * as fromRoot from './../../../reducers';
-import { ComponentDataLayout } from '../../state/component.models';
+import { ComponentDataLayout, AttachmentDataLayout } from '../../state/component.models';
 import { Router, Routes } from '@angular/router';
 import * as RouterActions from './../../../router/state/router.actions';
 
@@ -20,11 +20,14 @@ export class ComponentListComponent implements OnInit {
   checked: Checked = {};
 
   components: Observable<ComponentDataLayout[]>;
-
+	attachments: Observable<AttachmentDataLayout[]>;
   constructor(private store: Store<fromRoot.State>, public router: Router) { }
 
 	ngOnInit() {
 		this.components = this.store.select(fromRoot.selectComponents);
+		this.attachments = this.store.select(fromRoot.selectAttachments);
+		let data=[];
+		this.attachments.subscribe(d=>console.log(d));
 		this.checked['Hallo']='test';
 		delete this.checked['Hallo'];
 	}
@@ -34,7 +37,7 @@ export class ComponentListComponent implements OnInit {
       path: ['/component'],
     }));
   }
-  
+
 	all(){
 		console.log('all')
 	}
