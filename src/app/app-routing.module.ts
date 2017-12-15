@@ -1,3 +1,4 @@
+import { ProjectRootComponent } from './project/components/project-root/project-root.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -11,6 +12,10 @@ import { RxjsComponent } from './the-lab/rxjs.component';
 import { DetailComponent } from './component/components/single-component/detail/detail.component';
 
 const routes: Routes = [
+  {
+    path: 'projects',
+    component: ProjectRootComponent
+  },
 	{
 		path: 'components',
 		component: ComponentRootComponent
