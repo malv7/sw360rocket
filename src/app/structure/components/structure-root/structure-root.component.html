@@ -1,5 +1,12 @@
-<sw-brand></sw-brand>
-<sw-top-bar></sw-top-bar>
-<sw-left-bar></sw-left-bar>
-<sw-content></sw-content>
-<sw-footer></sw-footer>
+<div fxLayout="column" fxLayoutAlign="center center" class="full-align">
+	<sw-top-bar fxFlex="3em"></sw-top-bar>
+	<div fxFlex="1 1 auto" fxLayout="row" fxLayoutAlign="center start" fxLayoutGap="1em" class="body">
+		<sw-left-bar></sw-left-bar>
+		<div fxFlex="clolumn" >
+			<sw-breadcrumb></sw-breadcrumb>
+			<sw-content></sw-content>
+		</div>
+		<sw-right-bar></sw-right-bar>
+	</div>
+	<sw-footer fxFlex="2em"></sw-footer>
+</div>
