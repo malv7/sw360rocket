@@ -25,7 +25,7 @@ export interface ComponentDataLayout {
   type: string; // always 'compnent
   componentType: ComponentTypes;
   createdBy: ResolvedCreatedBy; // has self
-  vendors: string[]; // 
+  vendors: string[]; //
   releases: ResolvedRelease[]
 }
 
@@ -52,20 +52,20 @@ const MOCK_DESCRIPTIONS = [
   that built AngularJS.`,
 
   `The Apache HTTP Server, colloquially called Apache (/əˈpætʃiː/ ə-PA-chee),
-  is free and open-source cross-platform web server software, released under the 
-  terms of Apache License 2.0. Apache is developed and maintained by an open 
+  is free and open-source cross-platform web server software, released under the
+  terms of Apache License 2.0. Apache is developed and maintained by an open
   community of developers under the auspices of the Apache Software Foundation.`,
 
-  `Linux (/ˈlɪnəks/ (About this sound listen) LIN-əks)[9][10] is a name which broadly 
-  denotes a family of free and open-source software operating systems (OS) built 
-  around the Linux kernel. Typically, Linux is packaged in a form known as a 
-  Linux distribution (or distro for short) for both desktop and server use. 
-  The defining component of a Linux distribution is the Linux kernel,[11] an 
+  `Linux (/ˈlɪnəks/ (About this sound listen) LIN-əks)[9][10] is a name which broadly
+  denotes a family of free and open-source software operating systems (OS) built
+  around the Linux kernel. Typically, Linux is packaged in a form known as a
+  Linux distribution (or distro for short) for both desktop and server use.
+  The defining component of a Linux distribution is the Linux kernel,[11] an
   operating system kernel first released on September 17, 1991, by Linus Torvalds.`,
 
   `A software component catalogue application - designed to work with FOSSology.
-  SW360 is a liferay portal application to maintain your projects / products and the 
-  software components within. It can send files to the open source license scanner 
+  SW360 is a liferay portal application to maintain your projects / products and the
+  software components within. It can send files to the open source license scanner
   FOSSology for checking the license conditions and maintain license information.`
 
 ];
@@ -147,7 +147,7 @@ interface ExternalIds {
 }
 
 interface EmbeddedModerators {
-  // moderators: 
+  // moderators:
 }
 
 interface ResolvedModerator {

@@ -3,6 +3,8 @@ import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
 import * as fromRoot from './../../../reducers';
 import { ComponentDataLayout } from '../../state/component.models';
+import {Tab} from '../../../shared/components/tab-navigation/tab-navigation.component'
+
 @Component({
   selector: 'sw-single-component',
   templateUrl: './single-component.component.html',
@@ -10,8 +12,17 @@ import { ComponentDataLayout } from '../../state/component.models';
 })
 export class SingleComponentComponent implements OnInit {
 
-	components: Observable<ComponentDataLayout[]>;
-	currentComponent: ComponentDataLayout;
+	tabs: Tab[] = [
+		{ routerlink: 'details', title: 'Details' },
+		{ routerlink: 'releases', title: 'Releases' },
+		{ routerlink: 'vulnerabilities', title: 'Vulnerabilities' },
+    { routerlink: 'attachments', title: 'Attachments' }
+  ];
+
+  components: Observable<ComponentDataLayout[]>;
+  
+  currentComponent: ComponentDataLayout;
+  
 	constructor(private store: Store<fromRoot.State>) { }
 
 	ngOnInit() {
