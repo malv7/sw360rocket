@@ -7,10 +7,6 @@ import { ComponentDataLayout } from '../../state/component.models';
 import { Router, Routes } from '@angular/router';
 import * as RouterActions from './../../../router/state/router.actions';
 
-interface Checked{
-[key:string]:string;
-}
-
 @Component({
 	selector: 'sw-component-list',
 	templateUrl: './component-list.component.html',
@@ -20,7 +16,10 @@ export class ComponentListComponent implements OnInit {
 
   components: Observable<ComponentDataLayout[]>;
 
-  constructor(private store: Store<fromRoot.State>, public router: Router, public tableSelectService:TableSelectService) { }
+  constructor(
+    private store: Store<fromRoot.State>,
+    public router: Router,
+    public tableSelectService: TableSelectService) { }
 
 	ngOnInit() {
 		this.components = this.store.select(fromRoot.selectComponents);
@@ -34,23 +33,12 @@ export class ComponentListComponent implements OnInit {
     }));
   }
   
-	all(){
-		console.log('all')
-	}
-
-	checkComponent(component: ComponentDataLayout){
-	// 	if(!this.checked.includes(component)){
-	// 	this.checked.push(component);
-	// }else {
-
-	// 	this.checked.filter(item => item !== component)
-	// }
-		console.log( this.checked);
-	}
-
-
-
 	toggleAll(){
 		this.tableSelectService.toggleAll();
-	}
+  }
+  
+  toggleElement() {
+
+  }
+
 }
