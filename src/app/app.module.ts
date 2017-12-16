@@ -28,6 +28,7 @@ import { ComponentModule } from './component/component.module';
 import { ProjectModule } from './project/project.module';
 
 import { Params, RouterStateSnapshot } from '@angular/router';
+import { SwRouterModule } from './router/sw-router.module';
 
 export interface RouterStateUrl {
   url: string;
@@ -66,7 +67,8 @@ export const routerReducers: ActionReducerMap<State> = {
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    // AppRoutingModule,
+    SwRouterModule, // new sw router
 
     // Store
     StoreModule.forRoot(routerReducer),

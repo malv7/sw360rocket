@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { TabNavigationComponent } from './components/tab-navigation/tab-navigation.component';
 import { OverviewComponent } from './components/overview/overview.component';
+import { NotImplementedYetComponent } from './components/not-implemented-yet/not-implemented-yet.component';
 
 @NgModule({
 	imports: [
@@ -15,7 +16,8 @@ import { OverviewComponent } from './components/overview/overview.component';
 	],
 	declarations: [
 		TabNavigationComponent,
-		OverviewComponent
+    OverviewComponent,
+    NotImplementedYetComponent
 	],
 	exports: [
 		// modules

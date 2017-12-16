@@ -18,7 +18,7 @@ export class TopBarComponent implements OnInit {
   navigationElements: NavigationElement[] = [
     { title: 'Projects',        route: 'projects' },
     { title: 'Components',      route: 'components' },
-    { title: 'Licences',        route: 'licences' },
+    { title: 'Licenses',        route: 'licenses' },
     { title: 'ECC',             route: 'ecc' },
     { title: 'Vulnerabilities', route: 'vulnerabilities' },
     { title: 'About',           route: 'about' }
