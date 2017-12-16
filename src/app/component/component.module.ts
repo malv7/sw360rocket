@@ -8,6 +8,10 @@ import { SingleComponentComponent } from './components/single-component/single-c
 import { ReleasesComponent } from './components/single-component/releases/releases.component';
 import { ComponentRootComponent } from './components/component-root/component-root.component';
 import { RouterModule, Routes } from '@angular/router';
+
+import { TableSelectService } from '../shared/services/tables/table-select.service';
+import { FormsModule } from '@angular/forms';
+
 import { AttachmentsComponent } from './components/single-component/attachments/attachments.component';
 
 import { VulnerabilitiesComponent } from './components/single-component/vulnerabilities/vulnerabilities.component';
@@ -18,8 +22,10 @@ import { DetailComponent } from './components/single-component/detail/detail.com
   imports: [
     SharedModule,
 		StoreModule.forFeature('component', componentReducer),
-		RouterModule
+		RouterModule,
+		FormsModule
 	],
+	providers:[TableSelectService],
   declarations: [
     ComponentListComponent,
     SingleComponentComponent,
@@ -28,6 +34,5 @@ import { DetailComponent } from './components/single-component/detail/detail.com
     VulnerabilitiesComponent,
     DetailComponent
   ]
-
 })
 export class ComponentModule { }

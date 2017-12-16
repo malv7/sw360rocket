@@ -1,3 +1,4 @@
+import { TableSelectService } from './../../../shared/services/tables/table-select.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
@@ -17,16 +18,14 @@ interface Checked{
 })
 export class ComponentListComponent implements OnInit {
 
-  checked: Checked = {};
-
   components: Observable<ComponentDataLayout[]>;
 
-  constructor(private store: Store<fromRoot.State>, public router: Router) { }
+  constructor(private store: Store<fromRoot.State>, public router: Router, public tableSelectService:TableSelectService) { }
 
 	ngOnInit() {
 		this.components = this.store.select(fromRoot.selectComponents);
-		this.checked['Hallo']='test';
-		delete this.checked['Hallo'];
+		this.tableSelectService.reset();
+		this.tableSelectService.createSelectionArrayFromObservable(this.components);
 	}
 
   goToComponent(component: ComponentDataLayout) {
@@ -51,4 +50,7 @@ export class ComponentListComponent implements OnInit {
 
 
 
+	toggleAll(){
+		this.tableSelectService.toggleAll();
+	}
 }
