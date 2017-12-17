@@ -10,54 +10,66 @@ import { ReleasesComponent } from "../component/components/single-component/rele
 import { VulnerabilitiesComponent } from "../component/components/single-component/vulnerabilities/vulnerabilities.component";
 import { RouterTestComponent } from "../the-lab/router-test-component/router-test.component";
 import { RxjsComponent } from "../the-lab/rxjs.component";
+import { ProjectDetailComponent } from "../project/components/project-detail/project-detail.component";
 
 const routes: Routes = [
+  // Projects
   {
     path: 'projects',
-    component: ProjectRootComponent
+    component: ProjectRootComponent,
   },
+  {
+    path: 'projects/:id',
+    component: ProjectDetailComponent,
+    children: [
+      // { path: '', redirectTo: 'releases', pathMatch: 'full' },
+      { path: 'releases', component: ReleasesComponent },
+      { path: 'details', component: NotImplementedYetComponent }
+    ]
+  },
+  // Components
+  {
+    path: 'components',
+    component: ComponentRootComponent
+  },
+  {
+    path: 'component',
+    component: SingleComponentComponent,
+    children: [
+      { path: '', redirectTo: 'details', pathMatch: 'full' },
+      { path: 'details', component: DetailComponent },
+      { path: 'releases', component: ReleasesComponent },
+      { path: 'vulnerabilities', component: VulnerabilitiesComponent },
+      { path: 'attachments', component: DetailComponent }
+    ]
+  },
+  // Licenses
   {
     path: 'licenses',
     component: NotImplementedYetComponent
   },
   {
+    path: 'licenses/:id',
+    component: NotImplementedYetComponent
+  },
+  // ECC
+  {
     path: 'ecc',
     component: NotImplementedYetComponent
   },
+  // Vulnerabilities
   {
     path: 'vulnerabilities',
     component: NotImplementedYetComponent
   },
+  // About
   {
     path: 'about',
     component: NotImplementedYetComponent
   },
-	{
-		path: 'components',
-		component: ComponentRootComponent
-	},
-	{
-		path: 'component',
-		component: SingleComponentComponent,
-		children: [
-      { path: '', redirectTo: 'details', pathMatch: 'full' },
-      { path: 'details', component: DetailComponent },
-      { path: 'releases', component: ReleasesComponent },
-			{ path: 'vulnerabilities', component: VulnerabilitiesComponent },
-			{ path: 'attachments', component: DetailComponent }
-    ]
-  },
-  {
-    path: 'lab',
-    component: RouterTestComponent
-  },
-  {
-    path: 'rxjs',
-    component: RxjsComponent
-  },
   {
     path: '',
-    component: ComponentRootComponent // TODO: Welcome page
+    component: NotImplementedYetComponent // TODO: Welcome page
   }
 ];
 

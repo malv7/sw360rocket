@@ -1,11 +1,13 @@
+@import '~styles/toolkit';
+
 :host {
-  background: #5f666b;
+  background: $color-cooldarkblue;
   display: flex;
   justify-content: center;
 }
 
 .logo {
-  color: #7edda9;
+  color: #ffffff;
   align-self: center;
 }
 
