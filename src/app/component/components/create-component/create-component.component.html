@@ -4,46 +4,52 @@
 </h3>
 
 <div *ngIf="popUpService.componentOwnerPopUp || popUpService.moderatorPopUp">
-<sw-employe-list>
+  <sw-employe-list>
 
-</sw-employe-list>
+  </sw-employe-list>
 </div>
 
 <div class="ui form">
 
   <form [formGroup]="projectForm" #formDir="ngForm">
     <div class="three fields">
-      <div class="required field">
-        <label>Name</label>
-        <input type="text" placeholder="Enter Name" formControlName="name">
 
-        <!-- Form Validation for Name-->
-        <div *ngIf="name.invalid && (name.dirty || name.touched)" class="ui form error">
-          <div *ngIf="name.errors.required" class="ui error message">
-            Name is required.
+      <!-- Name -->
+      <div class="field" [ngClass]="{'ui form error': !formValidationService.checkInvalidDirtyTouched(name)}">
+        <label>Name</label>
+        <input type="text" placeholder="eg., Library, cloud, mobile,..." formControlName="name">
+
+        <div class="ui form error hidden errorMessageSpace" [ngClass]="{'visible': !formValidationService.checkInvalidDirtyTouched(name)}">
+            <div class="ui error message errorMessageSpace" [ngClass]="{'visible': !formValidationService.checkInvalidDirtyTouched(name)}">
+              Name is required.
+            </div>
           </div>
-        </div>
+
       </div>
 
+      <!-- Created by -->
       <div class="field">
         <label>Created by</label>
         <input type="text" placeholder="Will be set automatically" disabled>
       </div>
 
-      <div class="required field">
+
+      <!-- Categorie -->
+      <div class="field" [ngClass]="{'ui form error': !formValidationService.checkInvalidDirtyTouched(categories)}">
         <label>Categories</label>
         <input type="text" placeholder="eg., Library, cloud, mobile,..." formControlName="categories">
 
-        <!-- Form Validation for Name-->
-        <div *ngIf="categories.invalid && (categories.dirty || categories.touched)" class="ui form error">
-          <div *ngIf="categories.errors.required" class="ui error message">
-            Categorie is required.
+        <div class="ui form error hidden errorMessageSpace" [ngClass]="{'visible': !formValidationService.checkInvalidDirtyTouched(categories)}">
+            <div class="ui error message errorMessageSpace" [ngClass]="{'visible': !formValidationService.checkInvalidDirtyTouched(categories)}">
+              Category is required.
+            </div>
           </div>
-        </div>
+
       </div>
+
     </div>
 
-
+    <!-- ComponentType -->
     <div class="three fields">
       <div class="field">
         <label>ComponentType</label>
@@ -51,55 +57,65 @@
           <option *ngFor="let componentType of componentTypes">{{componentType}}</option>
         </select>
       </div>
-      <div class="field">
+
+      <!-- Homepage URL -->
+      <div class="field" [ngClass]="{'ui form error': !formValidationService.checkInvalidDirtyTouched(homepageURL)}">
         <label>Homepage URL</label>
         <input type="text" placeholder="Enter Home Url" formControlName="homepageURL">
 
-        <!-- Form Validation for homepageURL-->
-        <div *ngIf="homepageURL.invalid && (homepageURL.dirty || homepageURL.touched)" class="ui form error">
-          <div *ngIf="homepageURL.errors.pattern" class="ui error message">
+
+        <div class="ui form error hidden errorMessageSpace" [ngClass]="{'visible': !formValidationService.checkInvalidDirtyTouched(homepageURL)}">
+          <div class="ui error message errorMessageSpace" [ngClass]="{'visible': !formValidationService.checkInvalidDirtyTouched(homepageURL)}">
             Must be a valid URL.
           </div>
         </div>
 
       </div>
-      <div class="field">
+
+      <!-- Blog URL -->
+      <div class="field" [ngClass]="{'ui form error': !formValidationService.checkInvalidDirtyTouched(blogURL)}">
         <label>Blog URL</label>
-        <input type="text" placeholder="Enter Blog Url" formControlName="blogURL">
+        <input type="text" placeholder="Enter Home Url" formControlName="blogURL">
 
-        <!-- Form Validation for blogURL-->
-        <div *ngIf="blogURL.invalid && (blogURL.dirty || blogURL.touched)" class="ui form error">
-          <div *ngIf="blogURL.errors.pattern" class="ui error message">
+
+        <div class="ui form error hidden errorMessageSpace" [ngClass]="{'visible': !formValidationService.checkInvalidDirtyTouched(blogURL)}">
+          <div class="ui error message errorMessageSpace" [ngClass]="{'visible': !formValidationService.checkInvalidDirtyTouched(blogURL)}">
             Must be a valid URL.
           </div>
         </div>
 
       </div>
+
     </div>
 
     <div class="two fields">
-      <div class="field">
-        <label>Wiki URL</label>
-        <input type="text" placeholder="Enter Wiki Url" formControlName="wikiURL">
 
-        <!-- Form Validation for wikiURL-->
-        <div *ngIf="wikiURL.invalid && (wikiURL.dirty || wikiURL.touched)" class="ui form error">
-          <div *ngIf="wikiURL.errors.pattern" class="ui error message">
+      <!-- Wiki URL -->
+      <div class="field" [ngClass]="{'ui form error': !formValidationService.checkInvalidDirtyTouched(wikiURL)}">
+        <label>Wiki URL</label>
+        <input type="text" placeholder="Enter Home Url" formControlName="wikiURL">
+
+
+        <div class="ui form error hidden errorMessageSpace" [ngClass]="{'visible': !formValidationService.checkInvalidDirtyTouched(wikiURL)}">
+          <div class="ui error message errorMessageSpace" [ngClass]="{'visible': !formValidationService.checkInvalidDirtyTouched(wikiURL)}">
             Must be a valid URL.
           </div>
         </div>
 
       </div>
-      <div class="field">
-        <label>Mailing List URL</label>
-        <input type="text" placeholder="Enter Mailing List Url" formControlName="mailingListURL">
 
-        <!-- Form Validation for mailingListURL-->
-        <div *ngIf="mailingListURL.invalid && (mailingListURL.dirty || mailingListURL.touched)" class="ui form error">
-          <div *ngIf="mailingListURL.errors.pattern" class="ui error message">
+      <!-- Mailing List URL -->
+      <div class="field" [ngClass]="{'ui form error': !formValidationService.checkInvalidDirtyTouched(mailingListURL)}">
+        <label>Mailing List URL</label>
+        <input type="text" placeholder="Enter Home Url" formControlName="mailingListURL">
+
+
+        <div class="ui form error hidden errorMessageSpace" [ngClass]="{'visible': !formValidationService.checkInvalidDirtyTouched(mailingListURL)}">
+          <div class="ui error message errorMessageSpace" [ngClass]="{'visible': !formValidationService.checkInvalidDirtyTouched(mailingListURL)}">
             Must be a valid URL.
           </div>
         </div>
+
       </div>
 
     </div>

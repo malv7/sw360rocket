@@ -1,7 +1,9 @@
+import { FormValidationService } from './form-validation.service';
 import { PopUpService } from './pop-up.service';
 import { COMPONENT_TYPES, ComponentTypes } from './../../state/component.models';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { CustomValidators } from 'ng2-validation';
 
 //Interface data for input Fields
 export interface NewComponent {
@@ -47,10 +49,12 @@ export class CreateComponentComponent implements OnInit {
   projectForm: FormGroup;
   newComponent: NewComponent;
   employePopUp: boolean;
+ testbool: boolean;
 
-  constructor(private popUpService: PopUpService) { }
+  constructor(private popUpService: PopUpService, private formValidationService: FormValidationService) { }
 
   ngOnInit() {
+    this.testbool = true;
     //get values for DropDown componentTypes
     this.componentTypes = COMPONENT_TYPES;
 
@@ -69,17 +73,17 @@ export class CreateComponentComponent implements OnInit {
       [COMPONENTTYPE]: new FormControl(this.componentTypes[0]),
 
       [HOMEPAGEURL]: new FormControl(null,
-        Validators.pattern('https?://.+')),
+        CustomValidators.url),
 
       [BLOGURL]: new FormControl(null,
-        Validators.pattern('https?://.+')),
+        CustomValidators.url),
 
       [WIKIURL]: new FormControl(null,
-        Validators.pattern('https?://.+')),
+        CustomValidators.url),
 
       [MAILINGLISTURL]: new FormControl(null,
-        Validators.pattern('https?://.+')),
-
+        CustomValidators.url),
+       // Validators.pattern('https?://.+'))
       [SHORTDESCRIPTION]: new FormControl(),
 
       [AUTHORNAME]: new FormControl(),

@@ -11,6 +11,7 @@ import { CreateComponentComponent } from './components/create-component/create-c
 import { EmployeListComponent, FilterPipe } from './components/create-component/employe-list/employe-list.component';
 import {SuiCheckboxModule, SuiRatingModule, SuiModule} from 'ng2-semantic-ui';
 import { PopUpService } from './components/create-component/pop-up.service';
+import { FormValidationService } from './components/create-component/form-validation.service';
 @NgModule({
   imports: [
     Ng2SmartTableModule,
@@ -23,7 +24,8 @@ import { PopUpService } from './components/create-component/pop-up.service';
   declarations: [ComponentListComponent, SingleComponentComponent, ComponentRootComponent, CreateComponentComponent, EmployeListComponent, FilterPipe],
   exports:[FilterPipe],
   providers: [
-    PopUpService
+    PopUpService,
+    FormValidationService
   ]
 })
 export class ComponentModule { }
