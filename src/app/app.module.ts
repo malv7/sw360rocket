@@ -9,9 +9,14 @@ import { AppComponent } from './app.component';
 import { StructureModule } from './structure/structure.module';
 
 // Store
-import { StoreModule } from '@ngrx/store';
+import { StoreModule, ActionReducerMap } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { StoreRouterConnectingModule, routerReducer } from '@ngrx/router-store';
+import {
+  StoreRouterConnectingModule,
+  routerReducer,
+  RouterReducerState,
+  RouterStateSerializer
+} from '@ngrx/router-store';
 import { EffectsModule } from '@ngrx/effects';
 import { reducers } from './reducers';
 import { RouterEffects } from './router/state/router.effects';
@@ -20,6 +25,41 @@ import { RouterEffects } from './router/state/router.effects';
 // The lab module is the new playground!
 import { TheLabModule } from './the-lab/the-lab.module';
 import { ComponentModule } from './component/component.module';
+import { ProjectModule } from './project/project.module';
+
+import { Params, RouterStateSnapshot } from '@angular/router';
+import { SwRouterModule } from './router/sw-router.module';
+
+export interface RouterStateUrl {
+  url: string;
+  params: Params;
+  queryParams: Params;
+}
+
+export interface State {
+  routerReducer: RouterReducerState<RouterStateUrl>;
+}
+
+export class CustomSerializer implements RouterStateSerializer<RouterStateUrl> {
+  serialize(routerState: RouterStateSnapshot): RouterStateUrl {
+    let route = routerState.root;
+    while (route.firstChild) {
+      route = route.firstChild;
+    }
+
+    const { url } = routerState;
+    const queryParams = routerState.root.queryParams;
+    const params = route.params;
+
+    // Only return an object including the URL, params and query params
+    // instead of the entire snapshot
+    return { url, params, queryParams };
+  }
+}
+
+export const routerReducers: ActionReducerMap<State> = {
+  routerReducer: routerReducer
+};
 
 @NgModule({
   declarations: [
@@ -27,10 +67,11 @@ import { ComponentModule } from './component/component.module';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    // AppRoutingModule,
+    SwRouterModule, // new sw router
 
     // Store
-    StoreModule.forRoot({ routerReducer: routerReducer }),
+    StoreModule.forRoot(routerReducer),
     EffectsModule.forRoot([
       RouterEffects
     ]),
@@ -43,10 +84,13 @@ import { ComponentModule } from './component/component.module';
     StructureModule,
 
     // Features
-		ComponentModule,
+    ComponentModule,
+    ProjectModule,
 		TheLabModule
   ],
-  providers: [],
+  providers: [
+    { provide: RouterStateSerializer, useClass: CustomSerializer }
+  ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

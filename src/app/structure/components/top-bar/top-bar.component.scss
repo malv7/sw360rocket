@@ -1,4 +1,24 @@
+@import '~styles/toolkit';
+
 :host {
-  display: block;
-  background: gray;
+	display: block;
+  background-color: $color-coolblue;
+  display: flex;
+  align-items: center;
+}
+
+.active {
+  background: $color-white;
+}
+
+.menu a {
+	display: block;
+	font-size: $font-size-base;
+	color: $color-white;
+  padding: 1em;
+  cursor: pointer;
+}
+
+.menu {
+  display: flex;
 }

@@ -7,7 +7,7 @@ export enum ComponentTypes {
   FREESOFTWARE = 'FREESOFTWARE',
   INNER_SOURCE = 'INNER_SOURCE',
   SERVICE = 'SERVICE'
-}
+};
 
 export const COMPONENT_TYPES = [
   ComponentTypes.INTERNAL,
@@ -26,7 +26,9 @@ export interface ComponentDataLayout {
   componentType: ComponentTypes;
   createdBy: ResolvedCreatedBy; // has self
   vendors: string[]; //
-  releases: ResolvedRelease[]
+  releases: ResolvedRelease[];
+  selflink: string;
+  id: string;
 }
 
 export interface ResolvedCreatedBy {
@@ -93,6 +95,18 @@ const MOCK_RELEASES: ResolvedRelease[] = [
 
 const MOCK_VENDORS = ['Vanilla', 'Tedious', 'Goolf', 'LinkWins'];
 
+const MOCK_SELFLINKS = [
+  'https://sw360.org/api/components/17653524',
+  'https://sw360.org/api/components/YWRtaW5Ac3czNjAub3Jn',
+  'https://sw360.org/api/components/Angular',
+  'https://sw360.org/api/components/3765276512',
+  'https://sw360.org/api/components/am9obkBzdzM2MC5vcmc',
+  'https://sw360.org/api/components/tick',
+  'https://sw360.org/api/components/INTERNAL',
+];
+
+
+
 export const componentDataLayoutFactory = (amount: number)  => {
   const componentDataLayouts: ComponentDataLayout[] = [];
   for (let i = 0; i < amount; i++) {
@@ -104,7 +118,9 @@ export const componentDataLayoutFactory = (amount: number)  => {
       componentType: COMPONENT_TYPES[randomArraySelector(COMPONENT_TYPES.length)],
       createdBy: MOCK_CREATED_BY[randomArraySelector(MOCK_CREATED_BY.length)],
       vendors: MOCK_VENDORS,
-      releases: MOCK_RELEASES
+      releases: MOCK_RELEASES,
+      selflink: MOCK_SELFLINKS[randomArraySelector(MOCK_SELFLINKS.length)],
+      id: '' + Math.floor(Math.random() * 442342346)
     }
     componentDataLayouts.push(c);
   }

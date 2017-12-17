@@ -6,16 +6,21 @@ import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { TabNavigationComponent } from './components/tab-navigation/tab-navigation.component';
 import { OverviewComponent } from './components/overview/overview.component';
+import { NotImplementedYetComponent } from './components/not-implemented-yet/not-implemented-yet.component';
+import { StoreModule } from '@ngrx/store';
+import { listSelectReducer } from './state/list-select/list-select.reducer';
 
 @NgModule({
 	imports: [
 		CommonModule,
 		FlexLayoutModule,
-		RouterModule
+    RouterModule,
+    StoreModule.forFeature('listSelect', listSelectReducer)
 	],
 	declarations: [
 		TabNavigationComponent,
-		OverviewComponent
+    OverviewComponent,
+    NotImplementedYetComponent
 	],
 	exports: [
 		// modules

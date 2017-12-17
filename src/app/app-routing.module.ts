@@ -1,3 +1,4 @@
+import { ProjectRootComponent } from './project/components/project-root/project-root.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -9,8 +10,29 @@ import { VulnerabilitiesComponent } from './component/components/single-componen
 import { RouterTestComponent } from './the-lab/router-test-component/router-test.component';
 import { RxjsComponent } from './the-lab/rxjs.component';
 import { DetailComponent } from './component/components/single-component/detail/detail.component';
+import { NotImplementedYetComponent } from './shared/components/not-implemented-yet/not-implemented-yet.component';
 
 const routes: Routes = [
+  {
+    path: 'projects',
+    component: ProjectRootComponent
+  },
+  {
+    path: 'licenses',
+    component: NotImplementedYetComponent
+  },
+  {
+    path: 'ecc',
+    component: NotImplementedYetComponent
+  },
+  {
+    path: 'vulnerabilities',
+    component: NotImplementedYetComponent
+  },
+  {
+    path: 'about',
+    component: NotImplementedYetComponent
+  },
 	{
 		path: 'components',
 		component: ComponentRootComponent

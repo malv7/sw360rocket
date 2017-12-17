@@ -1,3 +1,13 @@
-<span class="item">Components</span>
+<!-- <span class="item">Components</span>
 <span class="item">Releases</span>
-<span class="item">Release</span>
+<span class="item">Release</span> -->
+<div>
+  <div class="routeSegments">
+    <span *ngFor="let segment of segments"
+          class="routeSegment"
+          (click)="go(segment.route)">
+          {{ segment.name }}
+    </span>
+  </div>
+  <div class="activeRoute">Release</div>
+</div>
