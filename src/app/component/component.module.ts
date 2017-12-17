@@ -10,20 +10,22 @@ import { ComponentRootComponent } from './components/component-root/component-ro
 import { RouterModule, Routes } from '@angular/router';
 
 import { TableSelectService } from '../shared/services/tables/table-select.service';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AttachmentsComponent } from './components/single-component/attachments/attachments.component';
 
 import { VulnerabilitiesComponent } from './components/single-component/vulnerabilities/vulnerabilities.component';
 //import { AttachmentsComponent } from './components/single-component/attachments/attachments.component';
 import { DetailComponent } from './components/single-component/detail/detail.component';
+import { CreateComponentComponent } from './components/create-component/create-component.component';
 
 @NgModule({
   imports: [
     SharedModule,
 		StoreModule.forFeature('component', componentReducer),
 		RouterModule,
-		FormsModule
+    FormsModule,
+    ReactiveFormsModule
 	],
 	providers:[TableSelectService],
   declarations: [
@@ -32,7 +34,8 @@ import { DetailComponent } from './components/single-component/detail/detail.com
     ComponentRootComponent,
     ReleasesComponent,
     VulnerabilitiesComponent,
-    DetailComponent
+    DetailComponent,
+    CreateComponentComponent,
   ]
 })
 export class ComponentModule { }

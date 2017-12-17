@@ -41,7 +41,7 @@ export class RouterService {
 
     // it must be home
     if (segments.length === 0) {
-      console.log(currentRouteData);
+      // console.log(currentRouteData);
       this.store.dispatch(new RouterActions.StoreCurrentRouteData(currentRouteData));
       return;
     }
@@ -59,7 +59,7 @@ export class RouterService {
         currentRouteData.listType = segments[0];
       }
 
-      console.log(currentRouteData);
+      // console.log(currentRouteData);
       this.store.dispatch(new RouterActions.StoreCurrentRouteData(currentRouteData));
       return;
     }
@@ -80,7 +80,7 @@ export class RouterService {
           path: segments[0]
         }]
       }
-      console.log(currentRouteData);
+      // console.log(currentRouteData);
       this.store.dispatch(new RouterActions.StoreCurrentRouteData(currentRouteData));
       return;
     }

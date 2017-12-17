@@ -16,6 +16,9 @@ export function listSelectReducer(state = initialState, action: ListSelectAction
  
   switch (action.type) {
     
+    // TODO: has a bug, that the selectSelectedList observable does not fire when this performed
+    // anyway, the store gets mutated
+    // Workarround: Select the list each time when an action should be performed and use take(1)
     case ListSelectActions.TOGGLE_ONE: {
 
       if (!state.selectedElements[action.id]) {

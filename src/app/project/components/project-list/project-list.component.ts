@@ -34,7 +34,7 @@ export class ProjectListComponent {
 
     if(!this.areAllSelected) {
       const ids: string[] = [];
-      this.projects.take(1).subscribe(all => all.forEach(one => ids.push(one.name)));
+      this.projects.take(1).subscribe(all => all.forEach(one => ids.push(one.version)));
       this.store.dispatch(new ListSelectActions.AddMany(ids));
     }
   }

@@ -9,6 +9,8 @@ import { OverviewComponent } from './components/overview/overview.component';
 import { NotImplementedYetComponent } from './components/not-implemented-yet/not-implemented-yet.component';
 import { StoreModule } from '@ngrx/store';
 import { listSelectReducer } from './state/list-select/list-select.reducer';
+import { ActionButtonsComponent } from './components/action-buttons/action-buttons.component';
+import { SearchFilterComponent } from './components/search-filter/search-filter.component';
 
 @NgModule({
 	imports: [
@@ -20,7 +22,9 @@ import { listSelectReducer } from './state/list-select/list-select.reducer';
 	declarations: [
 		TabNavigationComponent,
     OverviewComponent,
-    NotImplementedYetComponent
+    NotImplementedYetComponent,
+    ActionButtonsComponent,
+    SearchFilterComponent
 	],
 	exports: [
 		// modules
@@ -30,7 +34,9 @@ import { listSelectReducer } from './state/list-select/list-select.reducer';
 
 		// components
 		TabNavigationComponent,
-		OverviewComponent
+    OverviewComponent,
+    ActionButtonsComponent,
+    SearchFilterComponent
 	],
 })
 export class SharedModule { }

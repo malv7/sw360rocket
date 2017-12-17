@@ -1,27 +1,14 @@
 <div fxLayout="row" fxLayoutGap="1em">
+  
+    <sw-search-filter></sw-search-filter>
+    
+    <sw-action-buttons
+      [hasAdd]="true"
+      [hasEdit]="true"
+      [hasRemove]="true">
+    </sw-action-buttons>
 
-  <!-- search -->
-  <div class="ui icon input" fxFlex="1 1 auto">
-    <input type="text" placeholder="Filter components...">
-    <i class="search icon"></i>
   </div>
-
-  <!-- action buttons -->
-  <div class="ui icon buttons">
-    <button class="ui button">
-      <i class="edit icon"></i>
-    </button>
-
-    <button class="ui button">
-      <i class="add circle icon"></i>
-    </button>
-
-    <button class="ui button">
-      <i class="trash icon"></i>
-    </button>
-  </div>
-
-</div>
 
 <!-- table -->
 <table class="ui striped table">

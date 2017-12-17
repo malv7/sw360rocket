@@ -13,6 +13,7 @@ import { RxjsComponent } from "../the-lab/rxjs.component";
 import { ProjectDetailComponent } from "../project/components/project-detail/project-detail.component";
 import { StoreModule } from "@ngrx/store";
 import { routerReducer } from "./state/router.reducer";
+import { CreateComponentComponent } from "../component/components/create-component/create-component.component";
 
 const routes: Routes = [
   // Projects
@@ -32,7 +33,14 @@ const routes: Routes = [
   // Components
   {
     path: 'components',
-    component: ComponentRootComponent
+    component: ComponentRootComponent,
+    // children: [
+    //   { path: 'add', component: CreateComponentComponent }
+    // ]
+  },
+  {
+    path: 'components/add',
+    component: CreateComponentComponent,
   },
   {
     path: 'components/:id',
@@ -41,8 +49,8 @@ const routes: Routes = [
       { path: '', redirectTo: 'details', pathMatch: 'full' },
       { path: 'details', component: DetailComponent },
       { path: 'releases', component: ReleasesComponent },
-      { path: 'vulnerabilities', component: VulnerabilitiesComponent },
-      { path: 'attachments', component: DetailComponent }
+      { path: 'vulnerabilities', component: NotImplementedYetComponent },
+      { path: 'attachments', component: NotImplementedYetComponent }
     ]
   },
   // Licenses
