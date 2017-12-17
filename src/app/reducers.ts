@@ -2,13 +2,16 @@ import { ActionReducerMap } from '@ngrx/store';
 import * as fromComponent from './component/state/component.reducer';
 import * as fromProject from './project/state/project.reducer';
 import * as fromListSelect from './shared/state/list-select/list-select.reducer';
+import * as fromRouter from './router/state/router.reducer';
 import { ComponentDataLayout } from './component/state/component.models';
 import { EmbeddedProject } from './project/state/project.models';
+import { CurrentRouteData, BreadcrumbSegment } from './router/state/router.reducer';
 
 export interface State {
   component: fromComponent.State;
   project: fromProject.State;
   listSelect: fromListSelect.State;
+  customRouter: fromRouter.State;
 }
 
 // Feature reducers
@@ -28,4 +31,12 @@ export function selectSelectedListElements(state: State) {
 
 export function selectProjects(state: State): EmbeddedProject[] {
   return state.project.projects;
+}
+
+export function selectCurrentRouteData(state: State): CurrentRouteData {
+  return state.customRouter.currentRouteData;
+}
+
+export function selectBreadcrumbSegments(state: State): BreadcrumbSegment[] {
+  return state.customRouter.currentRouteData.breadCrumbSegments;
 }

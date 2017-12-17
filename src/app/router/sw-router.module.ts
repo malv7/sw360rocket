@@ -11,6 +11,8 @@ import { VulnerabilitiesComponent } from "../component/components/single-compone
 import { RouterTestComponent } from "../the-lab/router-test-component/router-test.component";
 import { RxjsComponent } from "../the-lab/rxjs.component";
 import { ProjectDetailComponent } from "../project/components/project-detail/project-detail.component";
+import { StoreModule } from "@ngrx/store";
+import { routerReducer } from "./state/router.reducer";
 
 const routes: Routes = [
   // Projects
@@ -74,8 +76,11 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [ RouterModule.forRoot(routes) ],
-	exports: [ RouterModule],
+  imports: [
+    RouterModule.forRoot(routes),
+    StoreModule.forFeature('customRouter', routerReducer)
+  ],
+	exports: [ RouterModule ],
   providers: [
     RouterService
   ]

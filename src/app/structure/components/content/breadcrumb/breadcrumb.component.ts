@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import * as fromRoot from './../../../../reducers';
 import * as RouterActions from './../../../../router/state/router.actions';
+import { CurrentRouteData, BreadcrumbSegment } from '../../../../router/state/router.reducer';
+import { Observable } from 'rxjs/Observable';
 
 interface RouteSegment {
   name: string;
@@ -20,7 +22,13 @@ export class BreadcrumbComponent implements OnInit {
     { name: 'Apache2 1.3.2', route: 'projects' },
   ];
 
-  constructor(private store: Store<fromRoot.State>) { }
+  currentRouteData: Observable<CurrentRouteData>;
+  breadcrumbSegments: Observable<BreadcrumbSegment[]>;
+
+  constructor(private store: Store<fromRoot.State>) {
+    this.currentRouteData = this.store.select(fromRoot.selectCurrentRouteData);
+    this.breadcrumbSegments = this.store.select(fromRoot.selectBreadcrumbSegments);
+  }
 
   ngOnInit() {
   }

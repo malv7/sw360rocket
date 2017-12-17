@@ -67,8 +67,7 @@ export const routerReducers: ActionReducerMap<State> = {
   imports: [
     BrowserModule,
     // AppRoutingModule,
-    SwRouterModule, // new sw router
-
+    
     // Store
     StoreModule.forRoot(routerReducer),
     EffectsModule.forRoot([
@@ -78,6 +77,8 @@ export const routerReducers: ActionReducerMap<State> = {
     StoreDevtoolsModule.instrument({
       maxAge: 25 // retains only last n states.
     }),
+
+    SwRouterModule, // new sw router
 
     // Layout
     StructureModule,

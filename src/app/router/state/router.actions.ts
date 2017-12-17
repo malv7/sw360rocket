@@ -1,10 +1,11 @@
 import { Action } from '@ngrx/store';
 import { NavigationExtras } from '@angular/router';
+import { CurrentRouteData } from './router.reducer';
 
 export const GO      = '[Router] Go';
 export const BACK    = '[Router] Back';
 export const FORWARD = '[Router] Forward';
-export const STORE_ROUTES = '[Router] Store routes';
+export const STORE_CURRENT_ROUTE_DATA = '[Router] Store current route data';
 
 export class Go implements Action {
   readonly type = GO;
@@ -24,16 +25,13 @@ export class Forward implements Action {
   readonly type = FORWARD;
 }
 
-export class StoreRoutes implements Action {
-  readonly type = STORE_ROUTES;
-  constructor(public payload: {
-
-  }) {
-    console.log("store routes action");
-  }
+export class StoreCurrentRouteData implements Action {
+  readonly type = STORE_CURRENT_ROUTE_DATA;
+  constructor(public currentRouteData: CurrentRouteData) {}
 }
 
 export type Actions
   = Go
   | Back
-  | Forward;
+  | Forward
+  | StoreCurrentRouteData;
