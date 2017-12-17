@@ -86,7 +86,7 @@ export const routerReducers: ActionReducerMap<State> = {
     // Features
     ComponentModule,
     ProjectModule,
-		TheLabModule
+    TheLabModule
   ],
   providers: [
     { provide: RouterStateSerializer, useClass: CustomSerializer }

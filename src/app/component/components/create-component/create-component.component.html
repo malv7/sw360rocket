@@ -3,73 +3,127 @@
   General
 </h3>
 
+<div *ngIf="popUpService.componentOwnerPopUp || popUpService.moderatorPopUp">
+  <sw-employe-list>
+
+  </sw-employe-list>
+</div>
+
 <div class="ui form">
 
   <form [formGroup]="projectForm" #formDir="ngForm">
     <div class="three fields">
-      <div class="required field">
-        <label>Name</label>
-        <input type="text" placeholder="Enter Name" formControlName="name">
 
-        <!-- Form Validation for Name-->
-        <div *ngIf="name.invalid && (name.dirty || name.touched)" class="ui form error">
-          <div *ngIf="name.errors.required" class="ui error message">
+      <!-- Name -->
+      <div class="field" [ngClass]="{'ui form error': !formValidationService.checkInvalidDirtyTouched(name)}">
+        <label>Name</label>
+        <input type="text" placeholder="eg., Library, cloud, mobile,..." formControlName="name">
+
+        <div class="ui form error hidden errorMessageSpace" [ngClass]="{'visible': !formValidationService.checkInvalidDirtyTouched(name)}">
+          <div class="ui error message errorMessageSpace" [ngClass]="{'visible': !formValidationService.checkInvalidDirtyTouched(name)}">
             Name is required.
           </div>
         </div>
+
       </div>
 
+      <!-- Created by -->
       <div class="field">
         <label>Created by</label>
         <input type="text" placeholder="Will be set automatically" disabled>
       </div>
 
-      <div class="required field">
-        <label>Categories</label>
-        <input type="text" placeholder="eg., Library, cloud, mobile,..." formControlName="categorie">
 
-        <!-- Form Validation for Name-->
-        <div *ngIf="categorie.invalid && (categorie.dirty || categorie.touched)" class="ui form error">
-          <div *ngIf="categorie.errors.required" class="ui error message">
-            Categorie is required.
+      <!-- Categorie -->
+      <div class="field" [ngClass]="{'ui form error': !formValidationService.checkInvalidDirtyTouched(categories)}">
+        <label>Categories</label>
+        <input type="text" placeholder="eg., Library, cloud, mobile,..." formControlName="categories">
+
+        <div class="ui form error hidden errorMessageSpace" [ngClass]="{'visible': !formValidationService.checkInvalidDirtyTouched(categories)}">
+          <div class="ui error message errorMessageSpace" [ngClass]="{'visible': !formValidationService.checkInvalidDirtyTouched(categories)}">
+            Category is required.
           </div>
         </div>
+
       </div>
+
     </div>
-  </form>
+
+    <!-- ComponentType -->
+    <div class="three fields">
+      <div class="field">
+        <label>ComponentType</label>
+        <select class="ui fluid dropdown" formControlName="componentType">
+          <option *ngFor="let componentType of componentTypes">{{componentType}}</option>
+        </select>
+      </div>
+
+      <!-- Homepage URL -->
+      <div class="field" [ngClass]="{'ui form error': !formValidationService.checkInvalidDirtyTouched(homepageURL)}">
+        <label>Homepage URL</label>
+        <input type="text" placeholder="Enter Home Url" formControlName="homepageURL">
 
 
-  <div class="three fields">
-    <div class="field">
-      <label>Categories</label>
-      <select class="ui fluid dropdown">
-        <option value="">OSS</option>
-      </select>
-    </div>
-    <div class="field">
-      <label>Homepage URL</label>
-      <input type="text" placeholder="Enter Home Url">
-    </div>
-    <div class="field">
-      <label>Blog URL</label>
-      <input type="text" placeholder="Enter Blog Url">
-    </div>
-  </div>
+        <div class="ui form error hidden errorMessageSpace" [ngClass]="{'visible': !formValidationService.checkInvalidDirtyTouched(homepageURL)}">
+          <div class="ui error message errorMessageSpace" [ngClass]="{'visible': !formValidationService.checkInvalidDirtyTouched(homepageURL)}">
+            Must be a valid URL.
+          </div>
+        </div>
 
-  <div class="three fields">
-    <div class="field">
-      <label>Wiki RUL</label>
-      <input type="text" placeholder="Enter Wiki Url">
+      </div>
+
+      <!-- Blog URL -->
+      <div class="field" [ngClass]="{'ui form error': !formValidationService.checkInvalidDirtyTouched(blogURL)}">
+        <label>Blog URL</label>
+        <input type="text" placeholder="Enter Home Url" formControlName="blogURL">
+
+
+        <div class="ui form error hidden errorMessageSpace" [ngClass]="{'visible': !formValidationService.checkInvalidDirtyTouched(blogURL)}">
+          <div class="ui error message errorMessageSpace" [ngClass]="{'visible': !formValidationService.checkInvalidDirtyTouched(blogURL)}">
+            Must be a valid URL.
+          </div>
+        </div>
+
+      </div>
+
     </div>
-    <div class="field">
-      <label>Mailing List URL</label>
-      <input type="text" placeholder="Enter Mailing List Url">
+
+    <div class="two fields">
+
+      <!-- Wiki URL -->
+      <div class="field" [ngClass]="{'ui form error': !formValidationService.checkInvalidDirtyTouched(wikiURL)}">
+        <label>Wiki URL</label>
+        <input type="text" placeholder="Enter Home Url" formControlName="wikiURL">
+
+
+        <div class="ui form error hidden errorMessageSpace" [ngClass]="{'visible': !formValidationService.checkInvalidDirtyTouched(wikiURL)}">
+          <div class="ui error message errorMessageSpace" [ngClass]="{'visible': !formValidationService.checkInvalidDirtyTouched(wikiURL)}">
+            Must be a valid URL.
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Mailing List URL -->
+      <div class="field" [ngClass]="{'ui form error': !formValidationService.checkInvalidDirtyTouched(mailingListURL)}">
+        <label>Mailing List URL</label>
+        <input type="text" placeholder="Enter Home Url" formControlName="mailingListURL">
+
+
+        <div class="ui form error hidden errorMessageSpace" [ngClass]="{'visible': !formValidationService.checkInvalidDirtyTouched(mailingListURL)}">
+          <div class="ui error message errorMessageSpace" [ngClass]="{'visible': !formValidationService.checkInvalidDirtyTouched(mailingListURL)}">
+            Must be a valid URL.
+          </div>
+        </div>
+
+      </div>
+
     </div>
     <div class="field">
       <label>Short Description</label>
-      <input type="text" placeholder="Enter Description">
+      <textarea type="text" placeholder="Enter Description" formControlName="shortDescription"> </textarea>
     </div>
-  </div>
+  </form>
 </div>
 
 
@@ -78,30 +132,32 @@
   Roles
 </h3>
 
-<div class="ui form">
-  <div class="two fields">
-    <div class="field">
-      <label>Name</label>
-      <input type="text" placeholder="Click to edit" disabled>
-    </div>
-    <div class="field">
-      <label>Owner Accounting Unit</label>
-      <input type="text" placeholder="Will be set automatically" disabled>
+<form [formGroup]="projectForm" #formDir="ngForm">
+  <div class="ui form">
+    <div class="two fields">
+      <div class="field" (click)="popUpService.componentOwnerPopUp = !popUpService.componentOwnerPopUp">
+        <label>Component owner</label>
+        <input type="text" placeholder="Click to edit" disabled>
+      </div>
+      <div class="field">
+        <label>Owner Accounting Unit</label>
+        <input type="text" placeholder="Will be set automatically" disabled>
+      </div>
     </div>
   </div>
-</div>
 
-<div class="ui form">
-  <div class="two fields">
-    <div class="field">
-      <label>Owner Billing Group</label>
-      <input type="text" placeholder="Enter Owner Billing Group" disabled>
-    </div>
-    <div class="field">
-      <label>Moderators</label>
-      <input type="text" placeholder="Click to edit" disabled>
+  <div class="ui form">
+    <div class="two fields">
+      <div class="field">
+        <label>Owner Billing Group</label>
+        <input type="text" placeholder="Enter Owner Billing Group" disabled>
+      </div>
+      <div class="field" (click)="popUpService.moderatorPopUp = !popUpService.moderatorPopUp">
+        <label>Moderators</label>
+        <input type="text" placeholder="Click to edit" disabled>
+      </div>
     </div>
   </div>
-</div>
-<button class="ui button" type="submit">Submit</button>
-<button class="ui button" type="submit">Cancel</button>
+</form>
+<button class="ui button" type="submit" (click)="submit()" [disabled]="!projectForm.valid">Submit</button>
+<button class="ui button" type="submit" (click)="popUpService.moderatorPopUp = !popUpService.moderatorPopUp">Cancel</button>

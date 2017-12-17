@@ -1,0 +1,73 @@
+<sui-modal [isClosable]="false" #modal>
+
+  <!-- Moderator -->
+  <div *ngIf="popUpService.moderatorPopUp" class="header">Add a Moderator</div>
+
+  <!-- ComponentOwner -->
+  <div *ngIf="popUpService.componentOwnerPopUp" class="header">Change the Component owner</div>
+
+  <div class="content">
+    <h3 class="ui sub header">Search</h3>
+    <div class="ui small feed">
+      <div class="ui search">
+        <div class="ui icon input">
+          <input class="prompt" type="text" placeholder="Employe LastName ..." name="searchString" [(ngModel)]="searchString">
+          <i class="search icon"></i>
+        </div>
+        <div class="results"></div>
+      </div>
+      <div class="event">
+        <div class="content">
+          <table class="ui celled padded table">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Given Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Department</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+              <tr *ngFor="let employe of list | filterEmployeLastName : 'lastName' : searchString; let i = index">
+                <td>
+
+                  <!-- Moderator -->
+                  <div *ngIf="popUpService.moderatorPopUp" class="ui checkbox">
+                    <input type="checkbox" name="box" [(ngModel)]="employe.employeCheckBoxValue" (change)="addModerator(employe)">
+                    <label></label>
+                  </div>
+
+                  <!-- ComponentOwner -->
+                  <div *ngIf="popUpService.componentOwnerPopUp" class="ui checkbox">
+                    <input type="checkbox" name="box" checked=true [(ngModel)]="employe.employeCheckBoxValue" (change)="changeComponentOwner(employe)">
+                    <label></label>
+                  </div>
+
+                </td>
+                <td>{{employe.givenName}}</td>
+                <td>{{employe.lastName}}</td>
+                <td>{{employe.email}}</td>
+                <td>{{employe.department}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Moderator -->
+  <div *ngIf="popUpService.moderatorPopUp" class="extra content">
+    <button class="ui button" (click)="modal.deny();submitModerator();popUpService.moderatorPopUp=false">Add</button>
+    <button class="ui button" (click)="modal.deny();popUpService.moderatorPopUp=false">Cancel</button>
+  </div>
+
+  <!-- ComponentOwner -->
+  <div *ngIf="popUpService.componentOwnerPopUp" class="extra content">
+    <button class="ui button" (click)="modal.deny();submitComponentOwner();popUpService.componentOwnerPopUp=false">Change</button>
+    <button class="ui button" (click)="modal.deny();popUpService.componentOwnerPopUp=false">Cancel</button>
+  </div>
+
+</sui-modal>

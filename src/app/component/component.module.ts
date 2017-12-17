@@ -18,6 +18,10 @@ import { VulnerabilitiesComponent } from './components/single-component/vulnerab
 //import { AttachmentsComponent } from './components/single-component/attachments/attachments.component';
 import { DetailComponent } from './components/single-component/detail/detail.component';
 import { CreateComponentComponent } from './components/create-component/create-component.component';
+import { PopUpService } from './components/create-component/pop-up.service';
+import { FormValidationService } from './components/create-component/form-validation.service';
+import { EmployeListComponent, FilterPipe } from './components/create-component/employe-list/employe-list.component';
+import { SuiModule, SuiRatingModule, SuiCheckboxModule } from 'ng2-semantic-ui';
 
 @NgModule({
   imports: [
@@ -25,9 +29,10 @@ import { CreateComponentComponent } from './components/create-component/create-c
 		StoreModule.forFeature('component', componentReducer),
 		RouterModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SuiModule, SuiRatingModule, SuiCheckboxModule
 	],
-	providers:[TableSelectService],
+	providers:[TableSelectService, PopUpService, FormValidationService],
   declarations: [
     ComponentListComponent,
     SingleComponentComponent,
@@ -36,6 +41,8 @@ import { CreateComponentComponent } from './components/create-component/create-c
     VulnerabilitiesComponent,
     DetailComponent,
     CreateComponentComponent,
+    EmployeListComponent,
+    FilterPipe
   ]
 })
 export class ComponentModule { }
