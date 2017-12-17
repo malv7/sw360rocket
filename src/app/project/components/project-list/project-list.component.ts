@@ -25,7 +25,6 @@ export class ProjectListComponent {
   constructor(private store: Store<fromRoot.State>, private selectListService: SelectListService) {
     this.store.dispatch(new ProjectActions.GetMockedProjects());
     this.projects = this.store.select(fromRoot.selectProjects);
-    this.projects.subscribe(x => console.log(x));
   }
 
   selectAll() {

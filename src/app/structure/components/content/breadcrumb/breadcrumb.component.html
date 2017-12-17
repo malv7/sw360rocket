@@ -1,13 +1,12 @@
-<!-- <span class="item">Components</span>
-<span class="item">Releases</span>
-<span class="item">Release</span> -->
 <div>
-  <div class="routeSegments">
-    <span *ngFor="let segment of segments"
+  <div class="routeSegments" *ngIf="(currentRouteData | async).showBreadcrumb">
+    <span *ngFor="let segment of breadcrumbSegments | async"
           class="routeSegment"
-          (click)="go(segment.route)">
+          (click)="go(segment.path)">
           {{ segment.name }}
     </span>
   </div>
-  <div class="activeRoute">Release</div>
+  <div class="activeRoute" *ngIf="(currentRouteData | async).showTitle">
+    {{ (currentRouteData | async).title }}
+  </div>
 </div>
