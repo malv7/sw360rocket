@@ -50,7 +50,7 @@ export class EmployeListComponent implements OnInit {
 
   public searchString: string;
 
-  constructor(private popUpService: PopUpService) {
+  constructor(public popUpService: PopUpService) {
 
   }
 
