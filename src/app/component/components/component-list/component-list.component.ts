@@ -29,7 +29,7 @@ export class ComponentListComponent implements OnInit {
 
   goToComponent(component: ComponentDataLayout) {
     this.store.dispatch(new RouterActions.Go({
-      path: ['/component'],
+      path: ['/components', component.id],
     }));
   }
   

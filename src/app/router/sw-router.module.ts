@@ -33,7 +33,7 @@ const routes: Routes = [
     component: ComponentRootComponent
   },
   {
-    path: 'component',
+    path: 'components/:id',
     component: SingleComponentComponent,
     children: [
       { path: '', redirectTo: 'details', pathMatch: 'full' },
