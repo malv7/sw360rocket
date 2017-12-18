@@ -1,12 +1,12 @@
 @import '~styles/toolkit';
 
-$width-1280: 1280px;
+$max-content-width: 1280px;
 $width-960: 960px;
 
 $top-bar-height: 5em;
 $footer-height: 2em;
 
-.all {
+.wrapper {
   width: 100%;
   min-height: 100vh;
   // background: green;
@@ -16,21 +16,27 @@ $footer-height: 2em;
   background: $color-coolblue;
   width: 100%;
   height: $top-bar-height;
+
 }
 
 .top-bar-content {
-  width: $width-1280;
-  height: 100%;
+	max-width: $max-content-width;
+	width: 100%;
+	height: 100%;
+	padding: 0 1em;
 }
 
 sw-brand {
   width: 150px;
 }
 
-.content {
-  width: $width-1280;
-  // background: yellow;
+sw-content {
+	width: 100%;
+	max-width: $max-content-width;
+	padding: 1em;
 }
+
+
 
 .footer {
   background: $color-coolblue;
@@ -39,7 +45,7 @@ sw-brand {
 }
 
 .footer-content {
-  width: $width-1280;
+  max-width: $max-content-width;
   // background: red;
   height: 100%;
 }
@@ -50,13 +56,13 @@ sw-footer {
 
 @media (max-width: 1279px) {
   .top-bar-content {
-    width: $width-960;
+    //width: $width-960;
   }
   .content {
-    width: $width-960;
+    //width: $width-960;
   }
   .footer-content {
-    width: $width-960;
+    //width: $width-960;
   }
 }
 
