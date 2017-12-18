@@ -1,14 +1,17 @@
 <div class="height-100" fxLayout="row" fxLayoutGap="1em">
 
     <!-- content -->
-    <div class="content" fxLayout="column" fxFlex="80%" fxLayoutGap="1em">
+    <div class="content" fxLayout="column" fxFlex="1 1 auto" fxLayoutGap="1em">
         <sw-tab-navigation [tabs]=tabs></sw-tab-navigation>
-        <div class="router-outlet">
-            <router-outlet></router-outlet>
+        <div class="height-100" fxLayout="row" fxLayoutGap="1em">
+			<div fxFlex>
+				<router-outlet></router-outlet>
+			</div>
+
+    		<!-- infobar -->
+    		<sw-overview fxFlex="20em" fxHide.lt-md="true"></sw-overview>
         </div>
     </div>
 
-    <!-- infobar -->
-    <sw-overview fxFlex="20%"></sw-overview>
-    
+
 </div>

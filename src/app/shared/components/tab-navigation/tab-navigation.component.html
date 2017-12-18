@@ -1,7 +1,7 @@
-<div class="four ui buttons blue" >
-	<button *ngFor="let tab of tabs"
-          class="ui button"
-          [routerLink]=tab.routerlink>
-    {{tab.title}}
-  </button>
+<div class="ui secondary pointing menu">
+	<a *ngFor="let tab of tabs; let i = index"
+		[class.active]="i == 0"
+		class="item"
+		[routerLink]=tab.routerlink>
+		{{tab.title}}</a>
 </div>
