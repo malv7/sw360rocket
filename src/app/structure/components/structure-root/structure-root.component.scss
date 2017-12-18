@@ -1,21 +1,21 @@
 @import '~styles/toolkit';
 
+.wrapper {
+  min-width: 768px;
+  width: 100%;
+  min-height: 100vh;
+}
+
 $max-content-width: 1280px;
 $width-960: 960px;
 
 $top-bar-height: 5em;
 $footer-height: 2em;
 
-.wrapper {
-  width: 100%;
-  min-height: 100vh;
-}
-
 .top-bar-wrapper {
   background: $color-coolblue;
   width: 100%;
   height: $top-bar-height;
-
 }
 
 .top-bar{
