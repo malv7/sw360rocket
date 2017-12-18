@@ -124,7 +124,7 @@ export class MalvDataService {
     private http: HttpClient,
     private store: Store<fromRoot.State>
   ) {
-    store.dispatch(new ComponentActions.ProvideMockData(componentDataLayoutFactory(15)));
+    store.dispatch(new ComponentActions.ProvideMockData(componentDataLayoutFactory(25)));
     // this.store.select(fromRoot.selectComponents).subscribe(x => console.log(x));
   }
 

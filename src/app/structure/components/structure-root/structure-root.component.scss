@@ -1,55 +1,77 @@
 @import '~styles/toolkit';
 
-:host {
-  height: 100vh;
-  max-height: 100vh;
+.wrapper {
+  min-width: 768px;
   width: 100%;
+  min-height: 100vh;
+}
 
-  @include display-grid;
-  @include grid-template-columns(14em 1fr);
-  @include grid-template-rows(6em 1fr 1.5em);
+$max-content-width: 1280px;
+$width-960: 960px;
 
-  // grid-gap: 0.5em;
+$top-bar-height: 5em;
+$footer-height: 2em;
+
+.top-bar-wrapper {
+  background: $color-coolblue;
+  width: 100%;
+  height: $top-bar-height;
+}
+
+.top-bar{
+	max-width: $max-content-width;
+	width: 100%;
+	height: 100%;
+	padding: 0 1em;
 }
 
 sw-brand {
-  @include grid-column(1,2);
-  @include grid-row(1,2);
+  width: 150px;
 }
 
-sw-top-bar {
-  @include grid-column(2,3);
-  @include grid-row(1,2);
-}
 
-sw-left-bar {
-  @include grid-column(1,2);
-  @include grid-row(2,3);
+
+.content-wrapper {
+	width: 100%;
 }
 
 sw-content {
-  @include grid-column(2,3);
-  @include grid-row(2,3);
+	width: 100%;
+	height: 100%;
+	max-width: $max-content-width;
+	padding: 1em;
+	margin: 0 auto;
+}
+
+
+
+.footer-wrapper {
+  background: $color-coolblue;
+  width: 100%;
+  height: $footer-height;
+}
+
+.footer{
+  max-width: $max-content-width;
+  // background: red;
+  height: 100%;
 }
 
 sw-footer {
-    @include grid-column(1,3);
-    @include grid-row(3,4);
+  width: 100%;
 }
 
-/* Browser Support */
-@supports not (grid-gap: 0.5em) {
-  .component {
-      margin: 0.25em;
+@media (max-width: 1279px) {
+  .top-bar-content {
+    //width: $width-960;
+  }
+  .content {
+    //width: $width-960;
+  }
+  .footer-content {
+    //width: $width-960;
   }
 }
 
-/* Target IE10+ */
-@media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {
-  :host {
-      height: 100vh;
-  }
-  .component {
-      margin: 0.25em;
-  }
-}
+// TODO:
+// table scale behavior!!!

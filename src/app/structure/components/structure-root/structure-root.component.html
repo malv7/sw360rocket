@@ -1,5 +1,18 @@
-<sw-brand></sw-brand>
-<sw-top-bar></sw-top-bar>
-<sw-left-bar></sw-left-bar>
-<sw-content></sw-content>
-<sw-footer></sw-footer>
+<div class="wrapper" fxLayout="column" fxLayoutAlign="start center">
+
+	<div class="top-bar-wrapper" fxLayout="row" fxLayoutAlign="center start">
+		<div class="top-bar" fxLayout="row">
+			<sw-brand></sw-brand>
+			<sw-top-bar></sw-top-bar>
+		</div>
+	</div>
+
+	<div class="content-wrapper" fxFlex>
+		<sw-content></sw-content>
+	</div>
+
+	<div class="footer-wrapper" fxLayout="row" fxLayoutAlign="center start" fxFlexAlign="end">
+		<sw-footer></sw-footer>
+	</div>
+
+</div>

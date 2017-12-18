@@ -7,9 +7,11 @@
 .router-outlet {
 	height: 100%;
 	// background-color: #EEE;
-	border-radius: 4px; // Todo: border-radius variable
-
+	// border-radius: 4px; // Todo: border-radius variable
 }
 
+router-outlet + * {
+	background-color: red;
+}
 
 

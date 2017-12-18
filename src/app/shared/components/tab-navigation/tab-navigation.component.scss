@@ -3,21 +3,15 @@
 :host {
 	display: block;
 	width: 100%;
+	overflow: visible;
 }
 
-.button {
-	border-right: 1px solid #EEE;
+.menu {
+	// border-bottom: 0 !important;
+	padding-left: 4px;
 }
 
-.buttons .button {
-	background-color: rgba($color-tab-navigation, 0.75);
+.item.active {
+	border-bottom: 3px solid $color-coolblue !important;
+	// border-bottom: 0 !important;
 }
-
-.buttons .button:hover {
-	background-color: $color-tab-navigation;
-}
-
-.buttons .button:focus {
-	background-color: $color-tab-navigation;
-}
-
