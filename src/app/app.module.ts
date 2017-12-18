@@ -28,6 +28,8 @@ import { ProjectModule } from './project/project.module';
 
 import { Params, RouterStateSnapshot } from '@angular/router';
 import { SwRouterModule } from './router/sw-router.module';
+import { ModelService } from './state/models';
+import { ModelModule } from './state/model.module';
 
 export interface RouterStateUrl {
   url: string;
@@ -86,10 +88,12 @@ export const routerReducers: ActionReducerMap<State> = {
     // Features
     ComponentModule,
     ProjectModule,
-    TheLabModule
+    TheLabModule,
+    ModelModule
   ],
   providers: [
-    { provide: RouterStateSerializer, useClass: CustomSerializer }
+    { provide: RouterStateSerializer, useClass: CustomSerializer },
+    ModelService
   ],
   bootstrap: [ AppComponent ]
 })

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MalvDataService } from './the-lab/malv-data.service';
+import { ModelService } from './state/models';
 
 @Component({
   selector: 'sw-root',
@@ -7,5 +8,7 @@ import { MalvDataService } from './the-lab/malv-data.service';
 })
 export class AppComponent {
 	// for test purposes only:
-	constructor(mds: MalvDataService) { }
+	constructor(
+    mds: MalvDataService,
+    models: ModelService) { }
 }
