@@ -1,55 +1,64 @@
 @import '~styles/toolkit';
 
-:host {
-  height: 100vh;
-  max-height: 100vh;
+$width-1280: 1280px;
+$width-960: 960px;
+
+$top-bar-height: 5em;
+$footer-height: 2em;
+
+.all {
   width: 100%;
+  min-height: 100vh;
+  // background: green;
+}
 
-  @include display-grid;
-  @include grid-template-columns(14em 1fr);
-  @include grid-template-rows(6em 1fr 1.5em);
+.top-bar {
+  background: $color-coolblue;
+  width: 100%;
+  height: $top-bar-height;
+}
 
-  // grid-gap: 0.5em;
+.top-bar-content {
+  width: $width-1280;
+  height: 100%;
 }
 
 sw-brand {
-  @include grid-column(1,2);
-  @include grid-row(1,2);
+  width: 150px;
 }
 
-sw-top-bar {
-  @include grid-column(2,3);
-  @include grid-row(1,2);
+.content {
+  width: $width-1280;
+  // background: yellow;
 }
 
-sw-left-bar {
-  @include grid-column(1,2);
-  @include grid-row(2,3);
+.footer {
+  background: $color-coolblue;
+  width: 100%;
+  height: $footer-height;
 }
 
-sw-content {
-  @include grid-column(2,3);
-  @include grid-row(2,3);
+.footer-content {
+  width: $width-1280;
+  // background: red;
+  height: 100%;
 }
 
 sw-footer {
-    @include grid-column(1,3);
-    @include grid-row(3,4);
+  width: 100%;
 }
 
-/* Browser Support */
-@supports not (grid-gap: 0.5em) {
-  .component {
-      margin: 0.25em;
+@media (max-width: 1279px) {
+  .top-bar-content {
+    width: $width-960;
+  }
+  .content {
+    width: $width-960;
+  }
+  .footer-content {
+    width: $width-960;
   }
 }
 
-/* Target IE10+ */
-@media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {
-  :host {
-      height: 100vh;
-  }
-  .component {
-      margin: 0.25em;
-  }
-}
+// TODO:
+// table scale behavior!!!
