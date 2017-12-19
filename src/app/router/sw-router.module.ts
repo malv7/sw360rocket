@@ -81,6 +81,7 @@ const routes: Routes = [
     path: '',
     component: NotImplementedYetComponent // TODO: Welcome page
   }
+  // TODO 404 not found
 ];
 
 @NgModule({

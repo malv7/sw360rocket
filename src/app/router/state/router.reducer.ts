@@ -17,6 +17,8 @@ export interface CurrentRouteData {
 
   isDetail: boolean;
   detailType: string; // TODO: components, releases ... as enum and array
+
+  feature: string;
 }
 
 export interface State {
@@ -32,7 +34,8 @@ const initialState: State = {
     isList: false,
     listType: '',
     isDetail: false,
-    detailType: ''
+    detailType: '',
+    feature: ''
   }
 }
 

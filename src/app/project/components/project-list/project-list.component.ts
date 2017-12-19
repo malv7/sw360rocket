@@ -13,7 +13,9 @@ import * as ProjectActions from './../../state/project.actions';
   selector: 'sw-project-list',
   templateUrl: './project-list.component.html',
   styles: [`
-    td:hover { cursor: pointer; }
+    .hover { cursor: pointer; }
+    .name { min-width: 180px; }
+    .version { min-width: 100px; }
   `]
 })
 export class ProjectListComponent {

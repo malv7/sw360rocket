@@ -1,37 +1,30 @@
 <div fxLayout="row" fxLayoutGap="1em">
-
   <sw-search-filter></sw-search-filter>
-  
-  <sw-action-buttons
-    [hasAdd]="true"
-    [hasEdit]="true"
-    [hasRemove]="true">
-  </sw-action-buttons>
+  <sw-action-buttons [hasAdd]="true" [hasEdit]="true" [hasRemove]="true"></sw-action-buttons>
 </div>
 
-<table class="ui striped table unstackable">
+<table class="ui celled table unstackable">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Version</th>
-      <th>
+      <th class="collapsing name">Name</th>
+      <th class="collapsing version">Version</th>
+      <th class="right aligned">
         <input type="checkbox" [(ngModel)]="areAllSelected" [checked]="areAllSelected" (click)="selectAll()">
       </th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let c of projects | async">
-      <td (click)="go(c.name)">{{ c.name }}</td>
-      <td (click)="go(c.name)">asdasd</td>
-      <td>
+      <td class="collapsing hover" (click)="go(c.name)">{{ c.name }}</td>
+      <td class="collapsing hover" (click)="go(c.name)">asdasd</td>
+      <td class="right aligned">
         <input type="checkbox" (click)=selectOne(c.version) [checked]="areAllSelected">
       </td>
     </tr>
   </tbody>
 
-
-
-  <tfoot>
+  <!-- TODO: hardcoded length condition -->
+  <tfoot *ngIf="(projects | async).length > 15">
     <tr>
       <th colspan="200">
         <div fxLayout="row">
@@ -54,4 +47,5 @@
       </th>
     </tr>
   </tfoot>
+
 </table>

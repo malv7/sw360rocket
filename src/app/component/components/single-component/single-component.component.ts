@@ -15,7 +15,6 @@ export class SingleComponentComponent implements OnInit {
 	tabs: Tab[] = [
 		{ routerlink: 'details', title: 'Details' },
 		{ routerlink: 'releases', title: 'Releases' },
-		{ routerlink: 'vulnerabilities', title: 'Vulnerabilities' },
     { routerlink: 'attachments', title: 'Attachments' }
   ];
 

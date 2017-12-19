@@ -34,20 +34,22 @@ export class RouterService {
       isList: false,
       listType: '',
       isDetail: false,
-      detailType: ''
+      detailType: '',
+      feature: ''
     };
 
     const segments = event.urlAfterRedirects.split('/').filter(segment => segment !== '');
 
     // it must be home
     if (segments.length === 0) {
-      // console.log(currentRouteData);
       this.store.dispatch(new RouterActions.StoreCurrentRouteData(currentRouteData));
       return;
     }
 
     // it must be a list or main navigation page like home, about, ...
     if (segments.length === 1) {
+
+      currentRouteData.feature = segments[0];
 
       const title = segments[0][0].toUpperCase() + segments[0].slice(1, segments[0].length);
       currentRouteData.title = title;
@@ -69,6 +71,7 @@ export class RouterService {
     if (segments.length === 2 || segments.length === 3) {
       const isFirstList = this.isList(segments[0]);
       if (isFirstList) {
+        currentRouteData.feature = segments[0];
         currentRouteData.title = segments[1] // TODO: title from store, not id
         currentRouteData.showTitle = true;
         currentRouteData.isList = false;

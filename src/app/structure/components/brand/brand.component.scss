@@ -1,9 +1,10 @@
 @import '~styles/toolkit';
 
 :host {
-  background: $color-cooldarkblue;
+  // background: $color-cooldarkblue;
   display: flex;
-  justify-content: center;
+  // justify-content: center;
+  margin-right: 1em;
 }
 
 .logo {
