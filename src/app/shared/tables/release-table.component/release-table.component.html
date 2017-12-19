@@ -1,25 +1,21 @@
 <div fxLayout="row" fxLayoutGap="1em">
   <sw-search-filter></sw-search-filter>
-  <sw-action-buttons
-    [hasAdd]="true"
-    [hasEdit]="true"
-    [hasRemove]="true"
-    [hasFossology]="true"
-    [hasClone]="true"
-  ></sw-action-buttons>
+  <sw-action-buttons [hasAdd]="true" [hasEdit]="true" [hasRemove]="true" [hasFossology]="true" [hasClone]="true"></sw-action-buttons>
 </div>
 
 <table class="ui striped selectable celled table unstackable">
   <thead>
     <tr>
-      <th class="collapsing"><i class="sort icon" (click)="toggleSort('name')"></i>Name</th>
-      <th class="collapsing"><i class="sort icon" (click)="toggleSort('version')"></i>Version</th>
+      <th class="collapsing">
+        <i class="sort icon" (click)="toggleSort('name')"></i>Name</th>
+      <th class="collapsing">
+        <i class="sort icon" (click)="toggleSort('version')"></i>Version</th>
       <!-- TODO: Different EmbeddedReleases??? See models.ts -->
       <th class="collapsing">Clearing State</th>
       <th class="right aligned">
         <span class="table-selection-count-label">Selected:</span>
         <span class="table-selection-count">{{ count }}</span>
-          <input type="checkbox" [(ngModel)]="areAllSelected" [checked]="areAllSelected" (click)="selectAll()">
+        <input type="checkbox" [(ngModel)]="areAllSelected" [checked]="areAllSelected" (click)="selectAll()">
       </th>
     </tr>
   </thead>
@@ -29,7 +25,7 @@
       <td class="collapsing cell-hover" (click)="go(release)">{{ release.version }}</td>
       <td class="collapsing cell-hover" (click)="go(release)">{{ release.clearingState }}</td>
       <td class="right aligned">
-          <input type="checkbox" (click)=selectOne(release) [checked]="areAllSelected">
+        <input type="checkbox" (click)=selectOne(release) [checked]="areAllSelected">
       </td>
     </tr>
   </tbody>
@@ -40,7 +36,6 @@
       <th colspan="200">
         <div fxLayout="row">
           <div class="ui pagination menu">
-
             <a class="icon item">
               <i class="left chevron icon"></i>
             </a>
@@ -52,9 +47,7 @@
               <i class="right chevron icon"></i>
             </a>
           </div>
-
         </div>
-
       </th>
     </tr>
   </tfoot>

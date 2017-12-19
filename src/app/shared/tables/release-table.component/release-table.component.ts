@@ -18,7 +18,7 @@ import { Subscription } from "rxjs/Subscription";
     }
 
     .table-selection-count-label, .table-selection-count {
-      color: #AAA; // TODO: variable
+      color: #AAA;
     }
 
     .table-selection-count-label {
@@ -85,7 +85,7 @@ export class ReleaseTableComponent implements OnDestroy {
   toggleSort(type: string) {
 
     if (this.sortedBy !== type) {
-      this.isAscending = true;
+      this.isAscending = false;
       this.sortedBy = type;
     }
     
