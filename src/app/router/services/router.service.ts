@@ -23,7 +23,7 @@ export class RouterService {
 
   parseRoute(event: NavigationEnd) {
 
-    console.log(event);
+    // console.log(event);
 
     // on the way down modify and dispatch currentRouteData
     let currentRouteData: CurrentRouteData = {

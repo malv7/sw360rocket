@@ -41,7 +41,7 @@ export class ActionButtonsComponent implements OnInit, OnDestroy {
 
   constructor(private store: Store<fromRoot.State>) {
     // retrieves and handles possible actions from selected elements state
-    store.select(fromRoot.selectSelectedListElements).subscribe(x => console.log(x));
+    // store.select(fromRoot.selectSelectedListElements).subscribe(x => console.log(x));
   }
   
   ngOnInit() {
@@ -49,24 +49,24 @@ export class ActionButtonsComponent implements OnInit, OnDestroy {
       .map(crd => crd.listType)
       .subscribe(listType => this.listType = listType);
 
-    console.log("sub");
+    // console.log("sub");
   }
   
   ngOnDestroy(): void {
     if(this.listTypeSubscription) this.listTypeSubscription.unsubscribe();
-    console.log("unsub");
+    // console.log("unsub");
   }
 
   add() {
     switch (this.listType) {
       
       case 'projects': {
-        console.log("action buttons of type projects");
+        // console.log("action buttons of type projects");
         break;
       }
 
       case 'components': {
-        console.log("action buttons of type components");
+        // console.log("action buttons of type components");
         this.store.dispatch(new RouterActions.Go({
           path: ['components/add']
         }));
@@ -84,7 +84,7 @@ export class ActionButtonsComponent implements OnInit, OnDestroy {
     // anyway, the store gets mutated
     // Workarround: Select the list each time when an action should be performed and use take(1)
     // see selectListReducer
-    this.store.select(fromRoot.selectSelectedListElements).take(1).subscribe(x => console.log(x));
+    // this.store.select(fromRoot.selectSelectedListElements).take(1).subscribe(x => console.log(x));
   }
 
 }
