@@ -28,7 +28,7 @@ export class SingleComponentComponent implements OnInit {
 		this.components = this.store.select(fromRoot.selectComponents);
 		this.components.subscribe(componentData => this.currentComponent=componentData[0])
 
-		console.log(this.currentComponent);
+		// console.log(this.currentComponent);
 	}
 
 }

@@ -2,5 +2,13 @@
 
 :host {
 	display: block;
-	padding-top: $gap-md;
+	// padding-top: $gap-md;
+}
+
+.breadcrumb-title-message-wrapper {
+  margin-bottom: 1em;
+}
+
+.message {
+  margin: 0;
 }
