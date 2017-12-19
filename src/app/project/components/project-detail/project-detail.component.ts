@@ -6,8 +6,9 @@ import * as RouterActions from './../../../router/state/router.actions';
 @Component({
   selector: 'sw-project-detail',
   template: `
-    <button class="ui button" (click)="go()">releases</button>
-    <router-outlet></router-outlet>
+    <!-- <button class="ui button" (click)="go()">releases</button> -->
+    <!-- <router-outlet></router-outlet> -->
+    <sw-release-table></sw-release-table>
   `
 })
 export class ProjectDetailComponent {

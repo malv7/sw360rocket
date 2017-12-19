@@ -6,10 +6,12 @@ interface SelectedElements {
 
 export interface State {
   selectedElements: SelectedElements;
+  selectedElementsCount: number;
 }
 
-const initialState = {
-  selectedElements: { }
+const initialState: State = {
+  selectedElements: { },
+  selectedElementsCount: 0
 };
 
 export function listSelectReducer(state = initialState, action: ListSelectActions.All): State {
@@ -27,17 +29,19 @@ export function listSelectReducer(state = initialState, action: ListSelectAction
         delete state.selectedElements[action.id];
       }
 
+      state.selectedElementsCount = Object.keys(state.selectedElements).length;
       return state;
     }
 
     case ListSelectActions.ADD_MANY: {
-      state = { selectedElements: {} };
+      state = { ...state, selectedElements: {} };
       action.ids.forEach(id => state.selectedElements[id] = true);
+      state.selectedElementsCount = action.ids.length;
       return state;
     }
 
     case ListSelectActions.CLEAR: {
-      return { selectedElements: {} };
+      return { ...state, selectedElements: {}, selectedElementsCount: 0 };
     }
       
     default: return state;

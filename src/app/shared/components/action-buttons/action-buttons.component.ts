@@ -10,23 +10,39 @@ import 'rxjs/add/operator/take';
 @Component({
   selector: 'sw-action-buttons',
   template: `
-  <div class="ui basic buttons">
-    <button class="ui button fossology" *ngIf="hasFossology" (click)="fossology()"><i class="icon add"></i>Fosssology</button>
-    <button class="ui button edit" *ngIf="hasEdit" (click)="edit()"><i class="icon add"></i>Edit</button>
-    <button class="ui button remove" *ngIf="hasRemove" (click)="remove()"><i class="icon add"></i>Remove</button>
+  <div class="ui basic buttons" fxLayout="row" fxLayoutWrap>
+    <button class="ui button remove" *ngIf="hasRemove && onMany" (click)="remove()">
+      <i class="icon trash"></i>
+      Remove
+    </button>
 
-    <button class="ui button add" *ngIf="hasAdd" (click)="add()">
-      <i class="icon add"></i>Add
+    <button class="ui button fossology" *ngIf="hasFossology && onMany" (click)="fossology()">
+      <i class="icon protect"></i>
+      Fossology
+    </button>
+    
+    <button class="ui button clone" *ngIf="hasClone && onOne" (click)="clone()">
+      <i class="icon clone"></i>
+      Clone
+    </button>
+
+    <button class="ui button edit" *ngIf="hasEdit && onOne" (click)="edit()">
+      <i class="icon edit"></i>
+      Edit
+    </button>
+
+    <button class="ui button add" *ngIf="hasAdd && !onOne && !onMany" (click)="add()">
+      <i class="icon add"></i>
+      Add
     </button>
   </div>
   `,
   styles: [`
-    .add {
-      color: green;
-    }
+    .add { }
     .remove { }
     .edit { }
     .fossology { }
+    .clone { }
   `]
 })
 export class ActionButtonsComponent implements OnInit, OnDestroy {
@@ -35,26 +51,41 @@ export class ActionButtonsComponent implements OnInit, OnDestroy {
   @Input() hasEdit: boolean;
   @Input() hasRemove: boolean;
   @Input() hasFossology: boolean;
+  @Input() hasClone: boolean;
   
   listType: string;
   listTypeSubscription: Subscription;
+  elementsCountSub: Subscription;
+
+  onOne: boolean = false;
+  onMany: boolean = false;
 
   constructor(private store: Store<fromRoot.State>) {
     // retrieves and handles possible actions from selected elements state
     // store.select(fromRoot.selectSelectedListElements).subscribe(x => console.log(x));
+    this.elementsCountSub = store.select(fromRoot.selectSelectedListElementsCount).subscribe(elementsCount => {
+      if(elementsCount === 0) {
+        this.onOne = false;
+        this.onMany = false;
+      } else if (elementsCount === 1) {
+        this.onOne = true;
+        this.onMany = true;
+      } else if (elementsCount > 1) {
+        this.onOne = false;
+        this.onMany = true;
+      }
+    });
   }
   
   ngOnInit() {
     this.listTypeSubscription = this.store.select(fromRoot.selectCurrentRouteData)
       .map(crd => crd.listType)
       .subscribe(listType => this.listType = listType);
-
-    // console.log("sub");
   }
   
   ngOnDestroy(): void {
     if(this.listTypeSubscription) this.listTypeSubscription.unsubscribe();
-    // console.log("unsub");
+    if(this.elementsCountSub) this.elementsCountSub.unsubscribe();
   }
 
   add() {
@@ -86,5 +117,7 @@ export class ActionButtonsComponent implements OnInit, OnDestroy {
     // see selectListReducer
     // this.store.select(fromRoot.selectSelectedListElements).take(1).subscribe(x => console.log(x));
   }
+
+  clone() {}
 
 }

@@ -401,7 +401,7 @@ export const getReleases = () => {
         "cpeId": "cpe:/a:Google:Angular:2.3.0:",
         "_links": {
           "self": {
-            "href": "https://sw360.org/api/releases/3765276512"
+            "href": "https://sw360.org/api/releases/3765276511"
           }
         }
       }, {
@@ -416,6 +416,48 @@ export const getReleases = () => {
         "_links": {
           "self": {
             "href": "https://sw360.org/api/releases/3765276512"
+          }
+        }
+      }, {
+        "name": "ZoneControle",
+        "version": "1.4.0",
+        "externalIds": {
+          "mainline-id-component": "1432"
+        },
+        "createdOn": "2016-12-18",
+        "clearingState": "APPROVED",
+        "cpeId": "cpe:/a:Google:Angular:2.3.0:",
+        "_links": {
+          "self": {
+            "href": "https://sw360.org/api/releases/3735276421"
+          }
+        }
+      }, {
+        "name": "Angular 5.2.2",
+        "version": "5.2.2",
+        "externalIds": {
+          "mainline-id-component": "1432"
+        },
+        "createdOn": "2016-12-18",
+        "clearingState": "NEW",
+        "cpeId": "cpe:/a:Google:Angular:2.3.0:",
+        "_links": {
+          "self": {
+            "href": "https://sw360.org/api/releases/3765326511"
+          }
+        }
+      }, {
+        "name": "Rxjs",
+        "version": "4.1.1",
+        "externalIds": {
+          "mainline-id-component": "1432"
+        },
+        "createdOn": "2016-12-18",
+        "clearingState": "SEND TO FOSSOLOGY",
+        "cpeId": "cpe:/a:Google:Angular:2.3.0:",
+        "_links": {
+          "self": {
+            "href": "https://sw360.org/api/releases/37235276511"
           }
         }
       }]
@@ -475,6 +517,9 @@ export const getRelease = () => {
   };
 };
 
+// TODOS: ClearingStates
+
+// TODO:
 export interface EmbeddedRelease {
   name: string;
   version: string;
@@ -854,7 +899,7 @@ export class ModelService {
 
     // License
     const licenseResponse = getLicense();
-    const license = (<License> licenseResponse);
+    const license = (<License>licenseResponse);
     patchIdPath([license]);
     store.dispatch(new ModelActions.GetLicense(license));
     // store.select(fromModel.selectLicense).subscribe(x => console.log(x));
@@ -862,7 +907,7 @@ export class ModelService {
 
 }
 
-type EmbeddedResource = EmbeddedUser | EmbeddedProject | Project | EmbeddedSW360Component | SW360Component | EmbeddedRelease | Attachment | EmbeddedVendor | Vendor | EmbeddedLicense | License;
+export type EmbeddedResource = EmbeddedUser | EmbeddedProject | Project | EmbeddedSW360Component | SW360Component | EmbeddedRelease | Attachment | EmbeddedVendor | Vendor | EmbeddedLicense | License;
 
 const patchIdPath = (embeddedResources: EmbeddedResource[]) => {
   embeddedResources.forEach(embeddedResource => {

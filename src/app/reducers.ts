@@ -28,6 +28,10 @@ export function selectSelectedListElements(state: State) {
   return state.listSelect.selectedElements;
 }
 
+export function selectSelectedListElementsCount(state: State) {
+  return state.listSelect.selectedElementsCount;
+}
+
 export function selectProjects(state: State) {
   return state.project.projects;
 }
