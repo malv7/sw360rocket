@@ -5,13 +5,9 @@
 	width: 100%;
 	display: flex;
 	justify-content: flex-start;
-  align-items: center;
+  align-items: flex-end;
   // background: red;
-  height: 1.5em;
-}
-
-.routeSegments {
-  margin-bottom: 0.25em;
+  height: 1em;
 }
 
 .routeSegment {
