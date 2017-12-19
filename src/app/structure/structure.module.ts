@@ -14,6 +14,7 @@ import { SharedModule } from '../shared/shared.module';
 // content
 import { ContentComponent } from './components/content/content.component';
 import { BreadcrumbComponent } from './components/content/breadcrumb/breadcrumb.component';
+import { ContentTitleComponent } from './components/content/title/content-title.component';
 
 @NgModule({
   imports: [
@@ -27,7 +28,8 @@ import { BreadcrumbComponent } from './components/content/breadcrumb/breadcrumb.
     TopBarComponent,
     FooterComponent,
     ContentComponent,
-    BreadcrumbComponent
+    BreadcrumbComponent,
+    ContentTitleComponent
   ],
   exports: [ StructureRootComponent ]
 })

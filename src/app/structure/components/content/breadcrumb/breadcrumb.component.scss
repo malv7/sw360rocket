@@ -5,7 +5,9 @@
 	width: 100%;
 	display: flex;
 	justify-content: flex-start;
-	align-items: center;
+  align-items: center;
+  // background: red;
+  height: 1.5em;
 }
 
 .routeSegments {
@@ -18,7 +20,7 @@
 }
 
 .routeSegment:hover {
-  color: $color-anthrazit;
+  color: $color-coolblue;
   cursor: pointer;
 }
 
