@@ -14,6 +14,7 @@ import { SearchFilterComponent } from './components/search-filter/search-filter.
 import { ReleaseTableComponent } from './tables/release-table/release-table.component';
 import { FormsModule } from '@angular/forms';
 import { TableService } from './tables/services/table.service';
+import { ReleasesWidgetComponent } from './components/overview/releases-widget/releases-widget.component';
 
 @NgModule({
 	imports: [
@@ -29,7 +30,8 @@ import { TableService } from './tables/services/table.service';
     NotImplementedYetComponent,
     ActionButtonsComponent,
     SearchFilterComponent,
-    ReleaseTableComponent
+    ReleaseTableComponent,
+    ReleasesWidgetComponent
 	],
 	exports: [
 		// modules

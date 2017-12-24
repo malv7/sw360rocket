@@ -1,0 +1,58 @@
+.ui.card {
+	width: 100%;
+	margin-right: 0;
+}
+
+.content.list {
+	padding: 0;
+}
+
+.content.list th {
+	font-size: 0.9em;
+}
+
+.state {
+	font-size: 0.9em;
+	color: red;
+}
+
+.version {
+	font-size: 0.9em;
+	text-align: right;
+}
+
+.content.list td {
+	padding: 0.5em 0.2em !important;
+}
+
+.content.list th:first-child,
+.content.list td:first-child {
+	padding-left: 1em !important;
+}
+.content.list td:last-child {
+	padding-right: 1em !important;
+}
+
+.content.list th {
+	padding: 0.5em 0.2em !important;
+}
+
+table .last-item * {
+	padding: 0.2em 0.4em !important;
+	cursor: pointer;
+}
+
+.last-item td {
+
+}
+
+.card .load-more-dots {
+	font-size: 2em;
+	color: rgba(0,0,0,.4);
+	text-align: center;
+}
+
+.card .load-more-dots:hover {
+	font-size: 2em;
+	color: #4183c4;
+}
