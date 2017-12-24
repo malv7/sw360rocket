@@ -1,43 +1,41 @@
 <div class="wrapper">
-	<table class="ui blue table">
+	<div class="ui segment">
+		<div class="heading">Description:</div>
+		<div class="content">{{currentComponent.description}}</div>
+
+		<div class="general">
+			<div class="column" fxHide.gt-sm="true">
+				<div class="item">
+					<span class="heading">Created on:</span>
+					<span class="content">{{currentComponent.createdOn}}</span>
+				</div>
+				<div class="item">
+					<span class="heading">Created by:</span>
+					<span class="content">{{currentComponent.createdBy.email}}</span>
+				</div>
+				<div class="item">
+					<span class="heading">Component Type:</span>
+					<span class="content">{{currentComponent.componentType}}</span>
+				</div>
+			</div>
+
+			<div class="column">
+				<div class="item">
+					<span class="heading">Categories:</span>
+					<span class="content mock">Categorie1, Yolo2, Brief3</span>
+				</div>
+				<div class="item">
+					<span class="heading">Mailing list:</span>
+					<span class="content">...</span>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<table class="ui table unstackable">
 		<thead>
 			<tr>
-				<th>General:</th>
-				<th></th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>Name:</td>
-				<td>...</td>
-			</tr>
-			<tr>
-				<td>Created on:</td>
-				<td>...</td>
-			</tr>
-			<tr>
-				<td>Created by:</td>
-				<td>...</td>
-			</tr>
-			<tr>
-				<td>Categories:</td>
-				<td>...</td>
-			</tr>
-			<tr>
-				<td>Component Type:</td>
-				<td>...</td>
-			</tr>
-			<tr>
-				<td>Mailing list:</td>
-				<td>...</td>
-			</tr>
-		</tbody>
-	</table>
-	<table class="ui blue table">
-		<thead>
-			<tr>
-				<th>Roles</th>
-				<th></th>
+				<th colspan="2">Roles</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -67,17 +65,17 @@
 			</tr>
 		</tbody>
 	</table>
-	<table class="ui blue table">
+
+	<table class="ui table unstackable">
 		<thead>
 			<tr>
-				<th>Release Aggregate Data</th>
-				<th></th>
+				<th colspan="2">Release Aggregate Data</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr>
 				<td>Vendors:</td>
-				<td>...</td>
+				<td>{{currentComponent.vendors}}</td>
 			</tr>
 			<tr>
 				<td>Language</td>
@@ -91,36 +89,7 @@
 				<td>Main Licenses:</td>
 				<td>...</td>
 			</tr>
-			<tr>
-				<td></td>
-				<td>...</td>
-			</tr>
-			<tr>
-				<td></td>
-				<td>...</td>
-			</tr>
 		</tbody>
 	</table>
-	<table class="ui blue table">
-		<thead>
-			<tr>
-				<th>Links:</th>
-				<th></th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>Homepage:</td>
-				<td>...</td>
-			</tr>
-			<tr>
-				<td>Blog:</td>
-				<td>...</td>
-			</tr>
-			<tr>
-				<td>Wiki:</td>
-				<td>...</td>
-			</tr>
-		</tbody>
-	</table>
+	
 </div>
