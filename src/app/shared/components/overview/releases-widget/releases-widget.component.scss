@@ -8,17 +8,12 @@
 }
 
 .content.list th {
-	font-size: 0.9em;
+	font-size: 1em;
 }
 
 .state {
-	font-size: 0.9em;
+	font-size: 1em;
 	color: red;
-}
-
-.version {
-	font-size: 0.9em;
-	text-align: right;
 }
 
 .content.list td {
@@ -34,16 +29,24 @@
 }
 
 .content.list th {
-	padding: 0.5em 0.2em !important;
+	padding: 0.5em 0.7em !important;
 }
 
 table .last-item * {
-	padding: 0.2em 0.4em !important;
+	padding: 0.2em 0.5em !important;
 	cursor: pointer;
 }
 
-.last-item td {
+.state {
+	font-size: 0.8em;
+}
 
+.orange {
+	color: orange;
+}
+
+.green {
+	color: rgb(13, 170, 13);
 }
 
 .card .load-more-dots {

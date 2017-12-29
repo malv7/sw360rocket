@@ -5,25 +5,30 @@ import { ComponentDataLayout, ResolvedRelease } from '../../../state/component.m
 import { Router, Routes } from '@angular/router';
 import * as RouterActions from './../../../../router/state/router.actions';
 import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
+import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 
 @Component({
   selector: 'sw-detail',
   templateUrl: './detail.component.html',
   styleUrls: ['./detail.component.scss']
 })
-export class DetailComponent implements OnInit {
+export class DetailComponent implements OnInit, OnDestroy {
 
-  components: Observable<ComponentDataLayout[]>;
 	currentComponent: ComponentDataLayout;
-  constructor(private store: Store<fromRoot.State>, public router: Router) { }
-  
+	componentSub: Subscription;
+
+	constructor(private store: Store<fromRoot.State>, public router: Router) { }
 
   ngOnInit() {
-    this.components = this.store.select(fromRoot.selectComponents);
-		this.components.subscribe(componentData => {
+		this.componentSub = this.store.select(fromRoot.selectComponents).subscribe(componentData => {
       this.currentComponent=componentData[0];
       console.log(this.currentComponent);
-    } )
-  }
+    })
+	}
+
+	ngOnDestroy() {
+		if(this.componentSub) this.componentSub.unsubscribe();
+	}
 
 }
