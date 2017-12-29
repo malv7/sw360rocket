@@ -3,15 +3,15 @@
   <sw-action-buttons [hasAdd]="true" [hasEdit]="true" [hasRemove]="true" [hasFossology]="true" [hasClone]="true"></sw-action-buttons>
 </div>
 
-<table class="ui striped selectable celled table unstackable">
+<table class="ui striped selectable celled table unstackable" sortable-table (sorted)="onSorted($event)">
   <thead>
     <tr>
-      <th class="collapsing">
-        <i class="sort icon" (click)="toggleSort('name')"></i>Name</th>
-      <th class="collapsing">
-        <i class="sort icon" (click)="toggleSort('version')"></i>Version</th>
+      <th class="collapsing" sortable-column="name">
+		Name</th>
+      <th class="collapsing" sortable-column="version">
+       Version</th>
       <!-- TODO: Different EmbeddedReleases??? See models.ts -->
-      <th class="collapsing">Clearing State</th>
+      <th class="collapsing" >Clearing State</th>
       <th class="right aligned">
         <span class="table-selection-count-label">Selected:</span>
         <span class="table-selection-count">{{ count }}</span>

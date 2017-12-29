@@ -1,3 +1,4 @@
+import { ReleaseTableComponent } from './../shared/tables/release-table/release-table.component';
 import { RouterService } from "./services/router.service";
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
@@ -48,7 +49,7 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'details', pathMatch: 'full' },
       { path: 'details', component: DetailComponent },
-      { path: 'releases', component: ReleasesComponent },
+      { path: 'releases', component: ReleaseTableComponent },
       { path: 'vulnerabilities', component: NotImplementedYetComponent },
       { path: 'attachments', component: NotImplementedYetComponent }
     ]
@@ -95,5 +96,5 @@ const routes: Routes = [
   ]
 })
 export class SwRouterModule {
-  
+
 }

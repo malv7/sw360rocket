@@ -82,38 +82,9 @@ export class ReleaseTableComponent implements OnDestroy {
     if (this.selectedElementsCountSub) this.selectedElementsCountSub.unsubscribe();
   }
 
-  toggleSort(type: string) {
 
-    if (this.sortedBy !== type) {
-      this.isAscending = false;
-      this.sortedBy = type;
-    }
-    
-    switch (type) {
-      case 'name': {
-        (this.isAscending)
-          ? this.releases = this.releases.map(releases => releases.sort(sortNameAscending))
-          : this.releases = this.releases.map(releases => releases.sort(sortNameDescending));
-        this.isAscending = !this.isAscending;
-        break;
-      }
 
-      case 'version': {
-        (this.isAscending)
-          ? this.releases = this.releases.map(releases => releases.sort(sortVersionAscending))
-          : this.releases = this.releases.map(releases => releases.sort(sortVersionDescending));
-        this.isAscending = !this.isAscending;
-        break;
-      }
-
-      default:
-        break;
-    }
-
+	onSorted($event){
+		this.releases = this.tableService.sortByRow($event, this.releases);
   }
 }
-
-const sortNameAscending = (x: EmbeddedRelease, y: EmbeddedRelease) => x.name > y.name ? 1 : x.name < y.name ? -1 : 0;
-const sortNameDescending = (x: EmbeddedRelease, y: EmbeddedRelease) => x.name < y.name ? 1 : x.name < y.name ? -1 : 0;
-const sortVersionAscending = (x: EmbeddedRelease, y: EmbeddedRelease) => x.version > y.version ? 1 : x.version < y.version ? -1 : 0;
-const sortVersionDescending = (x: EmbeddedRelease, y: EmbeddedRelease) => x.version < y.version ? 1 : x.version < y.version ? -1 : 0;

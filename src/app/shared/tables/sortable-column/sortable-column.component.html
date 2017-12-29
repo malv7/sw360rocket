@@ -1,0 +1,4 @@
+<i class="sort ascending icon" *ngIf="sortDirection === 'desc'" ></i>
+<i class="sort descending icon" *ngIf="sortDirection === 'asc'"></i>
+<i class="sort icon" *ngIf="sortDirection !== 'desc' && sortDirection !== 'asc'"></i>
+<ng-content></ng-content>

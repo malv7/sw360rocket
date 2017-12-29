@@ -14,6 +14,8 @@ import { SearchFilterComponent } from './components/search-filter/search-filter.
 import { ReleaseTableComponent } from './tables/release-table/release-table.component';
 import { FormsModule } from '@angular/forms';
 import { TableService } from './tables/services/table.service';
+import { SortableColumnComponent } from './tables/sortable-column/sortable-column.component';
+import { SortableTableDirective } from './tables/sortable-table/sortable-table.directive';
 
 @NgModule({
 	imports: [
@@ -29,7 +31,9 @@ import { TableService } from './tables/services/table.service';
     NotImplementedYetComponent,
     ActionButtonsComponent,
     SearchFilterComponent,
-    ReleaseTableComponent
+    ReleaseTableComponent,
+    SortableColumnComponent,
+    SortableTableDirective
 	],
 	exports: [
 		// modules
@@ -42,7 +46,7 @@ import { TableService } from './tables/services/table.service';
     OverviewComponent,
     ActionButtonsComponent,
     SearchFilterComponent,
-    ReleaseTableComponent
+		ReleaseTableComponent
   ],
   providers: [TableService]
 })
