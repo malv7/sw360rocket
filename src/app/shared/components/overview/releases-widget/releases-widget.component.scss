@@ -7,15 +7,6 @@
 	padding: 0;
 }
 
-.content.list th {
-	font-size: 1em;
-}
-
-.state {
-	font-size: 1em;
-	color: red;
-}
-
 .content.list td {
 	padding: 0.5em 0.2em !important;
 }
@@ -37,25 +28,18 @@ table .last-item * {
 	cursor: pointer;
 }
 
-.state {
-	font-size: 0.8em;
-}
-
-.orange {
-	color: orange;
-}
-
-.green {
-	color: rgb(13, 170, 13);
-}
-
 .card .load-more-dots {
 	font-size: 2em;
 	color: rgba(0,0,0,.4);
 	text-align: center;
+    display: block;
 }
 
 .card .load-more-dots:hover {
 	font-size: 2em;
-	color: #4183c4;
+}
+
+
+.state {
+	font-size: 0.8em;
 }
