@@ -1,3 +1,4 @@
+import { AuthenticationService } from './user/services/authentication.service';
 import { Component } from '@angular/core';
 import { MalvDataService } from './the-lab/malv-data.service';
 import { ModelService } from './state/models';
@@ -9,6 +10,7 @@ import { ModelService } from './state/models';
 export class AppComponent {
 	// for test purposes only:
 	constructor(
+    auth: AuthenticationService,
     mds: MalvDataService,
     models: ModelService) { }
 }

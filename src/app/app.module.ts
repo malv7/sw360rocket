@@ -30,6 +30,7 @@ import { Params, RouterStateSnapshot } from '@angular/router';
 import { SwRouterModule } from './router/sw-router.module';
 import { ModelService } from './state/models';
 import { ModelModule } from './state/model.module';
+import { AuthenticationService } from './user/services/authentication.service';
 
 export interface RouterStateUrl {
   url: string;
@@ -93,7 +94,8 @@ export const routerReducers: ActionReducerMap<State> = {
   ],
   providers: [
     { provide: RouterStateSerializer, useClass: CustomSerializer },
-    ModelService
+    ModelService,
+    AuthenticationService
   ],
   bootstrap: [ AppComponent ]
 })
