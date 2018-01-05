@@ -30,14 +30,22 @@
 	transform: scale(1.2);
 }
 
-.card .meta {
-	display: flex;
-	flex-direction: column;
-}
-
-.card .meta span:not(:last-child) {
+.meta div:not(:last-child) {
 	margin-bottom: 0.3em;
 }
+
+.meta div {
+	display: flex;
+
+}
+
+.meta div span:first-of-type {
+	margin-right: 0.5em;
+}
+
+
+
+
 
 
 
