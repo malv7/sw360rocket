@@ -1,126 +1,113 @@
+<div class="top">
+	<button class="ui button edit">
+		<i class="icon edit"></i>Subscribe</button>
+	<sw-action-buttons [hasAdd]="true" [hasEdit]="true" [hasRemove]="true"></sw-action-buttons>
+</div>
 <div class="wrapper">
-	<table class="ui blue table">
+
+	<div class="main">
+
+		<div class="general">
+
+			<div fxHide.gt-sm="true" class="link-list">
+				<a href="#">
+						<i class="github icon"></i>
+						<span class="date">Repository</span>
+					</a>
+					<a href="#">
+							<i class="wikipedia icon"></i>
+							<span class="date">Wiki</span>
+						</a>
+
+				<a href="#">
+					<i class="html5 icon"></i>
+					<span class="date">Web</span>
+				</a>
+			</div>
+
+			<div class="item">
+				<span class="heading">Created by:</span>
+				<span class="content">{{currentComponent.createdBy.email}}</span>
+			</div>
+			<div class="item">
+				<span class="heading">Created on:</span>
+				<span class="content">{{currentComponent.createdOn}}</span>
+			</div>
+			<div class="item">
+				<span class="heading">Categories:</span>
+				<span class="content">Cat01, Cat01, Cat04, Cat02, Cat03</span>
+			</div>
+			<div class="item">
+					<span class="heading">Component Type:</span>
+					<span class="content">{{currentComponent.componentType}}</span>
+				</div>
+			<div class="item">
+				<div class="heading">Description:</div>
+				<div class="content">{{currentComponent.description}}</div>
+			</div>
+		</div>
+
+
+	</div>
+
+	<table class="ui table unstackable">
 		<thead>
 			<tr>
-				<th>General:</th>
-				<th></th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>Name:</td>
-				<td>...</td>
-			</tr>
-			<tr>
-				<td>Created on:</td>
-				<td>...</td>
-			</tr>
-			<tr>
-				<td>Created by:</td>
-				<td>...</td>
-			</tr>
-			<tr>
-				<td>Categories:</td>
-				<td>...</td>
-			</tr>
-			<tr>
-				<td>Component Type:</td>
-				<td>...</td>
-			</tr>
-			<tr>
-				<td>Mailing list:</td>
-				<td>...</td>
-			</tr>
-		</tbody>
-	</table>
-	<table class="ui blue table">
-		<thead>
-			<tr>
-				<th>Roles</th>
-				<th></th>
+				<th colspan="2">Roles</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr>
 				<td>Component owner:</td>
-				<td>...</td>
+				<td class="mock">peter@libera.de</td>
 			</tr>
 			<tr>
 				<td>Owner accounting unit:</td>
-				<td>...</td>
+				<td class="mock">peter@libera.de</td>
 			</tr>
 			<tr>
 				<td>Owner billing group:</td>
-				<td>...</td>
+				<td class="mock">peter@libera.de</td>
 			</tr>
 			<tr>
 				<td>Moderators:</td>
-				<td>...</td>
+				<td class="mock">peter@libera.de</td>
 			</tr>
 			<tr>
 				<td>Subscribers:</td>
-				<td>...</td>
+				<td class="mock">peter@libera.de</td>
 			</tr>
 			<tr>
 				<td>Additional Roles:</td>
-				<td>...</td>
+				<td class="mock">Guest, Admin</td>
 			</tr>
 		</tbody>
 	</table>
-	<table class="ui blue table">
+
+	<table class="ui table unstackable">
 		<thead>
 			<tr>
-				<th>Release Aggregate Data</th>
-				<th></th>
+				<th colspan="2">Release Aggregate Data</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr>
 				<td>Vendors:</td>
-				<td>...</td>
+				<td>{{currentComponent.vendors}}</td>
 			</tr>
 			<tr>
 				<td>Language</td>
-				<td>...</td>
+				<td class="mock">German, English</td>
 			</tr>
 			<tr>
 				<td>Operating Systems:</td>
-				<td>...</td>
+				<td class="mock">Linux, Windows, Mac OS X</td>
 			</tr>
 			<tr>
 				<td>Main Licenses:</td>
-				<td>...</td>
-			</tr>
-			<tr>
-				<td></td>
-				<td>...</td>
-			</tr>
-			<tr>
-				<td></td>
-				<td>...</td>
+				<td class="mock">GPL</td>
 			</tr>
 		</tbody>
 	</table>
-	<table class="ui blue table">
-		<thead>
-			<tr>
-				<th>Links:</th>
-				<th></th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>Homepage:</td>
-				<td>...</td>
-			</tr>
-			<tr>
-				<td>Blog:</td>
-				<td>...</td>
-			</tr>
-			<tr>
-				<td>Wiki:</td>
-				<td>...</td>
-			</tr>
-		</tbody>
-	</table>
+
 </div>

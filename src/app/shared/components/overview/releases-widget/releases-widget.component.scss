@@ -1,0 +1,45 @@
+.ui.card {
+	width: 100%;
+	margin-right: 0;
+}
+
+.content.list {
+	padding: 0;
+}
+
+.content.list td {
+	padding: 0.5em 0.2em !important;
+}
+
+.content.list th:first-child,
+.content.list td:first-child {
+	padding-left: 1em !important;
+}
+.content.list td:last-child {
+	padding-right: 1em !important;
+}
+
+.content.list th {
+	padding: 0.5em 0.7em !important;
+}
+
+table .last-item * {
+	padding: 0.2em 0.5em !important;
+	cursor: pointer;
+}
+
+.card .load-more-dots {
+	font-size: 2em;
+	color: rgba(0,0,0,.4);
+	text-align: center;
+    display: block;
+}
+
+.card .load-more-dots:hover {
+	font-size: 2em;
+}
+
+
+.state {
+	font-size: 0.8em;
+}

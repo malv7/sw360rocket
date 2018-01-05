@@ -1,15 +1,101 @@
+:host {
+	display: flex;
+	flex-direction: column;
+}
+
+sw-action-buttons {
+	float: right;
+}
+
+.button {
+	border: 1px solid #DDD !important;
+}
+
+.top {
+	width: 100%;
+	margin-bottom: 0.7em;
+}
+
+.top button {
+	background-color: white;
+	border: 1px solid
+}
+
 .wrapper {
 	display: flex;
 	flex-wrap: wrap;
 }
 
-.table {
-	margin: 0 1em 1em 0;
-	width: calc(33.3% - 1em);
-	// height: 200em;
+.segment {
+	margin: 0;
 }
 
-.table:nth-child(3n+3)  {
-	margin-right: 0;
-	width: 33.3%;
+.main {
+	border: 1px solid #DDD;
+	padding: 1em 1em;
+	border-radius: 5px;
+	display: flex;
 }
+
+.item {
+	margin-bottom: 0.5em;
+}
+
+.heading {
+	margin-right: 0.5em;
+}
+
+.link-list {
+	float: right;
+}
+
+.link-list a {
+	margin-left: 1em;
+}
+
+.table {
+	width: 50%;
+}
+
+.table:first-of-type {
+	width: calc(50% - 1em);
+	margin-right: 1em;
+}
+
+.table-heading {
+	width: 100%;
+}
+
+.heading {
+	font-weight: bold;
+	margin-bottom: 0.4em;
+}
+
+.column {
+
+	float: left;
+}
+
+.column:first-of-type {
+	margin-right: calc(5% + 0.5em);
+}
+
+.column .content {
+	float: right;
+}
+
+.column .item {
+	padding: 0.2em 0;
+	background-color: yellow;
+
+}
+
+.ui.table {
+	margin-top: 0.75em;
+}
+
+.mock {
+	color: rgb(194, 0, 0);
+}
+
+

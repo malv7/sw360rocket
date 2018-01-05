@@ -1,6 +1,7 @@
 @import '~styles/toolkit';
 
 :host {
+	padding-left: 1em;
 }
 
 .wrapper {
@@ -24,73 +25,28 @@
 	font-size: 1.5rem;
 }
 
-.card .link-list a {
-	margin-right: 0.5em;
-}
 
 .github.icon {
 	transform: scale(1.2);
 }
 
-.card .meta {
-	display: flex;
-	flex-direction: column;
-}
-
-.card .meta span:not(:last-child) {
+.meta div:not(:last-child) {
 	margin-bottom: 0.3em;
 }
 
-.color-blue {
-	color: #4183c4 !important;
+.meta div {
+	display: flex;
+
 }
 
-.color-green {
-	color: #21ba45 !important;
+.meta div span:first-of-type {
+	margin-right: 0.5em;
 }
 
-.color-red {
-	color: #db2828 !important;
-}
 
-.color-dark {
-	color: rgba(0,0,0,.8) !important;
-}
 
-.content.list {
-	padding: 0;
-}
 
-.content.list td {
-	padding: 0.5em 0.5em !important;
-}
 
-.content.list th:first-child,
-.content.list td:first-child {
-	padding-left: 1em !important;
-}
-.content.list td:last-child {
-	padding-right: 1em !important;
-}
-
-.content.list th {
-	padding: 0.5em 0.5em !important;
-}
-
-table .last-item * {
-	padding: 0.2em 0.4em !important;
-	cursor: pointer;
-}
-
-.card .load-more-dots {
-	font-size: 2em;
-	color: rgba(0,0,0,.4);
-}
-
-.card .load-more-dots:hover {
-	font-size: 2em;
-	color: #4183c4;
-}
 
 
 /* Nice State */
