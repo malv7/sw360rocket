@@ -30,8 +30,8 @@ export class StoreCurrentRouteData implements Action {
   constructor(public currentRouteData: CurrentRouteData) {}
 }
 
-export type Actions
-  = Go
+export type Actions =
+    Go
   | Back
   | Forward
   | StoreCurrentRouteData;

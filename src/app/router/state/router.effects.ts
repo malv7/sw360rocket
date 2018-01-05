@@ -28,6 +28,7 @@ export class RouterEffects {
 
   @Effect({ dispatch: false })
   navigate$ = this.actions$.ofType(RouterActions.GO)
+    .do(() => console.log("ROUTER GO"))
     .do(() => this.store.dispatch(new SelectListActions.Clear()))
     .map((action: RouterActions.Go) => action.payload)
     // .do(({ path, query: queryParams, extras}) => console.log('go to: ' + path))

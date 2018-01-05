@@ -1,5 +1,5 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 
 // App root component
 import { AppComponent } from './app.component';
@@ -21,16 +21,16 @@ import { reducers } from './reducers';
 import { RouterEffects } from './router/state/router.effects';
 
 // Features
-// The lab module is the new playground!
-import { TheLabModule } from './the-lab/the-lab.module';
 import { ComponentModule } from './component/component.module';
 import { ProjectModule } from './project/project.module';
+import { ReleaseModule } from './release/release.module';
+import { UserModule } from './user/user.module';
 
 import { Params, RouterStateSnapshot } from '@angular/router';
 import { SwRouterModule } from './router/sw-router.module';
-import { ModelService } from './state/models';
+
+// Data
 import { ModelModule } from './state/model.module';
-import { AuthenticationService } from './user/services/authentication.service';
 
 export interface RouterStateUrl {
   url: string;
@@ -69,8 +69,10 @@ export const routerReducers: ActionReducerMap<State> = {
   ],
   imports: [
     BrowserModule,
-    // AppRoutingModule,
     
+    // !!! Don't register modules that register store features
+    // !!! before the store got initialized
+
     // Store
     StoreModule.forRoot(routerReducer),
     EffectsModule.forRoot([
@@ -80,22 +82,24 @@ export const routerReducers: ActionReducerMap<State> = {
     StoreDevtoolsModule.instrument({
       maxAge: 25 // retains only last n states.
     }),
-
-    SwRouterModule, // new sw router
-
+    
+    // Router
+    SwRouterModule,
+    
     // Layout
     StructureModule,
+    
+    // Data
+    ModelModule,
 
     // Features
     ComponentModule,
     ProjectModule,
-    TheLabModule,
-    ModelModule
+    ReleaseModule,
+    UserModule
   ],
   providers: [
     { provide: RouterStateSerializer, useClass: CustomSerializer },
-    ModelService,
-    AuthenticationService
   ],
   bootstrap: [ AppComponent ]
 })

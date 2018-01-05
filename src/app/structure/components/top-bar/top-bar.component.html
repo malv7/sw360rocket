@@ -1,7 +1,7 @@
 <div class="menu">
 	<a *ngFor="let n of navigationElements"
-    (click)="go(n.route)"
-    [ngClass]="{ 'active': feature === n.route }">
+		[routerLink]="n.route"
+		routerLinkActive="active">
 		{{ n.title }}
 	</a>
 </div>

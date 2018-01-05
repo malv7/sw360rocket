@@ -1,7 +1,7 @@
 <div class="ui secondary pointing menu">
-	<a *ngFor="let tab of tabs; let i = index"
-		[class.active]="i == 0"
+	<a *ngFor="let tab of tabs"
 		class="item"
-		[routerLink]=tab.routerlink>
+		[routerLink]="tab.route"
+		routerLinkActive="active">
 		{{tab.title}}</a>
 </div>

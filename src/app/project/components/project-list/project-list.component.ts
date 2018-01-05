@@ -4,7 +4,6 @@ import { ComponentDataLayout } from "../../../component/state/component.models";
 import { Observable } from "rxjs/Observable";
 import * as fromRoot from './../../../reducers';
 import * as ListSelectActions from './../../../shared/state/list-select/list-select.actions';
-import { SelectListService } from "../../services/select-list.service";
 import { Go } from './../../../router/state/router.actions';
 import { EmbeddedProject } from "../../state/project.models";
 import * as ProjectActions from './../../state/project.actions';
@@ -24,7 +23,7 @@ export class ProjectListComponent {
 
   projects: Observable<EmbeddedProject[]>;
 
-  constructor(private store: Store<fromRoot.State>, private selectListService: SelectListService) {
+  constructor(private store: Store<fromRoot.State>) {
     this.store.dispatch(new ProjectActions.GetMockedProjects());
     this.projects = this.store.select(fromRoot.selectProjects);
   }

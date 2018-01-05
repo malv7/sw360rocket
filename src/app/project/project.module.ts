@@ -1,27 +1,33 @@
-import { ProjectRootComponent } from './components/project-root/project-root.component';
-import { SharedModule } from './../shared/shared.module';
+// ng
 import { NgModule } from "@angular/core";
-import { ProjectListComponent } from './components/project-list/project-list.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SelectListService } from './services/select-list.service';
-import { ProjectDetailComponent } from './components/project-detail/project-detail.component';
+import { FormsModule } from '@angular/forms';
+
+// Shared
+import { SharedModule } from './../shared/shared.module';
+
+// Store
 import { StoreModule } from '@ngrx/store';
 import { projectReducer } from './state/project.reducer';
+
+// Components
+import { ProjectListComponent } from './components/project-list/project-list.component';
+import { ProjectComponent } from './components/project/project.component';
+import { ProjectDetailsComponent } from './components/project/details/project-details.component';
+
 
 @NgModule({
     imports: [
         SharedModule,
-        FormsModule, 
+        FormsModule,
         StoreModule.forFeature('project', projectReducer)
     ],
     declarations: [
-        ProjectRootComponent,
         ProjectListComponent,
-        ProjectDetailComponent
+        ProjectComponent,
+        ProjectDetailsComponent
     ],
     exports: [
-      ProjectListComponent
+        ProjectListComponent
     ],
-    providers: [SelectListService]
 })
 export class ProjectModule { }

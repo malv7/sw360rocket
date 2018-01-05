@@ -23,11 +23,11 @@
 
 		<div class="item">
 			<span class="heading">Created by:</span>
-			<span class="content">{{currentComponent.createdBy.email}}</span>
+			<span class="content">{{component.createdBy?.email}}</span>
 		</div>
 		<div class="item">
 			<span class="heading">Created on:</span>
-			<span class="content">{{currentComponent.createdOn}}</span>
+			<span class="content">{{component.createdOn}}</span>
 		</div>
 		<div class="item">
 			<span class="heading">Categories:</span>
@@ -35,11 +35,11 @@
 		</div>
 		<div class="item">
 			<span class="heading">Component Type:</span>
-			<span class="content">{{currentComponent.componentType}}</span>
+			<span class="content">{{component.componentType}}</span>
 		</div>
 		<div class="item">
 			<div class="heading">Description:</div>
-			<div class="content">{{currentComponent.description}}</div>
+			<div class="content">{{component.description}}Nur eine kleine Nur eine kleine Nur eine kleine Nur eine kleine Nur eine kleine Nur eine kleine Nur eine kleine Nur eine kleine </div>
 		</div>
 	</div>
 
@@ -86,7 +86,7 @@
 		<tbody>
 			<tr>
 				<td>Vendors:</td>
-				<td>{{currentComponent.vendors}}</td>
+				<td>{{component.vendors}}</td>
 			</tr>
 			<tr>
 				<td>Language</td>

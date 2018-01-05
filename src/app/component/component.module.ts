@@ -1,23 +1,22 @@
+// ng
 import { NgModule } from '@angular/core';
+
+// Shared
 import { SharedModule } from '../shared/shared.module';
+
+// Store
 import { StoreModule } from '@ngrx/store';
 import { componentReducer } from './state/component.reducer';
+
+// Components
 import { ComponentListComponent } from './components/component-list/component-list.component';
-import { SingleComponentComponent } from './components/single-component/single-component.component';
+import { ComponentComponent } from './components/component/component.component';
+import { ComponentDetailsComponent } from './components/component/details/component-details.component';
+import { CreateComponentComponent } from './components/create-component/create-component.component';
 
-import { ReleasesComponent } from './components/single-component/releases/releases.component';
-import { ComponentRootComponent } from './components/component-root/component-root.component';
-import { RouterModule, Routes } from '@angular/router';
-
+// TODO: check
 import { TableSelectService } from '../shared/services/tables/table-select.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-import { AttachmentsComponent } from './components/single-component/attachments/attachments.component';
-
-import { VulnerabilitiesComponent } from './components/single-component/vulnerabilities/vulnerabilities.component';
-//import { AttachmentsComponent } from './components/single-component/attachments/attachments.component';
-import { DetailComponent } from './components/single-component/detail/detail.component';
-import { CreateComponentComponent } from './components/create-component/create-component.component';
 import { PopUpService } from './components/create-component/pop-up.service';
 import { FormValidationService } from './components/create-component/form-validation.service';
 import { EmployeListComponent, FilterPipe } from './components/create-component/employe-list/employe-list.component';
@@ -27,7 +26,6 @@ import { SuiModule, SuiRatingModule, SuiCheckboxModule } from 'ng2-semantic-ui';
   imports: [
     SharedModule,
 		StoreModule.forFeature('component', componentReducer),
-		RouterModule,
     FormsModule,
     ReactiveFormsModule,
     SuiModule, SuiRatingModule, SuiCheckboxModule
@@ -35,11 +33,8 @@ import { SuiModule, SuiRatingModule, SuiCheckboxModule } from 'ng2-semantic-ui';
 	providers:[TableSelectService, PopUpService, FormValidationService],
   declarations: [
     ComponentListComponent,
-    SingleComponentComponent,
-    ComponentRootComponent,
-    ReleasesComponent,
-    VulnerabilitiesComponent,
-    DetailComponent,
+    ComponentComponent,
+    ComponentDetailsComponent,
     CreateComponentComponent,
     EmployeListComponent,
     FilterPipe

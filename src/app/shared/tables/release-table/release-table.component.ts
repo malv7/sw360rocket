@@ -75,7 +75,8 @@ export class ReleaseTableComponent implements OnDestroy {
   }
 
   go(release: EmbeddedRelease) {
-    this.tableService.go(release);
+    // this.tableService.go(release);
+    this.store.dispatch(new RouterActions.Go({ path: [`releases/${release.id}`] }));
   }
 
   ngOnDestroy(): void {

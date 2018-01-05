@@ -1,11 +1,16 @@
-import { TableSelectService } from './../../../shared/services/tables/table-select.service';
+// ng
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+
+// Store
 import { Store } from '@ngrx/store';
 import * as fromRoot from './../../../reducers';
-import { ComponentDataLayout } from '../../state/component.models';
-import { Router, Routes } from '@angular/router';
+import * as fromModel from './../../../state/model.reducer';
 import * as RouterActions from './../../../router/state/router.actions';
+import { EmbeddedSW360Component } from './../../../state/models';
+
+// check
+import { Router, Routes } from '@angular/router';
 
 @Component({
 	selector: 'sw-component-list',
@@ -14,31 +19,17 @@ import * as RouterActions from './../../../router/state/router.actions';
 })
 export class ComponentListComponent implements OnInit {
 
-  components: Observable<ComponentDataLayout[]>;
+  components: Observable<EmbeddedSW360Component[]>;
 
-  constructor(
-    private store: Store<fromRoot.State>,
-    public router: Router,
-    public tableSelectService: TableSelectService) { }
+  constructor(private store: Store<fromRoot.State>) { }
 
 	ngOnInit() {
-		this.components = this.store.select(fromRoot.selectComponents);
-		this.tableSelectService.reset();
-		this.tableSelectService.createSelectionArrayFromObservable(this.components);
+		this.components = this.store.select(fromModel.selectComponents);
+		this.components.subscribe(x => console.log(x));
 	}
 
-  goToComponent(component: ComponentDataLayout) {
-    this.store.dispatch(new RouterActions.Go({
-      path: ['/components', component.id],
-    }));
-  }
-  
-	toggleAll(){
-		this.tableSelectService.toggleAll();
-  }
-  
-  toggleElement() {
-
+  go(id: string) {
+    this.store.dispatch(new RouterActions.Go({ path: ['/components', id]}));
   }
 
 }
