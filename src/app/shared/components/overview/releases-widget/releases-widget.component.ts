@@ -12,11 +12,14 @@ import { Store } from '@ngrx/store';
 })
 export class ReleasesWidgetComponent implements OnInit {
 
-  components: Observable<ComponentDataLayout[]>;
+	components: Observable<ComponentDataLayout[]>;
 	currentComponent: ComponentDataLayout;
   constructor(private store: Store<fromRoot.State>, public router: Router) { }
 
-  ngOnInit() {
-  }
+
+	ngOnInit() {
+		this.components = this.store.select(fromRoot.selectComponents);
+		this.components.subscribe(componentData => this.currentComponent=componentData[0])
+	}
 
 }

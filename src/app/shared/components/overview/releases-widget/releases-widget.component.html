@@ -3,7 +3,7 @@
 	<div class="extra content">
 		<a class="color-blue">
 			<i class="clone icon"></i>
-			17&nbsp;&nbsp;Releases
+			{{ currentComponent.releases.length }} &nbsp;&nbsp;Releases
 		</a>
 	</div>
 	<div class="content list">
@@ -15,22 +15,14 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
+				<tr *ngFor="let release of currentComponent.releases">
 					<td>
-						<div class="name">commons-math-yolo-test</div>
-						<div class="state orange">SENT TO FOSSOLOGY</div>
-					</td>
-					<td>
-						<div class="right aligned">3.1.2</div>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<div class="name">commons-math-yolo-behindi</div>
+						<div class="name">{{ release.name }}</div>
+						<!-- <div class="state orange">SENT TO FOSSOLOGY</div> -->
 						<div class="state green">APPROVED</div>
 					</td>
 					<td>
-						<div class="right aligned">3.0.1</div>
+						<div class="right aligned">{{ release.version }}</div>
 					</td>
 				</tr>
 
