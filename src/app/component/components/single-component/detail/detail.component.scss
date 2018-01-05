@@ -7,8 +7,10 @@ sw-action-buttons {
 	float: right;
 }
 
-.button {
-	border: 1px solid #DDD !important;
+
+.top button {
+	background-color: white;
+	border: 1px solid #DDD;
 }
 
 .top {
@@ -16,25 +18,16 @@ sw-action-buttons {
 	margin-bottom: 0.7em;
 }
 
-.top button {
-	background-color: white;
-	border: 1px solid
-}
 
 .wrapper {
 	display: flex;
 	flex-wrap: wrap;
 }
 
-.segment {
-	margin: 0;
-}
-
-.main {
+.general {
 	border: 1px solid #DDD;
 	padding: 1em 1em;
 	border-radius: 5px;
-	display: flex;
 }
 
 .item {
@@ -66,28 +59,13 @@ sw-action-buttons {
 	width: 100%;
 }
 
+.table.roles td:first-of-type {
+	min-width: 12em;
+}
+
 .heading {
 	font-weight: bold;
 	margin-bottom: 0.4em;
-}
-
-.column {
-
-	float: left;
-}
-
-.column:first-of-type {
-	margin-right: calc(5% + 0.5em);
-}
-
-.column .content {
-	float: right;
-}
-
-.column .item {
-	padding: 0.2em 0;
-	background-color: yellow;
-
 }
 
 .ui.table {

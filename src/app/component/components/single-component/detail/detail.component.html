@@ -4,53 +4,46 @@
 	<sw-action-buttons [hasAdd]="true" [hasEdit]="true" [hasRemove]="true"></sw-action-buttons>
 </div>
 <div class="wrapper">
+	<div class="general">
+		<div fxHide.gt-sm="true" class="link-list">
+			<a href="#">
+				<i class="github icon"></i>
+				<span class="date">Repository</span>
+			</a>
+			<a href="#">
+				<i class="wikipedia icon"></i>
+				<span class="date">Wiki</span>
+			</a>
 
-	<div class="main">
-
-		<div class="general">
-
-			<div fxHide.gt-sm="true" class="link-list">
-				<a href="#">
-						<i class="github icon"></i>
-						<span class="date">Repository</span>
-					</a>
-					<a href="#">
-							<i class="wikipedia icon"></i>
-							<span class="date">Wiki</span>
-						</a>
-
-				<a href="#">
-					<i class="html5 icon"></i>
-					<span class="date">Web</span>
-				</a>
-			</div>
-
-			<div class="item">
-				<span class="heading">Created by:</span>
-				<span class="content">{{currentComponent.createdBy.email}}</span>
-			</div>
-			<div class="item">
-				<span class="heading">Created on:</span>
-				<span class="content">{{currentComponent.createdOn}}</span>
-			</div>
-			<div class="item">
-				<span class="heading">Categories:</span>
-				<span class="content">Cat01, Cat01, Cat04, Cat02, Cat03</span>
-			</div>
-			<div class="item">
-					<span class="heading">Component Type:</span>
-					<span class="content">{{currentComponent.componentType}}</span>
-				</div>
-			<div class="item">
-				<div class="heading">Description:</div>
-				<div class="content">{{currentComponent.description}}</div>
-			</div>
+			<a href="#">
+				<i class="html5 icon"></i>
+				<span class="date">Web</span>
+			</a>
 		</div>
 
-
+		<div class="item">
+			<span class="heading">Created by:</span>
+			<span class="content">{{currentComponent.createdBy.email}}</span>
+		</div>
+		<div class="item">
+			<span class="heading">Created on:</span>
+			<span class="content">{{currentComponent.createdOn}}</span>
+		</div>
+		<div class="item">
+			<span class="heading">Categories:</span>
+			<span class="content">Cat01, Cat01, Cat04, Cat02, Cat03</span>
+		</div>
+		<div class="item">
+			<span class="heading">Component Type:</span>
+			<span class="content">{{currentComponent.componentType}}</span>
+		</div>
+		<div class="item">
+			<div class="heading">Description:</div>
+			<div class="content">{{currentComponent.description}}</div>
+		</div>
 	</div>
 
-	<table class="ui table unstackable">
+	<table class="ui table unstackable roles">
 		<thead>
 			<tr>
 				<th colspan="2">Roles</th>
@@ -75,7 +68,7 @@
 			</tr>
 			<tr>
 				<td>Subscribers:</td>
-				<td class="mock">peter@libera.de</td>
+				<td class="mock">peter@libera.de, peter@libera.de, peter@libera.de, peter@libera.de, </td>
 			</tr>
 			<tr>
 				<td>Additional Roles:</td>
