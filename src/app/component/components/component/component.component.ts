@@ -4,6 +4,9 @@ import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
 import * as fromRoot from './../../../reducers';
 import { ComponentDataLayout } from '../../state/component.models';
+import { Subscription } from 'rxjs/Subscription';
+import * as fromModel from './../../../state/model.reducer';
+import * as StructureActions from './../../../structure/state/structure.actions';
 
 @Component({
   selector: 'sw-component',
@@ -17,18 +20,18 @@ export class ComponentComponent implements OnInit {
 		{ route: 'releases', title: 'Releases' },
     { route: 'attachments', title: 'Attachments' }
   ];
-
-  components: Observable<ComponentDataLayout[]>;
   
-  currentComponent: ComponentDataLayout;
-  
+  titleSub: Subscription;
 	constructor(private store: Store<fromRoot.State>) { }
 
 	ngOnInit() {
-		this.components = this.store.select(fromRoot.selectComponents);
-		this.components.subscribe(componentData => this.currentComponent=componentData[0])
+    this.titleSub = this.store.select(fromModel.selectComponent).subscribe(component => {
+      if(component.name) this.store.dispatch(new StructureActions.SetTitle(component.name));
+    });
+  }
 
-		// console.log(this.currentComponent);
-	}
+  ngOnDestroy(): void {
+    if(this.titleSub) this.titleSub.unsubscribe();
+  }
 
 }

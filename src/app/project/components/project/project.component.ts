@@ -1,8 +1,11 @@
 import { RouteConfiguration } from './../../../router/state/router.models';
-import { Component } from "@angular/core";
+import { Component, OnInit, OnDestroy } from "@angular/core";
 import { Store } from "@ngrx/store";
 import * as fromRoot from './../../../reducers';
 import * as RouterActions from './../../../router/state/router.actions';
+import * as StructureActions from './../../../structure/state/structure.actions';
+import { Subscription } from 'rxjs/Subscription';
+import * as fromModel from './../../../state/model.reducer';
 
 @Component({
   selector: 'sw-project-detail',
@@ -23,7 +26,7 @@ import * as RouterActions from './../../../router/state/router.actions';
     </div>
   `
 })
-export class ProjectComponent {
+export class ProjectComponent implements OnInit, OnDestroy {
   
   tabs: RouteConfiguration[] = [
 		{ route: 'details', title: 'Details' },
@@ -31,5 +34,16 @@ export class ProjectComponent {
     { route: 'attachments', title: 'Attachments' }
   ];
 
+  titleSub: Subscription;
   constructor(private store: Store<fromRoot.State>) { }
+
+  ngOnInit() {
+    this.titleSub = this.store.select(fromModel.selectProject).subscribe(project => {
+      if(project.name) this.store.dispatch(new StructureActions.SetTitle(project.name));
+    });
+  }
+
+  ngOnDestroy() {
+    if(this.titleSub) this.titleSub.unsubscribe();
+  }
 }

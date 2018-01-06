@@ -3,15 +3,16 @@
   <sw-action-buttons [hasAdd]="true" [hasEdit]="true" [hasRemove]="true" [hasFossology]="true" [hasClone]="true"></sw-action-buttons>
 </div>
 
+<div [ngStyle]="{ 'width': '100%', 'height': '1em' }"></div>
+
 <table class="ui striped selectable celled table unstackable">
   <thead>
     <tr>
-      <th class="collapsing">
+      <th>
         <i class="sort icon" (click)="toggleSort('name')"></i>Name</th>
-      <th class="collapsing">
+      <th>
         <i class="sort icon" (click)="toggleSort('version')"></i>Version</th>
-      <!-- TODO: Different EmbeddedReleases??? See models.ts -->
-      <th class="collapsing">Clearing State</th>
+      <th>Clearing State</th>
       <th class="right aligned">
         <span class="table-selection-count-label">Selected:</span>
         <span class="table-selection-count">{{ count }}</span>
@@ -21,9 +22,9 @@
   </thead>
   <tbody>
     <tr *ngFor="let release of releases | async" class="row-hover">
-      <td class="collapsing cell-hover" (click)="go(release)">{{ release.name }}</td>
-      <td class="collapsing cell-hover" (click)="go(release)">{{ release.version }}</td>
-      <td class="collapsing cell-hover" (click)="go(release)">{{ release.clearingState }}</td>
+      <td class="cell-hover" (click)="go(release)">{{ release.name }} sasduagsd asujda</td>
+      <td class="cell-hover" (click)="go(release)">{{ release.version }}</td>
+      <td class="cell-hover" (click)="go(release)">{{ release.clearingState }}</td>
       <td class="right aligned">
         <input type="checkbox" (click)=selectOne(release) [checked]="areAllSelected">
       </td>
@@ -31,7 +32,7 @@
   </tbody>
 
   <!-- TODO: hardcoded length condition -->
-  <tfoot *ngIf="(releases | async).length > 1">
+  <!-- <tfoot *ngIf="(releases | async).length > 1">
     <tr>
       <th colspan="200">
         <div fxLayout="row">
@@ -50,6 +51,6 @@
         </div>
       </th>
     </tr>
-  </tfoot>
+  </tfoot> -->
 
 </table>

@@ -13,8 +13,9 @@ import { Subscription } from "rxjs/Subscription";
   selector: 'sw-release-table',
   templateUrl: './release-table.component.html',
   styles: [`
+
     .collapsing {
-      min-width: 250px;
+      // min-width: 200px;
     }
 
     .table-selection-count-label, .table-selection-count {
@@ -41,10 +42,6 @@ import { Subscription } from "rxjs/Subscription";
 
     .cell-hover {
       cursor: pointer;
-    }
-
-    row-hover {
-      background: red !important;
     }
   `]
 })
