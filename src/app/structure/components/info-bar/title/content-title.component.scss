@@ -1,6 +1,6 @@
 @import '~styles/toolkit';
 
 .activeRoute {
-  font-size: $font-size-md;
+  font-size: $font-size-md + 0.2em;
   font-weight: bold;
 }

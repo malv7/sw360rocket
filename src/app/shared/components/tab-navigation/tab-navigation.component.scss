@@ -3,9 +3,20 @@
 :host {
 	display: block;
 	width: 100%;
-	overflow: visible;
+  overflow: visible;
+  // background: red;
+}
+
+.item {
+  margin-right: 3em;
+  padding-bottom: 0.5em;
 }
 
 .item.active {
 	border-bottom: 3px solid $color-coolblue !important;
+}
+
+.menu {
+  border: 1px solid rgba(216, 213, 213, 0.1) !important;
+  border-radius: 1em;
 }

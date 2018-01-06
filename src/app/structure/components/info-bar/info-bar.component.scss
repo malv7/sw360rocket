@@ -1,0 +1,35 @@
+$max-content-width: 1280px;
+
+:host {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.info-bar {
+  width: 100%;
+  height: 100%;
+  max-width: $max-content-width;
+}
+
+sw-breadcrumb {
+  // background: blue;
+  height: 1em;
+  margin-bottom: 0.2em;
+}
+
+sw-title {
+  background: yellow;
+}
+
+.message {
+  padding: 0em 3em;
+  height: 70%;
+  border: 1px solid green;
+  background: rgb(215, 247, 215);
+  border-radius: 0.2em;
+}
+
+.breadcrumb-title {
+  // background: red;
+}

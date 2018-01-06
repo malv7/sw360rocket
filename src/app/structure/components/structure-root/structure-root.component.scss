@@ -30,14 +30,29 @@ $footer-height: 2em;
 // }
 
 .content-wrapper {
-	width: 100%;
+  width: 100%;
+  // background: red;
+  padding: 0 1em;
+}
+
+.x {
+  width: 100%;
+	height: 100%;
+	max-width: $max-content-width;
+}
+
+.info-bar-wrapper {
+  width: 100%;
+  height: $top-bar-height;
+  background: rgba(216, 225, 228, 0.4);
+  padding: 0 1em;
 }
 
 sw-content {
 	width: 100%;
 	height: 100%;
 	max-width: $max-content-width;
-	padding: 1em;
+	// padding: 1em;
 	margin: 0 auto;
 }
 

@@ -1,15 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'sw-content',
-  templateUrl: './content.component.html',
-  styleUrls: ['./content.component.scss']
+  template: '<router-outlet></router-outlet>',
+  styles: [`
+    :host { display: block; }
+  `]
 })
-export class ContentComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
-}
+export class ContentComponent { }

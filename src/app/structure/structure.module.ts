@@ -13,8 +13,9 @@ import { SharedModule } from '../shared/shared.module';
 
 // content
 import { ContentComponent } from './components/content/content.component';
-import { BreadcrumbComponent } from './components/content/breadcrumb/breadcrumb.component';
-import { ContentTitleComponent } from './components/content/title/content-title.component';
+import { BreadcrumbComponent } from './components/info-bar/breadcrumb/breadcrumb.component';
+import { ContentTitleComponent } from './components/info-bar/title/content-title.component';
+import { InfoBarComponent } from './components/info-bar/info-bar.component';
 
 @NgModule({
   imports: [
@@ -29,7 +30,8 @@ import { ContentTitleComponent } from './components/content/title/content-title.
     FooterComponent,
     ContentComponent,
     BreadcrumbComponent,
-    ContentTitleComponent
+    ContentTitleComponent,
+    InfoBarComponent
   ],
   exports: [ StructureRootComponent ]
 })

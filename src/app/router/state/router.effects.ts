@@ -29,7 +29,7 @@ export class RouterEffects {
   @Effect({ dispatch: false })
   navigate$ = this.actions$.ofType(RouterActions.GO)
     .do(() => console.log("ROUTER GO"))
-    .do(() => this.store.dispatch(new SelectListActions.Clear()))
+    //.do(() => this.store.dispatch(new SelectListActions.Clear()))
     .map((action: RouterActions.Go) => action.payload)
     // .do(({ path, query: queryParams, extras}) => console.log('go to: ' + path))
     .do(({ path, query: queryParams, extras}) => this.router.navigate(path, { queryParams, ...extras }));
@@ -45,6 +45,7 @@ export class RouterEffects {
   @Effect({ dispatch: false })
   checkRoute$ = this.router.events
     .filter(event => event instanceof NavigationEnd)
+    .do(() => this.store.dispatch(new SelectListActions.Clear()))
     .map((event: NavigationEnd)=> this.routerService.parseRoute(event))
     
   constructor(
