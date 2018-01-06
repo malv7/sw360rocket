@@ -15,12 +15,14 @@
 .content.list td:first-child {
 	padding-left: 1em !important;
 }
+
+.content.list th:last-child,
 .content.list td:last-child {
 	padding-right: 1em !important;
 }
 
 .content.list th {
-	padding: 0.5em 0.7em !important;
+	padding: 0.5em 0 !important;
 }
 
 table .last-item * {
