@@ -10,7 +10,7 @@ import { routerReducer } from "./state/router.reducer";
 import { ComponentComponent } from "../component/components/component/component.component";
 import { ComponentDetailsComponent } from "../component/components/component/details/component-details.component";
 import { ComponentListComponent } from './../component/components/component-list/component-list.component';
-import { CreateComponentComponent } from "../component/components/create-component/create-component.component";
+import { ComponentCreateComponent } from "../component/components/component-create/component-create.component";
 
 // Project
 import { ProjectComponent } from "../project/components/project/project.component";
@@ -61,7 +61,7 @@ const routes: Routes = [
   },
   {
     path: 'components/create',
-    component: CreateComponentComponent,
+    component: ComponentCreateComponent,
   },
   {
     path: 'components/:id',

@@ -15,6 +15,7 @@ import { ReleaseTableComponent } from './tables/release-table/release-table.comp
 import { FormsModule } from '@angular/forms';
 import { TableService } from './tables/services/table.service';
 import { ReleasesWidgetComponent } from './components/overview/releases-widget/releases-widget.component';
+import { FormsInputField } from './components/forms/input-field/forms-input-field.component';
 
 @NgModule({
 	imports: [
@@ -31,7 +32,8 @@ import { ReleasesWidgetComponent } from './components/overview/releases-widget/r
     ActionButtonsComponent,
     SearchFilterComponent,
     ReleaseTableComponent,
-    ReleasesWidgetComponent
+    ReleasesWidgetComponent,
+    FormsInputField
 	],
 	exports: [
 		// modules
@@ -44,7 +46,8 @@ import { ReleasesWidgetComponent } from './components/overview/releases-widget/r
     OverviewComponent,
     ActionButtonsComponent,
     SearchFilterComponent,
-    ReleaseTableComponent
+    ReleaseTableComponent,
+    FormsInputField
   ],
   providers: [TableService]
 })

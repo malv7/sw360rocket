@@ -39,11 +39,11 @@ const MODERATORS: string = 'moderators';
 
 @Component({
   selector: 'sw-create-component',
-  templateUrl: './create-component.component.html',
-  styleUrls: ['./create-component.component.scss']
+  templateUrl: './component-create.component.html',
+  styleUrls: ['./component-create.component.scss']
 })
 
-export class CreateComponentComponent implements OnInit {
+export class ComponentCreateComponent implements OnInit {
 
   componentTypes: string[];
   projectForm: FormGroup;

@@ -1,0 +1,52 @@
+.hidden {
+  visibility: hidden;
+}
+
+
+.visible{
+    visibility: visible;
+}
+
+.errorMessageSpace
+{
+    padding-top: 0.2em; 
+    padding-bottom: 0.2em;
+}
+
+.text-input {
+  width: 20em;
+  min-width: 15em;
+}
+
+.tags {
+  margin-top: 0.5em;
+}
+
+.add-button {
+  margin-left: 0.5em;
+  background: #77bddd;
+  color: white;
+}
+
+.change-button {
+  background: #77bddd;
+  color: white;
+}
+
+.submit-button {
+  background: #20d556;
+  color: white;
+}
+
+.gap {
+  width: 100%;
+  height: 1em;
+}
+
+.description {
+  max-width: 50em;
+}
+
+.ui.label {
+  background-color: #f6f6f6;
+}

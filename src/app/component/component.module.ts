@@ -12,14 +12,14 @@ import { componentReducer } from './state/component.reducer';
 import { ComponentListComponent } from './components/component-list/component-list.component';
 import { ComponentComponent } from './components/component/component.component';
 import { ComponentDetailsComponent } from './components/component/details/component-details.component';
-import { CreateComponentComponent } from './components/create-component/create-component.component';
+import { ComponentCreateComponent } from './components/component-create/component-create.component';
 
 // TODO: check
 import { TableSelectService } from '../shared/services/tables/table-select.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { PopUpService } from './components/create-component/pop-up.service';
-import { FormValidationService } from './components/create-component/form-validation.service';
-import { EmployeListComponent, FilterPipe } from './components/create-component/employe-list/employe-list.component';
+import { PopUpService } from './components/component-create/pop-up.service';
+import { FormValidationService } from './components/component-create/form-validation.service';
+import { EmployeListComponent, FilterPipe } from './components/component-create/employe-list/employe-list.component';
 import { SuiModule, SuiRatingModule, SuiCheckboxModule } from 'ng2-semantic-ui';
 
 @NgModule({
@@ -35,7 +35,7 @@ import { SuiModule, SuiRatingModule, SuiCheckboxModule } from 'ng2-semantic-ui';
     ComponentListComponent,
     ComponentComponent,
     ComponentDetailsComponent,
-    CreateComponentComponent,
+    ComponentCreateComponent,
     EmployeListComponent,
     FilterPipe
   ]
