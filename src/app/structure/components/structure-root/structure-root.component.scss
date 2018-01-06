@@ -20,7 +20,7 @@ $footer-height: 2em;
 
 .top-bar{
 	max-width: $max-content-width;
-	width: 100%;
+	margin: auto;
 	height: 100%;
 	padding: 0 1em;
 }
@@ -53,6 +53,7 @@ sw-content {
 
 sw-content /deep/ .main-content {
 	background-color: yellow;
+	padding: 1em;
 }
 
 // sw-content /deep/ .main-content {
