@@ -4,6 +4,7 @@ import * as fromProject from './project/state/project.reducer';
 import * as fromListSelect from './shared/state/list-select/list-select.reducer';
 import * as fromRouter from './router/state/router.reducer';
 import * as fromModel from './state/model.reducer';
+import * as fromStructure from './structure/state/structure.reducer';
 
 export interface State {
   component: fromComponent.State;
@@ -11,6 +12,7 @@ export interface State {
   listSelect: fromListSelect.State;
   customRouter: fromRouter.State;
   model: fromModel.State;
+  structure: fromStructure.State;
 }
 
 // Feature reducers
