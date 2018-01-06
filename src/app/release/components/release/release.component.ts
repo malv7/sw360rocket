@@ -11,19 +11,17 @@ import * as fromModel from './../../../state/model.reducer';
     selector: 'sw-release',
     template: `
         <!-- the whole template is a clone from single-component -->
-        <div class="height-100" fxLayout="row" fxLayoutGap="1em">
-            <!-- content -->
-            <div class="content" fxLayout="column" fxFlex="1 1 auto" fxLayoutGap="1em">
-                <sw-tab-navigation [tabs]="tabs"></sw-tab-navigation>
-                <div class="height-100" fxLayout="row">
-                <div fxFlex>
-                    <router-outlet></router-outlet>
-                </div>
-                <!-- infobar -->
-                <sw-overview fxFlex="23em" fxHide.lt-md="true"></sw-overview>
-                </div>
-            </div>
-        </div>
+				<div class="tab-navigation-wrapper">
+				<sw-tab-navigation [tabs]="tabs"></sw-tab-navigation>
+			</div>
+			<!-- content -->
+			<div class="main-content" fxLayout="row">
+				<div fxFlex>
+					<router-outlet></router-outlet>
+				</div>
+				<!-- infobar -->
+				<sw-overview fxFlex="23em" fxHide.lt-lg="true"></sw-overview>
+			</div>
     `
 })
 export class ReleaseComponent implements OnInit, OnDestroy {
