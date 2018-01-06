@@ -3,7 +3,7 @@
 :host {
 	display: block;
 	width: 100%;
-  overflow: visible;
+	overflow: visible;
   // background: red;
 }
 
@@ -17,6 +17,5 @@
 }
 
 .menu {
-  border: 1px solid rgba(216, 213, 213, 0.1) !important;
-  border-radius: 1em;
+  border: none !important;
 }

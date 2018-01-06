@@ -29,10 +29,6 @@ $footer-height: 2em;
 //   width: 150px;
 // }
 
-$topbar-color: rgba(226, 236, 240, 0.4);
-// $topbar-color: rgba(216, 225, 228, 0.4);
-
-
 .info-bar-wrapper {
   width: 100%;
   height: $top-bar-height;
@@ -47,21 +43,6 @@ sw-info-bar {
 
 .content-wrapper {
 	width: 100%;
-}
-
-sw-content /deep/ .main-content {
-	max-width: $max-content-width;
-	margin: 0 auto;
-	padding: 1.25em 0;
-}
-
-sw-content /deep/ .tab-navigation-wrapper {
-	background: $topbar-color;
-}
-
-sw-content /deep/ sw-tab-navigation {
-	max-width: $max-content-width;
-	margin: auto;
 }
 
 .footer-wrapper {
