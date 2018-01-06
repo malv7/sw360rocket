@@ -24,14 +24,17 @@ import { ReleaseTableComponent } from './../shared/tables/release-table/release-
 
 import { RouterService } from "./services/router.service";
 import { NotImplementedYetComponent } from "../shared/components/not-implemented-yet/not-implemented-yet.component";
+import { ReleaseCreateComponent } from "../release/components/release-create/release-create.component";
+
+export const DETAILS = 'details';
 
 const routes: Routes = [
   {
     path: 'releases/:id',
     component: ReleaseComponent,
     children: [
-      { path: '', redirectTo: 'details', pathMatch: 'full' },
-      { path: 'details', component: ReleaseDetailsComponent },
+      { path: '', redirectTo: DETAILS, pathMatch: 'full' },
+      { path: DETAILS, component: ReleaseDetailsComponent },
       { path: 'attachments', component: NotImplementedYetComponent },
       { path: 'vulnerabilities', component: NotImplementedYetComponent },
       { path: 'ecc', component: NotImplementedYetComponent }
@@ -48,6 +51,7 @@ const routes: Routes = [
       { path: '', redirectTo: 'details', pathMatch: 'full' },
       { path: 'details', component: ProjectDetailsComponent },
       { path: 'releases', component: ReleaseTableComponent },
+      { path: 'releases/create', component: ReleaseCreateComponent },
       { path: 'attachments', component: NotImplementedYetComponent }
     ]
   },
@@ -56,7 +60,7 @@ const routes: Routes = [
     component: ComponentListComponent,
   },
   {
-    path: 'components/add',
+    path: 'components/create',
     component: CreateComponentComponent,
   },
   {

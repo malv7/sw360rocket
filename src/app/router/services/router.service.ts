@@ -5,75 +5,70 @@ import { Store } from "@ngrx/store";
 import * as fromRoot from './../../reducers';
 import * as RouterActions from './../state/router.actions';
 import { CurrentRouteData } from "../state/router.reducer";
+import {
+  emptyCurrentRouteData,
+  isRouteSegmentList,
+  RouteLists,
+  COMPONENTS,
+  PROJECTS,
+  RELEASES
+} from './../router.api';
 
 @Injectable()
 export class RouterService {
 
-  constructor(private store: Store<fromRoot.State>) {
-    // console.log("wo")
+  constructor(private store: Store<fromRoot.State>) { }
 
-    const path = '/components/id/details';
-    const x = path.split('/');
-
-    const splits = uris.map(uri => uri.split('/'));
-    const y = splits.map(split => split[split.length - 2] + '/' + split[split.length - 1]);
-    // console.log(y);
-
-  }
-
+  /**
+   * Parse the route each time a navigation finished and build current route data.
+   * 
+   * @param event The NavigationEnd events gets always fired when a navigation of the router ended.
+   */
   parseRoute(event: NavigationEnd) {
 
     // console.log(event);
 
     // on the way down modify and dispatch currentRouteData
-    let currentRouteData: CurrentRouteData = {
-      showTitle: false,
-      title: '',
-      showBreadcrumb: false,
-      breadCrumbSegments: [],
-      isList: false,
-      listType: '',
-      isDetail: false,
-      detailType: '',
-      feature: ''
-    };
+    let currentRouteData: CurrentRouteData = emptyCurrentRouteData;
 
     const segments = event.urlAfterRedirects.split('/').filter(segment => segment !== '');
 
-    // it must be home
+
+
+    // 0 segment route --> must be home or 404
     if (segments.length === 0) {
       this.store.dispatch(new RouterActions.StoreCurrentRouteData(currentRouteData));
       return;
     }
 
-    // it must be a list or main navigation page like home, about, ...
+    // 1 segment route --> it must be a list or main navigation page like home, about, ...
     if (segments.length === 1) {
 
       currentRouteData.feature = segments[0];
 
       const title = segments[0][0].toUpperCase() + segments[0].slice(1, segments[0].length);
-      currentRouteData.title = title;
-      currentRouteData.showTitle = true;
+      // currentRouteData.title = title;
+      // currentRouteData.showTitle = true;
 
-      const isList = this.isList(segments[0]);
+      const isList = isRouteSegmentList(segments[0]);
       if (isList) {
         currentRouteData.isList = true;
         currentRouteData.listType = segments[0];
       }
 
-      // console.log(currentRouteData);
       this.store.dispatch(new RouterActions.StoreCurrentRouteData(currentRouteData));
       return;
     }
 
-    // it must be a list/id
-    // TODO: implement 3 itself
-    if (segments.length === 2 || segments.length === 3) {
-      const isFirstList = this.isList(segments[0]);
+    /* 2 segment routes:
+      components/id
+      projects/id
+      releases/id
+      ... */
+    if (segments.length === 2) {
+      const isFirstList = isRouteSegmentList(segments[0]);
       if (isFirstList) {
         currentRouteData.feature = segments[0];
-        currentRouteData.title = segments[1] // TODO: title from store, not id
-        currentRouteData.showTitle = true;
         currentRouteData.isList = false;
         currentRouteData.isDetail = true;
         currentRouteData.detailType = segments[0];
@@ -83,92 +78,49 @@ export class RouterService {
           path: segments[0]
         }]
       }
-      // console.log(currentRouteData);
       this.store.dispatch(new RouterActions.StoreCurrentRouteData(currentRouteData));
       return;
     }
 
-    // it must be a list/id/list | detail
+    /* 3 segment routes:
+      components/id/details
+      components/id/releases
+      components/id/attachments
+      
+      projects/id/details
+      projects/id/releases
+      projects/id/attachments
+
+      projects/id/details
+      projects/id/attachments
+      projects/id/vulnerabilites
+      projects/id/ecc // IS THIS A LIST? */
     if (segments.length === 3) {
-
-    }
-
-  }
-
-  getTitleFromListSegment(listSegment: string) {
-    switch (listSegment) {
-      case 'components': return 'Components'
-      case 'releases': return 'Releases'
-      case 'attachments': return 'Attachments'
-      case 'projects': return 'Projects'
-      case 'users': return 'Users'
-      case 'licenses': return 'Licenses'
-      default: break;
-    }
-  }
-
-  isList(segment: string): boolean {
-    return listRoutes.includes(segment) ? true : false;
-  }
-
-  isDetail(segments: string[]): boolean {
-
-    const isLastList = this.isList(segments[segments.length - 1]);
-    const isPenultimateList = this.isList(segments[segments.length - 2]);
-
-    if (isLastList) {
-      return false;
-    }
-
-    if (!isLastList) {
-      if (isPenultimateList) {
-        return true;
+      const isFirstList = isRouteSegmentList(segments[0]);
+      if (isFirstList) {
+        currentRouteData.feature = segments[0];
+        currentRouteData.isList = false;
+        currentRouteData.isDetail = true;
+        currentRouteData.detailType = segments[0];
+        currentRouteData.showBreadcrumb = true;
+        currentRouteData.breadCrumbSegments = [{
+          name: (segments[0][0].toUpperCase() + segments[0].slice(1, segments[0].length)),
+          path: segments[0]
+        }]
       }
+      this.store.dispatch(new RouterActions.StoreCurrentRouteData(currentRouteData));
+      return;
     }
 
-  }
+    // The action buttons depend on the previous route
+    if (segments[0] === COMPONENTS && segments[2] === RELEASES) {
+      // console.log("release table inside components");
+    }
 
+    if (segments[0] === PROJECTS && segments[2] === RELEASES) {
+      // console.log("release table inside projects");
+    }
 
+  } // parseRoute
 
 }
-
-interface RouteType {
-  isList: boolean;
-
-}
-
-
-const listRoutes = [
-  'components',
-  'releases',
-  'attachments',
-  'projects',
-  'users',
-  'vendors',
-  'licenses'
-  // TODO: vulnerabilities?
-];
-
-const possibleRoutes = [
-  '/components',
-  '/components/id',
-  '/components/id/details',
-  '/components/id/releases',
-  '/components/id/attachments',
-
-  '/projects',
-  '/projects/id',
-  '/projects/id/details',
-  '/projects/id/releases',
-  '/projects/id/attachments',
-];
-
-const uris = [
-  'https://sw360.org/api/users/YWRtaW5Ac3czNjAub3Jn',
-  'https://sw360.org/api/projects/376576',
-  'https://sw360.org/api/components/17653524',
-  'https://sw360.org/api/releases/3765276512',
-  'https://sw360.org/api/attachments/76537653',
-  'https://sw360.org/api/vendors/987567468',
-  'https://sw360.org/api/licenses/apache20'
-]

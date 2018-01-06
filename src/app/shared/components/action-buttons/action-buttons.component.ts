@@ -7,6 +7,15 @@ import { Subscription } from "rxjs/Subscription";
 import { OnDestroy } from "@angular/core/src/metadata/lifecycle_hooks";
 import 'rxjs/add/operator/take';
 
+export enum ListTypes {
+  releases = 'releases',
+  components = 'components',
+  attachments = 'attachments',
+  projects = 'projects',
+  licenses = 'licenses',
+  users = 'users'
+}
+
 @Component({
   selector: 'sw-action-buttons',
   template: `
@@ -89,6 +98,8 @@ export class ActionButtonsComponent implements OnInit, OnDestroy {
   }
 
   add() {
+    console.log('--- list type in action buttons compnent add() ---')
+    console.log(this.listType);
     switch (this.listType) {
       
       case 'projects': {
@@ -99,9 +110,16 @@ export class ActionButtonsComponent implements OnInit, OnDestroy {
       case 'components': {
         // console.log("action buttons of type components");
         this.store.dispatch(new RouterActions.Go({
-          path: ['components/add']
+          path: ['components/create']
         }));
         break;
+      }
+
+      case 'releases': {
+        // TODO:
+        // if in projects: select existing releases
+        // if in components: create new release
+        console.log("action list buttons add")
       }
     
       default: break;

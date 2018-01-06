@@ -12,11 +12,15 @@ import { RouteConfiguration } from '../../../router/state/router.models';
 })
 export class TopBarComponent {
   navigationElements: RouteConfiguration[] = [
-    { title: 'Projects',        route: 'projects' },
-    { title: 'Components',      route: 'components' },
+    { title: 'Projects', route: 'projects' },
+    { title: 'Components', route: 'components' },
     // { title: 'Licenses',        route: 'licenses' },
     // { title: 'ECC',             route: 'ecc' },
     // { title: 'Vulnerabilities', route: 'vulnerabilities' },
     // { title: 'About',           route: 'about' }
   ];
+
+  constructor(private store: Store<fromRoot.State>) {
+    store.select(fromRoot.selectCurrentRouteData).subscribe(x => console.log(x));
+  }
 }

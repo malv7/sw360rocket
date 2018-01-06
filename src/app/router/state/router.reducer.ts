@@ -6,8 +6,8 @@ export interface BreadcrumbSegment {
 }
 
 export interface CurrentRouteData {
-  title: string;
-  showTitle: boolean;
+  // title: string;
+  // showTitle: boolean;
   
   showBreadcrumb: boolean;
   breadCrumbSegments: BreadcrumbSegment[];
@@ -27,8 +27,8 @@ export interface State {
 
 const initialState: State = {
   currentRouteData: {
-    title: '',
-    showTitle: false,
+    // title: '',
+    // showTitle: false,
     showBreadcrumb: false,
     breadCrumbSegments: [],
     isList: false,

@@ -7,6 +7,7 @@ import { SharedModule } from '../shared/shared.module';
 // Components
 import { ReleaseDetailsComponent } from './components/release/details/release-details.component';
 import { ReleaseComponent } from './components/release/release.component';
+import { ReleaseCreateComponent } from "./components/release-create/release-create.component";
 
 @NgModule({
     imports: [
@@ -14,7 +15,8 @@ import { ReleaseComponent } from './components/release/release.component';
     ],
     declarations: [
         ReleaseDetailsComponent,
-        ReleaseComponent
+        ReleaseComponent,
+        ReleaseCreateComponent
     ],
 })
 export class ReleaseModule { }
