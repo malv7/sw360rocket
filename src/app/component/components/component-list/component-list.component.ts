@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
 import * as fromRoot from './../../../reducers';
 import * as fromModel from './../../../state/model.reducer';
+import * as StructureActions from './../../../structure/state/structure.actions';
 import * as RouterActions from './../../../router/state/router.actions';
 import { EmbeddedSW360Component } from './../../../state/models';
 
@@ -24,8 +25,8 @@ export class ComponentListComponent implements OnInit {
   constructor(private store: Store<fromRoot.State>) { }
 
 	ngOnInit() {
+    this.store.dispatch(new StructureActions.SetTitle('Components'));
 		this.components = this.store.select(fromModel.selectComponents);
-		this.components.subscribe(x => console.log(x));
 	}
 
   go(id: string) {

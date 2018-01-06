@@ -1,22 +1,28 @@
-import { Component } from "@angular/core";
-import * as fromRoot from './../../../../reducers';
-import { Store } from "@ngrx/store";
+import { Component, OnInit, ChangeDetectorRef, AfterViewChecked } from "@angular/core";
 import { Observable } from "rxjs/Observable";
-import { CurrentRouteData } from "../../../../router/state/router.reducer";
+import { Store } from "@ngrx/store";
+import * as fromRoot from './../../../../reducers';
+import * as fromStructure from './../../../state/structure.reducer';
 
 @Component({
   selector: 'sw-title',
   template: `
-    <div class="activeRoute" *ngIf="(currentRouteData | async).showTitle">
-      {{ (currentRouteData | async).title }}
+    <div class="activeRoute">
+      {{ title }}
     </div>
   `,
   styleUrls: ['./content-title.component.scss']
 })
-export class ContentTitleComponent {
-  currentRouteData: Observable<CurrentRouteData>;
-  constructor(private store: Store<fromRoot.State>) {
-    this.currentRouteData = this.store.select(fromRoot.selectCurrentRouteData);
+export class ContentTitleComponent implements AfterViewChecked {
+
+  title: string;
+  constructor(private store: Store<fromRoot.State>, private cd: ChangeDetectorRef) { }
+
+  ngAfterViewChecked() {
+    // https://blog.angularindepth.com/everything-you-need-to-know-about-the-expressionchangedafterithasbeencheckederror-error-e3fd9ce7dbb4
+    // https://stackoverflow.com/questions/39787038/how-to-manage-angular2-expression-has-changed-after-it-was-checked-exception-w
+    this.store.select(fromStructure.selectTitle).take(1).subscribe(title => this.title = title);
+    this.cd.detectChanges();
   }
 
 }

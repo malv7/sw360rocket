@@ -7,6 +7,7 @@ import * as ListSelectActions from './../../../shared/state/list-select/list-sel
 import { Go } from './../../../router/state/router.actions';
 import { EmbeddedProject } from "../../state/project.models";
 import * as ProjectActions from './../../state/project.actions';
+import * as StructureActions from './../../../structure/state/structure.actions';
 
 @Component({
   selector: 'sw-project-list',
@@ -24,6 +25,7 @@ export class ProjectListComponent {
   projects: Observable<EmbeddedProject[]>;
 
   constructor(private store: Store<fromRoot.State>) {
+    this.store.dispatch(new StructureActions.SetTitle('Projects'));
     this.store.dispatch(new ProjectActions.GetMockedProjects());
     this.projects = this.store.select(fromRoot.selectProjects);
   }

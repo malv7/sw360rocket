@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 // Store
-import { StoreModule } from '@ngrx/store/src/store_module';
+import { StoreModule } from '@ngrx/store';
 import { structureReducer } from './state/structure.reducer';
 
 // components
@@ -25,7 +25,7 @@ import { InfoBarComponent } from './components/info-bar/info-bar.component';
   imports: [
     SharedModule,
     RouterModule,
-    // StoreModule.forFeature('structure', structureReducer)
+    StoreModule.forFeature('structure', structureReducer)
   ],
   declarations: [
     StructureRootComponent,
