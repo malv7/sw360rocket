@@ -1,41 +1,13 @@
+@import '~styles/toolkit';
+
 :host {
 	display: flex;
 	flex-direction: column;
 }
 
-sw-action-buttons {
-	float: right;
-}
-
-
-.top button {
-	background-color: white;
-	border: 1px solid #DDD;
-}
-
 .top {
 	width: 100%;
-	margin-bottom: 0.7em;
-}
-
-
-.wrapper {
-	display: flex;
-	flex-wrap: wrap;
-}
-
-.general {
-	border: 1px solid #DDD;
-	padding: 1em 1em;
-	border-radius: 5px;
-}
-
-.item {
-	margin-bottom: 0.5em;
-}
-
-.heading {
-	margin-right: 0.5em;
+	margin-bottom: $layout-gap;
 }
 
 .link-list {
@@ -48,11 +20,12 @@ sw-action-buttons {
 
 .table {
 	width: 50%;
+	float: left;
 }
 
 .table:first-of-type {
-	width: calc(50% - 1em);
-	margin-right: 1em;
+	width: calc(50% - #{$layout-gap});
+	margin-right: $layout-gap;
 }
 
 .table-heading {
@@ -61,15 +34,6 @@ sw-action-buttons {
 
 .table.roles td:first-of-type {
 	min-width: 12em;
-}
-
-.heading {
-	font-weight: bold;
-	margin-bottom: 0.4em;
-}
-
-.ui.table {
-	margin-top: 0.75em;
 }
 
 .mock {
