@@ -1,7 +1,7 @@
 .main-content {
-	max-width: $max-content-width;
+	max-width: calc(#{$max-content-width} + 2em);
 	margin: 0 auto;
-	padding: 1.25em 0;
+	padding: 1.25em 1em;
 }
 
 .tab-navigation-wrapper {
