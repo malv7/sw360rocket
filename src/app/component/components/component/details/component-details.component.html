@@ -1,35 +1,48 @@
 <div class="top" fxLayout="row" fxLayoutAlign="space-between center">
 
-  <button class="ui basic button edit">
-    <i class="icon edit"></i>Subscribe
-  </button>
+	<button class="ui basic button edit">
+		<i class="icon edit"></i>Subscribe
+	</button>
 
-  <button class="ui basic button edit">
-    <i class="icon edit"></i>
-    Edit
-  </button>
+	<button class="ui basic button edit">
+		<i class="icon edit"></i>
+		Edit
+	</button>
 
 </div>
 
-<div>
-  <div class="segment">
-    <div fxHide.gt-sm="true" class="link-list">
-      <a>
-        <i class="github icon"></i>
-        <span>Repository</span>
-      </a>
-      <a>
-        <i class="wikipedia icon"></i>
-        <span>Wiki</span>
-      </a>
+<div class="segment">
+	<div fxHide.gt-sm class="link-list">
+		<a>
+			<i class="github icon"></i>
+			<span>Repository</span>
+		</a>
+		<a>
+			<i class="wikipedia icon"></i>
+			<span>Wiki</span>
+		</a>
 
-      <a>
-        <i class="html5 icon"></i>
-        <span>Web</span>
-      </a>
-    </div>
+		<a>
+			<i class="html5 icon"></i>
+			<span>Web</span>
+		</a>
+	</div>
 
-	<div fxHide.gt-sm="true">
+	<div class="row">
+		<div class="h3 margin-top-1">Description</div>
+		<div class="content">Since around 2005 web development technologies have shifted from static to dynamic documents driven by server (PHP, ASP.NET)
+			and client side (e.g. Ajax [1]) tools, and responsive web design.[2] Despite an early push for web-based apps based on
+			these technologies on devices such as the 2007 iPhone, attempts at web-apps failed by comparison to native-apps. Native
+			apps provided a better user experience and booted faster compared to having to load in a browser at runtime. Packaged
+			resources and direct access to hardware allowed native apps to perform much faster and to provide more features. By the
+			mid 2010s, however, continued enhancements in HTML5, CSS3, and JavaScript, significantly more capable and standards compliant
+			web browsers, along with powerful processors such as the A10 and Snapdragon 821 made performant hybrid-apps a viable alternative.</div>
+	</div>
+	<div class="row">
+		<span class="h3">Categories:</span>
+		<span class="content">Open Source, Fun, Interactive, Single Page App</span>
+	</div>
+	<div fxHide.gt-sm>
 		<div class="row">
 			<span class="h3">Created by:</span>
 			<span class="content">info@sw360rocket.org</span>
@@ -43,82 +56,72 @@
 			<span class="content">Free Software</span>
 		</div>
 	</div>
-    <div class="row">
-      <span class="h3">Categories:</span>
-      <span class="content">Open Source, Fun, Interactive, Single Page App</span>
-    </div>
-    <div class="row">
-      <div class="h3">Description:</div>
-      <div class="content">Since around 2005 web development technologies have shifted from static to dynamic documents driven by server (PHP,
-        ASP.NET) and client side (e.g. Ajax [1]) tools, and responsive web design.[2] Despite an early push for web-based
-        apps based on these technologies on devices such as the 2007 iPhone, attempts at web-apps failed by comparison to
-        native-apps. Native apps provided a better user experience and booted faster compared to having to load in a browser
-        at runtime. Packaged resources and direct access to hardware allowed native apps to perform much faster and to provide
-        more features. By the mid 2010s, however, continued enhancements in HTML5, CSS3, and JavaScript, significantly more
-        capable and standards compliant web browsers, along with powerful processors such as the A10 and Snapdragon 821 made
-        performant hybrid-apps a viable alternative.</div>
-    </div>
-  </div>
+</div>
 
-  <table class="ui table unstackable roles">
-    <thead>
-      <tr>
-        <th colspan="2">Roles</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Component owner:</td>
-        <td class="mock">malv@sw360rocket.org</td>
-      </tr>
-      <tr>
-        <td>Owner accounting unit:</td>
-        <td class="mock">trek@sw360rocket.org</td>
-      </tr>
-      <tr>
-        <td>Owner billing group:</td>
-        <td class="mock">michi@sw360rocket.org</td>
-      </tr>
-      <tr>
-        <td>Moderators:</td>
-        <td class="mock">lino@sw360rocket.org, michi@sw360rocket.org</td>
-      </tr>
-      <tr>
-        <td>Subscribers:</td>
-        <td class="mock">johannes@sw360rocket.org</td>
-      </tr>
-      <tr>
-        <td>Additional Roles:</td>
-        <td class="mock">macos@beuth-hochschule.de</td>
-      </tr>
-    </tbody>
-  </table>
+<div fxLayout="column" fxLayout.gt-md="row" fxLayoutGap="1em" class="table-wrapper">
 
-  <table class="ui table unstackable">
-    <thead>
-      <tr>
-        <th colspan="2">Release Aggregate Data</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Vendors:</td>
-        <td>Free Download here</td>
-      </tr>
-      <tr>
-        <td>Language</td>
-        <td class="mock">German, English</td>
-      </tr>
-      <tr>
-        <td>Operating Systems:</td>
-        <td class="mock">Browser
-          </td>
-      </tr>
-      <tr>
-        <td>Main Licenses:</td>
-        <td class="mock">EPL</td>
-      </tr>
-    </tbody>
-  </table>
+	<div fxFlex>
+		<table class="ui table unstackable roles">
+			<thead>
+				<tr>
+					<th colspan="2">Roles</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Component owner:</td>
+					<td class="mock">malv@sw360rocket.org</td>
+				</tr>
+				<tr>
+					<td>Owner accounting unit:</td>
+					<td class="mock">trek@sw360rocket.org</td>
+				</tr>
+				<tr>
+					<td>Owner billing group:</td>
+					<td class="mock">michi@sw360rocket.org</td>
+				</tr>
+				<tr>
+					<td>Moderators:</td>
+					<td class="mock">lino@sw360rocket.org, lino@sw360rocket.org</td>
+				</tr>
+				<tr>
+					<td>Subscribers:</td>
+					<td class="mock">johannes@sw360rocket.org</td>
+				</tr>
+				<tr>
+					<td>Additional Roles:</td>
+					<td class="mock">macos@beuth-hochschule.de</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 
+	<div fxFlex>
+		<table class="ui table unstackable">
+			<thead>
+				<tr>
+					<th colspan="2">Release Aggregate Data</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Vendors:</td>
+					<td>Free Download here</td>
+				</tr>
+				<tr>
+					<td>Language</td>
+					<td class="mock">German, English</td>
+				</tr>
+				<tr>
+					<td>Operating Systems:</td>
+					<td class="mock">Browser
+					</td>
+				</tr>
+				<tr>
+					<td>Main Licenses:</td>
+					<td class="mock">EPL</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 </div>

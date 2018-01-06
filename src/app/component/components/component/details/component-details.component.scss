@@ -10,8 +10,14 @@
 	margin-bottom: $layout-gap;
 }
 
+.segment {
+	position: relative;
+}
+
 .link-list {
-	float: right;
+	position: absolute;
+	right: 2em;
+	bottom: 2em;
 }
 
 .link-list a {
@@ -19,21 +25,21 @@
 }
 
 .table {
-	width: 50%;
-	float: left;
+	word-break: break-word;
 }
 
-.table:first-of-type {
-	width: calc(50% - #{$layout-gap});
-	margin-right: $layout-gap;
+.top-heading {
+	margin: 0.5em 0 0.75em 0;
 }
+
 
 .table-heading {
 	width: 100%;
 }
 
-.table.roles td:first-of-type {
-	min-width: 12em;
+.table td:first-of-type {
+	width: 12em;
+	// background-color: yellow;
 }
 
 .mock {
