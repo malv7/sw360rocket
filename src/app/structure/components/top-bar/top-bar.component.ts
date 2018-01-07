@@ -21,6 +21,6 @@ export class TopBarComponent {
   ];
 
   constructor(private store: Store<fromRoot.State>) {
-    store.select(fromRoot.selectCurrentRouteData).subscribe(x => console.log(x));
+    // store.select(fromRoot.selectCurrentRouteData).subscribe(x => console.log(x));
   }
 }

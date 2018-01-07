@@ -2,8 +2,14 @@ import { FormValidationService } from './form-validation.service';
 import { PopUpService } from './pop-up.service';
 import { COMPONENT_TYPES, ComponentTypes } from './../../state/component.models';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { CustomValidators } from 'ng2-validation';
+
+import 'rxjs/add/operator/take';
+import { Store } from '@ngrx/store';
+import * as fromRoot from './../../../reducers';
+import * as RouterActions from './../../../router/state/router.actions';
+import * as StructureActions from './../../../structure/state/structure.actions';
 
 //Interface data for input Fields
 export interface NewComponent {
@@ -51,9 +57,19 @@ export class ComponentCreateComponent implements OnInit {
   employePopUp: boolean;
   testbool: boolean;
 
-  constructor(public popUpService: PopUpService, private formValidationService: FormValidationService) { }
+  categoryArray: string[] = [];
+  categoriesValid: boolean = false;
+
+  formValid: boolean = false;
+
+  constructor(
+    public popUpService: PopUpService,
+    public formValidationService: FormValidationService,
+    private store: Store<fromRoot.State>) { }
 
   ngOnInit() {
+    this.store.dispatch(new StructureActions.SetTitle('Create Component'));
+
     this.testbool = true;
     //get values for DropDown componentTypes
     this.componentTypes = COMPONENT_TYPES;
@@ -62,35 +78,51 @@ export class ComponentCreateComponent implements OnInit {
 
     //create Formcontrol for imput fields
     this.projectForm = new FormGroup({
-      [NAME]: new FormControl(null,
-        Validators.required),
-
+      [NAME]: new FormControl(null, Validators.required),
       [CREATED_BY]: new FormControl(),
-
-      [CATEGORIES]: new FormControl(null,
-        Validators.required),
-
+      [CATEGORIES]: new FormControl(null),
       [COMPONENTTYPE]: new FormControl(this.componentTypes[0]),
-
-      [HOMEPAGEURL]: new FormControl(null,
-        CustomValidators.url),
-
-      [BLOGURL]: new FormControl(null,
-        CustomValidators.url),
-
-      [WIKIURL]: new FormControl(null,
-        CustomValidators.url),
-
-      [MAILINGLISTURL]: new FormControl(null,
-        CustomValidators.url),
-      // Validators.pattern('https?://.+'))
+      [HOMEPAGEURL]: new FormControl(null, CustomValidators.url),
+      [BLOGURL]: new FormControl(null, CustomValidators.url),
+      [WIKIURL]: new FormControl(null, CustomValidators.url),
+      [MAILINGLISTURL]: new FormControl(null, CustomValidators.url),
       [SHORTDESCRIPTION]: new FormControl(),
-
       [AUTHORNAME]: new FormControl(),
       [OWNERACCOUNTINGUNIT]: new FormControl(),
       [OWNERBILLINGGROUP]: new FormControl(),
       [MODERATORS]: new FormControl(),
     });
+
+    this.projectForm.statusChanges.subscribe(() => this.evaluateForm());
+  }
+
+  evaluateForm() {
+    if(this.projectForm.status === 'VALID') {
+      this.formValid = this.categoriesValid ? true : false;
+    } else {
+      this.formValid = false;
+    }
+  }
+
+  addCategory() {
+    const c = this.projectForm.get(CATEGORIES).value;
+    if (c && !this.categoryArray.includes(c)) this.categoryArray.push(c);
+    this.projectForm.patchValue({ [CATEGORIES]: '' });
+    this.evaluateCategory();
+  }
+
+  removeCategory(category: string) {
+    this.categoryArray = this.categoryArray.filter(c => category !== c);
+    this.evaluateCategory();
+  }
+
+  evaluateCategory() {
+    this.categoriesValid = this.categoryArray.length < 1 ? false : true;
+    this.evaluateForm();
+  }
+
+  routeBack() {
+    this.store.dispatch(new RouterActions.Back());
   }
 
   //getter for FormControl
@@ -122,7 +154,5 @@ export class ComponentCreateComponent implements OnInit {
     }
     console.log(this.newComponent);
   }
-
-  
 
 }

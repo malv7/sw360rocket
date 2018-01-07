@@ -23,7 +23,6 @@
 }
 
 .add-button {
-  margin-left: 0.5em;
   background: #77bddd;
   color: white;
 }
@@ -49,4 +48,18 @@
 
 .ui.label {
   background-color: #f6f6f6;
+}
+
+
+
+.label-wrapper {
+  margin-bottom: 0.5em;
+}
+
+.label {
+  font-weight: bold;
+}
+
+.required {
+  color: red;
 }
