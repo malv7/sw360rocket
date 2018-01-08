@@ -9,20 +9,20 @@
   <thead>
     <tr>
       <th>
-        <i class="sort icon" (click)="toggleSort('name')"></i>Name</th>
+        <i class="sort icon"></i>Name</th>
       <th>
-        <i class="sort icon" (click)="toggleSort('version')"></i>Version</th>
+        <i class="sort icon"></i>Version</th>
       <th>Clearing State</th>
       <th class="right aligned">
         <span class="table-selection-count-label">Selected:</span>
-        <span class="table-selection-count">{{ count }}</span>
+        <span class="table-selection-count">{{ selectedElementCount }}</span>
         <input type="checkbox" [(ngModel)]="areAllSelected" [checked]="areAllSelected" (click)="selectAll()">
       </th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let release of releases | async" class="row-hover">
-      <td class="cell-hover" (click)="go(release)">{{ release.name }} sasduagsd asujda</td>
+      <td class="cell-hover" (click)="go(release)">{{ release.name }} </td>
       <td class="cell-hover" (click)="go(release)">{{ release.version }}</td>
       <td class="cell-hover" (click)="go(release)">{{ release.clearingState }}</td>
       <td class="right aligned">
@@ -31,29 +31,6 @@
     </tr>
   </tbody>
 
-   <tfoot *ngIf="(releases | async).length > 1">
-    <tr>
-      <th colspan="200">
-        <div fxLayout="row">
-          <div class="ui pagination menu">
-            <a class="icon item" (click)="previousPage()">
-              <i class="left chevron icon"></i>
-            </a>
-            <a class="item" (click)="setPage(1)">1</a>
-            <a class="item" (click)="setPage(1000)">2</a>
-            <a class="item" (click)="setPage(-111)">3</a>
-            <a class="item" (click)="setPage(7)">4</a>
-            <a class="icon item" (click)="nextPage()">
-              <i class="right chevron icon"></i>
-			</a>
-		  </div>
-		  <button (click)="setElementsPerPage(17)">Set 17</button>
-		  <button (click)="setElementsPerPage(-1)">Set -1</button>
-		  <button (click)="setElementsPerPage(12)">Set 12</button>
-		  <button (click)="setElementsPerPage(10)">Set 10</button>
-        </div>
-      </th>
-    </tr>
-  </tfoot>
+  <sw-pagination></sw-pagination>
 
 </table>

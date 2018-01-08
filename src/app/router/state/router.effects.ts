@@ -10,9 +10,9 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 import { RouterService } from '../services/router.service';
-import * as SelectListActions from './../../shared/state/list-select/list-select.actions';
 import * as fromRoot from './../../reducers';
 import { Store } from '@ngrx/store';
+import * as TableActions from './../../shared/state/table/table.actions';
 
 // Define feature routes to reuse them in a single place.
 const ROUTES = [
@@ -45,8 +45,10 @@ export class RouterEffects {
   @Effect({ dispatch: false })
   checkRoute$ = this.router.events
     .filter(event => event instanceof NavigationEnd)
-    .do(() => this.store.dispatch(new SelectListActions.Clear()))
-    .map((event: NavigationEnd)=> this.routerService.parseRoute(event))
+    .do(() => this.store.dispatch(new TableActions.Clear()))
+    .map((event: NavigationEnd)=> this.routerService.parseRoute(event)) // type
+    // .do() get active element || get active list --> type
+    // get data
     
   constructor(
     private actions$: Actions,

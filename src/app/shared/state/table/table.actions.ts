@@ -8,6 +8,8 @@ export const PREVIOUS_PAGE = '[Pagination] Previous page';
 export const SET_PAGE = '[Pagination] Set page';
 export const SET_TOTAL_ELEMENTS_AMOUNT = '[Pagionation] Set total elements amount';
 export const SET_ELEMENTS_PER_PAGE ='[Pagionation] Set elements per page';
+export const CHANGE_PAGE = '[Pagination] Change Page';
+
 export class Clear implements Action {
   readonly type = CLEAR;
   constructor() { }
@@ -25,12 +27,17 @@ export class ToggleOne implements Action {
 
 export class NextPage implements Action {
 	readonly type = NEXT_PAGE;
-	constructor(){}
+	constructor() { }
 }
 
 export class PreviousPage implements Action {
 	readonly type = PREVIOUS_PAGE;
 	constructor(){}
+}
+
+export class ChangePage implements Action {
+  readonly type = CHANGE_PAGE;
+  constructor(public pageNumber: number) { }
 }
 
 export class SetPage implements Action {
@@ -58,4 +65,5 @@ export type All =
 	PreviousPage|
 	SetPage |
 	SetTotalElementsAmount|
-	SetSetElementsPerPage;
+  SetSetElementsPerPage |
+  ChangePage;

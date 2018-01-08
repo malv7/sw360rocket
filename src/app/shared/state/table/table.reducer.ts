@@ -34,14 +34,16 @@ export function tableReducer(state = initialState, action: TableActions.All): St
     // Workarround: Select the list each time when an action should be performed and use take(1)
     case TableActions.TOGGLE_ONE: {
 
-      if (!state.selectedElements[action.id]) {
-        state.selectedElements[action.id] = true;
+      let x = { ...state };
+
+      if (!x.selectedElements[action.id]) {
+        x.selectedElements[action.id] = true;
       } else {
-        delete state.selectedElements[action.id];
+        delete x.selectedElements[action.id];
       }
 
-      state.selectedElementsCount = Object.keys(state.selectedElements).length;
-      return state;
+      x.selectedElementsCount = Object.keys(state.selectedElements).length;
+      return x;
     }
 
     case TableActions.ADD_MANY: {
@@ -72,11 +74,8 @@ export function tableReducer(state = initialState, action: TableActions.All): St
 		}
 
 		case TableActions.SET_PAGE: {
-			let maxPage = Math.ceil(state.pagination.totalElementsAmount/state.pagination.elementsPerPage);
-			if(action.pageNumber >0 && action.pageNumber < maxPage) {
-				state.pagination.currentPage = action.pageNumber;
-			}
-			return state
+      state.pagination.currentPage = action.pageNumber;
+      return state;      
 		}
 
 		case TableActions.SET_TOTAL_ELEMENTS_AMOUNT: {
