@@ -2,8 +2,10 @@
 
 .wrapper {
   min-width: 768px;
-  width: 100%;
   min-height: 100vh;
+//   max-width: calc(100vw - 1em);
+  width: 100%;
+
 }
 
 $max-content-width: 1280px;
@@ -41,8 +43,15 @@ sw-info-bar {
 	margin: auto;
 }
 
-sw-content {
+.content-wrapper {
 	width: 100%;
+	padding: 1em;
+	overflow: hidden;
+}
+
+sw-content {
+	max-width: $max-content-width;
+	margin: 0 auto;
 }
 
 .footer-wrapper {

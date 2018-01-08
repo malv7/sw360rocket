@@ -1,0 +1,32 @@
+.tab-navigation-wrapper {
+	background: $topbar-color;
+	position: relative;
+	top: -1em;
+}
+
+.tab-navigation-wrapper::before {
+	width: 30vw;
+	height: 100%;
+	top: 0;
+	left: -30vw;
+	content: '';
+	position: absolute;
+	display: block;
+	background-color: $topbar-color;
+}
+
+.tab-navigation-wrapper::after {
+	width: 30vw;
+	height: 100%;
+	content: '';
+	position: absolute;
+	display: block;
+	left: 100%;
+	top: 0;
+	background-color: $topbar-color;
+}
+
+sw-tab-navigation {
+	max-width: $max-content-width;
+	margin: auto;
+}

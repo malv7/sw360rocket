@@ -1,19 +1,5 @@
 @import 'forms';
-
-.main-content {
-	max-width: calc(#{$max-content-width} + 2em);
-	margin: 0 auto;
-	padding: 1.25em 1em;
-}
-
-.tab-navigation-wrapper {
-	background: $topbar-color;
-}
-
-sw-tab-navigation {
-	max-width: $max-content-width;
-	margin: auto;
-}
+@import 'navigation';
 
 .row {
 	margin-bottom: 1em;
@@ -25,5 +11,4 @@ sw-tab-navigation {
 	padding: 1em 1em;
 	border-radius: 5px;
 	margin-bottom: $layout-gap;
-
 }
