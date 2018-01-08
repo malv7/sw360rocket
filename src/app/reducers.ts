@@ -1,7 +1,7 @@
 import { ActionReducerMap } from '@ngrx/store';
 import * as fromComponent from './component/state/component.reducer';
 import * as fromProject from './project/state/project.reducer';
-import * as fromListSelect from './shared/state/list-select/list-select.reducer';
+import * as fromTable from './shared/state/table/table.reducer';
 import * as fromRouter from './router/state/router.reducer';
 import * as fromModel from './state/model.reducer';
 import * as fromStructure from './structure/state/structure.reducer';
@@ -9,7 +9,7 @@ import * as fromStructure from './structure/state/structure.reducer';
 export interface State {
   component: fromComponent.State;
   project: fromProject.State;
-  listSelect: fromListSelect.State;
+  table: fromTable.State;
   customRouter: fromRouter.State;
   model: fromModel.State;
   structure: fromStructure.State;
@@ -25,15 +25,6 @@ export const reducers: ActionReducerMap<any> = {
 export function selectComponents(state: State) {
   return state.component.components;
 }
-
-export function selectSelectedListElements(state: State) {
-  return state.listSelect.selectedElements;
-}
-
-export function selectSelectedListElementsCount(state: State) {
-  return state.listSelect.selectedElementsCount;
-}
-
 export function selectProjects(state: State) {
   return state.project.projects;
 }

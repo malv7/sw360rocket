@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Store } from "@ngrx/store";
-import * as ListSelectActions from './../../state/list-select/list-select.actions';
+import * as TableActions from './../../state/table/table.actions';
 import * as RouterActions from './../../../router/state/router.actions';
 import * as fromRoot from './../../../reducers';
 import { Observable } from "rxjs/Observable";
@@ -13,7 +13,7 @@ export class TableService {
 
   selectAll(areAllSelected: boolean, resources: Observable<EmbeddedResource[]>) {
     if(areAllSelected) {
-      this.store.dispatch(new ListSelectActions.Clear());
+      this.store.dispatch(new TableActions.Clear());
     }
 
     if(!areAllSelected) {
@@ -21,12 +21,12 @@ export class TableService {
       resources.take(1).subscribe(resources => {
         resources.forEach(resource => selfLinks.push(resource._links.self.href));
       });
-      this.store.dispatch(new ListSelectActions.AddMany(selfLinks));
+      this.store.dispatch(new TableActions.AddMany(selfLinks));
     }
   }
 
   selectOne(resource: EmbeddedResource) {
-    this.store.dispatch(new ListSelectActions.ToggleOne(resource._links.self.href));
+    this.store.dispatch(new TableActions.ToggleOne(resource._links.self.href));
   }
 
   // TODO: implement router

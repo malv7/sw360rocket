@@ -8,7 +8,8 @@ import { TabNavigationComponent } from './components/tab-navigation/tab-navigati
 import { OverviewComponent } from './components/overview/overview.component';
 import { NotImplementedYetComponent } from './components/not-implemented-yet/not-implemented-yet.component';
 import { StoreModule } from '@ngrx/store';
-import { listSelectReducer } from './state/list-select/list-select.reducer';
+import { tableReducer } from './state/table/table.reducer';
+
 import { ActionButtonsComponent } from './components/action-buttons/action-buttons.component';
 import { SearchFilterComponent } from './components/search-filter/search-filter.component';
 import { ReleaseTableComponent } from './tables/release-table/release-table.component';
@@ -22,7 +23,7 @@ import { GenericFormElementComponent } from './components/forms/generic-form-ele
 		CommonModule,
 		FlexLayoutModule,
     RouterModule,
-    StoreModule.forFeature('listSelect', listSelectReducer),
+    StoreModule.forFeature('table', tableReducer),
     FormsModule
 	],
 	declarations: [

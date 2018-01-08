@@ -3,6 +3,7 @@ import { Store } from "@ngrx/store";
 import * as fromRoot from './../../../reducers';
 import { Observable } from "rxjs/Observable";
 import * as RouterActions from './../../../router/state/router.actions';
+import * as fromTable from './../../state/table/table.reducer';
 import { Subscription } from "rxjs/Subscription";
 import { OnDestroy } from "@angular/core/src/metadata/lifecycle_hooks";
 import 'rxjs/add/operator/take';
@@ -29,7 +30,7 @@ export enum ListTypes {
       <i class="icon protect"></i>
       Fossology
     </button>
-    
+
     <button class="ui button clone" *ngIf="hasClone && onOne" (click)="clone()">
       <i class="icon clone"></i>
       Clone
@@ -55,13 +56,13 @@ export enum ListTypes {
   `]
 })
 export class ActionButtonsComponent implements OnInit, OnDestroy {
-  
+
   @Input() hasAdd: boolean;
   @Input() hasEdit: boolean;
   @Input() hasRemove: boolean;
   @Input() hasFossology: boolean;
   @Input() hasClone: boolean;
-  
+
   listType: string;
   listTypeSubscription: Subscription;
   elementsCountSub: Subscription;
@@ -72,7 +73,7 @@ export class ActionButtonsComponent implements OnInit, OnDestroy {
   constructor(private store: Store<fromRoot.State>) {
     // retrieves and handles possible actions from selected elements state
     // store.select(fromRoot.selectSelectedListElements).subscribe(x => console.log(x));
-    this.elementsCountSub = store.select(fromRoot.selectSelectedListElementsCount).subscribe(elementsCount => {
+    this.elementsCountSub = store.select(fromTable.selectSelectedListElementsCount).subscribe(elementsCount => {
       if(elementsCount === 0) {
         this.onOne = false;
         this.onMany = false;
@@ -85,13 +86,13 @@ export class ActionButtonsComponent implements OnInit, OnDestroy {
       }
     });
   }
-  
+
   ngOnInit() {
     this.listTypeSubscription = this.store.select(fromRoot.selectCurrentRouteData)
       .map(crd => crd.listType)
       .subscribe(listType => this.listType = listType);
   }
-  
+
   ngOnDestroy(): void {
     if(this.listTypeSubscription) this.listTypeSubscription.unsubscribe();
     if(this.elementsCountSub) this.elementsCountSub.unsubscribe();
@@ -101,7 +102,7 @@ export class ActionButtonsComponent implements OnInit, OnDestroy {
     console.log('--- list type in action buttons compnent add() ---')
     console.log(this.listType);
     switch (this.listType) {
-      
+
       case 'projects': {
         // console.log("action buttons of type projects");
         break;
@@ -121,7 +122,7 @@ export class ActionButtonsComponent implements OnInit, OnDestroy {
         // if in components: create new release
         console.log("action list buttons add")
       }
-    
+
       default: break;
     }
   }
