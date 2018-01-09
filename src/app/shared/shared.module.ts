@@ -18,6 +18,7 @@ import { TableService } from './tables/services/table.service';
 import { ReleasesWidgetComponent } from './components/overview/releases-widget/releases-widget.component';
 import { GenericFormElementComponent } from './components/forms/generic-form-element/generic-form-element.component';
 import { PaginationComponent } from './tables/pagination/pagination.component';
+import { GenericTableComponent } from './tables/generic-table/generic-table.component';
 
 @NgModule({
 	imports: [
@@ -36,7 +37,8 @@ import { PaginationComponent } from './tables/pagination/pagination.component';
     ReleaseTableComponent,
     ReleasesWidgetComponent,
     GenericFormElementComponent,
-    PaginationComponent
+    PaginationComponent,
+    GenericTableComponent
 	],
 	exports: [
 		// modules
@@ -51,7 +53,8 @@ import { PaginationComponent } from './tables/pagination/pagination.component';
     SearchFilterComponent,
     ReleaseTableComponent,
     GenericFormElementComponent,
-    PaginationComponent
+    PaginationComponent,
+    GenericTableComponent
   ],
   providers: [TableService]
 })

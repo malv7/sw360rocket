@@ -7,6 +7,8 @@ import { Go } from './../../../router/state/router.actions';
 import { EmbeddedProject } from "../../state/project.models";
 import * as ProjectActions from './../../state/project.actions';
 import * as StructureActions from './../../../structure/state/structure.actions';
+import { EmbeddedRelease } from "../../../state/models";
+import * as fromModel from './../../../state/model.reducer';
 
 @Component({
   selector: 'sw-project-list',
@@ -22,11 +24,13 @@ export class ProjectListComponent {
   areAllSelected: boolean = false;
 
   projects: Observable<EmbeddedProject[]>;
+  releases: Observable<EmbeddedRelease[]>;
 
   constructor(private store: Store<fromRoot.State>) {
     this.store.dispatch(new StructureActions.SetTitle('Projects'));
     this.store.dispatch(new ProjectActions.GetMockedProjects());
-    this.projects = this.store.select(fromRoot.selectProjects);
+    this.projects = this.store.select(fromModel.selectProjects);
+    this.releases = this.store.select(fromModel.selectReleases);
   }
 
   selectAll() {
