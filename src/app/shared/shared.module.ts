@@ -19,6 +19,10 @@ import { ReleasesWidgetComponent } from './components/overview/releases-widget/r
 import { GenericFormElementComponent } from './components/forms/generic-form-element/generic-form-element.component';
 import { PaginationComponent } from './tables/pagination/pagination.component';
 import { GenericTableComponent } from './tables/generic-table/generic-table.component';
+import { ReleaseTableHeaderComponent } from './tables/generic-table/release-table/release-table-header.component';
+import { ReleaseTableBodyComponent } from './tables/generic-table/release-table/release-table-body.component';
+import { ProjectTableHeaderComponent } from './tables/generic-table/project-table/project-table-header.component';
+import { ProjectTableBodyComponent } from './tables/generic-table/project-table/project-table-body.component';
 
 @NgModule({
 	imports: [
@@ -38,7 +42,11 @@ import { GenericTableComponent } from './tables/generic-table/generic-table.comp
     ReleasesWidgetComponent,
     GenericFormElementComponent,
     PaginationComponent,
-    GenericTableComponent
+    GenericTableComponent,
+    ReleaseTableHeaderComponent,
+    ReleaseTableBodyComponent,
+    ProjectTableHeaderComponent,
+    ProjectTableBodyComponent,
 	],
 	exports: [
 		// modules
@@ -54,7 +62,11 @@ import { GenericTableComponent } from './tables/generic-table/generic-table.comp
     ReleaseTableComponent,
     GenericFormElementComponent,
     PaginationComponent,
-    GenericTableComponent
+    GenericTableComponent,
+    ReleaseTableHeaderComponent,
+    ReleaseTableBodyComponent,
+    ProjectTableHeaderComponent,
+    ProjectTableBodyComponent,
   ],
   providers: [TableService]
 })

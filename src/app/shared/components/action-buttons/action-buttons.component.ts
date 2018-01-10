@@ -88,9 +88,9 @@ export class ActionButtonsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.listTypeSubscription = this.store.select(fromRoot.selectCurrentRouteData)
-      .map(crd => crd.listType)
-      .subscribe(listType => this.listType = listType);
+    // this.listTypeSubscription = this.store.select(fromRoot.selectCurrentRouteData)
+    //   .map(crd => crd.listType)
+    //   .subscribe(listType => this.listType = listType);
   }
 
   ngOnDestroy(): void {

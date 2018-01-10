@@ -29,11 +29,15 @@ export function selectProjects(state: State) {
   return state.project.projects;
 }
 
-export function selectCurrentRouteData(state: State) {
-  return state.customRouter.currentRouteData;
+export function selectLastRoute(state: State) {
+  return state.customRouter.lastRoute;
+}
+
+export function selectCurrentRoute(state: State) {
+  return state.customRouter.currentRoute;
 }
 
 export function selectBreadcrumbSegments(state: State) {
-  return state.customRouter.currentRouteData.breadCrumbSegments;
+  return state.customRouter.currentRoute.breadCrumbSegments;
 }
 
