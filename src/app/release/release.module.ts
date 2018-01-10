@@ -8,6 +8,8 @@ import { SharedModule } from '../shared/shared.module';
 import { ReleaseDetailsComponent } from './components/release/details/release-details.component';
 import { ReleaseComponent } from './components/release/release.component';
 import { ReleaseCreateComponent } from "./components/release-create/release-create.component";
+import { ReleaseOverviewComponent } from "./components/release-overview/release-overview.component";
+import { VulnerabilityWidgetComponent } from './components/vulnerability-widget/vulnerability-widget.component';
 
 @NgModule({
     imports: [
@@ -16,7 +18,9 @@ import { ReleaseCreateComponent } from "./components/release-create/release-crea
     declarations: [
         ReleaseDetailsComponent,
         ReleaseComponent,
-        ReleaseCreateComponent
+				ReleaseCreateComponent,
+				ReleaseOverviewComponent,
+				VulnerabilityWidgetComponent
     ],
 })
 export class ReleaseModule { }

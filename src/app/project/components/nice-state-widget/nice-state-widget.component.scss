@@ -1,0 +1,23 @@
+/* Nice State */
+.nice-state {
+	padding: 1em 1.5em;
+}
+
+.single-state span {
+	font-weight: bold;
+	font-size: 1.2em;
+}
+
+.secondary-value {
+	opacity: 0.5;
+}
+
+.nice-state .checkmark {
+	margin-left: 0.3em;
+	color: #21ba45;
+}
+
+.nice-state .warning {
+	margin-left: 0.2em;
+	color: #db2828;
+}

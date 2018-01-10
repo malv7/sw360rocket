@@ -1,0 +1,41 @@
+:host {
+	display: block;
+	margin-bottom: 1em;
+}
+
+.header {
+	margin-bottom: 0.1em;
+}
+
+.sub-header {
+	display: block;
+	margin-bottom: 0.4em;
+}
+
+.card {
+	width: 100%;
+}
+
+.settings {
+	position: absolute;
+	right: 0.25em;
+	top: 0.5em;
+	font-size: 1.5rem;
+}
+
+
+.github.icon {
+	transform: scale(1.2);
+}
+
+.meta div:not(:last-child) {
+	margin-bottom: 0.3em;
+}
+
+.meta div {
+	display: flex;
+}
+
+.meta div span:first-of-type {
+	margin-right: 0.5em;
+}

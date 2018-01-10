@@ -13,6 +13,7 @@ import { projectReducer } from './state/project.reducer';
 import { ProjectListComponent } from './components/project-list/project-list.component';
 import { ProjectComponent } from './components/project/project.component';
 import { ProjectDetailsComponent } from './components/project/details/project-details.component';
+import { NiceStateWidgetComponent } from './components/nice-state-widget/nice-state-widget.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { ProjectDetailsComponent } from './components/project/details/project-de
     declarations: [
         ProjectListComponent,
         ProjectComponent,
-        ProjectDetailsComponent
+        ProjectDetailsComponent,
+        NiceStateWidgetComponent
     ],
     exports: [
         ProjectListComponent
