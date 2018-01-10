@@ -6,10 +6,8 @@
 <!-- DEBUG -->
 <div *ngIf="debug" [ngStyle]="{ 'font-size': '1.3em', 'font-weight': 'bold', 'margin-bottom': '0.5em' }">{{ type }}</div>
 <!-- DEBUG -->
-<div fxLayout="row" fxLayoutAlign="space-between center" *ngIf="debug">
+<div fxLayout="row" fxLayoutAlign="space-between center">
   <div fxLayout="row" fxLayoutGap="0.5em" [ngStyle]="{ 'margin-bottom': '0.5em' }">
-    <!-- DEBUG -->
-    <button class="mini ui button" (click)="next()">Next</button>
     <button class="mini ui basic button" (click)="setTableSize('small')">Small</button>
     <button class="mini ui basic button" (click)="setTableSize('normal')">Normal</button>
     <button class="mini ui basic button" (click)="setTableSize('large')">Large</button>
@@ -17,7 +15,7 @@
   <!-- DEBUG -->
   <div>
     <span class="selected-elements-count-label">Selected:</span>
-    <span class="selected-elements-count">{{ selectedElementsCount }}</span>
+    <span class="selected-elements-count">{{ selectedElementsCount | async }}</span>
   </div>
 </div>
 
