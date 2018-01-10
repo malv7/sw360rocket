@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnDestroy } from "@angular/core";
+import { Component, Input, OnInit, OnDestroy, TemplateRef } from "@angular/core";
 
 import { Observable } from "rxjs/Observable";
 import { Subscription } from "rxjs/Subscription";
@@ -32,6 +32,8 @@ import {
   `]
 })
 export class GenericTableComponent implements OnInit, OnDestroy {
+	@Input('tableHeader') tableHeader: TemplateRef<Component>;
+	@Input('tableBody') tableBody: TemplateRef<Component>;
 
   // Ressources
   components: Observable<EmbeddedSW360Component[]>
