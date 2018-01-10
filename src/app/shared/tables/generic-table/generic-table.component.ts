@@ -137,29 +137,29 @@ export class GenericTableComponent implements OnInit, OnDestroy {
     }
   }
 
-  ///// Routing
-  go(resource: EmbeddedResource) {
-    this.store.dispatch(new RouterActions.Go({ path: [], ressourceSelflink: resource._links.self.href }));
-  };
+  // ///// Routing
+  // go(resource: EmbeddedResource) {
+  //   this.store.dispatch(new RouterActions.Go({ path: [], ressourceSelflink: resource._links.self.href }));
+  // };
 
-  ///// Selections
-  ////////////////
-  selectOne(resource: EmbeddedResource) {
-    this.store.dispatch(new TableActions.ToggleTableSelection(resource._links.self.href));
-  }
+  // ///// Selections
+  // ////////////////
+  // selectOne(resource: EmbeddedResource) {
+  //   this.store.dispatch(new TableActions.ToggleTableSelection(resource._links.self.href));
+  // }
 
-  selectAll() {
-    if (this.areAllSelected) {
-      this.store.dispatch(new TableActions.ClearTableSelections());
-    } else {
-      const selfLinks: string[] = [];
-      const resources: Observable<EmbeddedRessourceX[]> = this.getTableResource();
-      resources.take(1).subscribe(resources => {
-        resources.forEach(resource => selfLinks.push(resource._links.self.href));
-        this.store.dispatch(new TableActions.AddTableSelections(selfLinks));
-      });
-    }
-  }
+  // selectAll() {
+  //   if (this.areAllSelected) {
+  //     this.store.dispatch(new TableActions.ClearTableSelections());
+  //   } else {
+  //     const selfLinks: string[] = [];
+  //     const resources: Observable<EmbeddedRessourceX[]> = this.getTableResource();
+  //     resources.take(1).subscribe(resources => {
+  //       resources.forEach(resource => selfLinks.push(resource._links.self.href));
+  //       this.store.dispatch(new TableActions.AddTableSelections(selfLinks));
+  //     });
+  //   }
+  // }
 
   ///// Style
   ///////////

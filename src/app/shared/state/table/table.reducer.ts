@@ -9,13 +9,15 @@ export interface Pagination {
 
 export interface State {
   selectedElements: string[];
-  selectedElementsCount: number;
-  pagination: Pagination;
+	selectedElementsCount: number;
+	areAllElementsSelected: boolean;
+	pagination: Pagination;
 }
 
 const initialState: State = {
   selectedElements: [],
-  selectedElementsCount: 0,
+	selectedElementsCount: 0,
+	areAllElementsSelected: false,
   pagination: {
     currentPage: 1,
     elementsPerPage: 10,
@@ -27,23 +29,23 @@ export function tableReducer(state = initialState, action: TableActions.All): St
 
   switch (action.type) {
 
-    case TableActions.ADD_TABLE_SELECTIONS: {
+    case TableActions.SELECT_ALL: {
       const selectedElements = state.selectedElements;
       action.ids.forEach(e => {
         if (!selectedElements.includes(e)) selectedElements.push(e);
-      });
-      return {
-        ...state,
-        selectedElements: selectedElements,
-        selectedElementsCount: selectedElements.length
-      };
+			});
+			state.areAllElementsSelected = true;
+			state.selectedElements = selectedElements;
+			state.selectedElementsCount = selectedElements.length;
+      return state;
     }
 
     case TableActions.CLEAR_TABLE_SELECTIONS: {
       return {
         ...state,
         selectedElements: [],
-        selectedElementsCount: 0
+				selectedElementsCount: 0,
+				areAllElementsSelected: false
       };
     }
 
@@ -114,3 +116,7 @@ export function selectSelectedListElements(state: fromRoot.State) {
 export function selectSelectedListElementsCount(state: fromRoot.State) {
   return state.table.selectedElementsCount;
 }
+
+export const selectAreAllElementsSelected = (state: fromRoot.State) => {
+	return state.table.areAllElementsSelected;
+};

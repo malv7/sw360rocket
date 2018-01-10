@@ -26,10 +26,6 @@
   <thead>
     <tr>
       <ng-container *ngTemplateOutlet="tableHeader"></ng-container>
-      <!-- selection -->
-      <th class="right aligned">
-        <input type="checkbox" [(ngModel)]="areAllSelected" [checked]="areAllSelected" (click)="selectAll()">
-      </th>
     </tr>
   </thead>
   <tbody>
