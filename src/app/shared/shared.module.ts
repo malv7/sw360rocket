@@ -15,7 +15,6 @@ import { SearchFilterComponent } from './components/search-filter/search-filter.
 import { ReleaseTableComponent } from './tables/release-table/release-table.component';
 import { FormsModule } from '@angular/forms';
 import { TableService } from './tables/services/table.service';
-import { ReleasesWidgetComponent } from './components/overview/releases-widget/releases-widget.component';
 import { GenericFormElementComponent } from './components/forms/generic-form-element/generic-form-element.component';
 import { PaginationComponent } from './tables/pagination/pagination.component';
 import { GenericTableComponent } from './tables/generic-table/generic-table.component';
@@ -28,7 +27,7 @@ import { ProjectTableBodyComponent } from './tables/generic-table/project-table/
 	imports: [
 		CommonModule,
 		FlexLayoutModule,
-    RouterModule,
+		RouterModule,
     StoreModule.forFeature('table', tableReducer),
     FormsModule
 	],
@@ -39,14 +38,13 @@ import { ProjectTableBodyComponent } from './tables/generic-table/project-table/
     ActionButtonsComponent,
     SearchFilterComponent,
     ReleaseTableComponent,
-    ReleasesWidgetComponent,
     GenericFormElementComponent,
     PaginationComponent,
     GenericTableComponent,
     ReleaseTableHeaderComponent,
     ReleaseTableBodyComponent,
     ProjectTableHeaderComponent,
-    ProjectTableBodyComponent,
+		ProjectTableBodyComponent
 	],
 	exports: [
 		// modules
@@ -66,7 +64,8 @@ import { ProjectTableBodyComponent } from './tables/generic-table/project-table/
     ReleaseTableHeaderComponent,
     ReleaseTableBodyComponent,
     ProjectTableHeaderComponent,
-    ProjectTableBodyComponent,
+		ProjectTableBodyComponent,
+
   ],
   providers: [TableService]
 })
