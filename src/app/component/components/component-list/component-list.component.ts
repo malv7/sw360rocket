@@ -11,7 +11,7 @@ import * as RouterActions from './../../../router/state/router.actions';
 import { EmbeddedSW360Component } from './../../../state/models';
 
 // check
-import { Router, Routes } from '@angular/router';
+import { TableService } from '../../../shared/tables/services/table.service';
 
 @Component({
 	selector: 'sw-component-list',
@@ -22,15 +22,30 @@ export class ComponentListComponent implements OnInit {
 
   components: Observable<EmbeddedSW360Component[]>;
 
-  constructor(private store: Store<fromRoot.State>) { }
+  constructor(private store: Store<fromRoot.State>, private tableService: TableService) { }
 
 	ngOnInit() {
     this.store.dispatch(new StructureActions.SetTitle('Components'));
 		this.components = this.store.select(fromModel.selectComponents);
 	}
 
-  go(id: string) {
-    this.store.dispatch(new RouterActions.Go({ path: ['/components', id]}));
+  go(component: EmbeddedSW360Component) {
+		this.tableService.go(component);
+	}
+
+	selectOne(component: EmbeddedSW360Component) {
+		this.tableService.selectOne(component);
+	}
+
+	selectAll() {
+		this.tableService.selectAll(this.components);
+  }
+  
+  addAction = () => this.store.dispatch(new RouterActions.Go({ path: ['components/create'] }));
+
+  randomAction() {
+    console.log("RANDOM");
   }
 
-}
+
+};

@@ -17,10 +17,14 @@ export enum ListTypes {
   users = 'users'
 }
 
+export interface ActionFunction {
+  (): any;
+}
+
 @Component({
   selector: 'sw-action-buttons',
   template: `
-  <div class="ui basic buttons" fxLayout="row" fxLayoutWrap>
+  <div class="ui" fxLayout="row" fxLayoutWrap>
     <button class="ui button remove" *ngIf="hasRemove && onMany" (click)="remove()">
       <i class="icon trash"></i>
       Remove
@@ -45,6 +49,9 @@ export enum ListTypes {
       <i class="icon add"></i>
       Add
     </button>
+
+    <ng-content></ng-content>
+
   </div>
   `,
   styles: [`
@@ -63,21 +70,24 @@ export class ActionButtonsComponent implements OnInit, OnDestroy {
   @Input() hasFossology: boolean;
   @Input() hasClone: boolean;
 
+  @Input() addAction: any;
+
   listType: string;
   listTypeSubscription: Subscription;
   elementsCountSub: Subscription;
 
+  onZero: boolean = false;
   onOne: boolean = false;
   onMany: boolean = false;
 
   constructor(private store: Store<fromRoot.State>) {
-    // retrieves and handles possible actions from selected elements state
-    // store.select(fromRoot.selectSelectedListElements).subscribe(x => console.log(x));
     this.elementsCountSub = store.select(fromTable.selectSelectedListElementsCount).subscribe(elementsCount => {
       if(elementsCount === 0) {
+        this.onZero = true;
         this.onOne = false;
         this.onMany = false;
       } else if (elementsCount === 1) {
+        this.onZero = false;
         this.onOne = true;
         this.onMany = true;
       } else if (elementsCount > 1) {
@@ -88,55 +98,22 @@ export class ActionButtonsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    // this.listTypeSubscription = this.store.select(fromRoot.selectCurrentRouteData)
-    //   .map(crd => crd.listType)
-    //   .subscribe(listType => this.listType = listType);
+
   }
 
   ngOnDestroy(): void {
-    if(this.listTypeSubscription) this.listTypeSubscription.unsubscribe();
     if(this.elementsCountSub) this.elementsCountSub.unsubscribe();
   }
 
   add() {
-    console.log('--- list type in action buttons compnent add() ---')
-    console.log(this.listType);
-    switch (this.listType) {
-
-      case 'projects': {
-        // console.log("action buttons of type projects");
-        break;
-      }
-
-      case 'components': {
-        // console.log("action buttons of type components");
-        this.store.dispatch(new RouterActions.Go({
-          path: ['components/create']
-        }));
-        break;
-      }
-
-      case 'releases': {
-        // TODO:
-        // if in projects: select existing releases
-        // if in components: create new release
-        console.log("action list buttons add")
-      }
-
-      default: break;
-    }
+    // this.addAction();
+    console.log(this.addAction);
   }
+
   fossology() { }
   edit() { }
-
-  remove() {
-    // TODO: has a bug, that the selectSelectedList observable does not fire when this performed
-    // anyway, the store gets mutated
-    // Workarround: Select the list each time when an action should be performed and use take(1)
-    // see selectListReducer
-    // this.store.select(fromRoot.selectSelectedListElements).take(1).subscribe(x => console.log(x));
-  }
-
+  remove() {}
   clone() {}
 
 }
+

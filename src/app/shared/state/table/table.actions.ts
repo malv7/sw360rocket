@@ -2,7 +2,7 @@ import { Action } from '@ngrx/store';
 
 // Table selections
 export const CLEAR_TABLE_SELECTIONS  = '[List Selection] Clear table selections';
-export const ADD_TABLE_SELECTIONS = '[List Selection] Add table selections';
+export const SELECT_ALL = '[List Selection] Select all rendered table-elements';
 export const TOGGLE_TABLE_SELECTION = '[List Selection] Toggle table selection';
 
 export const NEXT_PAGE = '[Pagination] Next page';
@@ -19,8 +19,8 @@ export class ClearTableSelections implements Action {
   readonly type = CLEAR_TABLE_SELECTIONS;
   constructor() { }
 }
-export class AddTableSelections implements Action {
-  readonly type = ADD_TABLE_SELECTIONS;
+export class SelectAll implements Action {
+  readonly type = SELECT_ALL;
   constructor(public ids: string[]) { }
 }
 export class ToggleTableSelection implements Action {
@@ -63,7 +63,7 @@ export class SetSetElementsPerPage implements Action {
 
 export type All =
   ClearTableSelections |
-  AddTableSelections |
+  SelectAll |
   ToggleTableSelection |
 	NextPage|
 	PreviousPage|

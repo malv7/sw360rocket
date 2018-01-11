@@ -1,100 +1,16 @@
-<div fxLayout="row" fxLayoutGap="1em" [ngStyle]="{ 'margin-bottom': '1em' }">
-  <sw-search-filter></sw-search-filter>
-  <sw-action-buttons [hasAdd]="true" [hasEdit]="true" [hasRemove]="true" [hasFossology]="true" [hasClone]="true"></sw-action-buttons>
-</div>
-
-<!-- DEBUG -->
-<div *ngIf="debug" [ngStyle]="{ 'font-size': '1.3em', 'font-weight': 'bold', 'margin-bottom': '0.5em' }">{{ type }}</div>
-<!-- DEBUG -->
-<div fxLayout="row" fxLayoutAlign="space-between center" *ngIf="debug">
-  <div fxLayout="row" fxLayoutGap="0.5em" [ngStyle]="{ 'margin-bottom': '0.5em' }">
-    <!-- DEBUG -->
-    <button class="mini ui button" (click)="next()">Next</button>
-    <button class="mini ui basic button" (click)="setTableSize('small')">Small</button>
-    <button class="mini ui basic button" (click)="setTableSize('normal')">Normal</button>
-    <button class="mini ui basic button" (click)="setTableSize('large')">Large</button>
-  </div>
-  <!-- DEBUG -->
-  <div>
-    <span class="selected-elements-count-label">Selected:</span>
-    <span class="selected-elements-count">{{ selectedElementsCount }}</span>
-  </div>
-</div>
-
-<!-- TODO: Put ng-containers into single components but keep semantic table styling up somehow -->
-<table class="ui striped selectable celled table unstackable" [ngClass]="tableSize">
+<table class="ui striped selectable celled table unstackable">
   <thead>
     <tr>
-      <!-- projects -->
-      <ng-container *ngIf="type === 'projects'">
-        <th>Name</th>
-        <th>Version</th>
-        <th>Type</th>
-      </ng-container>
-      <!-- releases -->
-      <ng-container *ngIf="type === 'releases'">
-        <th>Name</th>
-        <th>Version</th>
-        <th>Clearing State</th>
-      </ng-container>
-      <!-- components -->
-      <ng-container *ngIf="type === 'components'">
-        <th>Name</th>
-        <th>Type</th>
-        <th>Selflink</th>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Type</th>
-        <th>Type</th>
-      </ng-container>
-      <!-- selection -->
-      <th class="right aligned">
-        <!-- <ng-container fxLayout="row"> -->
-
-        <!-- </ng-container> -->
-        <input type="checkbox" [(ngModel)]="areAllSelected" [checked]="areAllSelected" (click)="selectAll()">
-      </th>
+      <ng-container *ngTemplateOutlet="tableHeader"></ng-container>
     </tr>
   </thead>
   <tbody>
-    <!-- projects -->
-    <ng-container *ngIf="type === 'projects'">
-      <tr *ngFor="let project of projects | async" class="row-hover">
-        <td (click)="go(project)">{{ project.name }}</td>
-        <td (click)="go(project)">{{ project.version }}</td>
-        <td (click)="go(project)">{{ project.projectType }}</td>
-        <td class="right aligned">
-          <input type="checkbox" [checked]="areAllSelected" (click)=selectOne(project)>
-        </td>
-      </tr>
-    </ng-container>
-    <!-- releases -->
-    <ng-container *ngIf="type === 'releases'">
-      <tr *ngFor="let release of releases | async" class="row-hover">
-        <td (click)="go(release)">{{ release.name }} </td>
-        <td (click)="go(release)">{{ release.version }}</td>
-        <td (click)="go(release)">{{ release.clearingState }}</td>
-        <td class="right aligned">
-          <input type="checkbox" [checked]="areAllSelected" (click)=selectOne(release)>
-        </td>
-      </tr>
-    </ng-container>
-    <!-- components -->
-    <ng-container *ngIf="type === 'components'">
-      <tr *ngFor="let component of components | async" class="row-hover">
-        <td (click)="go(component)">{{ component.name }} </td>
-        <td (click)="go(component)">{{ component.componentType }}</td>
-        <td (click)="go(component)">{{ component._links?.self?.href }}</td>
-        <td (click)="go(component)">{{ component.name }} </td>
-        <td (click)="go(component)">{{ component.componentType }}</td>
-        <td (click)="go(component)">{{ component.componentType }}</td>
-        <td (click)="go(component)">{{ component.componentType }}</td>
-        <td class="right aligned">
-          <input type="checkbox" [checked]="areAllSelected" (click)=selectOne(component)>
-        </td>
-      </tr>
-    </ng-container>
+    <ng-container *ngTemplateOutlet="tableBody"></ng-container>
   </tbody>
+  <!-- pagination -->
 </table>
 
-<!-- TODO: pagination -->
+<div [ngStyle]="{ 'margin-top': '0.5em', 'margin-left': '0.2em' }">
+  <span class="selected-elements-count-label">Selected:</span>
+  <span class="selected-elements-count">{{ selectedElementsCount | async }}</span>
+</div>
