@@ -49,6 +49,14 @@ import * as fromTable from './../../state/table/table.reducer';
 })
 export class ReleaseTableComponent implements OnDestroy {
 
+  // type component
+  // type project
+
+
+
+
+
+
   areAllSelected: boolean = false;
   releases: Observable<EmbeddedRelease[]>;
 	selectedElementsCountSub: Subscription;

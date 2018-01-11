@@ -43,5 +43,9 @@ export class ComponentListComponent implements OnInit {
   
   addAction = () => this.store.dispatch(new RouterActions.Go({ path: ['components/create'] }));
 
+  randomAction() {
+    console.log("RANDOM");
+  }
+
 
 };

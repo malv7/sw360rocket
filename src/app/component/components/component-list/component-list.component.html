@@ -24,9 +24,16 @@
 
 <div fxLayout="row" fxLayoutGap="1em" [ngStyle]="{ 'margin-bottom': '1em' }">
   <sw-search-filter></sw-search-filter>
-  <sw-action-buttons [hasAdd]="true" [hasFossology]="true" [addAction]="addAction">
-    <sw-action-button></sw-action-button>
-  </sw-action-buttons>
+  <div>
+    <sw-action-button [callback]="randomAction" zero="true">
+      <i class="icon add"></i><span>ZERO</span></sw-action-button>
+    <sw-action-button [callback]="randomAction" one="true">
+      <i class="icon add"></i><span>ONE</span>
+    </sw-action-button>
+    <sw-action-button [callback]="randomAction" many="true">
+      <i class="icon add"></i><span>MANY</span>
+    </sw-action-button>
+  </div>
 </div>
 
 <sw-generic-table [tableHeader]="tableHeader" [tableBody]="tableBody"></sw-generic-table>

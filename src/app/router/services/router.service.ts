@@ -48,7 +48,7 @@ export class RouterService {
       // it must be a ressource list or main navigation page like home, about, ...
       case 1: {
         const isList = isRouteSegmentList(route[0]);
-        console.log("einser")
+        // console.log("einser")
         if (isList) {
           const type = route[0];
           routeData.ressourceType = type;
