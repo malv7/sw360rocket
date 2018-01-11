@@ -31,6 +31,7 @@ import { SwRouterModule } from './router/sw-router.module';
 
 // Data
 import { ModelModule } from './state/model.module';
+import { TableEffects } from './shared/state/table/table.effects';
 
 export interface RouterStateUrl {
   url: string;
@@ -69,26 +70,27 @@ export const routerReducers: ActionReducerMap<State> = {
   ],
   imports: [
     BrowserModule,
-    
+
     // !!! Don't register modules that register store features
     // !!! before the store got initialized
 
     // Store
     StoreModule.forRoot(routerReducer),
     EffectsModule.forRoot([
-      RouterEffects
+			RouterEffects,
+			TableEffects
     ]),
     StoreRouterConnectingModule,
     StoreDevtoolsModule.instrument({
       maxAge: 25 // retains only last n states.
     }),
-    
+
     // Router
     SwRouterModule,
-    
+
     // Layout
     StructureModule,
-    
+
     // Data
     ModelModule,
 

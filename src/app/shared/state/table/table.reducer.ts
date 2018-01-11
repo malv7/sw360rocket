@@ -74,8 +74,9 @@ export function tableReducer(state = initialState, action: TableActions.All): St
 		}
 
 		case TableActions.SET_PAGE: {
-      state.pagination.currentPage = action.pageNumber;
-      return state;      
+			return { ...state, pagination:{	currentPage: action.pageNumber,
+				elementsPerPage: state.pagination.elementsPerPage,
+				totalElementsAmount: state.pagination.totalElementsAmount} };
 		}
 
 		case TableActions.SET_TOTAL_ELEMENTS_AMOUNT: {
