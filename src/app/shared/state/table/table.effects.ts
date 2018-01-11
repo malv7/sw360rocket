@@ -12,15 +12,15 @@ import * as fromTable from './table.reducer';
 @Injectable()
 export class TableEffects {
 
-	@Effect({dispatch:false})
-	changePage$ = this.actions$.ofType(TableActions.CHANGE_PAGE)
-		.map((action: TableActions.ChangePage) => action.pageNumber)
-		.map(pageNumber => {
-			if (this.evaluatePageNumber(pageNumber)) {
-				return new TableActions.SetPage(pageNumber);
-			}
+	// @Effect({dispatch:false})
+	// changePage$ = this.actions$.ofType(TableActions.CHANGE_PAGE)
+	// 	.map((action: TableActions.ChangePage) => action.pageNumber)
+	// 	.map(pageNumber => {
+	// 		if (this.evaluatePageNumber(pageNumber)) {
+	// 			return new TableActions.SetPage(pageNumber);
+	// 		}
 
-		})
+	// 	})
 	// .do(pageNumber => null /* network */ );
 
 	constructor(

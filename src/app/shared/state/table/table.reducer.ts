@@ -5,26 +5,29 @@ interface SelectedElements {
   [id: string]: boolean;
 }
 
-export interface Pagination{
-	currentPage: number;
-	elementsPerPage: number;
-	totalElementsAmount: number;
+export interface Pagination {
+  currentPage: number;
+  elementsPerPage: number;
+  totalElementsAmount: number;
 }
 
 export interface State {
   selectedElements: SelectedElements;
-	selectedElementsCount: number;
-	pagination: Pagination;
+  selectedElementsCount: number;
+  pagination: Pagination;
 }
 
 const initialState: State = {
-  selectedElements: { },
-	selectedElementsCount: 0,
-	pagination: {currentPage: 1,
-		elementsPerPage: 10,
-		totalElementsAmount: 101}
+  selectedElements: {},
+  selectedElementsCount: 0,
+  pagination: {
+    currentPage: 1,
+    elementsPerPage: 10,
+    totalElementsAmount: 101
+  }
 };
 
+// TODO: check all state returns because of possible megre conflicts
 export function tableReducer(state = initialState, action: TableActions.All): State {
 
   switch (action.type) {
@@ -55,44 +58,52 @@ export function tableReducer(state = initialState, action: TableActions.All): St
 
     case TableActions.CLEAR: {
       return { ...state, selectedElements: {}, selectedElementsCount: 0 };
-		}
+    }
 
-		case TableActions.NEXT_PAGE: {
-			let offset = state.pagination.elementsPerPage*state.pagination.currentPage;
-			if(offset<state.pagination.totalElementsAmount){
-				state.pagination.currentPage++;
-			}
-			return state;
-		}
+    case TableActions.NEXT_PAGE: {
+      let offset = state.pagination.elementsPerPage * state.pagination.currentPage;
+      if (offset < state.pagination.totalElementsAmount) {
+        state.pagination.currentPage++;
+      }
+      return state;
+    }
 
-		case TableActions.PREVIOUS_PAGE: {
-			if(state.pagination.currentPage>1){
-				state.pagination.currentPage--;
-			}
+    case TableActions.PREVIOUS_PAGE: {
+      if (state.pagination.currentPage > 1) {
+        state.pagination.currentPage--;
+      }
 
-			return state;
-		}
+      return state;
+    }
 
-		case TableActions.SET_PAGE: {
-			return { ...state, pagination:{	currentPage: action.pageNumber,
-				elementsPerPage: state.pagination.elementsPerPage,
-				totalElementsAmount: state.pagination.totalElementsAmount} };
-		}
+    case TableActions.SET_PAGE: {
+      return {
+        ...state,
+        pagination: {
+          currentPage: action.pageNumber,
+          elementsPerPage: state.pagination.elementsPerPage,
+          totalElementsAmount: state.pagination.totalElementsAmount
+        }
+      };
+    }
 
-		case TableActions.SET_TOTAL_ELEMENTS_AMOUNT: {
-			if(action.totalElementsAmount > 0){
-			state.pagination.totalElementsAmount = action.totalElementsAmount;
-			}
-			return state;
-		}
+    case TableActions.SET_TOTAL_ELEMENTS_AMOUNT: {
+      if (action.totalElementsAmount > 0) {
+        state.pagination.totalElementsAmount = action.totalElementsAmount;
+      }
+      return state;
+    }
 
-		case TableActions.SET_ELEMENTS_PER_PAGE: {
-			if(action.elementsPerPage >0) {
-				state.pagination.elementsPerPage = action.elementsPerPage;
-				state.pagination.currentPage = 1;
-			}
-			return state;
-		}
+    case TableActions.SET_ELEMENTS_PER_PAGE: {
+      return {
+        ...state,
+        pagination: {
+          currentPage: 1,
+          elementsPerPage: action.elementsPerPage,
+          totalElementsAmount: state.pagination.totalElementsAmount
+        }
+      }
+    }
 
 
     default: return state;

@@ -16,8 +16,8 @@
 		</a>
 	</div>
 	<div class="ui input">
-		<input type="number" #elementsPerPageInput [(ngModel)]="elementsPerPage">
-		<button class="ui button basic icon" (click)="setElementsPerPage(elementsPerPageInput.value)">
+		<input type="number" [(ngModel)]="elementsPerPage">
+		<button class="ui button basic icon" (click)="setElementsPerPage()">
 			<i class="refresh icon"></i>
 		</button>
 	</div>

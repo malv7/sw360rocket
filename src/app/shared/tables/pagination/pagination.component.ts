@@ -7,81 +7,96 @@ import * as fromTable from './../../state/table/table.reducer';
 import { Pagination } from "./../../state/table/table.reducer";
 import { Subscription } from "rxjs/Subscription";
 import { OnInit } from "@angular/core/src/metadata/lifecycle_hooks";
+import 'rxjs/add/operator/take';
+import 'rxjs/add/operator/map';
 
 @Component({
-	selector: 'sw-pagination',
-	templateUrl: './pagination.component.html'
+  selector: 'sw-pagination',
+  templateUrl: './pagination.component.html'
 })
 export class PaginationComponent implements OnInit {
 
-	readonly RANGE = 2;
-	paginationSub: Subscription;
-	pagination: Pagination;
-	currentButtons: number[];
-	lastPage: number;
-	elementsPerPage:number = 10;
+  readonly RANGE = 2;
+  paginationSub: Subscription;
+  pagination: Pagination;
+  currentButtons: number[];
+  lastPage: number;
+  elementsPerPage: number = 10;
 
-	constructor(private store: Store<fromRoot.State>) {
-	}
+  constructor(private store: Store<fromRoot.State>) { }
 
-	ngOnInit() {
-		//this.setElementsPerPage(this.elementsPerPage);//TODO: Set default here?
-		this.paginationSub = this.store.select(fromTable.selectPagination).subscribe(paginationData => {
-			this.pagination = paginationData;
-			this.lastPage = Math.ceil(paginationData.totalElementsAmount / paginationData.elementsPerPage);
-			this.updateCurrentButtons();
-		});
-	}
+  ngOnInit() {
+    this.store.dispatch(new TableActions.SetSetElementsPerPage(this.elementsPerPage)); // TODO: init here?
+    this.paginationSub = this.store.select(fromTable.selectPagination).subscribe(paginationData => {
+      this.pagination = paginationData;
+      this.lastPage = Math.ceil(paginationData.totalElementsAmount / paginationData.elementsPerPage);
+      this.updateCurrentButtons();
+    });
+  }
 
-	updateCurrentButtons(): void {
-		const currentButtonsArray: number[] = [];
+  updateCurrentButtons(): void {
+    
+    // TODO: update amount of page numbers depending on
+    // elementsPerPage and totalElementsAmount
 
-		if (this.pagination.currentPage <= this.RANGE) {
-			for (let i = 1; i <= 1 + 2 * this.RANGE; i++) currentButtonsArray.push(i);
-		} else if (this.pagination.currentPage >= this.lastPage - this.RANGE) {
-			for (let i = this.lastPage - 2 * this.RANGE; i <= this.lastPage; i++) currentButtonsArray.push(i);
-		} else {
-			for (let i = -this.RANGE; i <= this.RANGE; i++)
-				currentButtonsArray.push(i + this.pagination.currentPage);
-		}
-		this.currentButtons = currentButtonsArray;
-	}
+    const currentButtonsArray: number[] = [];
 
-	setPage(pageNumber: number) {
-		if (pageNumber > 0 && pageNumber <= this.lastPage) {
-			this.store.dispatch(new TableActions.SetPage(pageNumber));
-		}
-	}
+    if (this.pagination.currentPage <= this.RANGE) {
+      for (let i = 1; i <= 1 + 2 * this.RANGE; i++) {
+        currentButtonsArray.push(i);
+      }
+    } else if (this.pagination.currentPage >= this.lastPage - this.RANGE) {
+      for (let i = this.lastPage - 2 * this.RANGE; i <= this.lastPage; i++) {
+        currentButtonsArray.push(i);
+      }
+    } else {
+      for (let i = -this.RANGE; i <= this.RANGE; i++) {
+        currentButtonsArray.push(i + this.pagination.currentPage);
+      }
+    }
+    this.currentButtons = currentButtonsArray;
+  }
 
-	setElementsPerPage(elementsPerPage: number) {
-		if(elementsPerPage<1) {
+  setPage(pageNumber: number) {
+    if (pageNumber > 0 && pageNumber <= this.lastPage)
+      this.store.dispatch(new TableActions.SetPage(pageNumber));
+  }
 
-		} else {
-			this.store.dispatch(new TableActions.SetSetElementsPerPage(elementsPerPage));
-		}
-		console.log("test",this.pagination.elementsPerPage);
-	}
+  setElementsPerPage() {
+    this.store.select(fromTable.selectPagination)
+      .take(1)
+      .map(pagination => pagination.elementsPerPage)
+      .subscribe(elementsPerPage => {
+        // elements per page cant get negative
+        if (this.elementsPerPage < 1) {
+          this.elementsPerPage = elementsPerPage;
+        } else {
+          // do not dispatch when new elementsPerPage is same as elementsPerPage in store
+          if (this.elementsPerPage !== elementsPerPage) {
+            this.store.dispatch(new TableActions.SetSetElementsPerPage(this.elementsPerPage));
+          }
+        }
+      });
+  }
 
-	nextPage():void{
-		this.setPage(this.pagination.currentPage+1);
-	}
+  nextPage(): void {
+    this.setPage(this.pagination.currentPage + 1);
+  }
 
-	previousPage():void{
-		this.setPage(this.pagination.currentPage-1);
-	}
+  previousPage(): void {
+    this.setPage(this.pagination.currentPage - 1);
+  }
 
-	goToLastPage():void{
-		this.setPage(this.lastPage);
-	}
+  goToLastPage(): void {
+    this.setPage(this.lastPage);
+  }
 
-	firstPage():void{
-		this.setPage(1);
-	}
+  firstPage(): void {
+    this.setPage(1);
+  }
 
-	evaluateElementsPerPageInput():void{
-	}
-	ngOnDestroy(): void {
-		if (this.paginationSub) this.paginationSub.unsubscribe();
-	}
+  ngOnDestroy(): void {
+    if (this.paginationSub) this.paginationSub.unsubscribe();
+  }
 
 }
