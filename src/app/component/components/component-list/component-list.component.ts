@@ -11,7 +11,6 @@ import * as RouterActions from './../../../router/state/router.actions';
 import { EmbeddedSW360Component } from './../../../state/models';
 
 // check
-import { Router, Routes } from '@angular/router';
 import { TableService } from '../../../shared/tables/services/table.service';
 
 @Component({
@@ -40,5 +39,9 @@ export class ComponentListComponent implements OnInit {
 
 	selectAll() {
 		this.tableService.selectAll(this.components);
-	}
-}
+  }
+  
+  addAction = () => this.store.dispatch(new RouterActions.Go({ path: ['components/create'] }));
+
+
+};

@@ -24,6 +24,7 @@ import { ReleaseTableBodyComponent } from './tables/generic-table/release-table/
 import { ProjectTableHeaderComponent } from './tables/generic-table/project-table/project-table-header.component';
 import { ProjectTableBodyComponent } from './tables/generic-table/project-table/project-table-body.component';
 import { TableSelectComponent } from './tables/table-select/table-select.component';
+import { ActionButtonComponent } from './components/action-buttons/action-button.component';
 
 @NgModule({
 	imports: [
@@ -49,6 +50,7 @@ import { TableSelectComponent } from './tables/table-select/table-select.compone
     ProjectTableHeaderComponent,
     ProjectTableBodyComponent,
     TableSelectComponent,
+    ActionButtonComponent
 	],
 	exports: [
 		// modules
@@ -69,7 +71,8 @@ import { TableSelectComponent } from './tables/table-select/table-select.compone
     ReleaseTableBodyComponent,
     ProjectTableHeaderComponent,
 		ProjectTableBodyComponent,
-		TableSelectComponent
+    TableSelectComponent,
+    ActionButtonComponent
   ],
   providers: [TableService]
 })

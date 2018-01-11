@@ -1,34 +1,16 @@
-<div fxLayout="row" fxLayoutGap="1em" [ngStyle]="{ 'margin-bottom': '1em' }">
-  <sw-search-filter></sw-search-filter>
-  <sw-action-buttons [hasAdd]="true" [hasEdit]="true" [hasRemove]="true" [hasFossology]="true" [hasClone]="true"></sw-action-buttons>
-</div>
-
-<!-- DEBUG -->
-<div *ngIf="debug" [ngStyle]="{ 'font-size': '1.3em', 'font-weight': 'bold', 'margin-bottom': '0.5em' }">{{ type }}</div>
-<!-- DEBUG -->
-<div fxLayout="row" fxLayoutAlign="space-between center">
-  <div fxLayout="row" fxLayoutGap="0.5em" [ngStyle]="{ 'margin-bottom': '0.5em' }">
-    <button class="mini ui basic button" (click)="setTableSize('small')">Small</button>
-    <button class="mini ui basic button" (click)="setTableSize('normal')">Normal</button>
-    <button class="mini ui basic button" (click)="setTableSize('large')">Large</button>
-  </div>
-  <!-- DEBUG -->
-  <div>
-    <span class="selected-elements-count-label">Selected:</span>
-    <span class="selected-elements-count">{{ selectedElementsCount | async }}</span>
-  </div>
-</div>
-
-<!-- TODO: Put ng-containers into single components but keep semantic table styling up somehow -->
-<table class="ui striped selectable celled table unstackable" [ngClass]="tableSize">
+<table class="ui striped selectable celled table unstackable">
   <thead>
     <tr>
       <ng-container *ngTemplateOutlet="tableHeader"></ng-container>
     </tr>
   </thead>
   <tbody>
-	<ng-container *ngTemplateOutlet="tableBody"></ng-container>
+    <ng-container *ngTemplateOutlet="tableBody"></ng-container>
   </tbody>
+  <!-- pagination -->
 </table>
 
-<!-- TODO: pagination -->
+<div [ngStyle]="{ 'margin-top': '0.5em', 'margin-left': '0.2em' }">
+  <span class="selected-elements-count-label">Selected:</span>
+  <span class="selected-elements-count">{{ selectedElementsCount | async }}</span>
+</div>

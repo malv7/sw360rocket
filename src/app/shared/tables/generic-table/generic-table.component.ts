@@ -6,19 +6,8 @@ import 'rxjs/add/observable/interval';
 
 import { Store } from "@ngrx/store";
 import * as TableActions from './../../state/table/table.actions';
-import * as RouterActions from './../../../router/state/router.actions';
 import * as fromRoot from './../../../reducers';
 import * as fromTable from './../../state/table/table.reducer';
-import * as fromModel from './../../../state/model.reducer';
-
-import {
-  EmbeddedRelease,
-  EmbeddedProject,
-  EmbeddedResource,
-  TableTypes,
-  EmbeddedSW360Component,
-  EmbeddedRessourceX
-} from "../../../state/models";
 
 @Component({
   selector: 'sw-generic-table',
@@ -32,67 +21,23 @@ import {
   `]
 })
 export class GenericTableComponent implements OnInit, OnDestroy {
-	@Input('tableHeader') tableHeader: TemplateRef<Component>;
+
+  @Input('tableHeader') tableHeader: TemplateRef<Component>;
 	@Input('tableBody') tableBody: TemplateRef<Component>;
 
-  // Selection state
   selectedElementsCount: Observable<number>;
-
-  // Table size affects styling
-  tableSize: string = '';
 
   @Input() type: string; // TableTypes
   @Input() debug: boolean = false;
 
-  constructor(private store: Store<fromRoot.State>) {
-    this.selectedElementsCount = this.store.select(fromTable.selectSelectedListElementsCount);
-  }
-
-  ///// Lifecycle
-  ///////////////
+  constructor(private store: Store<fromRoot.State>) { }
+  
   ngOnInit(): void {
+    this.selectedElementsCount = this.store.select(fromTable.selectSelectedListElementsCount);
   }
 
   ngOnDestroy(): void {
     this.store.dispatch(new TableActions.ClearTableSelections());
   }
 
-  ///// Style
-  ///////////
-  setTableSize(size: string) {
-    this.tableSize = size; // small, normal, large
-    // TODO: Action
-  }
 }
-
-// TODO:
-////// Buttons
-//////////////
-
-// Request the resolved selflink data,
-// derive "createFormData"
-// route to createResource
-// TODO: Distinction between edit / clone?
-// const clone = () => ;
-// const edit = () => ;
-
-// Route to add ressource
-// Release cases:
-// 1. Components:
-//    Route to new release
-// 2. Projects
-//    Route to "find releases or projects"
-// const add = () => ;
-
-// Remove
-// Dispatch ressource deletion
-// Rerequest current route data
-// Release cases:
-// 1. Components:
-//    Delete the release
-// 2. Projects:
-//    Remove release from particular project
-// const delete = () => ;
-
-// Release only:
-// const fossology = () =>;
