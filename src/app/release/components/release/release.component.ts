@@ -20,7 +20,10 @@ import * as fromModel from './../../../state/model.reducer';
 					<router-outlet></router-outlet>
 				</div>
 				<!-- infobar -->
-				<sw-overview fxFlex="23em" fxHide.lt-lg="true"></sw-overview>
+				<sw-overview fxFlex="23em" fxHide.lt-lg="true">
+					<sw-release-overview></sw-release-overview>
+					<sw-vulnerability-widget></sw-vulnerability-widget>
+				</sw-overview>
 			</div>
     `
 })

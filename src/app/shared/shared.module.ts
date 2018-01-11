@@ -15,7 +15,6 @@ import { SearchFilterComponent } from './components/search-filter/search-filter.
 import { ReleaseTableComponent } from './tables/release-table/release-table.component';
 import { FormsModule } from '@angular/forms';
 import { TableService } from './tables/services/table.service';
-import { ReleasesWidgetComponent } from './components/overview/releases-widget/releases-widget.component';
 import { GenericFormElementComponent } from './components/forms/generic-form-element/generic-form-element.component';
 import { PaginationComponent } from './tables/pagination/pagination.component';
 import { GenericTableComponent } from './tables/generic-table/generic-table.component';
@@ -30,7 +29,7 @@ import { ActionButtonComponent } from './components/action-buttons/action-button
 	imports: [
 		CommonModule,
 		FlexLayoutModule,
-    RouterModule,
+		RouterModule,
     StoreModule.forFeature('table', tableReducer),
     FormsModule
 	],
@@ -41,7 +40,6 @@ import { ActionButtonComponent } from './components/action-buttons/action-button
     ActionButtonsComponent,
     SearchFilterComponent,
     ReleaseTableComponent,
-    ReleasesWidgetComponent,
     GenericFormElementComponent,
     PaginationComponent,
     GenericTableComponent,

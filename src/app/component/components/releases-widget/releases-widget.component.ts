@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import * as fromRoot from './../../../../reducers';
+import * as fromRoot from './../../../reducers';
 import { Router, Routes } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
