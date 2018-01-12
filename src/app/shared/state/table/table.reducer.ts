@@ -21,7 +21,7 @@ const initialState: State = {
   pagination: {
     currentPage: 1,
     elementsPerPage: 10,
-    totalElementsAmount: 101
+    totalElementsAmount: 500
   }
 };
 

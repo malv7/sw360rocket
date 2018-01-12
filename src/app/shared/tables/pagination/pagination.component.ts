@@ -35,7 +35,7 @@ export class PaginationComponent implements OnInit {
   }
 
   updateCurrentButtons(): void {
-    
+
     // TODO: update amount of page numbers depending on
     // elementsPerPage and totalElementsAmount
 
@@ -43,11 +43,11 @@ export class PaginationComponent implements OnInit {
 
     if (this.pagination.currentPage <= this.RANGE) {
       for (let i = 1; i <= 1 + 2 * this.RANGE; i++) {
-        currentButtonsArray.push(i);
+        if(i<=this.lastPage) currentButtonsArray.push(i);
       }
     } else if (this.pagination.currentPage >= this.lastPage - this.RANGE) {
       for (let i = this.lastPage - 2 * this.RANGE; i <= this.lastPage; i++) {
-        currentButtonsArray.push(i);
+        if(i>0) currentButtonsArray.push(i);
       }
     } else {
       for (let i = -this.RANGE; i <= this.RANGE; i++) {
