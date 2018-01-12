@@ -1,5 +1,4 @@
 import { FormValidationService } from './form-validation.service';
-import { PopUpService } from './pop-up.service';
 import { COMPONENT_TYPES, ComponentTypes } from './../../state/component.models';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators, AbstractControl } from '@angular/forms';
@@ -7,7 +6,7 @@ import { CustomValidators } from 'ng2-validation';
 
 import 'rxjs/add/operator/take';
 import { Store } from '@ngrx/store';
-import * as fromRoot from './../../../reducers';
+import { State } from './../../../state';
 import * as RouterActions from './../../../router/state/router.actions';
 import * as StructureActions from './../../../structure/state/structure.actions';
 
@@ -63,9 +62,8 @@ export class ComponentCreateComponent implements OnInit {
   formValid: boolean = false;
 
   constructor(
-    public popUpService: PopUpService,
     public formValidationService: FormValidationService,
-    private store: Store<fromRoot.State>) { }
+    private store: Store<State>) { }
 
   ngOnInit() {
     this.store.dispatch(new StructureActions.SetTitle('Create Component'));

@@ -1,5 +1,6 @@
 import * as RouterActions from './router.actions';
 import * as RouterApi from './../router.api';
+import * as fromRoot from './../../state';
 
 export interface BreadcrumbSegment {
   path: string;
@@ -40,4 +41,12 @@ export function routerReducer(state = initialState, action: RouterActions.Action
     default: return state;
   }
 
+}
+
+export function selectCurrentRoute(state: fromRoot.State) {
+  return state.router.currentRoute;
+}
+
+export function selectBreadcrumbSegments(state: fromRoot.State) {
+  return state.router.currentRoute.breadCrumbSegments;
 }

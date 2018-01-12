@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import * as fromRoot from './../../../reducers';
+import { State } from './../../../state';
 import * as RouterActions from './../../../router/state/router.actions';
 
 @Component({
@@ -10,7 +10,7 @@ import * as RouterActions from './../../../router/state/router.actions';
 })
 export class BrandComponent implements OnInit {
 
-  constructor(private store: Store<fromRoot.State>) { }
+  constructor(private store: Store<State>) { }
 
   ngOnInit() {
   }

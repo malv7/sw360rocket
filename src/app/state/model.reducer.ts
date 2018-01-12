@@ -1,6 +1,6 @@
 import * as Models from './models';
 import * as ModelActions from './model.actions';
-import * as fromRoot from './../reducers';
+import * as fromRoot from './../state';
 
 interface UserMap {
   [key: string]: Models.User;

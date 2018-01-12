@@ -1,5 +1,5 @@
 import * as StructureActions from './structure.actions';
-import * as fromRoot from './../../reducers';
+import * as fromRoot from './../../state';
 
 export interface State {
   title: string;

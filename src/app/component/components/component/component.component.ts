@@ -2,7 +2,7 @@ import { RouteConfiguration } from './../../../router/state/router.models';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
-import * as fromRoot from './../../../reducers';
+import { State } from './../../../state';
 import { ComponentDataLayout } from '../../state/component.models';
 import { Subscription } from 'rxjs/Subscription';
 import * as fromModel from './../../../state/model.reducer';
@@ -22,7 +22,7 @@ export class ComponentComponent implements OnInit {
   ];
 
   titleSub: Subscription;
-	constructor(private store: Store<fromRoot.State>) { }
+	constructor(private store: Store<State>) { }
 
 	ngOnInit() {
     this.titleSub = this.store.select(fromModel.selectComponent).subscribe(component => {

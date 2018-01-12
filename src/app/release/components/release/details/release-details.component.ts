@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import * as fromModel from './../../../../state/model.reducer';
-import * as fromRoot from './../../../../reducers';
+import { State } from './../../../../state';
 import { Store } from "@ngrx/store";
 import { Observable } from "rxjs/Observable";
 import { Release } from "../../../../state/models";
@@ -17,7 +17,7 @@ export class ReleaseDetailsComponent {
   release: Observable<Release>;
   titleSub: Subscription;
 
-  constructor(private store: Store<fromRoot.State>) {
+  constructor(private store: Store<State>) {
     this.release = store.select(fromModel.selectRelease);
     this.titleSub = this.release.subscribe(release => {
       if(release.name) this.store.dispatch(new StructureActions.SetTitle(release.name));

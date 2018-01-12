@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 
 // Store
 import { Store } from '@ngrx/store';
-import * as fromRoot from './../../../reducers';
+import { State } from './../../../state';
 import * as fromModel from './../../../state/model.reducer';
 import * as StructureActions from './../../../structure/state/structure.actions';
 import * as RouterActions from './../../../router/state/router.actions';
@@ -22,7 +22,7 @@ export class ComponentListComponent implements OnInit {
 
   components: Observable<EmbeddedSW360Component[]>;
 
-  constructor(private store: Store<fromRoot.State>, private tableService: TableService) { }
+  constructor(private store: Store<State>, private tableService: TableService) { }
 
 	ngOnInit() {
     this.store.dispatch(new StructureActions.SetTitle('Components'));

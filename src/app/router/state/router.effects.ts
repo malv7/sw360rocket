@@ -10,9 +10,9 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 import { RouterService } from '../services/router.service';
-import * as fromRoot from './../../reducers';
+import { State } from './../../state';
 import { Store } from '@ngrx/store';
-import * as TableActions from './../../shared/state/table/table.actions';
+import * as TableActions from './../../shared/tables/state/table.actions';
 
 // Define feature routes to reuse them in a single place.
 const ROUTES = [
@@ -45,6 +45,6 @@ export class RouterEffects {
     private router: Router,
     private location: Location,
     private routerService: RouterService,
-    private store: Store<fromRoot.State>
+    private store: Store<State>
   ) { }
 }

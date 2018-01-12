@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef, AfterViewChecked } from "@angular/core";
 import { Observable } from "rxjs/Observable";
 import { Store } from "@ngrx/store";
-import * as fromRoot from './../../../../reducers';
+import { State } from './../../../../state';
 import * as fromStructure from './../../../state/structure.reducer';
 
 @Component({
@@ -16,7 +16,7 @@ import * as fromStructure from './../../../state/structure.reducer';
 export class ContentTitleComponent implements AfterViewChecked {
 
   title: string;
-  constructor(private store: Store<fromRoot.State>, private cd: ChangeDetectorRef) { }
+  constructor(private store: Store<State>, private cd: ChangeDetectorRef) { }
 
   ngAfterViewChecked() {
     // https://blog.angularindepth.com/everything-you-need-to-know-about-the-expressionchangedafterithasbeencheckederror-error-e3fd9ce7dbb4

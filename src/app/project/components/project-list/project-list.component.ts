@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { ComponentDataLayout } from "../../../component/state/component.models";
 import { Observable } from "rxjs/Observable";
-import * as fromRoot from './../../../reducers';
+import { State } from './../../../state';
 import { Go } from './../../../router/state/router.actions';
 import { EmbeddedProject } from "../../state/project.models";
 import * as ProjectActions from './../../state/project.actions';
@@ -26,7 +26,7 @@ export class ProjectListComponent {
   projects: Observable<EmbeddedProject[]>;
   releases: Observable<EmbeddedRelease[]>;
 
-  constructor(private store: Store<fromRoot.State>) {
+  constructor(private store: Store<State>) {
     this.store.dispatch(new StructureActions.SetTitle('Projects'));
     this.store.dispatch(new ProjectActions.GetMockedProjects());
     this.projects = this.store.select(fromModel.selectProjects);

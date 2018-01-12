@@ -4,7 +4,9 @@ import { Routes, RouterModule } from "@angular/router";
 
 // Store
 import { StoreModule } from "@ngrx/store";
+import { EffectsModule } from "@ngrx/effects";
 import { routerReducer } from "./state/router.reducer";
+import { RouterEffects } from "./state/router.effects";
 
 // Component
 import { ComponentComponent } from "../component/components/component/component.component";
@@ -20,83 +22,81 @@ import { ProjectListComponent } from './../project/components/project-list/proje
 // Release
 import { ReleaseDetailsComponent } from './../release/components/release/details/release-details.component';
 import { ReleaseComponent } from './../release/components/release/release.component';
-import { ReleaseTableComponent } from './../shared/tables/release-table/release-table.component';
-
-import { RouterService } from "./services/router.service";
-import { NotImplementedYetComponent } from "../shared/components/not-implemented-yet/not-implemented-yet.component";
 import { ReleaseCreateComponent } from "../release/components/release-create/release-create.component";
 
-export const DETAILS = 'details';
+// Helpers
+import { NotImplementedYetComponent } from "../shared/global/components/not-implemented-yet/not-implemented-yet.component";
+
+// Router
+import { RouterService } from "./services/router.service";
+import {
+  PROJECTS,
+  COMPONENTS,
+  RELEASES,
+  VULNERABILITIES,
+  ATTACHMENTS,
+  LICENSES,
+  VENDORS,
+  USERS,
+  ECC,
+  DETAILS,
+  HOME,
+  ABOUT,
+  CREATE,
+  ID
+} from "./router.api";
+
+// exists in context of project and component
+const releases = {
+  path: RELEASES,
+  component: NotImplementedYetComponent,
+  children: [
+    { path: '', redirectTo: DETAILS, pathMatch: 'full' },
+    { path: DETAILS, component: ReleaseDetailsComponent },
+    { path: ATTACHMENTS, component: NotImplementedYetComponent },
+    { path: VULNERABILITIES, component: NotImplementedYetComponent },
+    { path: ECC, component: NotImplementedYetComponent }
+  ]
+};
 
 const routes: Routes = [
   {
-    path: 'releases/:id',
-    component: ReleaseComponent,
-    children: [
-      { path: '', redirectTo: DETAILS, pathMatch: 'full' },
-      { path: DETAILS, component: ReleaseDetailsComponent },
-      { path: 'attachments', component: NotImplementedYetComponent },
-      { path: 'vulnerabilities', component: NotImplementedYetComponent },
-      { path: 'ecc', component: NotImplementedYetComponent }
-    ]
-  },
-  {
-    path: 'projects',
+    path: PROJECTS,
     component: ProjectListComponent,
   },
   {
-    path: 'projects/:id',
+    path: PROJECTS + ID,
     component: ProjectComponent,
     children: [
-      { path: '', redirectTo: 'details', pathMatch: 'full' },
-      { path: 'details', component: ProjectDetailsComponent },
-      { path: 'releases', component: ReleaseTableComponent },
-      { path: 'releases/create', component: ReleaseCreateComponent },
-      { path: 'attachments', component: NotImplementedYetComponent }
+      { path: '', redirectTo: DETAILS, pathMatch: 'full' },
+      { path: DETAILS, component: ProjectDetailsComponent },
+      { path: ATTACHMENTS, component: NotImplementedYetComponent },
+      { path: RELEASES + CREATE, component: ReleaseCreateComponent },
+      releases
     ]
   },
   {
-    path: 'components',
+    path: COMPONENTS,
     component: ComponentListComponent,
   },
   {
-    path: 'components/create',
+    path: COMPONENTS + CREATE,
     component: ComponentCreateComponent,
   },
   {
-    path: 'components/:id',
+    path: COMPONENTS + ID,
     component: ComponentComponent,
     children: [
-      { path: '', redirectTo: 'details', pathMatch: 'full' },
-      { path: 'details', component: ComponentDetailsComponent },
-      { path: 'releases', component: ReleaseTableComponent },
-      { path: 'vulnerabilities', component: NotImplementedYetComponent },
-      { path: 'attachments', component: NotImplementedYetComponent }
+      { path: '', redirectTo: DETAILS, pathMatch: 'full' },
+      { path: DETAILS, component: ComponentDetailsComponent },
+      { path: ATTACHMENTS, component: NotImplementedYetComponent },
+      { path: RELEASES + CREATE, component: ReleaseCreateComponent },
+      releases
     ]
   },
   {
-    path: 'licenses',
-    component: NotImplementedYetComponent
-  },
-  {
-    path: 'licenses/:id',
-    component: NotImplementedYetComponent
-  },
-  {
-    path: 'ecc',
-    component: NotImplementedYetComponent
-  },
-  {
-    path: 'vulnerabilities',
-    component: NotImplementedYetComponent
-  },
-  {
-    path: 'about',
-    component: NotImplementedYetComponent
-  },
-  {
     path: '',
-    component: NotImplementedYetComponent // TODO: Welcome page
+    component: NotImplementedYetComponent // TODO: Home
   }
   // TODO 404 not found
 ];
@@ -104,9 +104,10 @@ const routes: Routes = [
 @NgModule({
   imports: [
     RouterModule.forRoot(routes),
-    StoreModule.forFeature('customRouter', routerReducer)
+    StoreModule.forFeature('router', routerReducer),
+    EffectsModule.forFeature([RouterEffects])
   ],
-	exports: [ RouterModule ],
+  exports: [RouterModule],
   providers: [
     RouterService
   ]

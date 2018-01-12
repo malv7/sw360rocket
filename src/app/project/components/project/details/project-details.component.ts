@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { Project } from "../../../../state/models";
 import { Observable } from "rxjs/Observable";
-import * as fromRoot from './../../../../reducers';
+import { State } from './../../../../state';
 import * as fromModel from './../../../../state/model.reducer';
 
 @Component({
@@ -12,7 +12,7 @@ import * as fromModel from './../../../../state/model.reducer';
 export class ProjectDetailsComponent implements OnInit {
 
   project: Observable<Project>;
-  constructor(private store: Store<fromRoot.State>) { }
+  constructor(private store: Store<State>) { }
 
   ngOnInit() {
     this.project = this.store.select(fromModel.selectProject);

@@ -1,8 +1,6 @@
 import { RouteData } from "./state/router.reducer";
 
-/**
- * Possible routes
- */
+// First class segments
 export const PROJECTS = 'projects';
 export const COMPONENTS = 'components';
 export const RELEASES = 'releases';
@@ -15,6 +13,10 @@ export const ECC = 'ecc';
 export const DETAILS = 'details';
 export const HOME = 'home';
 export const ABOUT = 'about';
+
+// Secondary class segments
+export const CREATE = '/create';
+export const ID = '/:id';
 
 export enum RouteLists {
   projects = 'projects',

@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import * as ModelActions from './model.actions';
 import { Store } from '@ngrx/store';
-import * as fromRoot from './../reducers';
+import { State } from './../state';
 import * as fromModel from './model.reducer';
 
 // Resources
@@ -793,7 +793,7 @@ export interface License extends EmbeddedLicense {
 @Injectable()
 export class ModelService {
 
-  constructor(private store: Store<fromRoot.State>) {
+  constructor(private store: Store<State>) {
 
     // Users
     const usersResponse = getUsers();

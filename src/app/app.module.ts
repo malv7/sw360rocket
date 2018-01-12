@@ -12,13 +12,9 @@ import { StoreModule, ActionReducerMap } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import {
   StoreRouterConnectingModule,
-  routerReducer,
-  RouterReducerState,
   RouterStateSerializer
 } from '@ngrx/router-store';
 import { EffectsModule } from '@ngrx/effects';
-import { reducers } from './reducers';
-import { RouterEffects } from './router/state/router.effects';
 
 // Features
 import { ComponentModule } from './component/component.module';
@@ -31,16 +27,11 @@ import { SwRouterModule } from './router/sw-router.module';
 
 // Data
 import { ModelModule } from './state/model.module';
-import { TableEffects } from './shared/state/table/table.effects';
 
 export interface RouterStateUrl {
   url: string;
   params: Params;
   queryParams: Params;
-}
-
-export interface State {
-  routerReducer: RouterReducerState<RouterStateUrl>;
 }
 
 export class CustomSerializer implements RouterStateSerializer<RouterStateUrl> {
@@ -60,10 +51,6 @@ export class CustomSerializer implements RouterStateSerializer<RouterStateUrl> {
   }
 }
 
-export const routerReducers: ActionReducerMap<State> = {
-  routerReducer: routerReducer
-};
-
 @NgModule({
   declarations: [
     AppComponent
@@ -71,15 +58,12 @@ export const routerReducers: ActionReducerMap<State> = {
   imports: [
     BrowserModule,
 
-    // !!! Don't register modules that register store features
-    // !!! before the store got initialized
+    // !!! Don't register modules that register store features !!!
+    // !!! before the store got initialized !!!
 
     // Store
-    StoreModule.forRoot(routerReducer),
-    EffectsModule.forRoot([
-			RouterEffects,
-			TableEffects
-    ]),
+    StoreModule.forRoot({}),
+    EffectsModule.forRoot([]),
     StoreRouterConnectingModule,
     StoreDevtoolsModule.instrument({
       maxAge: 25 // retains only last n states.

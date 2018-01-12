@@ -15,11 +15,8 @@ import { ComponentDetailsComponent } from './components/component/details/compon
 import { ComponentCreateComponent } from './components/component-create/component-create.component';
 
 // TODO: check
-import { TableSelectService } from '../shared/services/tables/table-select.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { PopUpService } from './components/component-create/pop-up.service';
 import { FormValidationService } from './components/component-create/form-validation.service';
-import { EmployeListComponent, FilterPipe } from './components/component-create/employe-list/employe-list.component';
 import { SuiModule, SuiRatingModule, SuiCheckboxModule } from 'ng2-semantic-ui';
 import { ComponentOverviewComponent } from './components/component-overview/component-overview.component';
 import { ReleasesWidgetComponent } from './components/releases-widget/releases-widget.component';
@@ -32,14 +29,12 @@ import { ReleasesWidgetComponent } from './components/releases-widget/releases-w
     ReactiveFormsModule,
     SuiModule, SuiRatingModule, SuiCheckboxModule
 	],
-	providers:[TableSelectService, PopUpService, FormValidationService],
+	providers:[FormValidationService],
   declarations: [
     ComponentListComponent,
     ComponentComponent,
     ComponentDetailsComponent,
     ComponentCreateComponent,
-    EmployeListComponent,
-    FilterPipe,
 		ComponentOverviewComponent,
 		ReleasesWidgetComponent
   ]

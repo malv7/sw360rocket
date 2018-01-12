@@ -4,26 +4,23 @@ import { RouterModule } from '@angular/router';
 
 // https://github.com/angular/flex-layout
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { TabNavigationComponent } from './components/tab-navigation/tab-navigation.component';
-import { OverviewComponent } from './components/overview/overview.component';
-import { NotImplementedYetComponent } from './components/not-implemented-yet/not-implemented-yet.component';
+import { TabNavigationComponent } from './details/components/tab-navigation/tab-navigation.component';
+import { OverviewComponent } from './details/components/overview/overview.component';
+import { NotImplementedYetComponent } from './global/components/not-implemented-yet/not-implemented-yet.component';
 import { StoreModule } from '@ngrx/store';
-import { tableReducer } from './state/table/table.reducer';
+import { tableReducer } from './tables/state/table.reducer';
 
-import { ActionButtonsComponent } from './components/action-buttons/action-buttons.component';
-import { SearchFilterComponent } from './components/search-filter/search-filter.component';
-import { ReleaseTableComponent } from './tables/release-table/release-table.component';
+import { ActionButtonsComponent } from './tables/components/action-buttons/action-buttons.component';
+import { SearchFilterComponent } from './tables/components/search-filter/search-filter.component';
 import { FormsModule } from '@angular/forms';
 import { TableService } from './tables/services/table.service';
-import { GenericFormElementComponent } from './components/forms/generic-form-element/generic-form-element.component';
-import { PaginationComponent } from './tables/pagination/pagination.component';
-import { GenericTableComponent } from './tables/generic-table/generic-table.component';
-import { ReleaseTableHeaderComponent } from './tables/generic-table/release-table/release-table-header.component';
-import { ReleaseTableBodyComponent } from './tables/generic-table/release-table/release-table-body.component';
-import { ProjectTableHeaderComponent } from './tables/generic-table/project-table/project-table-header.component';
-import { ProjectTableBodyComponent } from './tables/generic-table/project-table/project-table-body.component';
-import { TableSelectComponent } from './tables/table-select/table-select.component';
-import { ActionButtonComponent } from './components/action-buttons/action-button.component';
+import { GenericFormElementComponent } from './forms/components/generic-form-element/generic-form-element.component';
+import { PaginationComponent } from './tables/components/pagination/pagination.component';
+import { GenericTableComponent } from './tables/components/generic-table/generic-table.component';
+import { TableSelectComponent } from './tables/components/table-select/table-select.component';
+import { ActionButtonComponent } from './tables/components/action-buttons/action-button.component';
+import { EffectsModule } from '@ngrx/effects';
+import { TableEffects } from './tables/state/table.effects';
 
 @NgModule({
 	imports: [
@@ -31,6 +28,7 @@ import { ActionButtonComponent } from './components/action-buttons/action-button
 		FlexLayoutModule,
 		RouterModule,
     StoreModule.forFeature('table', tableReducer),
+    EffectsModule.forFeature([TableEffects]),
     FormsModule
 	],
 	declarations: [
@@ -39,14 +37,9 @@ import { ActionButtonComponent } from './components/action-buttons/action-button
     NotImplementedYetComponent,
     ActionButtonsComponent,
     SearchFilterComponent,
-    ReleaseTableComponent,
     GenericFormElementComponent,
     PaginationComponent,
     GenericTableComponent,
-    ReleaseTableHeaderComponent,
-    ReleaseTableBodyComponent,
-    ProjectTableHeaderComponent,
-    ProjectTableBodyComponent,
     TableSelectComponent,
     ActionButtonComponent
 	],
@@ -61,14 +54,8 @@ import { ActionButtonComponent } from './components/action-buttons/action-button
     OverviewComponent,
     ActionButtonsComponent,
     SearchFilterComponent,
-    ReleaseTableComponent,
     GenericFormElementComponent,
-    PaginationComponent,
     GenericTableComponent,
-    ReleaseTableHeaderComponent,
-    ReleaseTableBodyComponent,
-    ProjectTableHeaderComponent,
-		ProjectTableBodyComponent,
     TableSelectComponent,
     ActionButtonComponent
   ],

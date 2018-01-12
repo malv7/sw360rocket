@@ -1,16 +1,16 @@
 import { Injectable } from "@angular/core";
 import { Store } from "@ngrx/store";
-import * as TableActions from './../../state/table/table.actions';
+import * as TableActions from './../../tables/state/table.actions';
 import * as RouterActions from './../../../router/state/router.actions';
-import * as fromRoot from './../../../reducers';
+import { State } from './../../../state';
 import { Observable } from "rxjs/Observable";
 import { EmbeddedResource } from "../../../state/models";
-import * as fromTable from "../../state/table/table.reducer"
+import * as fromTable from "../../tables/state/table.reducer"
 
 @Injectable()
 export class TableService {
 
-	constructor(private store: Store<fromRoot.State>) { }
+	constructor(private store: Store<State>) { }
 
 	///// Routing
 	go(resource: EmbeddedResource) {

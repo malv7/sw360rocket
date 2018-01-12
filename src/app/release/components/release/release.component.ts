@@ -1,7 +1,7 @@
 import { RouteConfiguration } from './../../../router/state/router.models';
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { Store } from "@ngrx/store";
-import * as fromRoot from './../../../reducers';
+import { State } from './../../../state';
 import * as RouterActions from './../../../router/state/router.actions';
 import * as StructureActions from './../../../structure/state/structure.actions';
 import { Subscription } from 'rxjs/Subscription';
@@ -37,7 +37,7 @@ export class ReleaseComponent implements OnInit, OnDestroy {
     ];
 
     titleSub: Subscription;
-    constructor(private store: Store<fromRoot.State>) { }
+    constructor(private store: Store<State>) { }
 
     ngOnInit() {
       this.titleSub = this.store.select(fromModel.selectRelease).subscribe(release => {
