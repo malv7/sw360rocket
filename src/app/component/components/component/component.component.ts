@@ -20,7 +20,7 @@ export class ComponentComponent implements OnInit {
 		{ route: 'releases', title: 'Releases' },
     { route: 'attachments', title: 'Attachments' }
   ];
-  
+
   titleSub: Subscription;
 	constructor(private store: Store<fromRoot.State>) { }
 

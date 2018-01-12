@@ -1,10 +1,6 @@
 import * as TableActions from './table.actions';
 import * as fromRoot from './../../../reducers';
 
-interface SelectedElements {
-  [id: string]: boolean;
-}
-
 export interface Pagination {
   currentPage: number;
   elementsPerPage: number;
@@ -12,14 +8,16 @@ export interface Pagination {
 }
 
 export interface State {
-  selectedElements: SelectedElements;
-  selectedElementsCount: number;
-  pagination: Pagination;
+  selectedElements: string[];
+	selectedElementsCount: number;
+	areAllElementsSelected: boolean;
+	pagination: Pagination;
 }
 
 const initialState: State = {
-  selectedElements: {},
-  selectedElementsCount: 0,
+  selectedElements: [],
+	selectedElementsCount: 0,
+	areAllElementsSelected: false,
   pagination: {
     currentPage: 1,
     elementsPerPage: 10,
@@ -32,32 +30,38 @@ export function tableReducer(state = initialState, action: TableActions.All): St
 
   switch (action.type) {
 
-    // TODO: has a bug, that the selectSelectedList observable does not fire when this performed
-    // anyway, the store gets mutated
-    // Workarround: Select the list each time when an action should be performed and use take(1)
-    case TableActions.TOGGLE_ONE: {
-
-      let x = { ...state };
-
-      if (!x.selectedElements[action.id]) {
-        x.selectedElements[action.id] = true;
-      } else {
-        delete x.selectedElements[action.id];
-      }
-
-      x.selectedElementsCount = Object.keys(state.selectedElements).length;
-      return x;
-    }
-
-    case TableActions.ADD_MANY: {
-      state = { ...state, selectedElements: {} };
-      action.ids.forEach(id => state.selectedElements[id] = true);
-      state.selectedElementsCount = action.ids.length;
+    case TableActions.SELECT_ALL: {
+      const selectedElements = state.selectedElements;
+      action.ids.forEach(e => {
+        if (!selectedElements.includes(e)) selectedElements.push(e);
+			});
+			state.areAllElementsSelected = true;
+			state.selectedElements = selectedElements;
+			state.selectedElementsCount = selectedElements.length;
       return state;
     }
 
-    case TableActions.CLEAR: {
-      return { ...state, selectedElements: {}, selectedElementsCount: 0 };
+    case TableActions.CLEAR_TABLE_SELECTIONS: {
+      return {
+        ...state,
+        selectedElements: [],
+				selectedElementsCount: 0,
+				areAllElementsSelected: false
+      };
+    }
+
+    case TableActions.TOGGLE_TABLE_SELECTION: {
+      const selectedElements = state.selectedElements;
+      const index = selectedElements.indexOf(action.id, 0);
+      (index > -1)
+        ? selectedElements.splice(index, 1)
+        : selectedElements.push(action.id);
+
+      return {
+        ...state,
+        selectedElements: selectedElements,
+        selectedElementsCount: selectedElements.length
+      };
     }
 
     case TableActions.NEXT_PAGE: {
@@ -122,3 +126,7 @@ export function selectSelectedListElements(state: fromRoot.State) {
 export function selectSelectedListElementsCount(state: fromRoot.State) {
   return state.table.selectedElementsCount;
 }
+
+export const selectAreAllElementsSelected = (state: fromRoot.State) => {
+	return state.table.areAllElementsSelected;
+};

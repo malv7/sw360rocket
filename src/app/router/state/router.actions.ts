@@ -1,19 +1,23 @@
 import { Action } from '@ngrx/store';
 import { NavigationExtras } from '@angular/router';
-import { CurrentRouteData } from './router.reducer';
+import { RouteData } from './router.reducer';
 
 export const GO      = '[Router] Go';
 export const BACK    = '[Router] Back';
 export const FORWARD = '[Router] Forward';
-export const STORE_CURRENT_ROUTE_DATA = '[Router] Store current route data';
+export const UPDATE_CURRENT_ROUTE = '[Router] Update current route';
+export const UPDATE_LAST_ROUTE = '[Router] Update last route';
 
 export class Go implements Action {
   readonly type = GO;
 
   constructor(public payload: {
     path: any[];
-    query?: object;
-    extras?: NavigationExtras;
+    query?: object; // not used yet
+    extras?: NavigationExtras; // not used yet
+
+    // Ressource information
+    ressourceSelflink?: string;
   }) {}
 }
 
@@ -25,13 +29,18 @@ export class Forward implements Action {
   readonly type = FORWARD;
 }
 
-export class StoreCurrentRouteData implements Action {
-  readonly type = STORE_CURRENT_ROUTE_DATA;
-  constructor(public currentRouteData: CurrentRouteData) {}
+export class UpdateLastRoute implements Action {
+  readonly type = UPDATE_LAST_ROUTE;
+}
+
+export class UpdateCurrentRoute implements Action {
+  readonly type = UPDATE_CURRENT_ROUTE;
+  constructor(public currentRoute: RouteData) { }
 }
 
 export type Actions =
     Go
   | Back
   | Forward
-  | StoreCurrentRouteData;
+  | UpdateCurrentRoute
+  | UpdateLastRoute;

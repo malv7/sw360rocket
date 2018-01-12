@@ -21,6 +21,8 @@ import { PopUpService } from './components/component-create/pop-up.service';
 import { FormValidationService } from './components/component-create/form-validation.service';
 import { EmployeListComponent, FilterPipe } from './components/component-create/employe-list/employe-list.component';
 import { SuiModule, SuiRatingModule, SuiCheckboxModule } from 'ng2-semantic-ui';
+import { ComponentOverviewComponent } from './components/component-overview/component-overview.component';
+import { ReleasesWidgetComponent } from './components/releases-widget/releases-widget.component';
 
 @NgModule({
   imports: [
@@ -37,7 +39,9 @@ import { SuiModule, SuiRatingModule, SuiCheckboxModule } from 'ng2-semantic-ui';
     ComponentDetailsComponent,
     ComponentCreateComponent,
     EmployeListComponent,
-    FilterPipe
+    FilterPipe,
+		ComponentOverviewComponent,
+		ReleasesWidgetComponent
   ]
 })
 export class ComponentModule { }

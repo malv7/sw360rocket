@@ -23,16 +23,9 @@ const ROUTES = [
 @Injectable()
 export class RouterEffects {
 
-  lastRouteSubject: Subject<string>;
-  lastRoute: Observable<string>;
-
   @Effect({ dispatch: false })
   navigate$ = this.actions$.ofType(RouterActions.GO)
-    // .do(() => console.log("ROUTER GO"))
-    //.do(() => this.store.dispatch(new SelectListActions.Clear()))
-    .map((action: RouterActions.Go) => action.payload)
-    // .do(({ path, query: queryParams, extras}) => console.log('go to: ' + path))
-    .do(({ path, query: queryParams, extras}) => this.router.navigate(path, { queryParams, ...extras }));
+    .do((action: RouterActions.Go) => this.routerService.go(action));
 
   @Effect({ dispatch: false })
   navigateBack$ = this.actions$.ofType(RouterActions.BACK)
@@ -45,10 +38,7 @@ export class RouterEffects {
   @Effect({ dispatch: false })
   checkRoute$ = this.router.events
     .filter(event => event instanceof NavigationEnd)
-    .do(() => this.store.dispatch(new TableActions.Clear()))
-    .map((event: NavigationEnd)=> this.routerService.parseRoute(event)) // type
-    // .do() get active element || get active list --> type
-    // get data
+    .do((event: NavigationEnd) => this.routerService.handleNavigation(event)) // type
     
   constructor(
     private actions$: Actions,
@@ -56,8 +46,5 @@ export class RouterEffects {
     private location: Location,
     private routerService: RouterService,
     private store: Store<fromRoot.State>
-  ) {
-    this.lastRouteSubject = new Subject<string>();
-    this.lastRoute = this.lastRouteSubject.asObservable();
-  }
+  ) { }
 }

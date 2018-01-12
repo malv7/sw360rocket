@@ -49,11 +49,19 @@ import * as fromTable from './../../state/table/table.reducer';
 })
 export class ReleaseTableComponent implements OnDestroy {
 
+  // type component
+  // type project
+
+
+
+
+
+
   areAllSelected: boolean = false;
   releases: Observable<EmbeddedRelease[]>;
 	selectedElementsCountSub: Subscription;
   selectedElementCount = 0;
-  
+
   constructor(private store: Store<fromRoot.State>, private tableService: TableService) {
     this.releases = this.store.select(fromModel.selectReleases);
     this.selectedElementsCountSub = this.store.select(fromTable.selectSelectedListElementsCount)
@@ -62,7 +70,7 @@ export class ReleaseTableComponent implements OnDestroy {
           this.areAllSelected = false;
         this.selectedElementCount = selectedElementsCount;
       });
-      
+
     // TODO: Hashmap does not update, see reducer
     // this.store.select(fromTable.selectSelectedListElements).subscribe(x => console.log(x));
   }
@@ -75,13 +83,13 @@ export class ReleaseTableComponent implements OnDestroy {
   ngOnDestroy(): void {
     if (this.selectedElementsCountSub) this.selectedElementsCountSub.unsubscribe();
   }
-  
+
   selectAll() {
-    this.tableService.selectAll(this.areAllSelected, this.releases);
+    // this.tableService.selectAll(this.areAllSelected, this.releases);
   }
 
   selectOne(release: EmbeddedRelease) {
-    this.tableService.selectOne(release);
+    // this.tableService.selectOne(release);
   }
 
 }

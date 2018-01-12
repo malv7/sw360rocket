@@ -1,4 +1,4 @@
-import { CurrentRouteData } from "./state/router.reducer";
+import { RouteData } from "./state/router.reducer";
 
 /**
  * Possible routes
@@ -28,14 +28,11 @@ export enum RouteLists {
   ecc = 'ecc'
 }
 
-export const emptyCurrentRouteData: CurrentRouteData = {
+export const emptyCurrentRouteData: RouteData = {
   showBreadcrumb: false,
   breadCrumbSegments: [],
-  isList: false,
-  listType: '',
-  isDetail: false,
-  detailType: '',
-  feature: ''
+  ressourceType: '',
+  ressourceContext: ''
 };
 
 // Returns true/false wheter the segment is a list/not

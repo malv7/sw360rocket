@@ -15,16 +15,21 @@ import { SearchFilterComponent } from './components/search-filter/search-filter.
 import { ReleaseTableComponent } from './tables/release-table/release-table.component';
 import { FormsModule } from '@angular/forms';
 import { TableService } from './tables/services/table.service';
-import { ReleasesWidgetComponent } from './components/overview/releases-widget/releases-widget.component';
 import { GenericFormElementComponent } from './components/forms/generic-form-element/generic-form-element.component';
 import { PaginationComponent } from './tables/pagination/pagination.component';
 import { GenericTableComponent } from './tables/generic-table/generic-table.component';
+import { ReleaseTableHeaderComponent } from './tables/generic-table/release-table/release-table-header.component';
+import { ReleaseTableBodyComponent } from './tables/generic-table/release-table/release-table-body.component';
+import { ProjectTableHeaderComponent } from './tables/generic-table/project-table/project-table-header.component';
+import { ProjectTableBodyComponent } from './tables/generic-table/project-table/project-table-body.component';
+import { TableSelectComponent } from './tables/table-select/table-select.component';
+import { ActionButtonComponent } from './components/action-buttons/action-button.component';
 
 @NgModule({
 	imports: [
 		CommonModule,
 		FlexLayoutModule,
-    RouterModule,
+		RouterModule,
     StoreModule.forFeature('table', tableReducer),
     FormsModule
 	],
@@ -35,10 +40,15 @@ import { GenericTableComponent } from './tables/generic-table/generic-table.comp
     ActionButtonsComponent,
     SearchFilterComponent,
     ReleaseTableComponent,
-    ReleasesWidgetComponent,
     GenericFormElementComponent,
     PaginationComponent,
-    GenericTableComponent
+    GenericTableComponent,
+    ReleaseTableHeaderComponent,
+    ReleaseTableBodyComponent,
+    ProjectTableHeaderComponent,
+    ProjectTableBodyComponent,
+    TableSelectComponent,
+    ActionButtonComponent
 	],
 	exports: [
 		// modules
@@ -54,7 +64,13 @@ import { GenericTableComponent } from './tables/generic-table/generic-table.comp
     ReleaseTableComponent,
     GenericFormElementComponent,
     PaginationComponent,
-    GenericTableComponent
+    GenericTableComponent,
+    ReleaseTableHeaderComponent,
+    ReleaseTableBodyComponent,
+    ProjectTableHeaderComponent,
+		ProjectTableBodyComponent,
+    TableSelectComponent,
+    ActionButtonComponent
   ],
   providers: [TableService]
 })

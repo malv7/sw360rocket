@@ -209,12 +209,16 @@ export const PROJECT_TYPES = [
   ProjectTypes.INNER_SOURCE
 ];
 
+export interface EmbeddedRessourceX {
+  _links: Links;
+}
+
 // Projects
-export interface EmbeddedProject {
+export interface EmbeddedProject extends EmbeddedRessourceX {
   name: string;
   version: string;
   projectType: string; // ProjectTypes
-  _links: Links;
+  // _links: Links;
 
   // Extractions
   id?: string;
@@ -355,10 +359,10 @@ export const SW360_COMPONENT_TYPES = [
   SW360ComponentTypes.SERVICE
 ];
 
-export interface EmbeddedSW360Component {
+export interface EmbeddedSW360Component extends EmbeddedRessourceX {
   name: string;
   componentType: SW360ComponentTypes;
-  _links: Links
+  // _links: Links
 
   // Extractions
   id?: string;
@@ -520,14 +524,14 @@ export const getRelease = () => {
 // TODOS: ClearingStates
 
 // TODO:
-export interface EmbeddedRelease {
+export interface EmbeddedRelease extends EmbeddedRessourceX {
   name: string;
   version: string;
   externalIds: ExternalIds;
   createdOn: string;
   clearingState: string // ClearingStates
   cpeId: string;
-  _links: Links;
+  // _links: Links;
 
   // Extractions
   id?: string;
@@ -905,6 +909,15 @@ export class ModelService {
     // store.select(fromModel.selectLicense).subscribe(x => console.log(x));
   }
 
+}
+
+export enum TableTypes {
+  releases = 'releases',
+  projects = 'projects',
+  components = 'components',
+  attachments = 'attachments',
+  licenses = 'licenses',
+  vendors = 'vendors'
 }
 
 export type EmbeddedResource = EmbeddedUser | EmbeddedProject | Project | EmbeddedSW360Component | SW360Component | EmbeddedRelease | Attachment | EmbeddedVendor | Vendor | EmbeddedLicense | License;
