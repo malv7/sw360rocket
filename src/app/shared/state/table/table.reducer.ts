@@ -25,6 +25,7 @@ const initialState: State = {
   }
 };
 
+// TODO: check all state returns because of possible megre conflicts
 export function tableReducer(state = initialState, action: TableActions.All): State {
 
   switch (action.type) {
@@ -80,8 +81,14 @@ export function tableReducer(state = initialState, action: TableActions.All): St
     }
 
     case TableActions.SET_PAGE: {
-      state.pagination.currentPage = action.pageNumber;
-      return state;
+      return {
+        ...state,
+        pagination: {
+          currentPage: action.pageNumber,
+          elementsPerPage: state.pagination.elementsPerPage,
+          totalElementsAmount: state.pagination.totalElementsAmount
+        }
+      };
     }
 
     case TableActions.SET_TOTAL_ELEMENTS_AMOUNT: {
@@ -92,11 +99,14 @@ export function tableReducer(state = initialState, action: TableActions.All): St
     }
 
     case TableActions.SET_ELEMENTS_PER_PAGE: {
-      if (action.elementsPerPage > 0) {
-        state.pagination.elementsPerPage = action.elementsPerPage;
-        state.pagination.currentPage = 1;
+      return {
+        ...state,
+        pagination: {
+          currentPage: 1,
+          elementsPerPage: action.elementsPerPage,
+          totalElementsAmount: state.pagination.totalElementsAmount
+        }
       }
-      return state;
     }
 
 

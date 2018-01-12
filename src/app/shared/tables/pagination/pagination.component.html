@@ -1,24 +1,24 @@
-<tfoot> <!-- *ngIf="(releases | async).length > 1" -->
-  <tr>
-    <th colspan="200">
-      <div fxLayout="row">
-        <div class="ui pagination menu">
-          <a class="icon item" (click)="previousPage()">
-            <i class="left chevron icon"></i>
-          </a>
-          <a class="item" (click)="setPage(1)">1</a>
-          <a class="item" (click)="setPage(1000)">2</a>
-          <a class="item" (click)="setPage(-111)">3</a>
-          <a class="item" (click)="setPage(7)">4</a>
-          <a class="icon item" (click)="nextPage()">
-            <i class="right chevron icon"></i>
-          </a>
-        </div>
-        <button (click)="setElementsPerPage(17)">Set 17</button>
-        <button (click)="setElementsPerPage(-1)">Set -1</button>
-        <button (click)="setElementsPerPage(12)">Set 12</button>
-        <button (click)="setElementsPerPage(10)">Set 10</button>
-      </div>
-    </th>
-  </tr>
-</tfoot>
+<div fxLayout="row">
+	<div class="ui pagination menu">
+		<a class="icon item" (click)="firstPage()" [ngClass]="{ disabled: pagination.currentPage === 1 }">
+			First
+		</a>
+		<a class="icon item" (click)="previousPage()" [ngClass]="{ disabled: pagination.currentPage === 1 }">
+			<i class="left chevron icon"></i>
+		</a>
+		<a class="item" *ngFor="let page of currentButtons" (click)="setPage(page)" [ngClass]="{ active: pagination.currentPage === page }">
+			{{page}}</a>
+		<a class="icon item" (click)="nextPage()" [ngClass]="{ disabled: pagination.currentPage === lastPage }">
+			<i class="right chevron icon"></i>
+		</a>
+		<a class="icon item" (click)="goToLastPage()" [ngClass]="{ disabled: pagination.currentPage === lastPage }">
+			Last
+		</a>
+	</div>
+	<div class="ui input">
+		<input type="number" [(ngModel)]="elementsPerPage">
+		<button class="ui button basic icon" (click)="setElementsPerPage()">
+			<i class="refresh icon"></i>
+		</button>
+	</div>
+</div>
