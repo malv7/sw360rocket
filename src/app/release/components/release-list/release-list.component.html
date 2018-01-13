@@ -19,13 +19,21 @@
 <div fxLayout="row" fxLayoutGap="1em" [ngStyle]="{ 'margin-bottom': '1em' }">
   <sw-search-filter></sw-search-filter>
   <div>
-    <sw-action-button [callback]="create" zero="true">
-      <i class="icon add"></i><span>Create</span></sw-action-button>
+    <sw-action-button [callback]="create" zero="true" *ngIf="isComponents">
+      <i class="icon add"></i>
+      <span>Create</span>
+    </sw-action-button>
+    <sw-action-button [callback]="add" zero="true" *ngIf="isProjects">
+      <i class="icon add"></i>
+      <span>Add</span>
+    </sw-action-button>
     <sw-action-button [callback]="clone" one="true">
-      <i class="icon add"></i><span>Clone</span>
+      <i class="icon add"></i>
+      <span>Clone</span>
     </sw-action-button>
     <sw-action-button [callback]="delete" many="true">
-      <i class="icon add"></i><span>Delete</span>
+      <i class="icon add"></i>
+      <span>Delete</span>
     </sw-action-button>
   </div>
 </div>

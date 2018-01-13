@@ -47,53 +47,63 @@ import {
   ID
 } from "./router.api";
 
-// exists in context of project and component
-const releases = {
-  path: RELEASES,
-  component: ReleaseListComponent,
-  children: [
-    { path: DETAILS, component: ReleaseDetailsComponent },
-    { path: ATTACHMENTS, component: NotImplementedYetComponent },
-    { path: VULNERABILITIES, component: NotImplementedYetComponent },
-    { path: ECC, component: NotImplementedYetComponent }
-  ]
-};
+const releaseChildren = [
+  { path: '', redirectTo: 'details', pathMatch: 'full' },
+  { path: 'details', component: ReleaseDetailsComponent },
+  { path: 'attachments', component: NotImplementedYetComponent },
+  { path: 'vulnerabilities', component: NotImplementedYetComponent },
+  { path: 'ecc', component: NotImplementedYetComponent }
+];
 
 const routes: Routes = [
+  // Projects
   {
-    path: PROJECTS,
-    component: ProjectListComponent,
+    path: 'projects/:id/releases/:id',
+    component: ReleaseComponent,
+    children: releaseChildren
   },
   {
-    path: PROJECTS + ID,
+    path: 'projects/:id',
     component: ProjectComponent,
     children: [
       { path: '', redirectTo: DETAILS, pathMatch: 'full' },
-      { path: DETAILS, component: ProjectDetailsComponent },
-      { path: ATTACHMENTS, component: NotImplementedYetComponent },
-      { path: RELEASES + '/' + CREATE, component: ReleaseCreateComponent },
-      releases
+      { path: 'details', component: ProjectDetailsComponent },
+      { path: 'attachments', component: NotImplementedYetComponent },
+      { path: 'releases', component: ReleaseListComponent }
     ]
   },
   {
-    path: COMPONENTS,
-    component: ComponentListComponent,
+    path: 'projects',
+    component: ProjectListComponent,
+  },
+
+  // Components
+  {
+    path: 'components/:id/releases/:id',
+    component: ReleaseComponent,
+    children: releaseChildren
   },
   {
-    path: COMPONENTS + '/' + CREATE,
+    path: 'components/:id',
+    component: ComponentComponent,
+    children: [
+      { path: '', redirectTo: 'details', pathMatch: 'full' },
+      { path: 'details', component: ComponentDetailsComponent },
+      { path: 'attachments', component: NotImplementedYetComponent },
+      { path: 'releases/create', component: ReleaseCreateComponent },
+      { path: 'releases', component: ReleaseListComponent }
+    ]
+  },
+  {
+    path: 'components/create',
     component: ComponentCreateComponent,
   },
   {
-    path: COMPONENTS + ID,
-    component: ComponentComponent,
-    children: [
-      { path: '', redirectTo: DETAILS, pathMatch: 'full' },
-      { path: DETAILS, component: ComponentDetailsComponent },
-      { path: ATTACHMENTS, component: NotImplementedYetComponent },
-      { path: RELEASES + '/' + CREATE, component: ReleaseCreateComponent },
-      releases
-    ]
+    path: 'components',
+    component: ComponentListComponent,
   },
+
+  // Other
   {
     path: '',
     component: NotImplementedYetComponent // TODO: Home

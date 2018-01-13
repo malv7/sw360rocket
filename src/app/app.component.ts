@@ -1,6 +1,7 @@
 import { AuthenticationService } from './user/services/authentication.service';
 import { Component } from '@angular/core';
 import { ModelService } from './state/models';
+import { HttpService } from './http/services/http.service';
 
 @Component({
   selector: 'sw-root',
@@ -9,5 +10,6 @@ import { ModelService } from './state/models';
 export class AppComponent {
 	constructor(
     // auth: AuthenticationService,
-    models: ModelService) { }
+    private httpService: HttpService,
+    private models: ModelService) { }
 }

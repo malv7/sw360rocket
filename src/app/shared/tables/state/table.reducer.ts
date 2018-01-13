@@ -1,5 +1,7 @@
 import * as TableActions from './table.actions';
 import * as fromRoot from './../../../state';
+import { getInitialState } from '../table.api';
+import { ReleaseContextRoute } from '../../../router/router.api';
 
 export interface Pagination {
   currentPage: number;
@@ -11,25 +13,16 @@ export interface State {
   selectedElements: string[];
 	selectedElementsCount: number;
 	areAllElementsSelected: boolean;
-	pagination: Pagination;
+  pagination: Pagination;
+  releaseContextRoute: ReleaseContextRoute;
 }
 
-const initialState: State = {
-  selectedElements: [],
-	selectedElementsCount: 0,
-	areAllElementsSelected: false,
-  pagination: {
-    currentPage: 1,
-    elementsPerPage: 10,
-    totalElementsAmount: 500
-  }
-};
-
-// TODO: check all state returns because of possible megre conflicts
-export function tableReducer(state = initialState, action: TableActions.All): State {
-
+// TODO: check all state returns because of bugs
+export function tableReducer(state = getInitialState(), action: TableActions.All): State {
+  
   switch (action.type) {
 
+    // TODO: check if subscribe updates
     case TableActions.SELECT_ALL: {
       const selectedElements = state.selectedElements;
       action.ids.forEach(e => {
@@ -64,6 +57,7 @@ export function tableReducer(state = initialState, action: TableActions.All): St
       };
     }
 
+    // TODO: check if subscribe updates
     case TableActions.NEXT_PAGE: {
       let offset = state.pagination.elementsPerPage * state.pagination.currentPage;
       if (offset < state.pagination.totalElementsAmount) {
@@ -72,6 +66,7 @@ export function tableReducer(state = initialState, action: TableActions.All): St
       return state;
     }
 
+    // TODO: check if subscribe updates
     case TableActions.PREVIOUS_PAGE: {
       if (state.pagination.currentPage > 1) {
         state.pagination.currentPage--;
@@ -91,6 +86,7 @@ export function tableReducer(state = initialState, action: TableActions.All): St
       };
     }
 
+    // TODO: check if subscribe updates
     case TableActions.SET_TOTAL_ELEMENTS_AMOUNT: {
       if (action.totalElementsAmount > 0) {
         state.pagination.totalElementsAmount = action.totalElementsAmount;
@@ -109,6 +105,13 @@ export function tableReducer(state = initialState, action: TableActions.All): St
       }
     }
 
+    case TableActions.INITIALIZE_TABLE: {
+      return getInitialState();
+    }
+
+    case TableActions.SET_RELEASE_TABLE_DATA: {
+      return { ...state, releaseContextRoute: action.releaseContextRoute }
+    }
 
     default: return state;
   }
@@ -129,4 +132,8 @@ export function selectSelectedListElementsCount(state: fromRoot.State) {
 
 export const selectAreAllElementsSelected = (state: fromRoot.State) => {
 	return state.table.areAllElementsSelected;
+};
+
+export const selectReleaseContextRoute = (state: fromRoot.State) => {
+  return state.table.releaseContextRoute;
 };

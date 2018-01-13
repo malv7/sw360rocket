@@ -16,7 +16,7 @@ export const ABOUT = 'about';
 
 // Secondary class segments
 export const CREATE = 'create';
-export const ID = '/:id';
+export const ID = ':id';
 
 export enum ResourceListTypes {
   projects = 'projects',
@@ -28,6 +28,11 @@ export enum ResourceListTypes {
   vendors = 'vendors',
   users = 'users',
   ecc = 'ecc'
+}
+
+export interface ReleaseContextRoute {
+  type: string;
+  id: string;
 }
 
 export interface RouteConfiguration {

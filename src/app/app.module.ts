@@ -27,6 +27,7 @@ import { SwRouterModule } from './router/sw-router.module';
 
 // Data
 import { ModelModule } from './state/model.module';
+import { HttpModule } from './http/http.module';
 
 export interface RouterStateUrl {
   url: string;
@@ -71,6 +72,9 @@ export class CustomSerializer implements RouterStateSerializer<RouterStateUrl> {
 
     // Router
     SwRouterModule,
+
+    // Http
+    HttpModule,
 
     // Layout
     StructureModule,

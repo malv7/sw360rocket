@@ -6,7 +6,7 @@ export interface State {
 }
 
 const initialState: State = {
-  title: 'SW360 Rocket'
+  title: 'INITIAL TITLE STATE'
 }
 
 export function structureReducer(state = initialState, action: StructureActions.All) {
