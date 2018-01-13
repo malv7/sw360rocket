@@ -1,6 +1,6 @@
 // ng
 import { NgModule } from "@angular/core";
-import { Routes, RouterModule } from "@angular/router";
+import { Routes, RouterModule, Route } from "@angular/router";
 
 // Store
 import { StoreModule } from "@ngrx/store";
@@ -30,30 +30,18 @@ import { NotImplementedYetComponent } from "../shared/global/components/not-impl
 
 // Router
 import { RouterService } from "./services/router.service";
-import {
-  PROJECTS,
-  COMPONENTS,
-  RELEASES,
-  VULNERABILITIES,
-  ATTACHMENTS,
-  LICENSES,
-  VENDORS,
-  USERS,
-  ECC,
-  DETAILS,
-  HOME,
-  ABOUT,
-  CREATE,
-  ID
-} from "./router.api";
 
-const releaseChildren = [
+const releaseChildren: Route[] = [
   { path: '', redirectTo: 'details', pathMatch: 'full' },
   { path: 'details', component: ReleaseDetailsComponent },
   { path: 'attachments', component: NotImplementedYetComponent },
   { path: 'vulnerabilities', component: NotImplementedYetComponent },
   { path: 'ecc', component: NotImplementedYetComponent }
 ];
+
+const attachments: Route = { path: 'attachments', component: NotImplementedYetComponent };
+const releases: Route = { path: 'releases', component: ReleaseListComponent };
+const detailRedirect: Route = { path: '', redirectTo: 'details', pathMatch: 'full' };
 
 const routes: Routes = [
   // Projects
@@ -66,10 +54,10 @@ const routes: Routes = [
     path: 'projects/:id',
     component: ProjectComponent,
     children: [
-      { path: '', redirectTo: DETAILS, pathMatch: 'full' },
+      detailRedirect,
       { path: 'details', component: ProjectDetailsComponent },
-      { path: 'attachments', component: NotImplementedYetComponent },
-      { path: 'releases', component: ReleaseListComponent }
+      attachments,
+      releases
     ]
   },
   {
@@ -87,11 +75,11 @@ const routes: Routes = [
     path: 'components/:id',
     component: ComponentComponent,
     children: [
-      { path: '', redirectTo: 'details', pathMatch: 'full' },
+      detailRedirect,
       { path: 'details', component: ComponentDetailsComponent },
-      { path: 'attachments', component: NotImplementedYetComponent },
+      attachments,
       { path: 'releases/create', component: ReleaseCreateComponent },
-      { path: 'releases', component: ReleaseListComponent }
+      releases
     ]
   },
   {
@@ -118,8 +106,6 @@ const routes: Routes = [
     EffectsModule.forFeature([RouterEffects])
   ],
   exports: [RouterModule],
-  providers: [
-    RouterService
-  ]
+  providers: [RouterService]
 })
 export class SwRouterModule { }
