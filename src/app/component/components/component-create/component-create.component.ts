@@ -66,8 +66,6 @@ export class ComponentCreateComponent implements OnInit {
     private store: Store<State>) { }
 
   ngOnInit() {
-    this.store.dispatch(new StructureActions.SetTitle('Create Component'));
-
     this.testbool = true;
     //get values for DropDown componentTypes
     this.componentTypes = COMPONENT_TYPES;

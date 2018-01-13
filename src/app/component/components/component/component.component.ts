@@ -1,37 +1,23 @@
-import { RouteConfiguration } from './../../../router/state/router.models';
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { Store } from '@ngrx/store';
-import { State } from './../../../state';
-import { ComponentDataLayout } from '../../state/component.models';
-import { Subscription } from 'rxjs/Subscription';
-import * as fromModel from './../../../state/model.reducer';
-import * as StructureActions from './../../../structure/state/structure.actions';
+import { componentRoutes } from '../../../router/router.api';
 
 @Component({
   selector: 'sw-component',
-  templateUrl: './component.component.html',
-  styleUrls: ['./component.component.scss']
+  template: `
+    <div class="tab-navigation-wrapper">
+	    <sw-tab-navigation [tabs]="tabs"></sw-tab-navigation>
+    </div>
+    <div class="main-content" fxLayout="row">
+      <div fxFlex>
+        <router-outlet></router-outlet>
+      </div>
+      <sw-overview fxFlex="23em" fxHide.lt-lg="true">
+		    <sw-component-overview></sw-component-overview>
+		    <sw-releases-widget></sw-releases-widget>
+	    </sw-overview>
+    </div>
+`
 })
-export class ComponentComponent implements OnInit {
-
-	tabs: RouteConfiguration[] = [
-		{ route: 'details', title: 'Details' },
-		{ route: 'releases', title: 'Releases' },
-    { route: 'attachments', title: 'Attachments' }
-  ];
-
-  titleSub: Subscription;
-	constructor(private store: Store<State>) { }
-
-	ngOnInit() {
-    this.titleSub = this.store.select(fromModel.selectComponent).subscribe(component => {
-      if(component.name) this.store.dispatch(new StructureActions.SetTitle(component.name));
-    });
-  }
-
-  ngOnDestroy(): void {
-    if(this.titleSub) this.titleSub.unsubscribe();
-  }
-
+export class ComponentComponent {
+  tabs = componentRoutes;
 }

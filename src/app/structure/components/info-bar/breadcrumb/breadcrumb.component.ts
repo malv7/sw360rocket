@@ -23,11 +23,11 @@ export class BreadcrumbComponent implements OnInit {
     { name: 'Apache2 1.3.2', route: 'projects' },
   ];
 
-  currentRouteData: Observable<RouteData>;
+  routeData: Observable<RouteData>;
   breadcrumbSegments: Observable<BreadcrumbSegment[]>;
 
   constructor(private store: Store<State>) {
-    this.currentRouteData = this.store.select(fromRouter.selectCurrentRoute);
+    this.routeData = this.store.select(fromRouter.selectCurrentRoute);
     this.breadcrumbSegments = this.store.select(fromRouter.selectBreadcrumbSegments);
   }
 

@@ -10,6 +10,7 @@ import { ReleaseComponent } from './components/release/release.component';
 import { ReleaseCreateComponent } from "./components/release-create/release-create.component";
 import { ReleaseOverviewComponent } from "./components/release-overview/release-overview.component";
 import { VulnerabilityWidgetComponent } from './components/vulnerability-widget/vulnerability-widget.component';
+import { ReleaseListComponent } from "./components/release-list/release-list.component";
 
 @NgModule({
     imports: [
@@ -20,7 +21,8 @@ import { VulnerabilityWidgetComponent } from './components/vulnerability-widget/
         ReleaseComponent,
 				ReleaseCreateComponent,
 				ReleaseOverviewComponent,
-				VulnerabilityWidgetComponent
+        VulnerabilityWidgetComponent,
+        ReleaseListComponent
     ],
 })
 export class ReleaseModule { }

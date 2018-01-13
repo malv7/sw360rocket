@@ -15,7 +15,7 @@ interface SW360ComponentMap {
 }
 
 interface ReleaseMap {
-  [key: string]: Models.Release;
+  [key: string]: Models.EmbeddedRelease;
 }
 
 interface AttachmentMap {
@@ -44,7 +44,7 @@ export interface State {
   componentMap: SW360ComponentMap;
 
   releases?: Models.EmbeddedRelease[];
-  release?: Models.Release;
+  release?: Models.EmbeddedRelease;
   releaseMap: ReleaseMap;
 
   attachment?: Models.Attachment;

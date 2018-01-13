@@ -27,7 +27,6 @@ export class ProjectListComponent {
   releases: Observable<EmbeddedRelease[]>;
 
   constructor(private store: Store<State>) {
-    this.store.dispatch(new StructureActions.SetTitle('Projects'));
     this.store.dispatch(new ProjectActions.GetMockedProjects());
     this.projects = this.store.select(fromModel.selectProjects);
     this.releases = this.store.select(fromModel.selectReleases);

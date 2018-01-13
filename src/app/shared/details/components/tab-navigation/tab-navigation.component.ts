@@ -1,5 +1,5 @@
-import { RouteConfiguration } from './../../../../router/state/router.models';
 import { Component, Input } from '@angular/core';
+import { RouteConfiguration } from '../../../../router/router.api';
 
 @Component({
   selector: 'sw-tab-navigation',

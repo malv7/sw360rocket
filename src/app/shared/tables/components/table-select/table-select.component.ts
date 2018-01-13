@@ -12,7 +12,8 @@ import { Subscription } from 'rxjs/Subscription';
 })
 
 export class TableSelectComponent implements OnInit, OnDestroy {
-	@Input() selected: boolean = false;
+  
+  @Input() selected: boolean = false;
 	@Output() selectEvent = new EventEmitter();
 
 	areAllElementsSelectedSub: Subscription;

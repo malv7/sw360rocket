@@ -6,26 +6,27 @@ import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
 import { State } from './../../../state';
 import * as fromModel from './../../../state/model.reducer';
-import * as StructureActions from './../../../structure/state/structure.actions';
 import * as RouterActions from './../../../router/state/router.actions';
+
+// Data
 import { EmbeddedSW360Component } from './../../../state/models';
 
-// check
+// Router
+import { COMPONENTS, CREATE } from './../../../router/router.api';
+
+// Table
 import { TableService } from '../../../shared/tables/services/table.service';
 
 @Component({
 	selector: 'sw-component-list',
-	templateUrl: './component-list.component.html',
-	styleUrls: ['./component-list.component.scss']
+	templateUrl: './component-list.component.html'
 })
 export class ComponentListComponent implements OnInit {
 
   components: Observable<EmbeddedSW360Component[]>;
-
   constructor(private store: Store<State>, private tableService: TableService) { }
 
 	ngOnInit() {
-    this.store.dispatch(new StructureActions.SetTitle('Components'));
 		this.components = this.store.select(fromModel.selectComponents);
 	}
 
@@ -41,11 +42,9 @@ export class ComponentListComponent implements OnInit {
 		this.tableService.selectAll(this.components);
   }
   
-  addAction = () => this.store.dispatch(new RouterActions.Go({ path: ['components/create'] }));
-
-  randomAction() {
-    console.log("RANDOM");
-  }
-
+  // Actions
+  create = () => this.store.dispatch(new RouterActions.Go({ path: [COMPONENTS + '/' + CREATE] }));
+  clone  = () => console.log("ComponentListComponent clone action");
+  delete = () => console.log("ComponentListComponent delete action");
 
 };

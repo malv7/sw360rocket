@@ -3,7 +3,7 @@ import * as fromModel from './../../../../state/model.reducer';
 import { State } from './../../../../state';
 import { Store } from "@ngrx/store";
 import { Observable } from "rxjs/Observable";
-import { Release } from "../../../../state/models";
+import { EmbeddedRelease } from "../../../../state/models";
 import { Subscription } from "rxjs/Subscription";
 import * as StructureActions from './../../../../structure/state/structure.actions';
 
@@ -14,7 +14,7 @@ import * as StructureActions from './../../../../structure/state/structure.actio
 })
 export class ReleaseDetailsComponent {
 
-  release: Observable<Release>;
+  release: Observable<EmbeddedRelease>;
   titleSub: Subscription;
 
   constructor(private store: Store<State>) {

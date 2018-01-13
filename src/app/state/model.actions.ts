@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { EmbeddedUser, User, EmbeddedProject, Project, EmbeddedSW360Component, SW360Component, EmbeddedRelease, Release, Attachment, EmbeddedVendor, Vendor, License, EmbeddedLicense } from './models';
+import { EmbeddedUser, User, EmbeddedProject, Project, EmbeddedSW360Component, SW360Component, EmbeddedRelease, Attachment, EmbeddedVendor, Vendor, License, EmbeddedLicense } from './models';
 
 export const GET_USERS = '[User] Get users';
 export const GET_USER = '[User] Get user';
@@ -52,7 +52,7 @@ export class GetReleases implements Action {
 
 export class GetRelease implements Action {
   readonly type = GET_RELEASE;
-  constructor(public release: Release) { }
+  constructor(public release: EmbeddedRelease) { }
 }
 
 export class GetAttachment implements Action {

@@ -6,6 +6,7 @@ import { State } from './../../../state';
 import { Observable } from "rxjs/Observable";
 import { EmbeddedResource } from "../../../state/models";
 import * as fromTable from "../../tables/state/table.reducer"
+import * as StructureActions from './../../../structure/state/structure.actions';
 
 @Injectable()
 export class TableService {
@@ -14,7 +15,8 @@ export class TableService {
 
 	///// Routing
 	go(resource: EmbeddedResource) {
-		this.store.dispatch(new RouterActions.Go({ path: [], ressourceSelflink: resource._links.self.href }));
+    this.store.dispatch(new RouterActions.Go({ path: [], ressourceSelflink: resource._links.self.href }));
+    this.store.dispatch(new StructureActions.SetTitle((<any> resource).name)); // TODO: FIX EmbeddedResource name conflict
 	};
 
 	///// Selections

@@ -23,6 +23,7 @@ import { ProjectListComponent } from './../project/components/project-list/proje
 import { ReleaseDetailsComponent } from './../release/components/release/details/release-details.component';
 import { ReleaseComponent } from './../release/components/release/release.component';
 import { ReleaseCreateComponent } from "../release/components/release-create/release-create.component";
+import { ReleaseListComponent } from "../release/components/release-list/release-list.component";
 
 // Helpers
 import { NotImplementedYetComponent } from "../shared/global/components/not-implemented-yet/not-implemented-yet.component";
@@ -49,9 +50,8 @@ import {
 // exists in context of project and component
 const releases = {
   path: RELEASES,
-  component: NotImplementedYetComponent,
+  component: ReleaseListComponent,
   children: [
-    { path: '', redirectTo: DETAILS, pathMatch: 'full' },
     { path: DETAILS, component: ReleaseDetailsComponent },
     { path: ATTACHMENTS, component: NotImplementedYetComponent },
     { path: VULNERABILITIES, component: NotImplementedYetComponent },
@@ -71,7 +71,7 @@ const routes: Routes = [
       { path: '', redirectTo: DETAILS, pathMatch: 'full' },
       { path: DETAILS, component: ProjectDetailsComponent },
       { path: ATTACHMENTS, component: NotImplementedYetComponent },
-      { path: RELEASES + CREATE, component: ReleaseCreateComponent },
+      { path: RELEASES + '/' + CREATE, component: ReleaseCreateComponent },
       releases
     ]
   },
@@ -80,7 +80,7 @@ const routes: Routes = [
     component: ComponentListComponent,
   },
   {
-    path: COMPONENTS + CREATE,
+    path: COMPONENTS + '/' + CREATE,
     component: ComponentCreateComponent,
   },
   {
@@ -90,7 +90,7 @@ const routes: Routes = [
       { path: '', redirectTo: DETAILS, pathMatch: 'full' },
       { path: DETAILS, component: ComponentDetailsComponent },
       { path: ATTACHMENTS, component: NotImplementedYetComponent },
-      { path: RELEASES + CREATE, component: ReleaseCreateComponent },
+      { path: RELEASES + '/' + CREATE, component: ReleaseCreateComponent },
       releases
     ]
   },

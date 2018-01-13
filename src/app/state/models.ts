@@ -538,11 +538,11 @@ export interface EmbeddedRelease extends EmbeddedRessourceX {
   path?: string;
 }
 
-export interface Release extends EmbeddedRelease {
-  releaseDate: string;
-  type: string; // release
-  _embedded: ReleaseEmbeddings;
-}
+// export interface EmbeddedRelease extends EmbeddedRelease {
+//   releaseDate: string;
+//   type: string; // release
+//   _embedded: ReleaseEmbeddings;
+// }
 
 export interface ReleaseEmbeddings {
   moderators: EmbeddedModerator[];
@@ -868,7 +868,7 @@ export class ModelService {
 
     // Release
     const releaseResponse = getRelease();
-    const release = (<Release>releaseResponse);
+    const release = (<EmbeddedRelease>releaseResponse);
     patchIdPath([release]);
     store.dispatch(new ModelActions.GetRelease(release));
     // store.select(fromModel.selectRelease).subscribe(x => console.log(x));
