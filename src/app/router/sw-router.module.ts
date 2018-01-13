@@ -72,19 +72,19 @@ const routes: Routes = [
     children: releaseChildren
   },
   {
+    path: 'components/create',
+    component: ComponentCreateComponent,
+  },
+  {
     path: 'components/:id',
     component: ComponentComponent,
     children: [
       detailRedirect,
       { path: 'details', component: ComponentDetailsComponent },
-      attachments,
       { path: 'releases/create', component: ReleaseCreateComponent },
+      attachments,
       releases
     ]
-  },
-  {
-    path: 'components/create',
-    component: ComponentCreateComponent,
   },
   {
     path: 'components',
