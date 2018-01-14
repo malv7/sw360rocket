@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
   styles: [`
     :host {
       padding-left: 1em;
-    }
+		}
   `]
 })
 export class OverviewComponent implements OnInit {

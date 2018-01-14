@@ -4,10 +4,10 @@ import { releaseRoutes } from "../../../router/router.api";
 @Component({
 	selector: 'sw-release',
 	template: `
-		<sw-generic-content tabs="tabs">
+		<sw-generic-content [tabs]="tabs">
 			<!-- Define Sidebar Components -->
-			<sw-release-overview></sw-release-overview>
-			<sw-vulnerability-widget></sw-vulnerability-widget>
+			<sw-release-overview class="widget"></sw-release-overview>
+			<sw-vulnerability-widget class="widget"></sw-vulnerability-widget>
 		</sw-generic-content>
 	`
 })
