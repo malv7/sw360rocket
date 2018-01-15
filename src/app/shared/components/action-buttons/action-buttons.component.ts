@@ -120,6 +120,9 @@ export class ActionButtonsComponent implements OnInit, OnDestroy {
         // TODO:
         // if in projects: select existing releases
         // if in components: create new release
+        this.store.dispatch(new RouterActions.Go({
+          path: ['releases/create']
+        }));
         console.log("action list buttons add")
       }
 

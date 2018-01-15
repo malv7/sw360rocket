@@ -31,13 +31,14 @@ export const DETAILS = 'details';
 const routes: Routes = [
   {
     path: 'releases/:id',
-    component: ReleaseComponent,
+    component: ReleaseCreateComponent,
     children: [
       { path: '', redirectTo: DETAILS, pathMatch: 'full' },
       { path: DETAILS, component: ReleaseDetailsComponent },
       { path: 'attachments', component: NotImplementedYetComponent },
       { path: 'vulnerabilities', component: NotImplementedYetComponent },
-      { path: 'ecc', component: NotImplementedYetComponent }
+      { path: 'ecc', component: NotImplementedYetComponent },
+      { path: 'releases', component: ReleaseCreateComponent  }
     ]
   },
   {
@@ -63,7 +64,7 @@ const routes: Routes = [
     path: 'components/create',
     component: ComponentCreateComponent,
   },
-  {
+    {
     path: 'components/:id',
     component: ComponentComponent,
     children: [
@@ -94,6 +95,7 @@ const routes: Routes = [
     path: 'about',
     component: NotImplementedYetComponent
   },
+  
   {
     path: '',
     component: NotImplementedYetComponent // TODO: Welcome page
