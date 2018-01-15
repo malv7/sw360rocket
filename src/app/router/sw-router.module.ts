@@ -46,6 +46,10 @@ const detailRedirect: Route = { path: '', redirectTo: 'details', pathMatch: 'ful
 const routes: Routes = [
   // Projects
   {
+    path: 'release/create',
+    component: ReleaseCreateComponent
+  },
+  {
     path: 'projects/:id/releases/:id',
     component: ReleaseComponent,
     children: releaseChildren
@@ -79,9 +83,9 @@ const routes: Routes = [
     path: 'components/:id',
     component: ComponentComponent,
     children: [
+      { path: 'releases/create', component: ReleaseCreateComponent },
       detailRedirect,
       { path: 'details', component: ComponentDetailsComponent },
-      { path: 'releases/create', component: ReleaseCreateComponent },
       attachments,
       releases
     ]

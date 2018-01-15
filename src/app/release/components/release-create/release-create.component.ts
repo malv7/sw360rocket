@@ -8,10 +8,10 @@ import { MyDatePickerModule } from 'mydatepicker';
 
 import 'rxjs/add/operator/take';
 import { Store } from '@ngrx/store';
-import * as fromRoot from './../../../reducers';
 import * as RouterActions from './../../../router/state/router.actions';
 import * as StructureActions from './../../../structure/state/structure.actions';
 import { CustomValidator } from 'ng2-semantic-ui/dist';
+import { State } from '../../../state';
 
 //Interface data for input Fields
 export interface NewRelease {
@@ -53,7 +53,7 @@ export class ReleaseCreateComponent implements OnInit {
 
   constructor(
     public formValidationService: FormValidationService,
-    private store: Store<fromRoot.State>
+    private store: Store<State>
   ) { }
 
   ngOnInit() {
