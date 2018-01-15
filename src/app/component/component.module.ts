@@ -1,3 +1,4 @@
+import { ComponentEffects } from './state/component.effects';
 // ng
 import { NgModule } from '@angular/core';
 
@@ -6,6 +7,7 @@ import { SharedModule } from '../shared/shared.module';
 
 // Store
 import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 import { componentReducer } from './state/component.reducer';
 
 // Components
@@ -24,7 +26,8 @@ import { ReleasesWidgetComponent } from './components/releases-widget/releases-w
 @NgModule({
   imports: [
     SharedModule,
-		StoreModule.forFeature('component', componentReducer),
+    StoreModule.forFeature('component', componentReducer),
+    EffectsModule.forFeature([ComponentEffects]),
     FormsModule,
     ReactiveFormsModule,
     SuiModule, SuiRatingModule, SuiCheckboxModule

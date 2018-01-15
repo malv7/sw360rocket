@@ -1,3 +1,4 @@
+import { SW360ComponentTypes } from './../../../resources/resources.api';
 // ng
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
@@ -7,6 +8,8 @@ import { Store } from '@ngrx/store';
 import { State } from './../../../state';
 import * as fromModel from './../../../state/model.reducer';
 import * as RouterActions from './../../../router/state/router.actions';
+import * as fromComponent from './../../state/component.reducer';
+import * as ComponentActions from './../../state/component.actions';
 
 // Data
 import { EmbeddedSW360Component } from './../../../state/models';
@@ -32,6 +35,27 @@ export class ComponentListComponent implements OnInit {
 
   go(component: EmbeddedSW360Component) {
 		this.tableService.go(component);
+		this.store.dispatch(new ComponentActions.ReduceComponent({
+			name: component.name,
+			componentType: SW360ComponentTypes.OSS,
+			description: '',
+			createdOn: '',
+			type: 'component',
+			_links: component._links,
+			_embedded: {
+			  createdBy: {
+				email: '',
+				_links: {
+				  self: {
+					href: ''
+				  }
+				}
+			  },
+			  releases: [],
+			  moderators: [],
+			  vendors: [],
+			}
+		}))
 	}
 
 	selectOne(component: EmbeddedSW360Component) {

@@ -1,13 +1,13 @@
+import { selectComponent } from './../../component/state/component.reducer';
 import { Injectable } from "@angular/core";
 import { NavigationEnd, Router } from "@angular/router";
 import { Observable } from "rxjs/Observable";
 import { Store } from "@ngrx/store";
 import { State } from './../../state';
 import * as RouterActions from './../state/router.actions';
-import { RouteData, BreadCrumb, BreadcrumbSegment } from "../state/router.reducer";
 import {
   isRouteSegmentList,
-  ResourceListTypes,
+  UrlSegments,
   COMPONENTS,
   PROJECTS,
   RELEASES,
@@ -16,7 +16,8 @@ import {
   LICENSES,
   USERS,
   ATTACHMENTS,
-  VENDORS
+  VENDORS,
+  ActiveFeatures
 } from './../router.api';
 import * as fromRouter from './../state/router.reducer';
 import { ActivatedRoute } from "@angular/router";
@@ -24,6 +25,11 @@ import { ActivatedRoute } from "@angular/router";
 import * as StructureActions from './../../structure/state/structure.actions';
 
 import * as TableActions from './../../shared/tables/state/table.actions';
+
+import * as ComponentActions from './../../component/state/component.actions';
+import * as fromComponent from './../../component/state/component.reducer';
+import * as fromStructure from './../../structure/state/structure.reducer';
+import { Breadcrumb } from './../../structure/state/structure.reducer';
 
 @Injectable()
 export class RouterService {
@@ -33,231 +39,148 @@ export class RouterService {
     private router: Router,
     private activatedRoute: ActivatedRoute) { }
 
-  // TODO:
-  // Things to do on NavigationEnd
-
-  // Always:
-  //   Set page title
-
-  // If it is a list 
-  //   Set selection data
-  //   Set pagination data
-
-  // Extracted data
-  title: string; // the active top bar title
-  breadCrumb: BreadCrumb;
-  isReleases: boolean;
-  releaseContextRoute: string; // TODO: put this into store?
-
   // Process variables
   event: NavigationEnd
   route: string[];
   first: string;
   second: string;
+  third: string;
+  fourth: string;
+  fifth: string;
+  sixth: string;
+  seventh: string;
   last: string;
   preultimate: string; // vorletzte
-  id: string; // only exists on 3 and 5
-  breadCrumbId: string; // only exists on 3 and 5
-
-
-
-  // TODO:
-  // Titles must be set async when item(s) arrive
-  // Loading animation for message (list, details, overview, whatever, on content structure level)
-  // set resourceLoading = true
-  // wait until resourceLoading === false (set false when xhr has success, log message when error false)
-  // set resourceLoading = true when http request ended
-  // listen for resourceLoading:
-  //   whenever it gets true,
-  //   set current active element (project, release, ...)
-  //   derive title from current route data and detail (it it is not a list)
-
-  // TODO http
-  // clean active items and lists with default state whenever route changes, so that
-  // there never can be old content
-
-  // determine if detail, if so set it for http handling
-  // we need to get the name of the item back as the title
+  id: string;
 
   handleNavigation(event: NavigationEnd) {
-
-    // Clears neccessary
-    this.initHandleNavigation(event);
-
-    // Updates data
-    this.updateBreadCrumb();
-
-    switch (this.route.length) {
-      case 0: {
-        this.store.dispatch(new StructureActions.SetTitle("Welcome to SW360 Rocket!"));
-        break;
-      }
-      case 1: {
-        this.title = capitalizeFirstLetter(this.first);
-        break;
-      }
-      case 2: {
-        if (this.second === CREATE) {
-          this.setCreateTitle(this.first);
-        } else {
-          // TODO: set title for corresponding item after request
-        }
-        break;
-      }
-      case 3: {
-        // this.id
-        // Detail title gets set in chain of http request handling
-        // Releases table context, getting ready for release detail
-        this.evalReleases();
-        break;
-      }
-      case 4: {
-        console.log(4);
-        break;
-      }
-      case 5: {
-        // this.id
-        console.log(5);
-
-        // is it release detail?
-
-        break;
-      }
-      default:
-        break;
-    }
-
-    // If title got set, update it in structure
-    if (this.title) {
-      this.store.dispatch(new StructureActions.SetTitle(this.title));
-    }
-
-    // Finally update route data
-    this.store.dispatch(new RouterActions.UpdateRoute({
-      breadcrumb: this.breadCrumb,
-    }));
+    this.initNavigation(event);
+    this.processNavigation();
   }
 
-  resetListData() {
-    if (this.last && isRouteSegmentList(this.last))
-      this.store.dispatch(new TableActions.InitializeTable());
-  }
-
-  updateBreadCrumb() {
-    this.breadCrumb = { breadCrumbSegments: [], showBreadcrumb: false };
-
-    let firstBreadCrumbSegment: BreadcrumbSegment;
-    let secondBreadCrumbSegment: BreadcrumbSegment;
-
-    if (this.first)
-      firstBreadCrumbSegment = { name: capitalizeFirstLetter(this.first), path: this.first };
-
-    if (this.second)
-      secondBreadCrumbSegment = { name: '', path: this.first + '/' + this.second };
-
-    switch (this.route.length) {
-      case 2: {
-        this.breadCrumb = {
-          breadCrumbSegments: [firstBreadCrumbSegment],
-          showBreadcrumb: true
-        };
-        return;
-      }
-      case 3: {
-        this.breadCrumb = {
-          breadCrumbSegments: [firstBreadCrumbSegment],
-          showBreadcrumb: true
-        };
-        return;
-      }
-      case 4: {
-        return;
-      }
-      case 5: {
-        this.breadCrumb = {
-          breadCrumbSegments: [firstBreadCrumbSegment, secondBreadCrumbSegment],
-          showBreadcrumb: true
-        };
-        return;
-      }
-      default:
-        break;
-    }
-  }
-
-
-
-  // Initialization
-  /////////////////
-
-  initHandleNavigation(event: NavigationEnd) {
+  initNavigation(event: NavigationEnd) {
+    // update event
     this.event = event;
-    this.title = undefined;
-    this.initRoute();
-
-    // release data init
-    this.isReleases = false;
-    this.releaseContextRoute = undefined;
-  }
-
-  // Initialize new route data
-  // Set all semantic route segment member properties to undefined if they don't exist
-  initRoute() {
+    // update route
     this.route = toSegmentArray(this.event.urlAfterRedirects);
-    // console.log(this.route); // DEBUG
-
-    switch (this.route.length) {
-      case 3: { this.id = this.route[1]; break; }
-      case 5: { this.id = this.route[3]; break; }
-      case 7: { this.id = this.route[5]; break; }
-      default: break;
-    }
-
+    // 1-7 semantic segments
     this.first = this.route[0] ? this.route[0] : undefined;
     this.second = this.route[1] ? this.route[1] : undefined;
+    this.third = this.route[2] ? this.route[2] : undefined;
+    this.fourth = this.route[3] ? this.route[3] : undefined;
+    this.fifth = this.route[4] ? this.route[4] : undefined;
+    this.sixth = this.route[5] ? this.route[5] : undefined;
+    this.seventh = this.route[6] ? this.route[6] : undefined;
+    // last and preultimate
     this.last = this.route[this.route.length - 1] ? this.route[this.route.length - 1] : undefined;
     this.preultimate = this.route[this.route.length - 2] ? this.route[this.route.length - 2] : undefined;
   }
 
+  // 1 list || main navigation
+  // 2 create
+  // 3 detail
+  // 4 create
+  // 5 detail
+  // 6 create
+  // 7 detail
+  // ...
+  processNavigation() {
+
+    this.store.dispatch(new TableActions.InitializeTable());
+
+    // TODO: gather and dispatch
+    let activeFeature: ActiveFeatures;
+
+    const m = this.route.length % 2;
+    if (m === 0) {
+      switch (this.route.length) {
+        case 0: {
+          this.store.dispatch(new StructureActions.SetBreadcrumb({ active: false, segments: [] }));
+          this.store.dispatch(new StructureActions.SetTitle('Welcome to SW360Rocket'));
+          break;
+        }
+        case 2: {
+          if (this.second === UrlSegments.create) this.setCreateTitle(this.first);
+          break;
+        }
+        case 4: break;
+        default: break;
+      }
+    } else {
+      const capitalizedFirst = capitalizeFirstLetter(this.first);
+      switch (this.route.length) {
+        case 1: {
+          this.store.dispatch(new TableActions.InitializeTable());
+          this.store.dispatch(new StructureActions.SetBreadcrumb({ active: false, segments: [] }));
+          this.store.dispatch(new StructureActions.SetTitle(capitalizedFirst));
+          break;
+        }
+        case 3: {
+          this.store.dispatch(new StructureActions.SetBreadcrumb({ active: true, segments: [{ name: capitalizedFirst, route: this.first }] }));
+          this.store.dispatch(new TableActions.InitializeTable());
+          this.store.dispatch(new TableActions.SetReleaseTableData({
+            type: this.first,
+            id: this.second
+          }));
+          break;
+        }
+        case 5: {
+          const capitalizedThird = capitalizeFirstLetter(this.third);
+
+          // releases
+          if (this.third === UrlSegments.releases) {
+            if (this.first === UrlSegments.components) {
+              this.store.select(fromComponent.selectComponent)
+                .take(1)
+                .subscribe(component => {
+                  console.log(component)
+                  this.dispatchBreadcrumb({
+                    active: true,
+                    segments: [
+                      { name: capitalizedFirst, route: this.first },
+                      { name: component.name, route: component._links.self.href },
+                    ]
+                  })
+                });
+            } else if (this.first === UrlSegments.projects) {
+              // TODO: projects
+            }
+          }
 
 
-  // Determine the title of create pages depending on preultimate segment
-  // Creation titles can have multiple occurences, not only main title,
-  // TODO: check (embedded) release creation title
-  setCreateTitle(preultimateSegment: string) {
+          this.store.dispatch(new StructureActions.SetBreadcrumb({
+            active: true,
+            segments: [
+              { name: capitalizedFirst, route: this.first },
+              // TODO: get
+            ]
+          }));
+          this.store.dispatch(new TableActions.InitializeTable());
+          break;
+        }
+        default: break;
+      }
+    }
+  }
+
+  dispatchBreadcrumb(breadcrumb: Breadcrumb) {
+    console.log(breadcrumb);
+    console.log("asda34927349ß732ß947 329ß749237293472973ß4927349ß")
+    this.store.dispatch(new StructureActions.SetBreadcrumb(breadcrumb));
+  }
+
+  setCreateTitle(segment: string) {
     let title = 'Create ';
-    switch (preultimateSegment) {
-      case COMPONENTS: title + 'Component'; break;
-      case PROJECTS: title + 'Project'; break;
-      case RELEASES: title + 'Release'; break;
-      case LICENSES: title + 'Licence'; break;
-      case VULNERABILITIES: title + 'Vulnerability'; break;
-      case USERS: title + 'User'; break;
-      case ATTACHMENTS: title + 'Attachment'; break;
-      case VENDORS: title + 'Vendor'; break;
+    switch (segment) {
+      // TODO: others?
+      case UrlSegments.components: title = title + 'Component'; break;
+      case UrlSegments.projects: title = title + 'Project'; break;
       default: break;
     }
-    this.title = title;
+    this.store.dispatch(new StructureActions.SetTitle(title));
   }
 
-  // Release specific
-  ///////////////////
 
-  // If the last segment is relesaes it must be a release table
-  // Determine context if so
-  evalReleases() {
-    this.isReleases = (this.last === RELEASES) ? true : false;
-    if (this.isReleases) {
-      let type: string;
-      const id = this.second;
-      if (this.first === PROJECTS) type = this.first;
-      if (this.first === COMPONENTS) type = this.first;
-      this.store.dispatch(new TableActions.SetReleaseTableData({
-        type: type,
-        id: id
-      }))
-    }
-  }
 
 
 
@@ -300,8 +223,73 @@ export class RouterService {
 
 }
 
-const capitalizeFirstLetter = (string: string): string =>
+export const capitalizeFirstLetter = (string: string): string =>
   string.charAt(0).toUpperCase() + string.slice(1);
 
-const toSegmentArray = (urlSegments: string): string[] =>
+export const toSegmentArray = (urlSegments: string): string[] =>
   urlSegments.split('/').filter(segment => segment !== '');
+
+
+
+
+
+
+
+
+export const handleActiveFeature = (activeFeature: ActiveFeatures) => {
+  switch (activeFeature) {
+
+    case ActiveFeatures.isComponent: {
+      this.store.select(fromComponent.selectComponent).take(1).map(component => component.name).subscribe(name => this.store.dispatch(new StructureActions.SetTitle(name)));
+      return;
+    }
+
+    case ActiveFeatures.isComponents: {
+      this.store.dispatch(new StructureActions.SetTitle("Components"));
+      return;
+    }
+
+    case ActiveFeatures.isLicense: {
+      // this.store.select(fromLicense.selectLicense).take(1).map(license => license.name).subscribe(name => this.store.dispatch(new StructureActions.SetTitle(name)));
+      return;
+    }
+
+    case ActiveFeatures.isLicenses: {
+      this.store.dispatch(new StructureActions.SetTitle("Licenses"));
+      return;
+    }
+
+    case ActiveFeatures.isProject: {
+      // this.store.select(fromProject.selectProject).take(1).map(project => project.name).subscribe(name => this.store.dispatch(new StructureActions.SetTitle(name)));
+      return;
+    }
+
+    case ActiveFeatures.isProjects: {
+      this.store.dispatch(new StructureActions.SetTitle("Projects"));
+      return;
+    }
+
+    case ActiveFeatures.isRelease: {
+      // this.store.select(fromRelease.selectRelease).take(1).map(release => release.name).subscribe(name => this.store.dispatch(new StructureActions.SetTitle(name)));
+      return;
+    }
+
+    case ActiveFeatures.isReleases: {
+      // no title since it is embedded
+      return;
+    }
+
+    case ActiveFeatures.isAttachment: {
+      // this.store.select(fromAttachment.selectAttachment).take(1).map(attachment => attachment.name).subscribe(name => this.store.dispatch(new StructureActions.SetTitle(name)));
+      return;
+    }
+
+    case ActiveFeatures.isAttachments: {
+      // no title since it is embedded
+      return;
+    }
+
+    default:
+      break;
+  }
+}

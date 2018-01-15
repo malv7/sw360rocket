@@ -1,38 +1,30 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { State } from '../../state';
+import * as fromModel from './../../state/model.reducer';
 
 @Injectable()
 export class AuthenticationService {
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, private store: Store<State>) {
 
-        // const headers = new Headers();
+        // const headers = new HttpHeaders();
         // headers.append('Content-Type', 'application/x-www-form-urlencoded');
 
         // const user = 'admin@sw360.org';
         // const password = '12345';
-        // const credentials = `grant_type=password&username=${user}&password=${password}`;
-        // console.log(credentials);
+        // const credentials = `grant_type=password&username=${user}&password=${password}&credentials=true&scope=write`;
 
-        // console.log("WASCH DA LOS")
-
-        // const uri = 'http://localhost:8080/authorization/oauth/token';
-        // http.post(uri, credentials).subscribe(x => {
+        // const authUri = 'http://localhost:8080/authorization/oauth/token';
+        // http.post(authUri, credentials, { headers: headers }).subscribe(x => {
         //     console.log(x);
-        //     console.log("aouisdfoasd")
-        // });
+        // },
+        //     error => { console.log("error", error) }
+        // );
 
-        // const token = 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsic3czNjAtUkVTVC1BUEkiXSwidXNlcl9uYW1lIjoiYWRtaW5Ac3czNjAub3JnIiwic2NvcGUiOlsic3czNjAucmVhZCIsInN3MzYwLndyaXRlIl0sImV4cCI6MTUxNTE3NTU0NywiYXV0aG9yaXRpZXMiOlsiUk9MRV9TVzM2MF9VU0VSIl0sImp0aSI6ImY3NGQ4NTY1LTAyNTktNDFhMi1iYmIxLTM5YzUyYjUxNDlhOCIsImNsaWVudF9pZCI6InRydXN0ZWQtc3czNjAtY2xpZW50In0.ElYL5iyMVluqPs57WUIac2_tDY5Of8LFPQgcDenVDvsBRfeqeDESo5DI8z6cRbUO9v6oFzR74j8DLSmb6oMNQ-5krungCPgROBY-eM6pwdQatbFEOnprGxrFrHTUX8xYuIWh70RD2YOZ18njM4kiKU-zYtqfblruJXtk0SW5ga1oBkg_E9BWOZwL061m6UgJOKjHVxZZSTrevcuNjRaG_W-QwHJvJ1gRAyQtiilIRRfi_dxb7KmMAfjRtjA482Mr7SaFCPi1muL6vUtd5FKaPd_8EcnuUX_UzJdJjdGcmuJdP-ioIAcWVR8jH4i7taTyjvJMvzEOlqnfe1BbxWSQ1g';
-        // console.log(token)
-        // const componentsUri = 'http://localhost:8080/resource/api/components';
-        // const headers = new HttpHeaders();
-        // headers.set('Authorization', token);
-        // http.get(componentsUri, { headers: headers }).subscribe(x => {
-        //     console.log(x);
-        // }, y => {
-        //     console.log(y)
-        //     console.log("FEHLER");
-        // });
-        
+
+
+        // this.store.select(fromModel.selectComponents).subscribe(x => console.log(x));
     }
 }
 

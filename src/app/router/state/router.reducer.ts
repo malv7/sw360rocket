@@ -2,39 +2,20 @@ import * as RouterActions from './router.actions';
 import * as RouterApi from './../router.api';
 import * as fromRoot from './../../state';
 
-export interface BreadCrumb {
-  showBreadcrumb: boolean;
-  breadCrumbSegments: BreadcrumbSegment[];
-}
-
-export interface BreadcrumbSegment {
-  path: string;
-  name: string;
-}
-
-export interface RouteData {
-  breadcrumb: BreadCrumb;
-}
-
 export interface State {
-  route: RouteData;
+  activeFeatureSelflink: string;
 }
 
 const initialState: State = {
-  route: {
-    breadcrumb: {
-      showBreadcrumb: false,
-      breadCrumbSegments: []
-    },
-  }
+  activeFeatureSelflink: ''
 }
 
 export function routerReducer(state = initialState, action: RouterActions.Actions): State {
  
   switch (action.type) {
 
-    case RouterActions.UPDATE_ROUTE: {
-      return { ...state, route: action.routeData }
+    case RouterActions.SET_ACTIVE_FEATURE_SELFLINK: {
+      return { ...state, activeFeatureSelflink: action.selflink }
     }
       
     default: return state;
@@ -42,10 +23,5 @@ export function routerReducer(state = initialState, action: RouterActions.Action
 
 }
 
-export function selectCurrentRoute(state: fromRoot.State) {
-  return state.router.route;
-}
 
-export function selectBreadcrumbSegments(state: fromRoot.State) {
-  return state.router.route.breadcrumb.breadCrumbSegments;
-}
+

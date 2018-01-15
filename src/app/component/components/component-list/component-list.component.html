@@ -1,22 +1,12 @@
 <ng-template #tableHeader>
   <th>Name</th>
   <th>Type</th>
-  <th>Selflink</th>
-  <th>Name</th>
-  <th>Type</th>
-  <th>Type</th>
-  <th>Type</th>
   <th class="right aligned" sw-table-select (selectEvent)="selectAll()"></th>
 </ng-template>
 
 <ng-template #tableBody>
   <tr *ngFor="let component of components | async" class="row-hover">
     <td (click)="go(component)">{{ component.name }} </td>
-    <td (click)="go(component)">{{ component.componentType }}</td>
-    <td (click)="go(component)">{{ component._links?.self?.href }}</td>
-    <td (click)="go(component)">{{ component.name }} </td>
-    <td (click)="go(component)">{{ component.componentType }}</td>
-    <td (click)="go(component)">{{ component.componentType }}</td>
     <td (click)="go(component)">{{ component.componentType }}</td>
     <td class="right aligned" sw-table-select (selectEvent)="selectOne(component)"></td>
   </tr>

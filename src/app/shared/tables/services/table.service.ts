@@ -15,8 +15,10 @@ export class TableService {
 
 	///// Routing
 	go(resource: EmbeddedResource) {
-    this.store.dispatch(new RouterActions.Go({ path: [], ressourceSelflink: resource._links.self.href }));
-    this.store.dispatch(new StructureActions.SetTitle((<any> resource).name)); // TODO: FIX EmbeddedResource name conflict
+		this.store.dispatch(new RouterActions.Go({ path: [], ressourceSelflink: resource._links.self.href }));
+		// this.store.dispatch(new RouterActions.SetActiveDetailName(resource))
+		// this.store.dispatch(new RouterActions.SetActiveFeatureSelflink())
+		this.store.dispatch(new StructureActions.SetTitle((<any>resource).name)); // TODO: FIX EmbeddedResource name conflict
 	};
 
 	///// Selections
@@ -27,7 +29,7 @@ export class TableService {
 
 	selectAll(resources: Observable<EmbeddedResource[]>) {
 		this.store.select(fromTable.selectAreAllElementsSelected).take(1).subscribe(areAllElementsSelected => {
-			if(areAllElementsSelected) {
+			if (areAllElementsSelected) {
 				this.store.dispatch(new TableActions.ClearTableSelections);
 			} else {
 				const selfLinks: string[] = [];

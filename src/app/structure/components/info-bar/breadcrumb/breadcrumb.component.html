@@ -1,7 +1,0 @@
-<div *ngIf="(routeData | async).breadcrumb.showBreadcrumb">
-  <span *ngFor="let segment of breadcrumbSegments | async" class="routeSegment" (click)="go(segment.path)">
-    {{ segment.name }}
-  </span>
-</div>
-
-<!-- {{ breadcrumbSegments | async | json }} -->

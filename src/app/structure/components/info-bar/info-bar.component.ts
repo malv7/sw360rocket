@@ -14,9 +14,7 @@ import { Component } from "@angular/core";
       </div>
       
       <!-- Message and global action buttons area -->  
-      <div class="message" fxLayout="row" fxLayoutAlign="center center">
-        <div>Welcome to SW360Rocket!</div>
-      </div>
+      <sw-message></sw-message>
 
     </div>
   `,

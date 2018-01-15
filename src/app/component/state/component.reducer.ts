@@ -1,22 +1,58 @@
 import * as ComponentActions from './component.actions';
-import { ComponentDataLayout } from './component.models';
+import { SW360Component, SW360ComponentTypes } from './../../resources/resources.api';
+import * as fromRoot from './../../state';
 
 export interface State {
-  components: ComponentDataLayout[];
+  components: SW360Component[];
+  component: SW360Component;
 }
 
-const initialState = {
-  components: []
+const initialState: State = {
+  components: [],
+  component: {
+    name: '',
+    componentType: SW360ComponentTypes.OSS,
+    description: '',
+    createdOn: '',
+    type: 'component',
+    _links: {
+      self: {
+        href: ''
+      }
+    },
+    _embedded: {
+      createdBy: {
+        email: '',
+        _links: {
+          self: {
+            href: ''
+          }
+        }
+      },
+      releases: [],
+      moderators: [],
+      vendors: [],
+    }
+  }
 }
 
 export function componentReducer(state = initialState, action: ComponentActions.All): State {
- 
+
   switch (action.type) {
-    case ComponentActions.PROVIDE_MOCK_DATA: {
-      return { ...state, components: action.components };
+
+    case ComponentActions.REDUCE_COMPONENTS: {
+      return { ...state, components: action.components }
     }
-      
+
+    case ComponentActions.REDUCE_COMPONENT: {
+      return { ...state, component: action.component }
+    }
+
     default: return state;
   }
 
 }
+
+export const selectComponents = (state: fromRoot.State) => state.component.components;
+export const selectComponent = (state: fromRoot.State) => state.component.component;
+
