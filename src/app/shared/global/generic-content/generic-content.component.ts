@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { RouteConfiguration } from '../../../router/router.api';
 
 @Component({
 	selector: 'sw-generic-content',
@@ -18,7 +19,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class GenericContentComponent implements OnInit {
 
-	@Input() tabs;
+	@Input() tabs: RouteConfiguration[];
 
 	constructor() { }
 
