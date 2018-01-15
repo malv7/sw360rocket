@@ -1,4 +1,4 @@
-<div fxLayout="row">
+<div fxLayout="row" fxLayoutAlign="space-between center">
 	<div class="ui pagination menu">
 		<a class="icon item" (click)="firstPage()" [ngClass]="{ disabled: pagination.currentPage === 1 }">
 			First
@@ -15,10 +15,16 @@
 			Last
 		</a>
 	</div>
+	<button class="ui green icon button" suiPopup popupHeader="Example" popupText="This is an example popup">
+			<i class="add icon"></i>
+		</button>
+	<div>
+		Elements per page:
 	<div class="ui input">
-		<input type="number" [(ngModel)]="elementsPerPage">
-		<button class="ui button basic icon" (click)="setElementsPerPage()">
+		<input id="elementsPerPageInput" type="number" [(ngModel)]="elementsPerPage">
+		<button class="ui button basic icon " (click)="setElementsPerPage()">
 			<i class="refresh icon"></i>
 		</button>
 	</div>
+</div>
 </div>
