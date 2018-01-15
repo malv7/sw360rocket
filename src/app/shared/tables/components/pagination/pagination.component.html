@@ -1,4 +1,4 @@
-<div fxLayout="row">
+<div fxLayout="row" fxLayoutAlign="space-between center">
 	<div class="ui pagination menu">
 		<a class="icon item" (click)="firstPage()" [ngClass]="{ disabled: pagination.currentPage === 1 }">
 			First
@@ -15,10 +15,13 @@
 			Last
 		</a>
 	</div>
+	<div fxLayout="row" fxLayoutAlign="space-between center">
 	<div class="ui input">
-		<input type="number" [(ngModel)]="elementsPerPage">
-		<button class="ui button basic icon" (click)="setElementsPerPage()">
-			<i class="refresh icon"></i>
-		</button>
+			<button class="ui button basic icon " (click)="setElementsPerPage()">
+					<i class="refresh icon"></i>
+				</button>
+		<input id="elementsPerPageInput" type="number" [(ngModel)]="elementsPerPage">
+	</div>
+	<div class="paginationLabel"> / {{pagination.totalElementsAmount}} Results</div>
 	</div>
 </div>
