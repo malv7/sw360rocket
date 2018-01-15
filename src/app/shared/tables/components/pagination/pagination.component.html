@@ -15,16 +15,13 @@
 			Last
 		</a>
 	</div>
-	<button class="ui green icon button" suiPopup popupHeader="Example" popupText="This is an example popup">
-			<i class="add icon"></i>
-		</button>
-	<div>
-		Elements per page:
+	<div fxLayout="row" fxLayoutAlign="space-between center">
 	<div class="ui input">
+			<button class="ui button basic icon " (click)="setElementsPerPage()">
+					<i class="refresh icon"></i>
+				</button>
 		<input id="elementsPerPageInput" type="number" [(ngModel)]="elementsPerPage">
-		<button class="ui button basic icon " (click)="setElementsPerPage()">
-			<i class="refresh icon"></i>
-		</button>
 	</div>
-</div>
+	<div class="paginationLabel"> / {{pagination.totalElementsAmount}} Results</div>
+	</div>
 </div>
