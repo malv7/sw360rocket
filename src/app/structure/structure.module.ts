@@ -5,7 +5,9 @@ import { RouterModule } from '@angular/router';
 
 // Store
 import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 import { structureReducer } from './state/structure.reducer';
+import { StructureEffects } from './state/structure.effects';
 
 // components
 import { StructureRootComponent } from './components/structure-root/structure-root.component';
@@ -20,12 +22,14 @@ import { ContentComponent } from './components/content/content.component';
 import { BreadcrumbComponent } from './components/info-bar/breadcrumb/breadcrumb.component';
 import { ContentTitleComponent } from './components/info-bar/title/content-title.component';
 import { InfoBarComponent } from './components/info-bar/info-bar.component';
+import { MessageComponent } from './components/info-bar/message/message.component';
 
 @NgModule({
   imports: [
     SharedModule,
     RouterModule,
-    StoreModule.forFeature('structure', structureReducer)
+    StoreModule.forFeature('structure', structureReducer),
+    EffectsModule.forFeature([StructureEffects])
   ],
   declarations: [
     StructureRootComponent,
@@ -36,7 +40,8 @@ import { InfoBarComponent } from './components/info-bar/info-bar.component';
     ContentComponent,
     BreadcrumbComponent,
     ContentTitleComponent,
-    InfoBarComponent
+    InfoBarComponent,
+    MessageComponent
   ],
   exports: [ StructureRootComponent ]
 })

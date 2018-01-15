@@ -9,7 +9,7 @@ import { HttpService } from './http/services/http.service';
 })
 export class AppComponent {
 	constructor(
-    // auth: AuthenticationService,
+    private auth: AuthenticationService,
     private httpService: HttpService,
     private models: ModelService) { }
 }

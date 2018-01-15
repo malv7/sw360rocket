@@ -1,5 +1,3 @@
-import { RouteData } from "./state/router.reducer";
-
 // First class segments
 export const PROJECTS = 'projects';
 export const COMPONENTS = 'components';
@@ -18,16 +16,38 @@ export const ABOUT = 'about';
 export const CREATE = 'create';
 export const ID = ':id';
 
-export enum ResourceListTypes {
+export enum UrlSegments {
   projects = 'projects',
   components = 'components',
   releases = 'releases',
   vulnerabilities = 'vulnerabilities',
-  attachmetns = 'attachments',
-  licenes = 'licenses',
+  attachments = 'attachments',
+  licenses = 'licenses',
   vendors = 'vendors',
   users = 'users',
-  ecc = 'ecc'
+  ecc = 'ecc',
+  create = 'create',
+  details = 'details'
+}
+
+export enum ActiveFeatures {
+  isComponents,
+  isComponent,
+  isProjects,
+  isProject,
+  isReleases,
+  isRelease,
+  isVulnerabilities,
+  isVulnerability,
+  // isEccs
+  isUsers,
+  isUser,
+  isVendors,
+  isVendor,
+  isLicenses,
+  isLicense,
+  isAttachments,
+  isAttachment
 }
 
 export interface ReleaseContextRoute {
@@ -42,7 +62,7 @@ export interface RouteConfiguration {
 
 // Returns true/false wheter the segment is a list/not
 export const isRouteSegmentList = (routeSegment: string) =>
-  Object.values(ResourceListTypes).includes(routeSegment) ? true : false;
+  Object.values(UrlSegments).includes(routeSegment) ? true : false;
 
 export const mainNavigationRoutes: RouteConfiguration[] = [
   { title: 'Projects', route: 'projects' },

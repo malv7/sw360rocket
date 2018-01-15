@@ -5,7 +5,7 @@ import { State } from './../state';
 import * as fromModel from './model.reducer';
 
 // Resources
-enum SW360Resources {
+export enum SW360Resources {
   USERS = 'sw360:users',
   PROJECTS = 'sw360:projects',
   COMPONENTS = 'sw360:components',

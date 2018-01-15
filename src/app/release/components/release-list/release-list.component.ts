@@ -1,3 +1,4 @@
+import { RouterService } from './../../../router/services/router.service';
 // ng
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
@@ -37,7 +38,11 @@ export class ReleaseListComponent implements OnInit, OnDestroy {
   isProjects: boolean = false;
   isComponents: boolean = false;
 
-  constructor(private store: Store<State>, private tableService: TableService) { }
+  constructor(
+    private store: Store<State>,
+    private tableService: TableService,
+    private routerService: RouterService
+  ) { }
 
   ngOnInit() {
     this.releases = this.store.select(fromModel.selectReleases);
@@ -55,9 +60,7 @@ export class ReleaseListComponent implements OnInit, OnDestroy {
   }
 
   go(release: EmbeddedRelease) {
-    this.store.dispatch(new RouterActions.Go({ path: [
-      this.releaseContextRoute.type + '/' + this.releaseContextRoute.id  + '/' + RELEASES + '/' + release.id
-    ]}));
+    this.routerService.goToRelease(release);
   }
 
   selectOne(release: EmbeddedRelease) {

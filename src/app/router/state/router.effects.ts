@@ -14,12 +14,6 @@ import { State } from './../../state';
 import { Store } from '@ngrx/store';
 import * as TableActions from './../../shared/tables/state/table.actions';
 
-// Define feature routes to reuse them in a single place.
-const ROUTES = [
-  'components',
-  'projects'
-];
-
 @Injectable()
 export class RouterEffects {
 

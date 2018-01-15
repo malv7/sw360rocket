@@ -1,36 +1,46 @@
 import { Action } from '@ngrx/store';
-import { ComponentDataLayout } from './component.models';
+import { SW360Component } from './../../resources/resources.api';
 
-export const QUERY  = '[Component] Query';
-export const CREATE = '[Component] Create';
-export const UPDATE = '[Component] Update';
-export const DELETE = '[Component] Delete';
-
-export const PROVIDE_MOCK_DATA = 'ProvideMockData';
-export class ProvideMockData implements Action {
-  readonly type = PROVIDE_MOCK_DATA;
-  constructor(public components: ComponentDataLayout[]) { }
-}
+export const QUERY              = '[Components] Query';
+export const QUERY_SUCCESS      = '[Components] Query Success';
+export const REDUCE_COMPONENTS  = '[Components] Reduce components';
+export const GET                = '[Component]  Get';
+export const GET_SUCCESS        = '[Component]  Get success';
+export const REDUCE_COMPONENT   = '[Component]  Reduce component';
 
 export class Query implements Action {
   readonly type = QUERY;
-  constructor() { }
 }
 
-export class Create implements Action {
-  readonly type = CREATE;
-  constructor() { }
+export class QuerySuccess implements Action {
+  readonly type = QUERY_SUCCESS;
+  constructor(public response: any) { }
 }
 
-export class Update implements Action {
-  readonly type = UPDATE;
-  constructor() { }
+export class ReduceComponents implements Action {
+  readonly type = REDUCE_COMPONENTS;
+  constructor(public components: SW360Component[]) { }
 }
 
-export class Delete implements Action {
-  readonly type = DELETE;
-  constructor() { }
+export class Get implements Action {
+  readonly type = GET;
+  constructor(public href: string) { }
+}
+
+export class GetSuccess implements Action {
+  readonly type = GET_SUCCESS;
+  constructor(public response: any) { }
+}
+
+export class ReduceComponent implements Action {
+  readonly type = REDUCE_COMPONENT;
+  constructor(public component: SW360Component) { }
 }
 
 export type All =
-  ProvideMockData;
+  Query |
+  QuerySuccess |
+  ReduceComponents |
+  Get |
+  GetSuccess |
+  ReduceComponent;
