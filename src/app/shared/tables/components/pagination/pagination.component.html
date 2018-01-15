@@ -1,27 +1,27 @@
 <div fxLayout="row" fxLayoutAlign="space-between center">
-	<div class="ui pagination menu">
-		<a class="icon item" (click)="firstPage()" [ngClass]="{ disabled: pagination.currentPage === 1 }">
-			First
-		</a>
-		<a class="icon item" (click)="previousPage()" [ngClass]="{ disabled: pagination.currentPage === 1 }">
-			<i class="left chevron icon"></i>
-		</a>
-		<a class="item" *ngFor="let page of currentButtons" (click)="setPage(page)" [ngClass]="{ active: pagination.currentPage === page }">
-			{{page}}</a>
-		<a class="icon item" (click)="nextPage()" [ngClass]="{ disabled: pagination.currentPage === lastPage }">
-			<i class="right chevron icon"></i>
-		</a>
-		<a class="icon item" (click)="goToLastPage()" [ngClass]="{ disabled: pagination.currentPage === lastPage }">
-			Last
-		</a>
-	</div>
-	<div fxLayout="row" fxLayoutAlign="space-between center">
-	<div class="ui input">
-			<button class="ui button basic icon " (click)="setElementsPerPage()">
-					<i class="refresh icon"></i>
-				</button>
-		<input id="elementsPerPageInput" type="number" [(ngModel)]="elementsPerPage">
-	</div>
-	<div class="paginationLabel"> / {{pagination.totalElementsAmount}} Results</div>
-	</div>
+  <div class="ui pagination menu">
+    <a class="icon item" (click)="firstPage()" [ngClass]="{ disabled: pagination.currentPage === 1 }">
+      First
+    </a>
+    <a class="icon item" (click)="previousPage()" [ngClass]="{ disabled: pagination.currentPage === 1 }">
+      <i class="left chevron icon"></i>
+    </a>
+    <a class="item" *ngFor="let page of currentButtons" (click)="setPage(page)" [ngClass]="{ active: pagination.currentPage === page }">
+      {{page}}</a>
+    <a class="icon item" (click)="nextPage()" [ngClass]="{ disabled: pagination.currentPage === lastPage }">
+      <i class="right chevron icon"></i>
+    </a>
+    <a class="icon item" (click)="goToLastPage()" [ngClass]="{ disabled: pagination.currentPage === lastPage }">
+      Last
+    </a>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <div class="paginationLabel"> {{pagination.totalElementsAmount}} Results</div>
+    <div class="ui input">
+      <input id="elementsPerPageInput" type="number" [(ngModel)]="elementsPerPage">
+      <button class="ui button basic icon" (click)="setElementsPerPage()">
+        <i class="refresh icon"></i>
+      </button>
+    </div>
+  </div>
 </div>

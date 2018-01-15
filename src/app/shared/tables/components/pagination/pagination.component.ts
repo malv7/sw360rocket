@@ -12,7 +12,10 @@ import 'rxjs/add/operator/map';
 
 @Component({
   selector: 'sw-pagination',
-	templateUrl: './pagination.component.html',
+  templateUrl: './pagination.component.html',
+  styles: [`
+    #elementsPerPageInput { width: 6em; margin-right: 0.5em; }
+  `]
 })
 export class PaginationComponent implements OnInit {
 
