@@ -26,8 +26,8 @@ export class StructureEffects {
     ) { }
 
     evalUrl(title: string) {
-        console.log(this.router.url);
+        // console.log(this.router.url);
         const route = toSegmentArray(this.router.url);
-        console.log(route);
+        // console.log(route);
     }
 }

@@ -1,23 +1,20 @@
-import { MessageType } from './../../structure/state/structure.reducer';
-import { Observable } from 'rxjs/Observable';
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders, HttpErrorResponse } from "@angular/common/http";
 import { Router } from "@angular/router";
 
-import 'rxjs/add/observable/interval';
-import 'rxjs/add/observable/throw';
+import { MessageType } from './../../structure/state/structure.reducer';
 import { EmbeddedSW360Component, EmbeddedProject, SW360Resources } from "../../state/models";
 import { State } from "../../state";
 import { Store } from "@ngrx/store";
 import * as ModelActions from './../../state/model.actions';
-
-import 'rxjs/add/operator/switchMap';
-
 import * as StructureActions from './../../structure/state/structure.actions';
-
 import * as ComponentActions from './../../component/state/component.actions';
 import * as fromComponent from './../../component/state/component.reducer';
 
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/observable/throw';
+import 'rxjs/add/observable/interval';
 
 export enum RequestTypes {
   componentList = 'componentList',
@@ -51,10 +48,10 @@ export class HttpService {
     this.headers = new HttpHeaders().set('Authorization', token);
 
     // this.store.select(fromComponent.selectComponents).subscribe(x => console.log(x));
-    this.store.select(fromComponent.selectComponent).subscribe(x => console.log(x));
+    // this.store.select(fromComponent.selectComponent).subscribe(x => console.log(x));
 
     Observable.timer(1000).subscribe(() => {
-      this.store.dispatch(new ComponentActions.Get("http://localhost:8080/resource/api/components/c0b78d8e672a28ff0a0abb3e00002d14"))
+      // this.store.dispatch(new ComponentActions.Get("http://localhost:8080/resource/api/components/c0b78d8e672a28ff0a0abb3e00002d14"))
     });
   }
 
@@ -72,8 +69,32 @@ export class HttpService {
     // console.log(type);
 
     // do global stuff (clear lists, clear detail, set titles, set breadcrumb) here before dispatching each action for feature listeners
+    if (
+      type === RequestTypes.attachmentList ||
+      type === RequestTypes.componentList ||
+      type === RequestTypes.licenseList ||
+      type === RequestTypes.projectList ||
+      type === RequestTypes.releaseList ||
+      type === RequestTypes.userList ||
+      type === RequestTypes.vendorList
+    ) {
+      // this.store.dispatch(fromTable.ClearTable Stuff)
+    }
+
+    if (
+      type === RequestTypes.attachment ||
+      type === RequestTypes.component ||
+      type === RequestTypes.license ||
+      type === RequestTypes.project ||
+      type === RequestTypes.release ||
+      type === RequestTypes.user ||
+      type === RequestTypes.vendor
+    ) {
+
+    }
 
     switch (type) {
+
       case RequestTypes.componentList: {
         this.store.dispatch(new ComponentActions.QuerySuccess(response));
         this.setMessage('get components successful!', MessageType.success);

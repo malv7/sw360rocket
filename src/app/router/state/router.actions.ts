@@ -1,10 +1,11 @@
+import { ActiveFeatures } from './../router.api';
 import { Action } from '@ngrx/store';
 import { NavigationExtras } from '@angular/router';
 
 export const GO      = '[Router] Go';
 export const BACK    = '[Router] Back';
 export const FORWARD = '[Router] Forward';
-export const SET_ACTIVE_FEATURE_SELFLINK = '[Router] Set active element name';
+export const SET_ACTIVE_FEATURES = '[Router] Set active features';
 
 export class Go implements Action {
   readonly type = GO;
@@ -29,13 +30,13 @@ export class Forward implements Action {
   readonly type = FORWARD;
 }
 
-export class SetActiveFeatureSelflink implements Action {
-  readonly type = SET_ACTIVE_FEATURE_SELFLINK;
-  constructor(public selflink: string) { }
+export class SetActiveFeatures implements Action {
+  readonly type = SET_ACTIVE_FEATURES;
+  constructor(public activeFeatures: ActiveFeatures[]) { }
 }
 
 export type Actions =
     Go
   | Back
   | Forward
-  | SetActiveFeatureSelflink;
+  | SetActiveFeatures;

@@ -42,13 +42,13 @@ export class RouterService {
   // Process variables
   event: NavigationEnd
   route: string[];
-  first: string;
-  second: string;
-  third: string;
-  fourth: string;
-  fifth: string;
-  sixth: string;
-  seventh: string;
+  one: string;
+  two: string;
+  three: string;
+  four: string;
+  five: string;
+  six: string;
+  seven: string;
   last: string;
   preultimate: string; // vorletzte
   id: string;
@@ -64,13 +64,13 @@ export class RouterService {
     // update route
     this.route = toSegmentArray(this.event.urlAfterRedirects);
     // 1-7 semantic segments
-    this.first = this.route[0] ? this.route[0] : undefined;
-    this.second = this.route[1] ? this.route[1] : undefined;
-    this.third = this.route[2] ? this.route[2] : undefined;
-    this.fourth = this.route[3] ? this.route[3] : undefined;
-    this.fifth = this.route[4] ? this.route[4] : undefined;
-    this.sixth = this.route[5] ? this.route[5] : undefined;
-    this.seventh = this.route[6] ? this.route[6] : undefined;
+    this.one = this.route[0] ? this.route[0] : undefined;
+    this.two = this.route[1] ? this.route[1] : undefined;
+    this.three = this.route[2] ? this.route[2] : undefined;
+    this.four = this.route[3] ? this.route[3] : undefined;
+    this.five = this.route[4] ? this.route[4] : undefined;
+    this.six = this.route[5] ? this.route[5] : undefined;
+    this.seven = this.route[6] ? this.route[6] : undefined;
     // last and preultimate
     this.last = this.route[this.route.length - 1] ? this.route[this.route.length - 1] : undefined;
     this.preultimate = this.route[this.route.length - 2] ? this.route[this.route.length - 2] : undefined;
@@ -85,112 +85,124 @@ export class RouterService {
   // 7 detail
   // ...
   processNavigation() {
-
     this.store.dispatch(new TableActions.InitializeTable());
+    this.setActiveFeatures();
+    this.setTitleAndBreadcrumb();
+  }
 
-    // TODO: gather and dispatch
-    let activeFeature: ActiveFeatures;
+  setActiveFeatures() {
+    const activeFeatures: ActiveFeatures[] = [];
 
-    const m = this.route.length % 2;
-    if (m === 0) {
-      switch (this.route.length) {
-        case 0: {
-          this.store.dispatch(new StructureActions.SetBreadcrumb({ active: false, segments: [] }));
-          this.store.dispatch(new StructureActions.SetTitle('Welcome to SW360Rocket'));
-          break;
-        }
-        case 2: {
-          if (this.second === UrlSegments.create) this.setCreateTitle(this.first);
-          break;
-        }
-        case 4: break;
-        default: break;
+    if (this.route.length > 0) {
+      if (this.one === UrlSegments.components)
+        activeFeatures.push(ActiveFeatures.isComponents);
+      else if (this.one === UrlSegments.projects)
+        activeFeatures.push(ActiveFeatures.isProjects);
+      // TODO: rest
+    }
+
+    if (this.route.length === 5) {
+      if (this.three === UrlSegments.releases)
+        activeFeatures.push(ActiveFeatures.isReleases);
+    }
+
+    this.store.dispatch(new RouterActions.SetActiveFeatures(activeFeatures));
+  }
+
+  // Sets title and breadcrumb as good as it can at this point
+  setTitleAndBreadcrumb() {
+    switch (this.route.length) {
+
+      case 0: {
+        this.store.dispatch(new StructureActions.SetTitle('Welcome to SW360Rocket'));
+        this.store.dispatch(new StructureActions.SetBreadcrumb({ active: false, segments: [] }));
+        return;
       }
-    } else {
-      const capitalizedFirst = capitalizeFirstLetter(this.first);
-      switch (this.route.length) {
-        case 1: {
-          this.store.dispatch(new TableActions.InitializeTable());
-          this.store.dispatch(new StructureActions.SetBreadcrumb({ active: false, segments: [] }));
-          this.store.dispatch(new StructureActions.SetTitle(capitalizedFirst));
-          break;
+
+      case 1: {
+        this.store.dispatch(new StructureActions.SetTitle(capitalizeFirstLetter(this.one)));
+        this.store.dispatch(new StructureActions.SetBreadcrumb({ active: false, segments: [] }));
+        return;
+      }
+
+      case 2: {
+        if (this.two === UrlSegments.create)
+          this.store.dispatch(new StructureActions.SetTitle('Create ' + capitalizeFirstLetter(this.one)));
+        this.store.dispatch(new StructureActions.SetBreadcrumb({ active: true, segments: [{ name: capitalizeFirstLetter(this.one), route: this.one }] }));
+        return;
+      }
+
+      case 3: {
+        if (this.one === UrlSegments.components) {
+          this.store.select(fromComponent.selectComponent).take(1).map(component => component.name).subscribe(name => this.store.dispatch(new StructureActions.SetTitle(name)));
         }
-        case 3: {
-          this.store.dispatch(new StructureActions.SetBreadcrumb({ active: true, segments: [{ name: capitalizedFirst, route: this.first }] }));
-          this.store.dispatch(new TableActions.InitializeTable());
-          this.store.dispatch(new TableActions.SetReleaseTableData({
-            type: this.first,
-            id: this.second
-          }));
-          break;
-        }
-        case 5: {
-          const capitalizedThird = capitalizeFirstLetter(this.third);
+        this.store.dispatch(new StructureActions.SetBreadcrumb({ active: true, segments: [{ name: capitalizeFirstLetter(this.one), route: this.one }] }));
+        return;
+      }
 
-          // releases
-          if (this.third === UrlSegments.releases) {
-            if (this.first === UrlSegments.components) {
-              this.store.select(fromComponent.selectComponent)
-                .take(1)
-                .subscribe(component => {
-                  console.log(component)
-                  this.dispatchBreadcrumb({
-                    active: true,
-                    segments: [
-                      { name: capitalizedFirst, route: this.first },
-                      { name: component.name, route: component._links.self.href },
-                    ]
-                  })
-                });
-            } else if (this.first === UrlSegments.projects) {
-              // TODO: projects
-            }
-          }
+      default:
+        break;
+    }
+  }
 
+  goToResource() {
+    this.store.select(fromRouter.selectActiveFeatures).take(1).subscribe(activeFeatures => {
+      console.log(activeFeatures);
+    })
+  }
 
+  goToRelease(release: any) {
+    this.store.select(fromRouter.selectActiveFeatures).take(1).subscribe(activeFeatures => {
+      if (activeFeatures.includes(ActiveFeatures.isComponents)) {
+
+        // Set title
+        this.store.dispatch(new StructureActions.SetTitle(release.name));
+
+        // Get active component data
+        this.store.select(fromComponent.selectComponent).take(1).subscribe(component => {
+          // Dispatch breadcrumb
           this.store.dispatch(new StructureActions.SetBreadcrumb({
-            active: true,
-            segments: [
-              { name: capitalizedFirst, route: this.first },
-              // TODO: get
+            active: true, segments: [
+              { name: capitalizeFirstLetter(this.one), route: this.one },
+              { name: component.name, route: component._links.self.href },
             ]
           }));
-          this.store.dispatch(new TableActions.InitializeTable());
-          break;
-        }
-        default: break;
+          // Dispatch routing
+          this.store.dispatch(new RouterActions.Go({
+            path: [
+              UrlSegments.components + '/' +
+              this.getIdFromSelflink(component._links.self.href) + '/' +
+              UrlSegments.releases + '/' +
+              this.getIdFromSelflink(release._links.self.href)
+            ]
+          }))
+        });
+
+      } else if (activeFeatures.includes(ActiveFeatures.isReleases)) {
+        // TODO:
       }
-    }
+    })
   }
 
-  dispatchBreadcrumb(breadcrumb: Breadcrumb) {
-    console.log(breadcrumb);
-    console.log("asda34927349ß732ß947 329ß749237293472973ß4927349ß")
-    this.store.dispatch(new StructureActions.SetBreadcrumb(breadcrumb));
+  getIdFromSelflink(link: string) {
+    const segments = toSegmentArray(link);
+    return segments[segments.length - 1];
   }
 
-  setCreateTitle(segment: string) {
-    let title = 'Create ';
-    switch (segment) {
-      // TODO: others?
-      case UrlSegments.components: title = title + 'Component'; break;
-      case UrlSegments.projects: title = title + 'Project'; break;
-      default: break;
-    }
-    this.store.dispatch(new StructureActions.SetTitle(title));
+  getSelflinksFromRoute() {
+    
+    // jede tabelle, sowie breadcrumb routet über den router service
+    // sie gibt das jeweilige embedded feature oder link mit
+    // der router service hat eine go methode für jedes feature oder gotoselfink oder goto route (partielle bredcrumb wie projects)
+    // router service extrahiert name o.Ä. und id aus selflink für die breadcrumb in jeweiliger methode
+    // router service entscheidet ob neuer content erhoben werden muss, macht dies und speichert es in den jeweiligen selected features ab
+    // detail komponenten ziehen ihre daten immer aus dem selected feature aus dem store
+
+
+
+    // wenn auf tabelle geklickt wird, wird das jeweilige feature aktiviert und im store abgelegt
+    // router 
   }
-
-
-
-
-
-
-
-
-
-
-
-
 
   // TODO: rework
   go(go: RouterActions.Go) {

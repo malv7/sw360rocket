@@ -1,21 +1,22 @@
 import * as RouterActions from './router.actions';
 import * as RouterApi from './../router.api';
 import * as fromRoot from './../../state';
+import { ActiveFeatures } from './../router.api';
 
 export interface State {
-  activeFeatureSelflink: string;
+  activeFeatures: ActiveFeatures[];
 }
 
 const initialState: State = {
-  activeFeatureSelflink: ''
+  activeFeatures: []
 }
 
 export function routerReducer(state = initialState, action: RouterActions.Actions): State {
  
   switch (action.type) {
 
-    case RouterActions.SET_ACTIVE_FEATURE_SELFLINK: {
-      return { ...state, activeFeatureSelflink: action.selflink }
+    case RouterActions.SET_ACTIVE_FEATURES: {
+      return { ...state, activeFeatures: action.activeFeatures };
     }
       
     default: return state;
@@ -23,5 +24,6 @@ export function routerReducer(state = initialState, action: RouterActions.Action
 
 }
 
+export const selectActiveFeatures = (state: fromRoot.State) => state.router.activeFeatures;
 
 
