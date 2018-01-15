@@ -12,5 +12,17 @@
 	border-radius: 5px;
 	margin-bottom: $layout-gap;
 	position: relative;
+}
 
+.widget {
+	margin-bottom: 1em;
+}
+
+.table-action-bar {
+	margin-bottom: 1em;
+	display: flex;
+}
+
+.table-action-bar sw-action-button {
+	margin-left: 0.5em;
 }

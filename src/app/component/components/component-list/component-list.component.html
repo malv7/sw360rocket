@@ -12,27 +12,11 @@
   </tr>
 </ng-template>
 
-<div fxLayout="row" [ngStyle]="{ 'margin-bottom': '1em' }">
+<div class="table-action-bar">
 
   <sw-search-filter></sw-search-filter>
 
-  <div>
-    <sw-action-button [callback]="create" zero="true">
-      <i class="icon add"></i>
-      <span>Create</span>
-    </sw-action-button>
-    <sw-action-button [callback]="create" zero="true">
-      <i class="icon add"></i>
-      <span>Create</span>
-    </sw-action-button>
-    <sw-action-button [callback]="create" zero="true">
-      <i class="icon add"></i>
-      <span>Create</span>
-    </sw-action-button>
-    <sw-action-button [callback]="create" zero="true">
-      <i class="icon add"></i>
-      <span>Create</span>
-    </sw-action-button>
+  <div fxLayout="row" >
     <sw-action-button [callback]="create" zero="true">
       <i class="icon add"></i>
       <span>Create</span>

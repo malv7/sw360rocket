@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from "@angular/core";
+import { Component, Input, OnDestroy, OnInit, Output, EventEmitter, HostBinding } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { State } from './../../../../state';
 import * as fromTable from './../../../tables/state/table.reducer';
@@ -7,24 +7,21 @@ import { Subscription } from "rxjs/Subscription";
 // TODO: Check [ngStyle] settings and fix margin of sw-action-buttons in a group
 @Component({
   selector: 'sw-action-button',
-  template: `
-    <button class="ui button basic" (click)="invokeCallback()" *ngIf="active"
-      [ngStyle]="{
-        'background': 'red',
-        'margin': '0'
-      }">
+	template: `
+    <button class="ui button basic" (click)="invokeCallback()">
       <ng-content></ng-content>
-    </button>
-  `
+		</button>
+	`,
+	styles: []
 })
 export class ActionButtonComponent implements OnInit, OnDestroy {
-  
-  active: boolean = false;
+
+	@HostBinding("style.display") display = "none";
 
   @Input() zero: boolean = false;
   @Input() one: boolean = false;
   @Input() many: boolean = false;
-  @Input() callback: Function;
+	@Input() callback: Function;
 
   selectedElementsCountSub: Subscription;
 
@@ -34,11 +31,11 @@ export class ActionButtonComponent implements OnInit, OnDestroy {
     this.selectedElementsCountSub =
       this.store.select(fromTable.selectSelectedListElementsCount).subscribe(elementsCount => {
         if (elementsCount === 0)
-          this.active = this.zero ? true : false;
+          this.setHostDisplay(this.zero ? true : false);
         else if (elementsCount === 1)
-          this.active = (this.one || this.many) ? true : false;
+					this.setHostDisplay((this.one || this.many) ? true : false);
         else if (elementsCount > 1)
-          this.active = this.many ? true : false;
+					this.setHostDisplay(this.many ? true : false);
       });
   }
 
@@ -50,5 +47,9 @@ export class ActionButtonComponent implements OnInit, OnDestroy {
   invokeCallback() {
     // only if set
     if (this.callback) this.callback();
-  }
+	}
+
+	setHostDisplay(active: boolean) {
+		this.display = active ? "inline" : "none";
+	}
 }

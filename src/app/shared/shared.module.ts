@@ -21,6 +21,7 @@ import { TableSelectComponent } from './tables/components/table-select/table-sel
 import { ActionButtonComponent } from './tables/components/action-buttons/action-button.component';
 import { EffectsModule } from '@ngrx/effects';
 import { TableEffects } from './tables/state/table.effects';
+import { GenericContentComponent } from './global/generic-content/generic-content.component';
 
 @NgModule({
 	imports: [
@@ -41,7 +42,8 @@ import { TableEffects } from './tables/state/table.effects';
     PaginationComponent,
     GenericTableComponent,
     TableSelectComponent,
-    ActionButtonComponent
+    ActionButtonComponent,
+    GenericContentComponent
 	],
 	exports: [
 		// modules
@@ -57,7 +59,8 @@ import { TableEffects } from './tables/state/table.effects';
     GenericFormElementComponent,
     GenericTableComponent,
     TableSelectComponent,
-    ActionButtonComponent
+		ActionButtonComponent,
+		GenericContentComponent
   ],
   providers: [TableService]
 })
