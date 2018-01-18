@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, Output, EventEmitter } from '@angular/core';
 import { SW360ComponentTypes } from './../../../resources/resources.api';
 // ng
 import { Observable } from 'rxjs/Observable';
@@ -36,16 +36,35 @@ export class UserListComponent implements OnInit {
 	@ViewChild('modalTemplate')
 	public modalTemplate: ModalTemplate<IContext, string, string>
 
+	@Output() onApproved = new EventEmitter<any[]>();
+
 	users: Observable<any[]>;
+	@Input() selectedUsers: any[];
+	@Input() multiselect: boolean;
+	@Input() buttonLabel: string;
+	selectedUsersArray:any[];
 	constructor(private store: Store<State>, private tableService: TableService, public modalService: SuiModalService) { }
 
 	ngOnInit() {
 		this.users = this.store.select(fromModel.selectUsers);
 		this.users.subscribe(data => console.log("users", data));
+		this.selectedUsersArray = this.selectedUsers;
 	}
 
+	approve(){
+		console.log("hi");
+		this.onApproved.emit(this.selectedUsersArray);
+
+	}
 	selectOne(user: any) {
-		this.tableService.selectOne(user);
+		if(this.multiselect){
+		const index = this.selectedUsers.indexOf(user, 0);
+		(index > -1)
+			? this.selectedUsers.splice(index, 1)
+			: this.selectedUsers.push(user);
+		} else {
+			this.selectedUsers =[user];
+		}
 	}
 
 	selectAll() {
@@ -59,10 +78,12 @@ export class UserListComponent implements OnInit {
 		config.closeResult = "closed!";
 		config.context = { data: dynamicContent };
 
+		let selectedUsersArray=this.selectedUsersArray;
+		let eventEmitter = this.onApproved;
 		this.modalService
 			.open(config)
-			.onApprove(result => { console.log("approved", result);/* approve callback */ })
-			.onDeny(result => { /* deny callback */ });
+			.onApprove(result => {eventEmitter.emit(selectedUsersArray) })
+			.onDeny(result => {});
 	}
 
 	// Actions

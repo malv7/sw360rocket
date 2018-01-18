@@ -61,7 +61,7 @@
 		<div fxLayout="row" fxLayoutGap="1em">
 			<!-- Component Owner -->
 			<generic-form-element width="auto" label="Component Owner">
-				<sw-user-list></sw-user-list>
+				<button class="ui button mini change-button">Change</button>
 				<a class="ui label">hansdieter@xyz.com</a>
 			</generic-form-element>
 			<!-- Accounting Unit Owner -->
@@ -77,26 +77,13 @@
 		</div>
 
 		<generic-form-element label="Moderators" marginBottom="0.5em">
-			<button class="ui button tiny add-button">Add</button>
+			<sw-user-list *ngIf="this.selectedModerators.length == 0" [buttonLabel]="'Add'" [multiselect]="true" [selectedUsers]="this.selectedModerators" (onApproved)="onApproved($event)"></sw-user-list>
+			<sw-user-list *ngIf="this.selectedModerators.length != 0" [buttonLabel]="'Change'" [multiselect]="true" [selectedUsers]="this.selectedModerators" (onApproved)="onApproved($event)"></sw-user-list>
+
 		</generic-form-element>
 
 		<div class="tags" class="form-group">
-			<!-- TODO: ngIf* -->
-			<a class="ui label">Library
-				<i class="delete icon"></i>
-			</a>
-			<a class="ui label">Experimental
-				<i class="delete icon"></i>
-			</a>
-			<a class="ui label">Versioned
-				<i class="delete icon"></i>
-			</a>
-			<a class="ui label">Cloud
-				<i class="delete icon"></i>
-			</a>
-			<a class="ui label">Blockchain
-				<i class="delete icon"></i>
-			</a>
+				<a *ngFor="let moderator of selectedModerators" class="ui label">{{ moderator.email }}</a>
 		</div>
 
 	</form>

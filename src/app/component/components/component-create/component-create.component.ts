@@ -50,6 +50,8 @@ const MODERATORS: string = 'moderators';
 
 export class ComponentCreateComponent implements OnInit {
 
+	selectedModerators:any[]=[{email:'malv@sw360.de'},{email:'tarek@sw360.de'},{email:'lino@sw360.de'},{email:'michi@sw360.de'}];
+
 	componentTypes: string[];
 	projectForm: FormGroup;
 	newComponent: NewComponent;
@@ -120,6 +122,10 @@ export class ComponentCreateComponent implements OnInit {
 	routeBack() {
 		this.store.dispatch(new RouterActions.Back());
 	}
+
+	onApproved(selectedUsers: any[]) {
+		this.selectedModerators = selectedUsers;
+  }
 
 	//getter for FormControl
 	get name() { return this.projectForm.get(NAME); }
