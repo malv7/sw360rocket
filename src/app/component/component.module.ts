@@ -22,6 +22,7 @@ import { FormValidationService } from './components/component-create/form-valida
 import { SuiModule, SuiRatingModule, SuiCheckboxModule } from 'ng2-semantic-ui';
 import { ComponentOverviewComponent } from './components/component-overview/component-overview.component';
 import { ReleasesWidgetComponent } from './components/releases-widget/releases-widget.component';
+import { UserListComponent } from './components/user-list/user-list.component';
 
 @NgModule({
   imports: [
@@ -39,7 +40,8 @@ import { ReleasesWidgetComponent } from './components/releases-widget/releases-w
     ComponentDetailsComponent,
     ComponentCreateComponent,
 		ComponentOverviewComponent,
-		ReleasesWidgetComponent
+		ReleasesWidgetComponent,
+		UserListComponent
   ]
 })
 export class ComponentModule { }
