@@ -51,7 +51,7 @@ const MODERATORS: string = 'moderators';
 export class ComponentCreateComponent implements OnInit {
 
 	selectedModerators:any[]=[{email:'malv@sw360.de'},{email:'tarek@sw360.de'},{email:'lino@sw360.de'},{email:'michi@sw360.de'}];
-
+	selectedBillingGroupOwner:any={email:'billingGroupOwner@sw360.de'};
 	componentTypes: string[];
 	projectForm: FormGroup;
 	newComponent: NewComponent;
@@ -123,9 +123,13 @@ export class ComponentCreateComponent implements OnInit {
 		this.store.dispatch(new RouterActions.Back());
 	}
 
-	onApproved(selectedUsers: any[]) {
+	onApprovedModerators(selectedUsers: any[]) {
 		this.selectedModerators = selectedUsers;
-  }
+	}
+
+	onApprovedBillingGroupOwner(selectedUsers: any[]) {
+		this.selectedBillingGroupOwner = selectedUsers[0];
+	}
 
 	//getter for FormControl
 	get name() { return this.projectForm.get(NAME); }

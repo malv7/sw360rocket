@@ -36,57 +36,46 @@ export class UserListComponent implements OnInit {
 	@ViewChild('modalTemplate')
 	public modalTemplate: ModalTemplate<IContext, string, string>
 
-	@Output() onApproved = new EventEmitter<any[]>();
-
 	users: Observable<any[]>;
 	@Input() selectedUsers: any[];
 	@Input() multiselect: boolean;
 	@Input() buttonLabel: string;
-	selectedUsersArray:any[];
+
+	@Output() onApproved: EventEmitter<any> = new EventEmitter();
+	selectedUsersArray:any[] = [];
+
 	constructor(private store: Store<State>, private tableService: TableService, public modalService: SuiModalService) { }
 
 	ngOnInit() {
 		this.users = this.store.select(fromModel.selectUsers);
-		this.users.subscribe(data => console.log("users", data));
-		this.selectedUsersArray = this.selectedUsers;
+		this.selectedUsers.forEach(element => this.selectedUsersArray.push(element));
 	}
 
 	approve(){
-		console.log("hi");
 		this.onApproved.emit(this.selectedUsersArray);
-
 	}
 	selectOne(user: any) {
 		if(this.multiselect){
-		const index = this.selectedUsers.indexOf(user, 0);
+		const index = this.selectedUsersArray.indexOf(user, 0);
 		(index > -1)
-			? this.selectedUsers.splice(index, 1)
-			: this.selectedUsers.push(user);
+			? this.selectedUsersArray.splice(index, 1)
+			: this.selectedUsersArray.push(user);
 		} else {
-			this.selectedUsers =[user];
+			this.selectedUsersArray =[user];
 		}
 	}
 
 	selectAll() {
-		this.tableService.selectAll(this.users);
+		//not used
 	}
 
 
-	public open(dynamicContent: string = "Example") {
+	public open() {
 		const config = new TemplateModalConfig<IContext, string, string>(this.modalTemplate);
 
-		config.closeResult = "closed!";
-		config.context = { data: dynamicContent };
-
-		let selectedUsersArray=this.selectedUsersArray;
-		let eventEmitter = this.onApproved;
 		this.modalService
 			.open(config)
-			.onApprove(result => {eventEmitter.emit(selectedUsersArray) })
+			.onApprove(result => {this.approve()})
 			.onDeny(result => {});
 	}
-
-	// Actions
-	add = () => console.log("Add user to list");
-
 };

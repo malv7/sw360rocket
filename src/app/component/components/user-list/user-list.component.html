@@ -9,7 +9,7 @@
 		<td>{{ user.email }} </td>
 		<td>{{ user.userGroup }}</td>
 		<td *ngIf="multiselect" class="right aligned" sw-table-select (selectEvent)="selectOne(user)"></td>
-		<td *ngIf="!multiselect" class="right aligned" (selectEvent)="selectOne(user)">
+		<td *ngIf="!multiselect" class="right aligned" sw-table-select [multiselect]="multiselect" (selectEvent)="selectOne(user)">
 			<div class="ui radio checkbox">
 				<input type="radio" name="userSelectRadioButtonGroup" >
 				<label></label>
@@ -43,4 +43,4 @@
 
 </ng-template>
 
-<button (click)="open('test')" class="ui button mini change-button">{{ buttonLabel }}</button>
+<button (click)="open('')" class="ui button mini change-button">{{ buttonLabel }}</button>

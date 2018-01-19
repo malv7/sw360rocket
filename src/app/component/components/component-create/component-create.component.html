@@ -71,14 +71,14 @@
 			</generic-form-element>
 			<!-- Billing Group Owner -->
 			<generic-form-element width="auto" label="Billing Group Owner">
-				<button class="ui button mini change-button">Change</button>
-				<a class="ui label">hansdieter@xyz.com</a>
+				<sw-user-list [buttonLabel]="'Change'" [multiselect]="false" [selectedUsers]="[this.selectedBillingGroupOwner]" (onApproved)="onApprovedBillingGroupOwner($event)"></sw-user-list>
+				<a class="ui label">{{ selectedBillingGroupOwner.email }}</a>
 			</generic-form-element>
 		</div>
 
 		<generic-form-element label="Moderators" marginBottom="0.5em">
-			<sw-user-list *ngIf="this.selectedModerators.length == 0" [buttonLabel]="'Add'" [multiselect]="true" [selectedUsers]="this.selectedModerators" (onApproved)="onApproved($event)"></sw-user-list>
-			<sw-user-list *ngIf="this.selectedModerators.length != 0" [buttonLabel]="'Change'" [multiselect]="true" [selectedUsers]="this.selectedModerators" (onApproved)="onApproved($event)"></sw-user-list>
+			<sw-user-list *ngIf="this.selectedModerators.length == 0" [buttonLabel]="'Add'" [multiselect]="true" [selectedUsers]="this.selectedModerators" (onApproved)="onApprovedModerators($event)"></sw-user-list>
+			<sw-user-list *ngIf="this.selectedModerators.length != 0" [buttonLabel]="'Change'" [multiselect]="true" [selectedUsers]="this.selectedModerators" (onApproved)="onApprovedModerators($event)"></sw-user-list>
 
 		</generic-form-element>
 
