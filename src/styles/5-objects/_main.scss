@@ -1,8 +1,9 @@
 @import 'forms';
 @import 'navigation';
+@import 'overrides';
 
 .row {
-	margin-bottom: 0.75em;
+	margin-bottom: $layout-gap;
 }
 
 .segment {
@@ -14,15 +15,23 @@
 	position: relative;
 }
 
+.sw-content-top {
+	margin-bottom: $layout-gap;
+}
+
 .sw-widget {
-	margin-bottom: 1em;
+	margin-bottom: $layout-gap;
 }
 
 .table-action-bar {
-	margin-bottom: 1em;
 	display: flex;
+	margin-bottom: $layout-gap;
 }
 
 .table-action-bar sw-action-button {
-	margin-left: 0.5em;
+	margin-left: $layout-gap;
+}
+
+sw-overview {
+	padding-left: $layout-gap;
 }

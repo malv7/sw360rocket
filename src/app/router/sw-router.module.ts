@@ -30,13 +30,16 @@ import { NotImplementedYetComponent } from "../shared/global/components/not-impl
 
 // Router
 import { RouterService } from "./services/router.service";
+import { EccComponent } from "../release/components/release/ecc/ecc.component";
+import { ClearingComponent } from "../release/components/release/clearing/clearing.component";
 
 const releaseChildren: Route[] = [
   { path: '', redirectTo: 'details', pathMatch: 'full' },
   { path: 'details', component: ReleaseDetailsComponent },
   { path: 'attachments', component: NotImplementedYetComponent },
   { path: 'vulnerabilities', component: NotImplementedYetComponent },
-  { path: 'ecc', component: NotImplementedYetComponent }
+  { path: 'ecc', component: EccComponent },
+  { path: 'clearing', component: ClearingComponent }
 ];
 
 const attachments: Route = { path: 'attachments', component: NotImplementedYetComponent };

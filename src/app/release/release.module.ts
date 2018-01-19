@@ -14,6 +14,8 @@ import { ReleaseCreateComponent } from "./components/release-create/release-crea
 import { ReleaseOverviewComponent } from "./components/release-overview/release-overview.component";
 import { VulnerabilityWidgetComponent } from './components/vulnerability-widget/vulnerability-widget.component';
 import { ReleaseListComponent } from "./components/release-list/release-list.component";
+import { EccComponent } from './components/release/ecc/ecc.component';
+import { ClearingComponent } from './components/release/clearing/clearing.component';
 
 
 @NgModule({
@@ -30,7 +32,9 @@ import { ReleaseListComponent } from "./components/release-list/release-list.com
 				ReleaseCreateComponent,
 				ReleaseOverviewComponent,
         VulnerabilityWidgetComponent,
-        ReleaseListComponent
+        ReleaseListComponent,
+        EccComponent,
+        ClearingComponent
     ],
 })
 export class ReleaseModule { }

@@ -89,5 +89,6 @@ export const releaseRoutes: RouteConfiguration[] = [
   { route: 'details', title: 'Details' },
   { route: 'vulnerabilities', title: 'Vulnerabilities' },
   { route: 'ecc', title: 'ECC' },
+  { route: 'clearing', title: 'Clearing' },
   { route: 'attachments', title: 'Attachments' },
 ];
