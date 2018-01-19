@@ -23,7 +23,7 @@
     <generic-form-element marginBottom="0.5em" label="Categories" required="true" errorText="at least one" [isError]="!formValidationService.checkTouchedValid(categories, categoriesValid)">
       <div fxLayout="row">
         <input type="text" formControlName="categories">
-        <button class="ui icon button add-button" [ngStyle]="{ 'margin-left': '0.5em' }" (click)="addCategory()">
+        <button class="ui icon button primary" [ngStyle]="{ 'margin-left': '0.5em' }" (click)="addCategory()">
           <i class="plus icon"></i>
         </button>
       </div>
@@ -61,23 +61,23 @@
     <div fxLayout="row" fxLayoutGap="1em">
       <!-- Component Owner -->
       <generic-form-element width="auto" label="Component Owner">
-        <button class="ui button mini change-button">Change</button>
+        <button class="ui button mini primary">Change</button>
         <a class="ui label">hansdieter@xyz.com</a>
       </generic-form-element>
       <!-- Accounting Unit Owner -->
       <generic-form-element width="auto" label="Accounting Unit Owner">
-        <button class="ui button mini change-button">Change</button>
+        <button class="ui button mini primary">Change</button>
         <a class="ui label">hansdieter@xyz.com</a>
       </generic-form-element>
       <!-- Billing Group Owner -->
       <generic-form-element width="auto" label="Billing Group Owner">
-        <button class="ui button mini change-button">Change</button>
+        <button class="ui button mini primary">Change</button>
         <a class="ui label">hansdieter@xyz.com</a>
       </generic-form-element>
     </div>
 
     <generic-form-element label="Moderators" marginBottom="0.5em">
-      <button class="ui button tiny add-button">Add</button>
+      <button class="ui button tiny primary">Add</button>
     </generic-form-element>
 
     <div class="tags" class="form-group">
@@ -105,4 +105,4 @@
     <i class="left chevron icon"></i>
   </button>
 
-  <button class="ui button submit-button" type="submit" (click)="submit()" [disabled]="!formValid">Submit</button>
+  <button class="ui button positive" type="submit" (click)="submit()" [disabled]="!formValid">Submit</button>
