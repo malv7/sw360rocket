@@ -1,14 +1,29 @@
 <ng-template #tableHeader>
-	<th>Name</th>
-	<th>Type</th>
+	<th>Filename</th>
+	<th>Attachment Type</th>
+	<th>Created by</th>
+	<th>Created comment</th>
+	<th>Created on</th>
+	<th>Checked by</th>
+	<th>Checked comment</th>
+	<th>Checked on</th>
+	<th>Check Status</th>
+
 	<th class="right aligned" sw-table-select (selectEvent)="selectAll()"></th>
   </ng-template>
 
   <ng-template #tableBody>
-	<tr *ngFor="let component of components | async" class="row-hover">
-	  <td (click)="go(component)">{{ component.name }} </td>
-	  <td (click)="go(component)">{{ component.componentType }}</td>
-	  <td class="right aligned" sw-table-select (selectEvent)="selectOne(component)"></td>
+	<tr *ngFor="let attachment of attachments | async" class="row-hover">
+	  <td (click)="go(attachment)">{{ attachment.filename }} </td>
+	  <td (click)="go(attachment)">{{ attachment.attachmentType }} </td>
+	  <td (click)="go(attachment)">{{ attachment.createdTeam }} </td>
+	  <td (click)="go(attachment)">{{ attachment.createdComment }} </td>
+	  <td (click)="go(attachment)">{{ attachment.createdOn }} </td>
+	  <td (click)="go(attachment)">{{ attachment.checkedTeam }} </td>
+	  <td (click)="go(attachment)">{{ attachment.checkedComment }} </td>
+	  <td (click)="go(attachment)">{{ attachment.checkedOn }} </td>
+	  <td (click)="go(attachment)">{{ attachment.checkStatus }} </td>
+	  <td class="right aligned" sw-table-select (selectEvent)="selectOne(attachment)"></td>
 	</tr>
   </ng-template>
 
