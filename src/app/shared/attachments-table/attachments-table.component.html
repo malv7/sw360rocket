@@ -1,0 +1,36 @@
+<ng-template #tableHeader>
+	<th>Name</th>
+	<th>Type</th>
+	<th class="right aligned" sw-table-select (selectEvent)="selectAll()"></th>
+  </ng-template>
+
+  <ng-template #tableBody>
+	<tr *ngFor="let component of components | async" class="row-hover">
+	  <td (click)="go(component)">{{ component.name }} </td>
+	  <td (click)="go(component)">{{ component.componentType }}</td>
+	  <td class="right aligned" sw-table-select (selectEvent)="selectOne(component)"></td>
+	</tr>
+  </ng-template>
+
+  <div class="table-action-bar">
+
+	<sw-search-filter></sw-search-filter>
+
+	<div fxLayout="row" >
+	  <sw-action-button [callback]="create" zero="true">
+		<i class="icon add"></i>
+		<span>Create</span>
+	  </sw-action-button>
+	  <sw-action-button [callback]="clone" one="true">
+		<i class="icon add"></i>
+		<span>Clone</span>
+	  </sw-action-button>
+	  <sw-action-button [callback]="delete" many="true">
+		<i class="icon add"></i>
+		<span>Delete</span>
+	  </sw-action-button>
+	</div>
+
+  </div>
+
+  <sw-generic-table [tableHeader]="tableHeader" [tableBody]="tableBody"></sw-generic-table>
