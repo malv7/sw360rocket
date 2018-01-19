@@ -6,8 +6,8 @@ import { releaseRoutes } from "../../../router/router.api";
 	template: `
 		<sw-generic-content [tabs]="tabs">
 			<!-- Define Sidebar Components -->
-			<sw-release-overview class="sw-widget"></sw-release-overview>
-			<sw-vulnerability-widget class="sw-widget"></sw-vulnerability-widget>
+			<sw-release-overview></sw-release-overview>
+			<sw-vulnerability-widget></sw-vulnerability-widget>
 		</sw-generic-content>
 	`
 })

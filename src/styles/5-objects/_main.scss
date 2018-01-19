@@ -19,10 +19,6 @@
 	margin-bottom: $layout-gap;
 }
 
-.sw-widget {
-	margin-bottom: $layout-gap;
-}
-
 .table-action-bar {
 	display: flex;
 	margin-bottom: $layout-gap;
@@ -35,3 +31,8 @@
 sw-overview {
 	padding-left: $layout-gap;
 }
+
+sw-overview > * {
+	margin-bottom: $layout-gap;
+}
+
