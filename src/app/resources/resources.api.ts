@@ -1,5 +1,8 @@
 import * as fromComponent from './../component/state/component.reducer';
 
+// Resources
+////////////
+
 export enum SW360Resources {
     users = 'sw360:users',
     projects = 'sw360:projects',
@@ -87,13 +90,13 @@ export interface SW360ComponentEmbedded {
 }
 
 export interface SW360Component {
-    name: string;
-    componentType: SW360ComponentTypes;
-    description: string;
-    createdOn: string;
-    type: string; // component
-    _links: Links;
-    _embedded: SW360ComponentEmbedded;
+    name?: string;
+    componentType?: string;
+    description?: string;
+    createdOn?: string;
+    type?: string; // component
+    _links?: Links;
+    _embedded?: SW360ComponentEmbedded;
 }
 
 export interface CreateSW360Component {
@@ -101,4 +104,34 @@ export interface CreateSW360Component {
     description: string;
     createdBy: string;
     componentType: SW360ComponentTypes;
+}
+
+// Projects
+///////////
+
+export enum SW360ProjectTypes {
+    CUSTOMER = 'CUSTOMER',
+    INTERNAL = 'INTERNAL',
+    PRODUCT = 'PRODUCT',
+    SERVICE = 'SERVICE',
+    INNER_SOURCE = 'INNER_SOURCE'
+  }
+
+export interface SW360Project {
+    name: string;
+    version: string;
+    projectType: SW360ProjectTypes; // ProjectTypes
+    type: string // always project
+    createdOn: string;
+    description: string;
+    businessUnit: string;
+    externalIds: ExternalIds;
+    _embedded: SW360ProjectEmbedded;
+    _links: Links;
+}
+
+export interface SW360ProjectEmbedded {
+    createdBy: CreatedBy;
+    moderators: Moderator[];
+    containedReleases: SW360Release[];
 }

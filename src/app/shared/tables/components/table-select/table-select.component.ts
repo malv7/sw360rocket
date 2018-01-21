@@ -8,12 +8,16 @@ import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: '[sw-table-select]',
-  template: '<input type="checkbox" [checked]="selected" (click)="select()">'
+	template: `
+	<input *ngIf="multiselect" type="checkbox" [checked]="selected" (click)="select()">
+	<input *ngIf="!multiselect" type="radio" name="table-select" [checked]="selected" (click)="select()">
+	`
 })
 
 export class TableSelectComponent implements OnInit, OnDestroy {
-  
-  @Input() selected: boolean = false;
+
+	@Input() selected: boolean = false;
+	@Input() multiselect: boolean = true;
 	@Output() selectEvent = new EventEmitter();
 
 	areAllElementsSelectedSub: Subscription;

@@ -1,4 +1,34 @@
-<sw-generic-table debug="true">
-  <!-- <sw-project-table-header header></sw-project-table-header> -->
-  <!-- <sw-project-table-body body></sw-project-table-body> -->
-</sw-generic-table>
+<ng-template #tableHeader>
+  <th>Name</th>
+  <th class="right aligned" sw-table-select></th> <!-- (selectEvent)="selectAll()" -->
+</ng-template>
+
+<ng-template #tableBody>
+  <tr *ngFor="let project of projects | async" class="row-hover">
+    <td (click)="go(project)">{{ project.name }} </td>
+    <td class="right aligned" sw-table-select></td> <!-- (selectEvent)="selectOne(project)" -->
+  </tr>
+</ng-template>
+
+<div class="table-action-bar">
+
+  <sw-search-filter></sw-search-filter>
+
+  <!-- <div fxLayout="row" >
+    <sw-action-button [callback]="create" zero="true">
+      <i class="icon add"></i>
+      <span>Create</span>
+    </sw-action-button>
+    <sw-action-button [callback]="clone" one="true">
+      <i class="icon add"></i>
+      <span>Clone</span>
+    </sw-action-button>
+    <sw-action-button [callback]="delete" many="true">
+      <i class="icon add"></i>
+      <span>Delete</span>
+    </sw-action-button>
+  </div> -->
+
+</div>
+
+<sw-generic-table [tableHeader]="tableHeader" [tableBody]="tableBody"></sw-generic-table>

@@ -61,8 +61,6 @@ export class ReleaseCreateComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.store.dispatch(new StructureActions.SetTitle('Create Release'));
-
     this.formValid = false;
     this.releaseMainlineState = ['release', 'mainline', 'state', '?'];
     this.dateValid = false;
@@ -131,6 +129,11 @@ export class ReleaseCreateComponent implements OnInit {
       this.formValid = false;
     }
     console.log(this.formValid);
+  }
+
+
+  routeBack() {
+    this.store.dispatch(new RouterActions.Back());
   }
 
   submit() {

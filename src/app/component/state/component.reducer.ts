@@ -4,36 +4,11 @@ import * as fromRoot from './../../state';
 
 export interface State {
   components: SW360Component[];
-  component: SW360Component;
+  component?: SW360Component;
 }
 
 const initialState: State = {
   components: [],
-  component: {
-    name: '',
-    componentType: SW360ComponentTypes.OSS,
-    description: '',
-    createdOn: '',
-    type: 'component',
-    _links: {
-      self: {
-        href: ''
-      }
-    },
-    _embedded: {
-      createdBy: {
-        email: '',
-        _links: {
-          self: {
-            href: ''
-          }
-        }
-      },
-      releases: [],
-      moderators: [],
-      vendors: [],
-    }
-  }
 }
 
 export function componentReducer(state = initialState, action: ComponentActions.All): State {
