@@ -74,6 +74,13 @@ const routes: Routes = [
 
   // Components
   {
+    path: 'components/:id/releases/create',
+    component: ComponentComponent,
+    children: [
+      { path: '', component: ReleaseCreateComponent },
+    ]
+  },
+  {
     path: 'components/:id/releases/:id',
     component: ReleaseComponent,
     children: releaseChildren
@@ -86,7 +93,6 @@ const routes: Routes = [
     path: 'components/:id',
     component: ComponentComponent,
     children: [
-      { path: 'releases/create', component: ReleaseCreateComponent },
       detailRedirect,
       { path: 'details', component: ComponentDetailsComponent },
       attachments,

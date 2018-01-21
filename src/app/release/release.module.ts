@@ -1,3 +1,6 @@
+import { ReleaseEffects } from './state/release.effects';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // ng
 import { NgModule } from "@angular/core";
@@ -16,6 +19,7 @@ import { VulnerabilityWidgetComponent } from './components/vulnerability-widget/
 import { ReleaseListComponent } from "./components/release-list/release-list.component";
 import { EccComponent } from './components/release/ecc/ecc.component';
 import { ClearingComponent } from './components/release/clearing/clearing.component';
+import { releaseReducer } from './state/release.reducer';
 
 
 @NgModule({
@@ -23,8 +27,9 @@ import { ClearingComponent } from './components/release/clearing/clearing.compon
         SharedModule,
         FormsModule,
         ReactiveFormsModule,
-        MyDatePickerModule
-        
+        MyDatePickerModule,
+        StoreModule.forFeature('release', releaseReducer),
+        EffectsModule.forFeature([ReleaseEffects])
     ],
     declarations: [
         ReleaseDetailsComponent,

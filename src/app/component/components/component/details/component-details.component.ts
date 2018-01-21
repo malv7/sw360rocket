@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { SW360Component } from './../../../../state/models';
 import { selectComponent } from './../../../../state/model.reducer';
 import { Store } from '@ngrx/store';
 import { State } from './../../../../state';
-import * as fromModel from './../../../../state/model.reducer';
 import { Observable } from 'rxjs/Observable';
+import { SW360Component } from '../../../../resources/resources.api';
+import *  as fromComponent from './../../../state/component.reducer';
 
 @Component({
   selector: 'sw-component-details',
@@ -17,7 +17,7 @@ export class ComponentDetailsComponent implements OnInit {
 	constructor(private store: Store<State>) { }
   
   ngOnInit() {
-    this.component = this.store.select(fromModel.selectComponent);
+    this.component = this.store.select(fromComponent.selectComponent);
 	}
 
 }

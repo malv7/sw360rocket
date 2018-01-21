@@ -1,14 +1,15 @@
+import { SW360Project } from './../../../resources/resources.api';
 import { Component } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { ComponentDataLayout } from "../../../component/state/component.models";
 import { Observable } from "rxjs/Observable";
 import { State } from './../../../state';
 import { Go } from './../../../router/state/router.actions';
-import { EmbeddedProject } from "../../state/project.models";
 import * as ProjectActions from './../../state/project.actions';
 import * as StructureActions from './../../../structure/state/structure.actions';
-import { EmbeddedRelease } from "../../../state/models";
-import * as fromModel from './../../../state/model.reducer';
+import * as fromProject from './../../state/project.reducer';
+import * as fromRelease from './../../../release/state/release.reducer';
+import * as RouterActions from './../../../router/state/router.actions';
 
 @Component({
   selector: 'sw-project-list',
@@ -23,33 +24,16 @@ export class ProjectListComponent {
 
   areAllSelected: boolean = false;
 
-  projects: Observable<EmbeddedProject[]>;
-  releases: Observable<EmbeddedRelease[]>;
+  projects: Observable<SW360Project[]>;
 
   constructor(private store: Store<State>) {
-    this.store.dispatch(new ProjectActions.GetMockedProjects());
-    this.projects = this.store.select(fromModel.selectProjects);
-    this.releases = this.store.select(fromModel.selectReleases);
+    this.projects = this.store.select(fromProject.selectProjects);
+    this.projects.subscribe(x => console.log("projects in list", x))
   }
 
-  selectAll() {
-    if(this.areAllSelected) {
-    }
-
-    if(!this.areAllSelected) {
-      const ids: string[] = [];
-      this.projects.take(1).subscribe(all => all.forEach(one => ids.push(one.version)));
-    }
-  }
-
-  selectOne(name: string) {
-  }
-
-  go(id: string) {
-    this.store.dispatch(new Go({
-      path: ['/projects', id]
-    }));
-  }
+  go(project: SW360Project) {
+		this.store.dispatch(new RouterActions.GoSelfLink(project._links.self.href));
+	}
 
 }
 
