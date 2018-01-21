@@ -16,14 +16,17 @@ import { VulnerabilityWidgetComponent } from './components/vulnerability-widget/
 import { ReleaseListComponent } from "./components/release-list/release-list.component";
 import { EccComponent } from './components/release/ecc/ecc.component';
 import { ClearingComponent } from './components/release/clearing/clearing.component';
-
+import { NgDatepickerModule } from 'ng2-datepicker';
+import { BrowserModule } from '@angular/platform-browser';
+import { EccDetailsCreateComponent } from './components/release-create/ecc-details-create/ecc-details-create.component';
 
 @NgModule({
     imports: [
         SharedModule,
         FormsModule,
         ReactiveFormsModule,
-        MyDatePickerModule
+        MyDatePickerModule, 
+        BrowserModule
         
     ],
     declarations: [
@@ -34,7 +37,8 @@ import { ClearingComponent } from './components/release/clearing/clearing.compon
         VulnerabilityWidgetComponent,
         ReleaseListComponent,
         EccComponent,
-        ClearingComponent
+        ClearingComponent,
+        EccDetailsCreateComponent
     ],
 })
 export class ReleaseModule { }

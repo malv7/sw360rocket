@@ -30,6 +30,7 @@
     "core-js": "^2.4.1",
     "font-awesome": "^4.7.0",
     "mydatepicker": "^2.6.1",
+    "ng2-datepicker": "^2.2.1",
     "ng2-semantic-ui": "^0.9.6",
     "ng2-validation": "^4.2.0",
     "rxjs": "^5.5.2",
