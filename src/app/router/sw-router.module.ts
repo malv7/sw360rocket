@@ -25,6 +25,9 @@ import { ReleaseComponent } from './../release/components/release/release.compon
 import { ReleaseCreateComponent } from "../release/components/release-create/release-create.component";
 import { ReleaseListComponent } from "../release/components/release-list/release-list.component";
 
+//Attachments
+import { AttachmentsTableComponent } from './../shared/attachments-table/attachments-table.component';
+
 // Helpers
 import { NotImplementedYetComponent } from "../shared/global/components/not-implemented-yet/not-implemented-yet.component";
 
@@ -36,13 +39,13 @@ import { ClearingComponent } from "../release/components/release/clearing/cleari
 const releaseChildren: Route[] = [
   { path: '', redirectTo: 'details', pathMatch: 'full' },
   { path: 'details', component: ReleaseDetailsComponent },
-  { path: 'attachments', component: NotImplementedYetComponent },
+  { path: 'attachments', component: AttachmentsTableComponent },
   { path: 'vulnerabilities', component: NotImplementedYetComponent },
   { path: 'ecc', component: EccComponent },
   { path: 'clearing', component: ClearingComponent }
 ];
 
-const attachments: Route = { path: 'attachments', component: NotImplementedYetComponent };
+const attachments: Route = { path: 'attachments', component: AttachmentsTableComponent };
 const releases: Route = { path: 'releases', component: ReleaseListComponent };
 const detailRedirect: Route = { path: '', redirectTo: 'details', pathMatch: 'full' };
 
