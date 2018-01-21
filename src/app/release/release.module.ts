@@ -3,7 +3,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // ng
-import { NgModule } from "@angular/core";
+import { NgModule, CommonModule } from "@angular/core";
 import { FormControl, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import {MyDatePickerModule} from 'mydatepicker';
 
@@ -19,6 +19,11 @@ import { VulnerabilityWidgetComponent } from './components/vulnerability-widget/
 import { ReleaseListComponent } from "./components/release-list/release-list.component";
 import { EccComponent } from './components/release/ecc/ecc.component';
 import { ClearingComponent } from './components/release/clearing/clearing.component';
+
+import { NgDatepickerModule } from 'ng2-datepicker';
+import { BrowserModule } from '@angular/platform-browser';
+import { EccDetailsCreateComponent } from './components/release-create/ecc-details-create/ecc-details-create.component';
+
 import { releaseReducer } from './state/release.reducer';
 
 
@@ -27,9 +32,15 @@ import { releaseReducer } from './state/release.reducer';
         SharedModule,
         FormsModule,
         ReactiveFormsModule,
+
+        MyDatePickerModule, 
+        CommonModule
+        
+
         MyDatePickerModule,
         StoreModule.forFeature('release', releaseReducer),
         EffectsModule.forFeature([ReleaseEffects])
+
     ],
     declarations: [
         ReleaseDetailsComponent,
@@ -39,7 +50,8 @@ import { releaseReducer } from './state/release.reducer';
         VulnerabilityWidgetComponent,
         ReleaseListComponent,
         EccComponent,
-        ClearingComponent
+        ClearingComponent,
+        EccDetailsCreateComponent
     ],
 })
 export class ReleaseModule { }
