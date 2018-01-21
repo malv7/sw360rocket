@@ -66,7 +66,7 @@ export const isRouteSegmentList = (routeSegment: string) =>
 
 export const mainNavigationRoutes: RouteConfiguration[] = [
   { title: 'Projects', route: 'projects' },
-  { title: 'Components', route: 'components' },
+	{ title: 'Components', route: 'components' },
   // { title: 'Licenses',        route: 'licenses' },
   // { title: 'ECC',             route: 'ecc' },
   // { title: 'Vulnerabilities', route: 'vulnerabilities' },

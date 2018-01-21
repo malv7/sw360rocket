@@ -1,108 +1,95 @@
 <div class="ui form">
-  <form [formGroup]="projectForm" #formDir="ngForm">
+	<form [formGroup]="projectForm" #formDir="ngForm">
 
-    <div fxLayout="row" fxLayoutGap="1em">
-      <!-- Name -->
-      <generic-form-element label="Name" required="true" errorText="is required" [isError]="!formValidationService.checkInvalidDirtyTouched(name)">
-        <input type="text" formControlName="name">
-      </generic-form-element>
-      <!-- Type -->
-      <generic-form-element label="Type" width="auto">
-        <select class="ui fluid dropdown" formControlName="componentType">
-          <option *ngFor="let componentType of componentTypes">{{componentType}}</option>
-        </select>
-      </generic-form-element>
-    </div>
+		<div fxLayout="row" fxLayoutGap="1em">
+			<!-- Name -->
+			<generic-form-element label="Name" required="true" errorText="is required" [isError]="!formValidationService.checkInvalidDirtyTouched(name)">
+				<input type="text" formControlName="name">
+			</generic-form-element>
+			<!-- Type -->
+			<generic-form-element label="Type" width="auto">
+				<select class="ui fluid dropdown" formControlName="componentType">
+					<option *ngFor="let componentType of componentTypes">{{componentType}}</option>
+				</select>
+			</generic-form-element>
+		</div>
 
-    <!-- Description -->
-    <generic-form-element label="Description" width="50em">
-      <textarea rows="5" type="text" formControlName="shortDescription"></textarea>
-    </generic-form-element>
+		<!-- Description -->
+		<generic-form-element label="Description" width="50em">
+			<textarea rows="5" type="text" formControlName="shortDescription"></textarea>
+		</generic-form-element>
 
-    <!-- Categories -->
-    <generic-form-element marginBottom="0.5em" label="Categories" required="true" errorText="at least one" [isError]="!formValidationService.checkTouchedValid(categories, categoriesValid)">
-      <div fxLayout="row">
-        <input type="text" formControlName="categories">
-        <button class="ui icon button add-button" [ngStyle]="{ 'margin-left': '0.5em' }" (click)="addCategory()">
-          <i class="plus icon"></i>
-        </button>
-      </div>
-    </generic-form-element>
+		<!-- Categories -->
+		<generic-form-element marginBottom="0.5em" label="Categories" required="true" errorText="at least one" [isError]="!formValidationService.checkTouchedValid(categories, categoriesValid)">
+			<div fxLayout="row">
+				<input type="text" formControlName="categories">
+				<button class="ui icon button add-button" [ngStyle]="{ 'margin-left': '0.5em' }" (click)="addCategory()">
+					<i class="plus icon"></i>
+				</button>
+			</div>
+		</generic-form-element>
 
-    <div class="tags" class="form-group">
-      <a *ngFor="let c of categoryArray" class="ui label" [ngStyle]="{ 'margin-bottom': '0.5em' }">{{ c }}
-        <i class="delete icon" (click)="removeCategory(c)"></i>
-      </a>
-    </div>
+		<div class="tags" class="form-group">
+			<a *ngFor="let c of categoryArray" class="ui label" [ngStyle]="{ 'margin-bottom': '0.5em' }">{{ c }}
+				<i class="delete icon" (click)="removeCategory(c)"></i>
+			</a>
+		</div>
 
-    <div fxLayout="row" fxLayoutGap="1em" fxLayoutWrap>
-      <!-- Homepage URL -->
-      <generic-form-element label="Homepage URL" errorText="no valid URL" [isError]="!formValidationService.checkInvalidDirtyTouched(homepageURL)">
-        <input type="text" placeholder="http://example.com" formControlName="homepageURL">
-      </generic-form-element>
-      <!-- Blog URL -->
-      <generic-form-element label="Blog URL" errorText="no valid URL" [isError]="!formValidationService.checkInvalidDirtyTouched(blogURL)">
-        <input type="text" placeholder="http://example.com" formControlName="blogURL">
-      </generic-form-element>
-      <!-- Wiki URL -->
-      <generic-form-element label="Wiki URL" errorText="no valid URL" [isError]="!formValidationService.checkInvalidDirtyTouched(wikiURL)">
-        <input type="text" placeholder="http://example.com" formControlName="wikiURL">
-      </generic-form-element>
-      <!-- Mailing List URL -->
-      <generic-form-element label="Mailing List URL" errorText="no valid URL" [isError]="!formValidationService.checkInvalidDirtyTouched(mailingListURL)">
-        <input type="text" placeholder="http://example.com" formControlName="mailingListURL">
-      </generic-form-element>
-    </div>
+		<div fxLayout="row" fxLayoutGap="1em" fxLayoutWrap>
+			<!-- Homepage URL -->
+			<generic-form-element label="Homepage URL" errorText="no valid URL" [isError]="!formValidationService.checkInvalidDirtyTouched(homepageURL)">
+				<input type="text" placeholder="http://example.com" formControlName="homepageURL">
+			</generic-form-element>
+			<!-- Blog URL -->
+			<generic-form-element label="Blog URL" errorText="no valid URL" [isError]="!formValidationService.checkInvalidDirtyTouched(blogURL)">
+				<input type="text" placeholder="http://example.com" formControlName="blogURL">
+			</generic-form-element>
+			<!-- Wiki URL -->
+			<generic-form-element label="Wiki URL" errorText="no valid URL" [isError]="!formValidationService.checkInvalidDirtyTouched(wikiURL)">
+				<input type="text" placeholder="http://example.com" formControlName="wikiURL">
+			</generic-form-element>
+			<!-- Mailing List URL -->
+			<generic-form-element label="Mailing List URL" errorText="no valid URL" [isError]="!formValidationService.checkInvalidDirtyTouched(mailingListURL)">
+				<input type="text" placeholder="http://example.com" formControlName="mailingListURL">
+			</generic-form-element>
+		</div>
 
-  </form>
+	</form>
 
-  <form [formGroup]="projectForm" #formDir="ngForm">
+	<form [formGroup]="projectForm" #formDir="ngForm">
 
-    <div fxLayout="row" fxLayoutGap="1em">
-      <!-- Component Owner -->
-      <generic-form-element width="auto" label="Component Owner">
-        <button class="ui button mini change-button">Change</button>
-        <a class="ui label">hansdieter@xyz.com</a>
-      </generic-form-element>
-      <!-- Accounting Unit Owner -->
-      <generic-form-element width="auto" label="Accounting Unit Owner">
-        <button class="ui button mini change-button">Change</button>
-        <a class="ui label">hansdieter@xyz.com</a>
-      </generic-form-element>
-      <!-- Billing Group Owner -->
-      <generic-form-element width="auto" label="Billing Group Owner">
-        <button class="ui button mini change-button">Change</button>
-        <a class="ui label">hansdieter@xyz.com</a>
-      </generic-form-element>
-    </div>
+		<div fxLayout="row" fxLayoutGap="1em">
+			<!-- Component Owner -->
+			<generic-form-element width="auto" label="Component Owner">
+				<button class="ui button mini change-button">Change</button>
+				<a class="ui label">hansdieter@xyz.com</a>
+			</generic-form-element>
+			<!-- Accounting Unit Owner -->
+			<generic-form-element width="auto" label="Accounting Unit Owner">
+				<button class="ui button mini change-button">Change</button>
+				<a class="ui label">hansdieter@xyz.com</a>
+			</generic-form-element>
+			<!-- Billing Group Owner -->
+			<generic-form-element width="auto" label="Billing Group Owner">
+				<sw-user-list [buttonLabel]="'Change'" [multiselect]="false" [selectedUsers]="[this.selectedBillingGroupOwner]" (onApproved)="onApprovedBillingGroupOwner($event)"></sw-user-list>
+				<a class="ui label">{{ selectedBillingGroupOwner.email }}</a>
+			</generic-form-element>
+		</div>
 
-    <generic-form-element label="Moderators" marginBottom="0.5em">
-      <button class="ui button tiny add-button">Add</button>
-    </generic-form-element>
+		<generic-form-element label="Moderators" marginBottom="0.5em">
+			<sw-user-list *ngIf="this.selectedModerators.length == 0" [buttonLabel]="'Add'" [multiselect]="true" [selectedUsers]="this.selectedModerators" (onApproved)="onApprovedModerators($event)"></sw-user-list>
+			<sw-user-list *ngIf="this.selectedModerators.length != 0" [buttonLabel]="'Change'" [multiselect]="true" [selectedUsers]="this.selectedModerators" (onApproved)="onApprovedModerators($event)"></sw-user-list>
 
-    <div class="tags" class="form-group">
-      <!-- TODO: ngIf* -->
-      <a class="ui label">Library
-        <i class="delete icon"></i>
-      </a>
-      <a class="ui label">Experimental
-        <i class="delete icon"></i>
-      </a>
-      <a class="ui label">Versioned
-        <i class="delete icon"></i>
-      </a>
-      <a class="ui label">Cloud
-        <i class="delete icon"></i>
-      </a>
-      <a class="ui label">Blockchain
-        <i class="delete icon"></i>
-      </a>
-    </div>
+		</generic-form-element>
 
-  </form>
+		<div class="tags" class="form-group">
+				<a *ngFor="let moderator of selectedModerators" class="ui label">{{ moderator.email }}</a>
+		</div>
 
-  <button (click)="routeBack()" class="ui button icon">
-    <i class="left chevron icon"></i>
-  </button>
+	</form>
 
-  <button class="ui button submit-button" type="submit" (click)="submit()" [disabled]="!formValid">Submit</button>
+	<button (click)="routeBack()" class="ui button icon">
+		<i class="left chevron icon"></i>
+	</button>
+
+	<button class="ui button submit-button" type="submit" (click)="submit()" [disabled]="!formValid">Submit</button>

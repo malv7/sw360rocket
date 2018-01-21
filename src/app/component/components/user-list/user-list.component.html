@@ -1,0 +1,46 @@
+<ng-template #tableHeader>
+	<th>Email</th>
+	<th>UserGroup</th>
+	<th class="right aligned"></th>
+</ng-template>
+
+<ng-template #tableBody>
+	<tr *ngFor="let user of users | async" class="row-hover">
+		<td>{{ user.email }} </td>
+		<td>{{ user.userGroup }}</td>
+		<td *ngIf="multiselect" class="right aligned" sw-table-select (selectEvent)="selectOne(user)"></td>
+		<td *ngIf="!multiselect" class="right aligned" sw-table-select [multiselect]="multiselect" (selectEvent)="selectOne(user)">
+			<div class="ui radio checkbox">
+				<input type="radio" name="userSelectRadioButtonGroup" >
+				<label></label>
+			</div>
+		</td>
+	</tr>
+</ng-template>
+
+<ng-template let-context let-modal="modal" #modalTemplate>
+	<div class="sw-modal">
+		<div class="table-action-bar">
+
+			<sw-search-filter></sw-search-filter>
+
+			<div fxLayout="row">
+				<sw-action-button [callback]="add" zero="true">
+					<i class="icon add"></i>
+					<span>Add</span>
+				</sw-action-button>
+			</div>
+
+		</div>
+
+
+		<sw-generic-table [tableHeader]="tableHeader" [tableBody]="tableBody"></sw-generic-table>
+		<div fx-layout="row">
+			<button class="ui green button sw-approve-button" (click)="modal.approve(selectedUsersArray)" autofocus>OK</button>
+			<a *ngFor="let selected of selectedUsersArray" class="ui label">{{ selected.email }}<i (click)="selectOne(selected)"class="delete icon"></i></a>
+		</div>
+	</div>
+
+</ng-template>
+
+<button (click)="open('')" class="ui button mini change-button">{{ buttonLabel }}</button>
