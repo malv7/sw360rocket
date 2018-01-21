@@ -1,6 +1,6 @@
 <!-- Releases  -->
 <div class="ui card">
-	<div class="extra content">
+	<div class="extra content" [routerLink]="'releases'">
 		<a class="color-blue">
 			<i class="clone icon"></i>{{ releases?.length }}&nbsp;&nbsp;Releases
 		</a>
@@ -26,7 +26,7 @@
 
 				<tr class="last-item">
 					<td colspan="3">
-						<a class="load-more-dots coolblue">···</a>
+						<a class="load-more-dots coolblue" [routerLink]="'releases'">···</a>
 					</td>
 				</tr>
 			</tbody>

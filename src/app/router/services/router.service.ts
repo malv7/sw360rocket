@@ -53,6 +53,10 @@ export class RouterService {
     this.router.navigate([this.router.url + '/' + id]);
   }
 
+  append(segments: string[]) {
+    
+  }
+
   handleNavigation(event: NavigationEnd) {
     this.initNavigation(event);
     this.processNavigation();

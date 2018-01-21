@@ -2,9 +2,20 @@
 	<div class="content">
 		<a class="header color-blue">{{ component?.name }}</a>
 		<div class="meta">
-			<div><span>Component Type:</span><span>{{ component?.componentType }}</span></div>
-			<div><span>Created by:</span><span><a href="#">{{ component?._embedded?.createdBy?.email }}</a></span></div>
-			<div><span>Created on:</span><span>{{ component?.createdOn }}</span></div>
+			<div>
+				<span>Component Type:</span>
+				<span>{{ component?.componentType }}</span>
+			</div>
+			<div>
+				<span>Created by:</span>
+				<span>
+					<a>{{ component?._embedded?.createdBy?.email }}</a>
+				</span>
+			</div>
+			<div>
+				<span>Created on:</span>
+				<span>{{ component?.createdOn }}</span>
+			</div>
 		</div>
 	</div>
 	<div class="extra content link-list" fxLayout="row" fxLayoutAlign="space-between center">
