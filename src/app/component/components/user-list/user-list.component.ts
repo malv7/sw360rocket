@@ -54,6 +54,7 @@ export class UserListComponent implements OnInit {
 	approve(){
 		this.onApproved.emit(this.selectedUsersArray);
 	}
+	
 	selectOne(user: any) {
 		if(this.multiselect){
 		const index = this.selectedUsersArray.indexOf(user, 0);

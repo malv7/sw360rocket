@@ -77,13 +77,15 @@
 		</div>
 
 		<generic-form-element label="Moderators" marginBottom="0.5em">
-			<sw-user-list *ngIf="this.selectedModerators.length == 0" [buttonLabel]="'Add'" [multiselect]="true" [selectedUsers]="this.selectedModerators" (onApproved)="onApprovedModerators($event)"></sw-user-list>
-			<sw-user-list *ngIf="this.selectedModerators.length != 0" [buttonLabel]="'Change'" [multiselect]="true" [selectedUsers]="this.selectedModerators" (onApproved)="onApprovedModerators($event)"></sw-user-list>
+			<sw-user-list *ngIf="this.selectedModerators.length == 0" [buttonLabel]="'Add'" [multiselect]="true" [selectedUsers]="this.selectedModerators"
+			 (onApproved)="onApprovedModerators($event)"></sw-user-list>
+			<sw-user-list *ngIf="this.selectedModerators.length != 0" [buttonLabel]="'Change'" [multiselect]="true" [selectedUsers]="this.selectedModerators"
+			 (onApproved)="onApprovedModerators($event)"></sw-user-list>
 
 		</generic-form-element>
 
 		<div class="tags" class="form-group">
-				<a *ngFor="let moderator of selectedModerators" class="ui label">{{ moderator.email }}</a>
+			<a *ngFor="let moderator of selectedModerators" class="ui label">{{ moderator.email }}</a>
 		</div>
 
 	</form>
@@ -93,3 +95,4 @@
 	</button>
 
 	<button class="ui button submit-button" type="submit" (click)="submit()" [disabled]="!formValid">Submit</button>
+</div>

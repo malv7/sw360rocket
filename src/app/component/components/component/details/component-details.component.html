@@ -31,33 +31,38 @@
 	<!-- desc -->
 	<div class="row">
 		<div class="h3 margin-top-1">Description</div>
-		<div class="content">Since around 2005 web development technologies have shifted from static to dynamic documents driven by server (PHP, ASP.NET)
+		<div class="content">{{ component?.description }}</div>
+	</div>
+
+	<!-- Since around 2005 web development technologies have shifted from static to dynamic documents driven by server (PHP, ASP.NET)
 			and client side (e.g. Ajax [1]) tools, and responsive web design.[2] Despite an early push for web-based apps based on
 			these technologies on devices such as the 2007 iPhone, attempts at web-apps failed by comparison to native-apps. Native
 			apps provided a better user experience and booted faster compared to having to load in a browser at runtime. Packaged
 			resources and direct access to hardware allowed native apps to perform much faster and to provide more features. By the
 			mid 2010s, however, continued enhancements in HTML5, CSS3, and JavaScript, significantly more capable and standards compliant
-			web browsers, along with powerful processors such as the A10 and Snapdragon 821 made performant hybrid-apps a viable alternative.</div>
-	</div>
+			web browsers, along with powerful processors such as the A10 and Snapdragon 821 made performant hybrid-apps a viable alternative. -->
 
 	<!-- meta -->
 	<div class="meta">
 		<div class="row">
 			<span class="h3">Categories:</span>
-			<span class="content">Open Source, Fun, Interactive, Single Page App</span>
+			<span class="content mock">Open Source, Fun, Interactive, Single Page App</span>
 		</div>
 		<div fxHide.gt-md>
 			<div class="row">
 				<span class="h3">Created by:</span>
-				<span class="content">info@sw360rocket.org</span>
+				<span class="content">{{ component?._embedded?.createdBy?.email }}</span>
+				<!-- info@sw360rocket.org -->
 			</div>
 			<div class="row">
 				<span class="h3">Created on:</span>
-				<span class="content">2018-01-05</span>
+				<span class="content">{{ component?.createdOn }}</span>
+				<!-- 2018-01-05 -->
 			</div>
 			<div class="row">
 				<span class="h3">Component Type:</span>
-				<span class="content">Free Software</span>
+				<span class="content">{{ component?.componentType }}</span>
+				<!-- Free Software -->
 			</div>
 		</div>
 	</div>
@@ -95,7 +100,7 @@
 				</tr>
 				<tr>
 					<td>Additional Roles:</td>
-					<td class="mock">macos@beuth-hochschule.de</td>
+					<td class="mock">some@body.com</td>
 				</tr>
 			</tbody>
 		</table>
@@ -111,7 +116,9 @@
 			<tbody>
 				<tr>
 					<td>Vendors:</td>
-					<td>Free Download here</td>
+					<td>
+						<span *ngFor="let vendor of vendors">{{ vendor?.fullName }} </span>
+					</td>
 				</tr>
 				<tr>
 					<td>Language</td>
@@ -130,5 +137,3 @@
 		</table>
 	</div>
 </div>
-
-{{ component | async | json }}

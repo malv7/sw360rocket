@@ -1,20 +1,15 @@
 <ng-template #tableHeader>
 	<th>Email</th>
 	<th>UserGroup</th>
-	<th class="right aligned"></th>
+	<th *ngIf="multiselect" class="right aligned" sw-table-select [multiselect]="multiselect" (selectEvent)="selectAll()"></th>
+	<th *ngIf="!multiselect" class="right aligned"></th>
 </ng-template>
 
 <ng-template #tableBody>
 	<tr *ngFor="let user of users | async" class="row-hover">
 		<td>{{ user.email }} </td>
 		<td>{{ user.userGroup }}</td>
-		<td *ngIf="multiselect" class="right aligned" sw-table-select (selectEvent)="selectOne(user)"></td>
-		<td *ngIf="!multiselect" class="right aligned" sw-table-select [multiselect]="multiselect" (selectEvent)="selectOne(user)">
-			<div class="ui radio checkbox">
-				<input type="radio" name="userSelectRadioButtonGroup" >
-				<label></label>
-			</div>
-		</td>
+		<td class="right aligned" sw-table-select [multiselect]="multiselect" (selectEvent)="selectOne(user)"></td>
 	</tr>
 </ng-template>
 
