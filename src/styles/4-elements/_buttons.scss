@@ -3,5 +3,23 @@
 .ui.button.basic {
 	height: 38px;
 	margin: 0;
+}
+
+.ui.button.primary {
+	color: $color-white;
+	background-color: $button-color-primary;
+}
+
+.ui.button.positive {
+	color: $color-white;;
+	background-color: $button-color-positive;
+}
+
+.ui.button.negative {
+	color: $color-white;;
+	background-color: $button-color-negative;
+}
+
+button.secondary {
 
 }

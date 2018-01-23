@@ -29,7 +29,7 @@
         <generic-form-element marginBottom="0.5em" label="Programming Languages">
           <div fxLayout="row">
             <input type="text" formControlName="programmingLanguages">
-            <button class="ui icon button add-button" [ngStyle]="{ 'margin-left': '0.5em' }" (click)="addProgrammingLanguages()">
+            <button class="ui icon button primary" [ngStyle]="{ 'margin-left': '0.5em' }" (click)="addProgrammingLanguages()">
               <i class="plus icon"></i>
             </button>
           </div>
@@ -39,7 +39,7 @@
         <generic-form-element marginBottom="0.5em" label="Operating Systems">
           <div fxLayout="row">
             <input type="text" formControlName="operatingSystems">
-            <button class="ui icon button add-button" [ngStyle]="{ 'margin-left': '0.5em' }" (click)="addOperatingSystems()">
+            <button class="ui icon button primary" [ngStyle]="{ 'margin-left': '0.5em' }" (click)="addOperatingSystems()">
               <i class="plus icon"></i>
             </button>
           </div>
@@ -79,12 +79,12 @@
       <!-- Vendor -->
       <div fxLayout="row" fxLayoutGap="1em">
         <generic-form-element label="Vendor" marginBottom="0.5em" [ngStyle]="{'width': '41em', 'background': '#d4d4d557', 'border-radius': '5px'}">
-          <button class="ui button tiny add-button">Add</button>
+          <button class="ui button tiny primary">Add</button>
         </generic-form-element>
 
         <!-- Licences -->
         <generic-form-element label="Licences" marginBottom="0.5em" [ngStyle]="{'width': '41em', 'background': '#d4d4d557', 'border-radius': '5px'}">
-          <button class="ui button tiny add-button">Add</button>
+          <button class="ui button tiny primary">Add</button>
         </generic-form-element>
       </div>
 
@@ -115,12 +115,12 @@
       <!-- Contributors -->
       <div fxLayout="row" fxLayoutGap="1em">
         <generic-form-element label="Contributors" marginBottom="0.5em" [ngStyle]="{'width': '41em', 'background': '#d4d4d557', 'border-radius': '5px'}">
-          <button class="ui button tiny add-button">Add</button>
+          <button class="ui button tiny primary">Add</button>
         </generic-form-element>
 
         <!-- Moderators -->
         <generic-form-element label="Moderators" marginBottom="0.5em" [ngStyle]="{'width': '41em', 'background': '#d4d4d557', 'border-radius': '5px'}">
-          <button class="ui button tiny add-button">Add</button>
+          <button class="ui button tiny primary">Add</button>
         </generic-form-element>
       </div>
 
@@ -154,6 +154,7 @@
   <button (click)="routeBack()" class="ui button icon">
     <i class="left chevron icon"></i>
   </button>
-  <button class="ui button submit-button" (click)="submit()" type="submit" [disabled]="!formValid">Submit</button>
+
+  <button class="ui button positive" (click)="submit()" type="submit" [disabled]="!formValid">Submit</button>
 
 </div>
