@@ -925,8 +925,8 @@ export type EmbeddedResource = EmbeddedUser | EmbeddedProject | Project | Embedd
 
 const patchIdPath = (embeddedResources: EmbeddedResource[]) => {
   embeddedResources.forEach(embeddedResource => {
-    embeddedResource.id = extractId(embeddedResource._links.self.href);
-    embeddedResource.path = extractPath(embeddedResource._links.self.href);
+    // embeddedResource.id = extractId(embeddedResource._links.self.href);
+    // embeddedResource.path = extractPath(embeddedResource._links.self.href);
   });
 };
 

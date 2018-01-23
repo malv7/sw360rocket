@@ -88,8 +88,7 @@ export class ReleaseCreateComponent implements OnInit {
   onInputFieldChanged(event: IMyInputFieldChanged) {
     if (event.valid || event.value == '') {
       this.dateValid = true;
-    }
-    else {
+    } else {
       this.dateValid = false;
     }
     this.cdRef.detectChanges();

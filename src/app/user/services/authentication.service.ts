@@ -8,23 +8,24 @@ import * as fromModel from './../../state/model.reducer';
 export class AuthenticationService {
     constructor(private http: HttpClient, private store: Store<State>) {
 
-        // const headers = new HttpHeaders();
-        // headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        // let headers = new HttpHeaders()
+        // headers = headers.append('Authorization', 'Basic ' + btoa('admin@sw360.org:12345'));
+        // headers = headers.append('Content-Type', 'application/x-www-form-urlencoded');
 
         // const user = 'admin@sw360.org';
         // const password = '12345';
-        // const credentials = `grant_type=password&username=${user}&password=${password}&credentials=true&scope=write`;
+        // const credentials = `grant_type=password&username=${user}&password=${password}`;
 
         // const authUri = 'http://localhost:8080/authorization/oauth/token';
-        // http.post(authUri, credentials, { headers: headers }).subscribe(x => {
-        //     console.log(x);
-        // },
-        //     error => { console.log("error", error) }
+        // http.post(authUri, credentials, { headers: headers }).subscribe(
+        //     success => {
+        //         console.log(success);
+        //     },
+        //     error => {
+        //         console.log("error", error)
+        //     }
         // );
 
-
-
-        // this.store.select(fromModel.selectComponents).subscribe(x => console.log(x));
     }
 }
 
