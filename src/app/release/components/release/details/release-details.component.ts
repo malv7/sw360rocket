@@ -1,3 +1,4 @@
+import { SW360Release } from './../../../../resources/resources.api';
 import { Component } from "@angular/core";
 import * as fromModel from './../../../../state/model.reducer';
 import { State } from './../../../../state';
@@ -6,6 +7,7 @@ import { Observable } from "rxjs/Observable";
 import { EmbeddedRelease } from "../../../../state/models";
 import { Subscription } from "rxjs/Subscription";
 import * as StructureActions from './../../../../structure/state/structure.actions';
+import * as fromRelease from './../../../state/release.reducer';
 
 @Component({
 		selector: 'sw-release-details',
@@ -14,18 +16,9 @@ import * as StructureActions from './../../../../structure/state/structure.actio
 })
 export class ReleaseDetailsComponent {
 
-  release: Observable<EmbeddedRelease>;
-  titleSub: Subscription;
-
+  release: Observable<SW360Release>;
   constructor(private store: Store<State>) {
-    this.release = store.select(fromModel.selectRelease);
-    this.titleSub = this.release.subscribe(release => {
-      if(release.name) this.store.dispatch(new StructureActions.SetTitle(release.name));
-    });
-  }
-
-  ngOnDestroy() {
-    if(this.titleSub) this.titleSub.unsubscribe();
+    this.release = store.select(fromRelease.selectRelease);
   }
 
 }

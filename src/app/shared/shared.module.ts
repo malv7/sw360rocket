@@ -22,6 +22,7 @@ import { ActionButtonComponent } from './tables/components/action-buttons/action
 import { EffectsModule } from '@ngrx/effects';
 import { TableEffects } from './tables/state/table.effects';
 import { GenericContentComponent } from './global/generic-content/generic-content.component';
+import { AttachmentsTableComponent } from './attachments-table/attachments-table.component';
 
 @NgModule({
 	imports: [
@@ -43,7 +44,8 @@ import { GenericContentComponent } from './global/generic-content/generic-conten
     GenericTableComponent,
     TableSelectComponent,
     ActionButtonComponent,
-    GenericContentComponent
+    GenericContentComponent,
+    AttachmentsTableComponent
 	],
 	exports: [
 		// modules

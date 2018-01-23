@@ -1,3 +1,5 @@
+import { ProjectEffects } from './state/project.effects';
+import { EffectsModule } from '@ngrx/effects';
 // ng
 import { NgModule } from "@angular/core";
 import { FormsModule } from '@angular/forms';
@@ -20,7 +22,8 @@ import { NiceStateWidgetComponent } from './components/nice-state-widget/nice-st
     imports: [
         SharedModule,
         FormsModule,
-        StoreModule.forFeature('project', projectReducer)
+        StoreModule.forFeature('project', projectReducer),
+        EffectsModule.forFeature([ProjectEffects])
     ],
     declarations: [
         ProjectListComponent,

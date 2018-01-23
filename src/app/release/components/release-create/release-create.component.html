@@ -53,8 +53,9 @@
         </generic-form-element>
 
         <!-- Release Date -->
-        <generic-form-element label="Release Date" marginBottom="0.5em" errorText="no valid format (mm/dd/yyyy)" [isError]="!formValidationService.checkInvalidDirtyTouched(releaseDate)">
-          <my-date-picker formControlName="releaseDate"></my-date-picker>
+        <generic-form-element label="Release Date" marginBottom="0.5em" errorText="no valid date (yyyy-mm-dd)" [isError]="!dateValid">
+          <my-date-picker [options]="myDatePickerOptions" formControlName="releaseDate" (inputFieldChanged)="onInputFieldChanged($event)">
+          </my-date-picker>
         </generic-form-element>
       </div>
 
@@ -62,7 +63,7 @@
       <div fxLayout="row" fxLayoutGap="1em">
         <!-- Tags Programming Languages -->
         <div class="tags" class="form-group" [ngStyle]="{'width': '20em'}">
-          <a *ngFor="let c of programmingLanguagesArray" class="ui label" >{{ c }}
+          <a *ngFor="let c of programmingLanguagesArray" class="ui label">{{ c }}
             <i class="delete icon" (click)="removeProgrammingLanguages(c)"></i>
           </a>
         </div>
@@ -149,7 +150,7 @@
 
     </form>
   </div>
-
+<!--   <sw-ecc-details-create> </sw-ecc-details-create> -->
   <button (click)="routeBack()" class="ui button icon">
     <i class="left chevron icon"></i>
   </button>

@@ -1,3 +1,4 @@
+import { UrlSegments } from './../../router/router.api';
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders, HttpErrorResponse } from "@angular/common/http";
 import { Router } from "@angular/router";
@@ -10,6 +11,8 @@ import * as ModelActions from './../../state/model.actions';
 import * as StructureActions from './../../structure/state/structure.actions';
 import * as ComponentActions from './../../component/state/component.actions';
 import * as fromComponent from './../../component/state/component.reducer';
+import * as ReleaseActions from './../../release/state/release.actions';
+import * as ProjectActions from './../../project/state/project.actions';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap';
@@ -37,84 +40,117 @@ export enum RequestTypes {
 export class HttpService {
 
   headers: HttpHeaders;
+  resourceApiUri: string;
+
+  // TODO: check
+  lastRequestUri: string;
 
   constructor(
     private http: HttpClient,
     private router: Router,
     private store: Store<State>
   ) {
-    const bearerToken = `eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsic3czNjAtUkVTVC1BUEkiXSwidXNlcl9uYW1lIjoiYWRtaW5Ac3czNjAub3JnIiwic2NvcGUiOlsic3czNjAucmVhZCIsInN3MzYwLndyaXRlIl0sImV4cCI6MTUxNTk4MjA0MywiYXV0aG9yaXRpZXMiOlsiUk9MRV9TVzM2MF9VU0VSIl0sImp0aSI6IjQxOTQxMzU1LTliOTEtNGNhNC05MzQ4LWE2M2RmZGY2N2Q5NiIsImNsaWVudF9pZCI6InRydXN0ZWQtc3czNjAtY2xpZW50In0.PflHw_7dplRvcgwpcSCaW-2-EGH3Y_0E_ZTu4i98m48xp01k59hp_mNdZX-4o100DJySk7PDcV4vmUx5J_bs8cRgfgCHdhtN-PmnH4BgOEkHSaMxJGFA_5hp6wq_DdV7t_BVO2F7aJH4HF1xmjlzXSfmJrI7jsymwCzb3Ot5NFe6V5DwDeEPKYhsSN6ZkbbvTu8dWe783KAG0NCQ9BIXchKLhO8ise3kAAZDy98oTue0R6OlErzRdYkos5yB0BXwsaeQOUc2ORD7HcBBi6ReQPnJbjDPjqMGuKBRJKabqLY1c7iQifC0j8j1HgJsWouhK1Yz6AXLOR90BREJ2852CA`;
+    const bearerToken = `eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsic3czNjAtUkVTVC1BUEkiXSwidXNlcl9uYW1lIjoiYWRtaW5Ac3czNjAub3JnIiwic2NvcGUiOlsic3czNjAucmVhZCIsInN3MzYwLndyaXRlIl0sImV4cCI6MTUxNjc0MjU3NiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9TVzM2MF9VU0VSIl0sImp0aSI6IjUzMjI3MDE5LWEzOGQtNGJmYS05NTg1LWFlYjg4NWI4OWNiMyIsImNsaWVudF9pZCI6InRydXN0ZWQtc3czNjAtY2xpZW50In0.Eo00VrBPkl1uT4cOgaUz3d0DkGvjLciEKmK2BtLBBn3zK8O15qiUZZ3sN2S_FU3e3iDYCOYV0yGB1c5F2PuLjTf6l2NnO7GYDDqdlUQrU0wBkHH450c3qut6CUIfn-4mZRH0TqHHKo2PUelWuOYhQhXVRgV3cgHoMRl90ZbVh0_6APcZR__GN_vVy-Y_OSdNQEOVvexNa7P29rRZcIDOjJahijNBbUK-l3F9D87oQyVRY9qDIhqTgArhjnpCKlD0UAULB5R569aBRF76qhJx8npVSZyNa3Mpehjo4ZsNxqxMmkKmCBtuSX1yJjKB_Y8_5BeoQMedce5uCJXDy71hgQ`;
     const token = 'Bearer ' + bearerToken;
     this.headers = new HttpHeaders().set('Authorization', token);
+    this.resourceApiUri = 'http://localhost:8080/resource/api/';
+  }
 
-    // this.store.select(fromComponent.selectComponents).subscribe(x => console.log(x));
-    // this.store.select(fromComponent.selectComponent).subscribe(x => console.log(x));
+  isIdenticalRequest(requestUri: string): boolean {
+    if (this.lastRequestUri) {
+      if (this.lastRequestUri === requestUri) {
+        return true;
+      } else {
+        this.lastRequestUri = requestUri;
+        return false;
+      }
+    }
+  }
 
-    Observable.timer(1000).subscribe(() => {
-      // this.store.dispatch(new ComponentActions.Get("http://localhost:8080/resource/api/components/c0b78d8e672a28ff0a0abb3e00002d14"))
-    });
+  handleRequest(feature: string, id?: string) {
+
+    let requestUri = this.resourceApiUri + feature;
+    if (id) requestUri = `${requestUri}/${id}`;
+    if (this.isIdenticalRequest(requestUri)) return;
+
+    switch (feature) {
+
+      case UrlSegments.components: {
+        id ? this.store.dispatch(new ComponentActions.Get(requestUri))
+          : this.store.dispatch(new ComponentActions.Query());
+        return;
+      }
+
+      case UrlSegments.releases: {
+        if (id) this.store.dispatch(new ReleaseActions.Get(requestUri));
+        return;
+      }
+
+      case UrlSegments.projects: {
+        id ? this.store.dispatch(new ProjectActions.Get(requestUri))
+          : this.store.dispatch(new ProjectActions.Query());
+        return;
+      }
+
+      // vulnerabilities
+
+      default:
+        break;
+    }
   }
 
   get(uri: string, type: RequestTypes) {
+    // TODO: switchmap every request
     this.processGet(uri, type);
   }
 
   private processGet(uri: string, type: RequestTypes) {
     this.http.get<any>(uri, { headers: this.headers })
-      .subscribe((response: Response) => this.dispatchSuccess(response, type), error => this.handleError(error));
+      .subscribe(
+      (response: Response) => this.dispatchSuccess(response, type),
+      error => this.handleError(error)
+      );
   }
 
   dispatchSuccess(response: Response, type: RequestTypes) {
-    // console.log(response);
-    // console.log(type);
-
-    // do global stuff (clear lists, clear detail, set titles, set breadcrumb) here before dispatching each action for feature listeners
-    if (
-      type === RequestTypes.attachmentList ||
-      type === RequestTypes.componentList ||
-      type === RequestTypes.licenseList ||
-      type === RequestTypes.projectList ||
-      type === RequestTypes.releaseList ||
-      type === RequestTypes.userList ||
-      type === RequestTypes.vendorList
-    ) {
-      // this.store.dispatch(fromTable.ClearTable Stuff)
-    }
-
-    if (
-      type === RequestTypes.attachment ||
-      type === RequestTypes.component ||
-      type === RequestTypes.license ||
-      type === RequestTypes.project ||
-      type === RequestTypes.release ||
-      type === RequestTypes.user ||
-      type === RequestTypes.vendor
-    ) {
-
-    }
 
     switch (type) {
 
       case RequestTypes.componentList: {
         this.store.dispatch(new ComponentActions.QuerySuccess(response));
         this.setMessage('get components successful!', MessageType.success);
-        break;
+        return;
       }
-      
+
       case RequestTypes.component: {
         this.store.dispatch(new ComponentActions.GetSuccess(response));
-        this.setMessage('get 1 component successful!', MessageType.success);  
-        break;
+        this.setMessage('get 1 component successful!', MessageType.success);
+        return;
+      }
+
+      case RequestTypes.release: {
+        this.store.dispatch(new ReleaseActions.GetSuccess(response));
+        this.setMessage('get 1 release successful!', MessageType.success);
+        return;
+      }
+
+      case RequestTypes.projectList: {
+        this.store.dispatch(new ProjectActions.QuerySuccess(response));
+        this.setMessage('get projects successful!', MessageType.success);
+        return;
+      }
+
+      case RequestTypes.project: {
+        this.store.dispatch(new ProjectActions.GetSuccess(response));
+        this.setMessage('get 1 project successful!', MessageType.success);
+        return;
       }
 
       case RequestTypes.attachment: break;
       case RequestTypes.attachmentList: break;
       case RequestTypes.license: break;
       case RequestTypes.licenseList: break;
-      case RequestTypes.project: break;
-      case RequestTypes.projectList: break;
-      case RequestTypes.release: break;
-      case RequestTypes.releaseList: break;
+      // case RequestTypes.releaseList: break; // TODO: this will never happen since it is always embedded
       case RequestTypes.user: break;
       case RequestTypes.userList: break;
       case RequestTypes.vendor: break;
@@ -124,8 +160,11 @@ export class HttpService {
   }
 
   handleError(error: Response | HttpErrorResponse | any) {
+
+    console.log("handleError", error);
+
     if (error instanceof HttpErrorResponse) {
-      if (error.status) 
+      if (error.status)
         this.handleErrorStatus(error.status);
       else
         console.log("error instanceof HttpErrorResponse BUT has no status");
@@ -138,7 +177,7 @@ export class HttpService {
 
   handleErrorStatus(status: number) {
     switch (status) {
-      
+
       case 401: {
         this.setMessage("401 occured, you are not authorized to request that resource", MessageType.error);
         return;

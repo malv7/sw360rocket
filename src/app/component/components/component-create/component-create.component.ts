@@ -12,19 +12,19 @@ import * as StructureActions from './../../../structure/state/structure.actions'
 
 //Interface data for input Fields
 export interface NewComponent {
-  name: string;
-  createdBy?: string;
-  categories: string;
-  componentType?: string;
-  hompageURL?: string;
-  blogURL?: string;
-  wikiURL?: string;
-  mailingListURL?: string;
-  shortDescription?: string;
-  authorName?: string;
-  ownerAccountingUnit?: string;
-  ownerBillingGroup?: string;
-  Moderators?: string[];
+	name: string;
+	createdBy?: string;
+	categories: string;
+	componentType?: string;
+	hompageURL?: string;
+	blogURL?: string;
+	wikiURL?: string;
+	mailingListURL?: string;
+	shortDescription?: string;
+	authorName?: string;
+	ownerAccountingUnit?: string;
+	ownerBillingGroup?: string;
+	Moderators?: string[];
 }
 
 //constants for FormControl Input Values
@@ -43,112 +43,122 @@ const OWNERBILLINGGROUP: string = 'ownerBillingGroup';
 const MODERATORS: string = 'moderators';
 
 @Component({
-  selector: 'sw-create-component',
-  templateUrl: './component-create.component.html',
-  styleUrls: ['./component-create.component.scss']
+	selector: 'sw-create-component',
+	templateUrl: './component-create.component.html',
+	styleUrls: ['./component-create.component.scss']
 })
 
 export class ComponentCreateComponent implements OnInit {
 
-  componentTypes: string[];
-  projectForm: FormGroup;
-  newComponent: NewComponent;
-  employePopUp: boolean;
-  testbool: boolean;
+	selectedModerators:any[]=[{email:'malv@sw360.de'},{email:'tarek@sw360.de'},{email:'lino@sw360.de'},{email:'michi@sw360.de'}];
+	selectedBillingGroupOwner:any={email:'billingGroupOwner@sw360.de'};
+	componentTypes: string[];
+	projectForm: FormGroup;
+	newComponent: NewComponent;
+	employePopUp: boolean;
+	testbool: boolean;
 
-  categoryArray: string[] = [];
-  categoriesValid: boolean = false;
+	categoryArray: string[] = [];
+	categoriesValid: boolean = false;
 
-  formValid: boolean = false;
+	formValid: boolean = false;
 
-  constructor(
-    public formValidationService: FormValidationService,
-    private store: Store<State>) { }
+	constructor(
+		public formValidationService: FormValidationService,
+		private store: Store<State>) { }
 
-  ngOnInit() {
-    this.testbool = true;
-    //get values for DropDown componentTypes
-    this.componentTypes = COMPONENT_TYPES;
+	ngOnInit() {
+		this.testbool = true;
+		//get values for DropDown componentTypes
+		this.componentTypes = COMPONENT_TYPES;
 
-    this.employePopUp = false;
+		this.employePopUp = false;
 
-    //create Formcontrol for imput fields
-    this.projectForm = new FormGroup({
-      [NAME]: new FormControl(null, Validators.required),
-      [CREATED_BY]: new FormControl(),
-      [CATEGORIES]: new FormControl(null),
-      [COMPONENTTYPE]: new FormControl(this.componentTypes[0]),
-      [HOMEPAGEURL]: new FormControl(null, CustomValidators.url),
-      [BLOGURL]: new FormControl(null, CustomValidators.url),
-      [WIKIURL]: new FormControl(null, CustomValidators.url),
-      [MAILINGLISTURL]: new FormControl(null, CustomValidators.url),
-      [SHORTDESCRIPTION]: new FormControl(),
-      [AUTHORNAME]: new FormControl(),
-      [OWNERACCOUNTINGUNIT]: new FormControl(),
-      [OWNERBILLINGGROUP]: new FormControl(),
-      [MODERATORS]: new FormControl(),
-    });
+		//create Formcontrol for imput fields
+		this.projectForm = new FormGroup({
+			[NAME]: new FormControl(null, Validators.required),
+			[CREATED_BY]: new FormControl(),
+			[CATEGORIES]: new FormControl(null),
+			[COMPONENTTYPE]: new FormControl(this.componentTypes[0]),
+			[HOMEPAGEURL]: new FormControl(null, CustomValidators.url),
+			[BLOGURL]: new FormControl(null, CustomValidators.url),
+			[WIKIURL]: new FormControl(null, CustomValidators.url),
+			[MAILINGLISTURL]: new FormControl(null, CustomValidators.url),
+			[SHORTDESCRIPTION]: new FormControl(),
+			[AUTHORNAME]: new FormControl(),
+			[OWNERACCOUNTINGUNIT]: new FormControl(),
+			[OWNERBILLINGGROUP]: new FormControl(),
+			[MODERATORS]: new FormControl(),
+		});
 
-    this.projectForm.statusChanges.subscribe(() => this.evaluateForm());
-  }
+		this.projectForm.statusChanges.subscribe(() => this.evaluateForm());
+	}
 
-  evaluateForm() {
-    if(this.projectForm.status === 'VALID') {
-      this.formValid = this.categoriesValid ? true : false;
-    } else {
-      this.formValid = false;
-    }
-  }
+	evaluateForm() {
+		if (this.projectForm.status === 'VALID') {
+			this.formValid = this.categoriesValid ? true : false;
+		} else {
+			this.formValid = false;
+		}
+	}
 
-  addCategory() {
-    const c = this.projectForm.get(CATEGORIES).value;
-    if (c && !this.categoryArray.includes(c)) this.categoryArray.push(c);
-    this.projectForm.patchValue({ [CATEGORIES]: '' });
-    this.evaluateCategory();
-  }
+	addCategory() {
+		const c = this.projectForm.get(CATEGORIES).value;
+		if (c && !this.categoryArray.includes(c)) this.categoryArray.push(c);
+		this.projectForm.patchValue({ [CATEGORIES]: '' });
+		this.evaluateCategory();
+	}
 
-  removeCategory(category: string) {
-    this.categoryArray = this.categoryArray.filter(c => category !== c);
-    this.evaluateCategory();
-  }
+	removeCategory(category: string) {
+		this.categoryArray = this.categoryArray.filter(c => category !== c);
+		this.evaluateCategory();
+	}
 
-  evaluateCategory() {
-    this.categoriesValid = this.categoryArray.length < 1 ? false : true;
-    this.evaluateForm();
-  }
+	evaluateCategory() {
+		this.categoriesValid = this.categoryArray.length < 1 ? false : true;
+		this.evaluateForm();
+	}
 
-  routeBack() {
-    this.store.dispatch(new RouterActions.Back());
-  }
+	routeBack() {
+		this.store.dispatch(new RouterActions.Back());
+	}
 
-  //getter for FormControl
-  get name() { return this.projectForm.get(NAME); }
-  get categories() { return this.projectForm.get(CATEGORIES); }
-  get homepageURL() { return this.projectForm.get(HOMEPAGEURL); }
-  get blogURL() { return this.projectForm.get(BLOGURL); }
-  get wikiURL() { return this.projectForm.get(WIKIURL); }
-  get mailingListURL() { return this.projectForm.get(MAILINGLISTURL); }
-  get shortDescription() { return this.projectForm.get(SHORTDESCRIPTION); }
-  get componentType() { return this.projectForm.get(COMPONENTTYPE); }
+	onApprovedModerators(selectedUsers: any[]) {
+		this.selectedModerators = selectedUsers;
+	}
 
-  //called by click on submit button
-  private submit() {
-    this.newComponent = {
-      name: this.projectForm.get(NAME).value,
-      //createdBy: this.projectForm.get(CREATED_BY).value,
-      categories: this.projectForm.get(CATEGORIES).value,
-      componentType: this.projectForm.get(COMPONENTTYPE).value,
-      hompageURL: this.projectForm.get(HOMEPAGEURL).value,
-      blogURL: this.projectForm.get(BLOGURL).value,
-      wikiURL: this.projectForm.get(WIKIURL).value,
-      mailingListURL: this.projectForm.get(MAILINGLISTURL).value,
-      shortDescription: this.projectForm.get(SHORTDESCRIPTION).value,
-      authorName: this.projectForm.get(AUTHORNAME).value,
-      ownerAccountingUnit: this.projectForm.get(OWNERACCOUNTINGUNIT).value,
-      ownerBillingGroup: this.projectForm.get(OWNERBILLINGGROUP).value,
-      Moderators: this.projectForm.get(MODERATORS).value
-    }
-    console.log(this.newComponent);
-  }
+	onApprovedBillingGroupOwner(selectedUsers: any[]) {
+		this.selectedBillingGroupOwner = selectedUsers[0];
+	}
+
+	//getter for FormControl
+	get name() { return this.projectForm.get(NAME); }
+	get categories() { return this.projectForm.get(CATEGORIES); }
+	get homepageURL() { return this.projectForm.get(HOMEPAGEURL); }
+	get blogURL() { return this.projectForm.get(BLOGURL); }
+	get wikiURL() { return this.projectForm.get(WIKIURL); }
+	get mailingListURL() { return this.projectForm.get(MAILINGLISTURL); }
+	get shortDescription() { return this.projectForm.get(SHORTDESCRIPTION); }
+	get componentType() { return this.projectForm.get(COMPONENTTYPE); }
+
+	//called by click on submit button
+	private submit() {
+		this.newComponent = {
+			name: this.projectForm.get(NAME).value,
+			//createdBy: this.projectForm.get(CREATED_BY).value,
+			categories: this.projectForm.get(CATEGORIES).value,
+			componentType: this.projectForm.get(COMPONENTTYPE).value,
+			hompageURL: this.projectForm.get(HOMEPAGEURL).value,
+			blogURL: this.projectForm.get(BLOGURL).value,
+			wikiURL: this.projectForm.get(WIKIURL).value,
+			mailingListURL: this.projectForm.get(MAILINGLISTURL).value,
+			shortDescription: this.projectForm.get(SHORTDESCRIPTION).value,
+			authorName: this.projectForm.get(AUTHORNAME).value,
+			ownerAccountingUnit: this.projectForm.get(OWNERACCOUNTINGUNIT).value,
+			ownerBillingGroup: this.projectForm.get(OWNERBILLINGGROUP).value,
+			Moderators: this.projectForm.get(MODERATORS).value
+		}
+		console.log(this.newComponent);
+	}
 
 }

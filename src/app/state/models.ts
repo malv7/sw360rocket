@@ -3,6 +3,7 @@ import * as ModelActions from './model.actions';
 import { Store } from '@ngrx/store';
 import { State } from './../state';
 import * as fromModel from './model.reducer';
+import { SW360Attachment } from "../shared/attachments-table/attachments-table.component";
 
 // Resources
 export enum SW360Resources {
@@ -920,12 +921,12 @@ export enum TableTypes {
   vendors = 'vendors'
 }
 
-export type EmbeddedResource = EmbeddedUser | EmbeddedProject | Project | EmbeddedSW360Component | SW360Component | EmbeddedRelease | Attachment | EmbeddedVendor | Vendor | EmbeddedLicense | License;
+export type EmbeddedResource = EmbeddedUser | EmbeddedProject | Project | EmbeddedSW360Component | SW360Component | EmbeddedRelease | Attachment | EmbeddedVendor | Vendor | EmbeddedLicense | License | SW360Attachment;
 
 const patchIdPath = (embeddedResources: EmbeddedResource[]) => {
   embeddedResources.forEach(embeddedResource => {
-    embeddedResource.id = extractId(embeddedResource._links.self.href);
-    embeddedResource.path = extractPath(embeddedResource._links.self.href);
+    // embeddedResource.id = extractId(embeddedResource._links.self.href);
+    // embeddedResource.path = extractPath(embeddedResource._links.self.href);
   });
 };
 

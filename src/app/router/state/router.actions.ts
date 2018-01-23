@@ -7,6 +7,8 @@ export const BACK    = '[Router] Back';
 export const FORWARD = '[Router] Forward';
 export const SET_ACTIVE_FEATURES = '[Router] Set active features';
 
+export const GO_SELFLINK = '[Router] Go selflink';
+
 export class Go implements Action {
   readonly type = GO;
 
@@ -20,6 +22,11 @@ export class Go implements Action {
     // Ressource information
     ressourceSelflink?: string;
   }) {}
+}
+
+export class GoSelfLink implements Action {
+  readonly type = GO_SELFLINK;
+  constructor(public selflink: string) { }
 }
 
 export class Back implements Action {
@@ -39,4 +46,5 @@ export type Actions =
     Go
   | Back
   | Forward
-  | SetActiveFeatures;
+  | SetActiveFeatures
+  | GoSelfLink;

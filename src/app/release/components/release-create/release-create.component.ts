@@ -12,6 +12,8 @@ import * as RouterActions from './../../../router/state/router.actions';
 import * as StructureActions from './../../../structure/state/structure.actions';
 import { CustomValidator } from 'ng2-semantic-ui/dist';
 import { State } from '../../../state';
+import { IMyDpOptions, IMyInputFieldChanged } from 'mydatepicker';
+import { ChangeDetectorRef } from '@angular/core';
 
 //Interface data for input Fields
 export interface NewRelease {
@@ -23,7 +25,7 @@ export interface NewRelease {
   releaseDate: string;
   downloadURL: string;
   releaseMainlineState: string;
-  }
+}
 
 const NAME: string = 'name';
 const VERSION: string = 'version';
@@ -50,21 +52,22 @@ export class ReleaseCreateComponent implements OnInit {
   programmingLanguagesArray: string[] = [];
   operatingSystemsArray: string[] = [];
   releaseMainlineState: string[] = [];
+  dateValid: boolean;
 
   constructor(
     public formValidationService: FormValidationService,
-    private store: Store<State>
+    private store: Store<State>,
+    private cdRef:ChangeDetectorRef
   ) { }
 
   ngOnInit() {
-    this.store.dispatch(new StructureActions.SetTitle('Create Release'));
-
     this.formValid = false;
     this.releaseMainlineState = ['release', 'mainline', 'state', '?'];
+    this.dateValid = false;
 
     //Form Validation
     this.projectForm = new FormGroup({
-    
+
       [NAME]: new FormControl(null, Validators.required),
       [VERSION]: new FormControl(null, Validators.required),
       [CPEID]: new FormControl(null, Validators.required),
@@ -72,10 +75,23 @@ export class ReleaseCreateComponent implements OnInit {
       [PROGRAMMINGLANGUAGES]: new FormControl(),
       [DOWNLOADURL]: new FormControl(null, CustomValidators.url),
       [RELEASEMAINLINESTATE]: new FormControl(),
-      [RELEASEDATE]: new FormControl(null, Validators.pattern(''))
-
+      [RELEASEDATE]: new FormControl()
     });
+
     this.projectForm.statusChanges.subscribe(() => this.evaluateForm());
+  }
+
+  public myDatePickerOptions: IMyDpOptions = {
+    dateFormat: 'yyyy-mm-dd'
+  };
+
+  onInputFieldChanged(event: IMyInputFieldChanged) {
+    if (event.valid || event.value == '') {
+      this.dateValid = true;
+    } else {
+      this.dateValid = false;
+    }
+    this.cdRef.detectChanges();
   }
 
   get name() { return this.projectForm.get(NAME); }
@@ -105,14 +121,20 @@ export class ReleaseCreateComponent implements OnInit {
   }
 
   evaluateForm() {
-    if (this.projectForm.status === 'VALID') {
+    if (this.projectForm.status === 'VALID' && this.dateValid) {
       this.formValid = true;
     }
     else {
       this.formValid = false;
     }
+    console.log(this.formValid);
   }
-  
+
+
+  routeBack() {
+    this.store.dispatch(new RouterActions.Back());
+  }
+
   submit() {
     this.newReleae = {
       name: this.projectForm.get(NAME).value,
@@ -124,7 +146,7 @@ export class ReleaseCreateComponent implements OnInit {
       releaseDate: this.projectForm.get(RELEASEDATE).value,
       downloadURL: this.projectForm.get(DOWNLOADURL).value,
       releaseMainlineState: this.projectForm.get(RELEASEMAINLINESTATE).value,
-     }
+    }
     console.log(this.newReleae);
   }
 } 

@@ -34,6 +34,11 @@ export class RouterEffects {
     .filter(event => event instanceof NavigationEnd)
     .do((event: NavigationEnd) => this.routerService.handleNavigation(event)) // type
     
+  @Effect({ dispatch: false })
+  goSelfink$ = this.actions$.ofType(RouterActions.GO_SELFLINK)
+    .map((action: RouterActions.GoSelfLink) => action.selflink)  
+    .do(selflink => this.routerService.goSelflink(selflink));
+
   constructor(
     private actions$: Actions,
     private router: Router,
