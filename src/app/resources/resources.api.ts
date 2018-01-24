@@ -42,11 +42,11 @@ export interface ExternalIds {
 //////////
 
 export interface SW360Vendor {
+    type: string; // vendor
     fullName: string
-    _links: Links;
     shortName: string;
     url: string;
-    type: string; // vendor
+    _links: Links;
 }
 
 // Releases
@@ -60,14 +60,14 @@ export enum SW360ReleaseClearingStates {
     APPROVED = 'APPROVED,'
 }
 
-export interface SW360Release {
+export interface SW360Release extends SW360Resource {
     name: string;
     version: string;
     externalIds: ExternalIds;
     createdOn: string;
     clearingState: SW360ReleaseClearingStates;
     cpeId: string;
-    _links: Links;
+    // _links: Links;
 }
 
 // Components
@@ -89,13 +89,13 @@ export interface SW360ComponentEmbedded {
     vendors: SW360Vendor[];
 }
 
-export interface SW360Component {
+export interface SW360Component extends SW360Resource {
     name?: string;
     componentType?: string;
     description?: string;
     createdOn?: string;
     type?: string; // component
-    _links?: Links;
+    // _links?: Links;
     _embedded?: SW360ComponentEmbedded;
 }
 
@@ -117,7 +117,7 @@ export enum SW360ProjectTypes {
     INNER_SOURCE = 'INNER_SOURCE'
   }
 
-export interface SW360Project {
+export interface SW360Project extends SW360Resource {
     name: string;
     version: string;
     projectType: SW360ProjectTypes; // ProjectTypes
@@ -127,11 +127,14 @@ export interface SW360Project {
     businessUnit: string;
     externalIds: ExternalIds;
     _embedded: SW360ProjectEmbedded;
-    _links: Links;
+    // _links: Links;
 }
 
 export interface SW360ProjectEmbedded {
     createdBy: CreatedBy;
     moderators: Moderator[];
     containedReleases: SW360Release[];
+}
+export interface SW360Resource {
+    _links: Links;
 }

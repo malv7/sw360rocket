@@ -1,7 +1,19 @@
-<div class="ui secondary pointing menu">
-	<a *ngFor="let tab of tabs"
-		class="item"
-		[routerLink]="tab.route"
-		routerLinkActive="active">
-		{{tab.title}}</a>
+<div fxLayout="row" fxLayoutAlign="space-between center">
+	<div class="ui secondary pointing menu">
+		<a *ngFor="let tab of tabs" class="item" [routerLink]="tab.route" routerLinkActive="active">
+			{{tab.title}}
+		</a>
+	</div>
+
+	<div>
+		<button class="ui basic button edit">
+			<i class="icon mail"></i>
+			Subscribe
+		</button>
+
+		<button class="ui basic button edit">
+			<i class="icon edit"></i>
+			Edit
+		</button>
+	</div>
 </div>

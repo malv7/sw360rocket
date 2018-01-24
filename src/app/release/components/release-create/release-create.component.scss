@@ -1,31 +1,30 @@
 .hidden {
-    visibility: hidden;
-  }
+  visibility: hidden;
+}
 
+.visible{
+  visibility: visible;
+}
 
-  .visible{
-      visibility: visible;
-  }
+.errorMessageSpace
+{
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+}
 
-  .errorMessageSpace
-  {
-      padding-top: 0.2em;
-      padding-bottom: 0.2em;
-  }
+.text-input {
+  width: 20em;
+  min-width: 15em;
+}
 
-  .text-input {
-    width: 20em;
-    min-width: 15em;
-  }
+.description {
+  max-width: 50em;
+}
 
-  .tags {
-    margin-top: 0.5em;
-  }
+.label-wrapper {
+  margin-bottom: 0.5em;
+}
 
-  .description {
-    max-width: 50em;
-  }
-
-  .label-wrapper {
-    margin-bottom: 0.5em;
-  }
+.sw-form-tag {
+  margin-bottom: 0.5em;
+}

@@ -12,11 +12,8 @@ export const PREVIOUS_PAGE = '[Pagination] Previous page';
 export const SET_PAGE = '[Pagination] Set page';
 export const SET_TOTAL_ELEMENTS_AMOUNT = '[Pagionation] Set total elements amount';
 export const SET_ELEMENTS_PER_PAGE ='[Pagionation] Set elements per page';
-export const CHANGE_PAGE = '[Pagination] Change Page';
 
 export const INITIALIZE_TABLE = '[Table] Initialize';
-
-export const SET_RELEASE_TABLE_DATA = '[Table] Set Release table data'
 
 // Table selections
 export class ClearTableSelections implements Action {
@@ -39,36 +36,26 @@ export class NextPage implements Action {
 
 export class PreviousPage implements Action {
 	readonly type = PREVIOUS_PAGE;
-	constructor(){}
-}
-
-export class ChangePage implements Action {
-  readonly type = CHANGE_PAGE;
-  constructor(public pageNumber: number) { }
+	constructor() { }
 }
 
 export class SetPage implements Action {
 	readonly type = SET_PAGE;
-	constructor(public pageNumber: number){}
+	constructor(public pageNumber: number) { }
 }
 
 export class SetTotalElementsAmount implements Action {
 	readonly type = SET_TOTAL_ELEMENTS_AMOUNT;
-	constructor(public totalElementsAmount: number){}
+	constructor(public totalElementsAmount: number) { }
 }
 
 export class SetSetElementsPerPage implements Action {
 	readonly type = SET_ELEMENTS_PER_PAGE;
-	constructor(public elementsPerPage: number){}
+	constructor(public elementsPerPage: number) { }
 }
 
 export class InitializeTable implements Action {
   readonly type = INITIALIZE_TABLE;
-}
-
-export class SetReleaseTableData implements Action {
-  readonly type = SET_RELEASE_TABLE_DATA;
-  constructor(public releaseContextRoute: ReleaseContextRoute) { }
 }
 
 export type All =
@@ -80,6 +67,4 @@ export type All =
 	SetPage |
 	SetTotalElementsAmount|
   SetSetElementsPerPage |
-  ChangePage | // TODO: needed?
-  InitializeTable |
-  SetReleaseTableData;
+  InitializeTable;

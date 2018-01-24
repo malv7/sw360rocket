@@ -7,7 +7,7 @@ import { SW360Project } from "../../../../resources/resources.api";
 
 @Component({
     selector: 'sw-project-details',
-    template: `{{ project | async | json }}`
+    templateUrl: './project-details.component.html'
 })
 export class ProjectDetailsComponent implements OnInit {
 
@@ -16,6 +16,5 @@ export class ProjectDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.project = this.store.select(fromProject.selectProject);
-    this.project.subscribe(x => console.log(x))
   }
 }

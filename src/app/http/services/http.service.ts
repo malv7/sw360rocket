@@ -50,7 +50,7 @@ export class HttpService {
     private router: Router,
     private store: Store<State>
   ) {
-    const bearerToken = `eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsic3czNjAtUkVTVC1BUEkiXSwidXNlcl9uYW1lIjoiYWRtaW5Ac3czNjAub3JnIiwic2NvcGUiOlsic3czNjAucmVhZCIsInN3MzYwLndyaXRlIl0sImV4cCI6MTUxNjc0MjU3NiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9TVzM2MF9VU0VSIl0sImp0aSI6IjUzMjI3MDE5LWEzOGQtNGJmYS05NTg1LWFlYjg4NWI4OWNiMyIsImNsaWVudF9pZCI6InRydXN0ZWQtc3czNjAtY2xpZW50In0.Eo00VrBPkl1uT4cOgaUz3d0DkGvjLciEKmK2BtLBBn3zK8O15qiUZZ3sN2S_FU3e3iDYCOYV0yGB1c5F2PuLjTf6l2NnO7GYDDqdlUQrU0wBkHH450c3qut6CUIfn-4mZRH0TqHHKo2PUelWuOYhQhXVRgV3cgHoMRl90ZbVh0_6APcZR__GN_vVy-Y_OSdNQEOVvexNa7P29rRZcIDOjJahijNBbUK-l3F9D87oQyVRY9qDIhqTgArhjnpCKlD0UAULB5R569aBRF76qhJx8npVSZyNa3Mpehjo4ZsNxqxMmkKmCBtuSX1yJjKB_Y8_5BeoQMedce5uCJXDy71hgQ`;
+    const bearerToken = `eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsic3czNjAtUkVTVC1BUEkiXSwidXNlcl9uYW1lIjoiYWRtaW5Ac3czNjAub3JnIiwic2NvcGUiOlsic3czNjAucmVhZCIsInN3MzYwLndyaXRlIl0sImV4cCI6MTUxNjc1OTA1MiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9TVzM2MF9VU0VSIl0sImp0aSI6IjI4MjkxOGI0LTNmMGUtNDYxOC1hMDVkLTMwYmE5MTQwYjIwOCIsImNsaWVudF9pZCI6InRydXN0ZWQtc3czNjAtY2xpZW50In0.RtFSu4HkL-BAQIFN2912dSFCihGvlZOvSKqkdn2wMRGj0U6BhbUdy6jijpb8xnHhUV1KHSKIGidsFZc45D1aMorpyRq41YmuPQ-fH8PNTTNMWMLQrNNuYEFMUSoEGvFmQSBUXh3_cmldqynYi0CtRVl-sKg3alUa7hIsVJBfKNc1kpvnht11FE9rDX6VJLbE_jAoUbPkADNUaHaJi3FW7ydL5KtC5Ml-m6kaarTguJiwUU0rse-YhgjP6qbiS9WnR7DT9YuU77yY6SDHcmjKwmxp1xLWLJyJWAbA25hN49pknR8JLFSzjYNi89o6WW40mn77pzhUtheLnjHoVB7ojA`;
     const token = 'Bearer ' + bearerToken;
     this.headers = new HttpHeaders().set('Authorization', token);
     this.resourceApiUri = 'http://localhost:8080/resource/api/';
@@ -157,6 +157,18 @@ export class HttpService {
       case RequestTypes.vendorList: break;
       default: break;
     }
+  }
+
+  post(uri: string, resource: any, type: RequestTypes) {
+    console.log(uri);
+    console.log(resource);
+    console.log(type);
+
+    this.http.post(uri, resource, { headers: this.headers }).subscribe(x => console.log("http post sub from http service", x))
+  }
+
+  delete(uri: string, type: RequestTypes) {
+    this.http.delete(uri, { headers: this.headers }).subscribe(x => console.log("http delete sub from http service", x));
   }
 
   handleError(error: Response | HttpErrorResponse | any) {

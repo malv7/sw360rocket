@@ -68,13 +68,13 @@ export class ReleaseListComponent implements OnInit, OnDestroy {
     this.store.dispatch(new RouterActions.GoSelfLink(release._links.self.href));
   }
 
-  // selectOne(release: EmbeddedRelease) {
-  //   this.tableService.selectOne(release);
-  // }
+  selectOne(release: SW360Release) {
+    this.tableService.selectOne(release);
+  }
 
-  // selectAll() {
-  //   this.tableService.selectAll(this.releases);
-  // }
+  selectAll() {
+    this.tableService.selectAll(this.releases);
+  }
 
   // Actions
   // TODO: which component?

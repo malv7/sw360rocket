@@ -10,6 +10,7 @@ import * as StructureActions from './../../../structure/state/structure.actions'
 import * as fromProject from './../../state/project.reducer';
 import * as fromRelease from './../../../release/state/release.reducer';
 import * as RouterActions from './../../../router/state/router.actions';
+import { TableService } from '../../../shared/tables/services/table.service';
 
 @Component({
   selector: 'sw-project-list',
@@ -26,13 +27,20 @@ export class ProjectListComponent {
 
   projects: Observable<SW360Project[]>;
 
-  constructor(private store: Store<State>) {
+  constructor(private store: Store<State>, private tableService: TableService) {
     this.projects = this.store.select(fromProject.selectProjects);
-    this.projects.subscribe(x => console.log("projects in list", x))
   }
 
   go(project: SW360Project) {
 		this.store.dispatch(new RouterActions.GoSelfLink(project._links.self.href));
+  }
+  
+  selectOne(project: SW360Project) {
+		this.tableService.selectOne(project);
+	}
+
+	selectAll() {
+		this.tableService.selectAll(this.projects);
 	}
 
 }

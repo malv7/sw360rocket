@@ -37,10 +37,31 @@ export class ComponentEffects {
     @Effect({ dispatch: false })
     getSuccess = this.actions.ofType(ComponentActions.GET_SUCCESS)
         .map((action: ComponentActions.GetSuccess) => action.response)
-        .map(response => <SW360Component> response)
+        .map(response => <SW360Component>response)
         .do(component => this.store.dispatch(new ReleaseActions.ReduceReleases(component._embedded.releases, ReleaseContext.components)))
         .do(component => this.store.dispatch(new StructureActions.SetTitle(component.name)))
         .do(component => this.store.dispatch(new ComponentActions.ReduceComponent(component)))
+
+    // TODO: finish
+    @Effect({ dispatch: false })
+    create = this.actions.ofType(ComponentActions.CREATE)
+        .map((action: ComponentActions.Create) => action.component)
+        .do(component => this.httpService.post(this.componentsUri, component, RequestTypes.component))
+
+    // TODO: finish
+    @Effect({ dispatch: false })
+    createSuccess = this.actions.ofType(ComponentActions.CREATE_SUCCESS)
+        .do(response => console.log("component create success from effects", response))
+
+    // TODO: finish
+    @Effect({ dispatch: false })
+    delete = this.actions.ofType(ComponentActions.DELETE)
+        .map((action: ComponentActions.Delete) => action.selflinks)
+        .do(selflinks => selflinks.forEach(selflink => this.httpService.delete(selflink, RequestTypes.component)))
+
+    // TODO: finish
+    // @Effect({ dispatch: false })
+    // deleteSuccess = this.actions.ofType(ComponentActions)
 
     constructor(
         private actions: Actions,

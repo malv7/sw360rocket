@@ -23,7 +23,6 @@ export class ComponentDetailsComponent implements OnInit, OnDestroy {
     this.componentSub = this.store.select(fromComponent.selectComponent)
       .subscribe(component => {
         this.component = component;
-        console.log(this.component)
         this.vendors = (this.component && this.component._embedded && this.component._embedded.vendors)
           ? this.component._embedded.vendors
           : [];

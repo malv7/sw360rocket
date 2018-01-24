@@ -1,160 +1,155 @@
-<div class="main-content">
-  <div class="ui form">
-    <form [formGroup]="projectForm" #formDir="ngForm">
-      <!-- required fields -->
-      <div fxLayout="row" fxLayoutGap="1em" fxLayoutWrap>
-        <!-- Name -->
-        <generic-form-element label="Name" required="true" errorText="name required" [isError]="!formValidationService.checkInvalidDirtyTouched(name)">
-          <input type="text" placeholder="" formControlName="name">
-        </generic-form-element>
+<h1 [ngStyle]="{ 'margin-bottom': '1em' }">Create Release</h1>
 
-        <!-- Version -->
-        <generic-form-element label="Version" required="true" errorText="version required" [isError]="!formValidationService.checkInvalidDirtyTouched(version)">
-          <input type="text" placeholder="" formControlName="version">
-        </generic-form-element>
+<form class="ui form" [formGroup]="projectForm" #formDir="ngForm">
+  <!-- required fields -->
+  <div fxLayout="row" fxLayoutGap="1em" fxLayoutWrap>
+    <!-- Name -->
+    <generic-form-element label="Name" required="true" errorText="name required" [isError]="!formValidationService.checkInvalidDirtyTouched(name)">
+      <input type="text" placeholder="" formControlName="name">
+    </generic-form-element>
 
-        <!-- CPE ID -->
-        <generic-form-element label="CPE ID" required="true" errorText="CPE ID required" [isError]="!formValidationService.checkInvalidDirtyTouched(cpeID)">
-          <input type="text" placeholder="" formControlName="cpeID">
-        </generic-form-element>
+    <!-- Version -->
+    <generic-form-element label="Version" required="true" errorText="version required" [isError]="!formValidationService.checkInvalidDirtyTouched(version)">
+      <input type="text" placeholder="" formControlName="version">
+    </generic-form-element>
 
-        <!-- Download URL -->
-        <generic-form-element label="Download URL" errorText="must be a valid URL" [isError]="!formValidationService.checkInvalidDirtyTouched(downloadURL)">
-          <input type="text" placeholder="http://example.com" formControlName="downloadURL">
-        </generic-form-element>
-      </div>
+    <!-- CPE ID -->
+    <generic-form-element label="CPE ID" required="true" errorText="CPE ID required" [isError]="!formValidationService.checkInvalidDirtyTouched(cpeID)">
+      <input type="text" placeholder="" formControlName="cpeID">
+    </generic-form-element>
 
-      <div fxLayout="row" fxLayoutGap="1em">
-        <!-- Programming Language -->
-        <generic-form-element marginBottom="0.5em" label="Programming Languages">
-          <div fxLayout="row">
-            <input type="text" formControlName="programmingLanguages">
-            <button class="ui icon button primary" [ngStyle]="{ 'margin-left': '0.5em' }" (click)="addProgrammingLanguages()">
-              <i class="plus icon"></i>
-            </button>
-          </div>
-        </generic-form-element>
+    <!-- Release Date -->
+    <generic-form-element label="Release Date" marginBottom="0.5em" errorText="no valid date (yyyy-mm-dd)" [isError]="!dateValid">
+      <my-date-picker [options]="myDatePickerOptions" formControlName="releaseDate" (inputFieldChanged)="onInputFieldChanged($event)">
+      </my-date-picker>
+    </generic-form-element>
 
-        <!-- Operating Systems -->
-        <generic-form-element marginBottom="0.5em" label="Operating Systems">
-          <div fxLayout="row">
-            <input type="text" formControlName="operatingSystems">
-            <button class="ui icon button primary" [ngStyle]="{ 'margin-left': '0.5em' }" (click)="addOperatingSystems()">
-              <i class="plus icon"></i>
-            </button>
-          </div>
-        </generic-form-element>
+    <!-- Download URL -->
+    <generic-form-element label="Download URL" errorText="must be a valid URL" [isError]="!formValidationService.checkInvalidDirtyTouched(downloadURL)">
+      <input type="text" placeholder="http://example.com" formControlName="downloadURL">
+    </generic-form-element>
 
-        <!-- Release Mainline State -->
-        <generic-form-element marginBottom="0.5em" label="Release Mainline State" width="auto">
-          <select class="ui dropdown" formControlName="releaseMainlineState">
-            <option *ngFor="let c of releaseMainlineState">{{c}}</option>
-          </select>
-        </generic-form-element>
-
-        <!-- Release Date -->
-        <generic-form-element label="Release Date" marginBottom="0.5em" errorText="no valid date (yyyy-mm-dd)" [isError]="!dateValid">
-          <my-date-picker [options]="myDatePickerOptions" formControlName="releaseDate" (inputFieldChanged)="onInputFieldChanged($event)">
-          </my-date-picker>
-        </generic-form-element>
-      </div>
-
-
-      <div fxLayout="row" fxLayoutGap="1em">
-        <!-- Tags Programming Languages -->
-        <div class="tags" class="form-group" [ngStyle]="{'width': '20em'}">
-          <a *ngFor="let c of programmingLanguagesArray" class="ui label">{{ c }}
-            <i class="delete icon" (click)="removeProgrammingLanguages(c)"></i>
-          </a>
-        </div>
-
-        <!-- Tags Operating Systems -->
-        <div class="tags" class="form-group" [ngStyle]="{'width': '20em'}">
-          <a *ngFor="let c of operatingSystemsArray" class="ui label" [ngStyle]="{ 'margin-bottom': '0.5em' }">{{ c }}
-            <i class="delete icon" (click)="removeOperatingSystems(c)"></i>
-          </a>
-        </div>
-      </div>
-
-      <!-- Vendor -->
-      <div fxLayout="row" fxLayoutGap="1em">
-        <generic-form-element label="Vendor" marginBottom="0.5em" [ngStyle]="{'width': '41em', 'background': '#d4d4d557', 'border-radius': '5px'}">
-          <button class="ui button tiny primary">Add</button>
-        </generic-form-element>
-
-        <!-- Licences -->
-        <generic-form-element label="Licences" marginBottom="0.5em" [ngStyle]="{'width': '41em', 'background': '#d4d4d557', 'border-radius': '5px'}">
-          <button class="ui button tiny primary">Add</button>
-        </generic-form-element>
-      </div>
-
-      <!-- Tags Vendor -->
-      <div fxLayout="row" fxLayoutGap="1em">
-        <div class="tags" class="form-group" [ngStyle]="{'width': '41em', 'background': '#d4d4d557', 'border-radius': '5px'}">
-          <!-- TODO: ngIf* -->
-          <a class="ui label">Vendor 1
-            <i class="delete icon"></i>
-          </a>
-          <a class="ui label">Vendor 2
-            <i class="delete icon"></i>
-          </a>
-        </div>
-
-        <!-- Tags Licences  -->
-        <div class="tags" class="form-group" [ngStyle]="{'width': '41em', 'background': '#d4d4d557', 'border-radius': '5px'}">
-          <!-- TODO: ngIf* -->
-          <a class="ui label">Licences 1
-            <i class="delete icon"></i>
-          </a>
-          <a class="ui label">Licences 2
-            <i class="delete icon"></i>
-          </a>
-        </div>
-      </div>
-
-      <!-- Contributors -->
-      <div fxLayout="row" fxLayoutGap="1em">
-        <generic-form-element label="Contributors" marginBottom="0.5em" [ngStyle]="{'width': '41em', 'background': '#d4d4d557', 'border-radius': '5px'}">
-          <button class="ui button tiny primary">Add</button>
-        </generic-form-element>
-
-        <!-- Moderators -->
-        <generic-form-element label="Moderators" marginBottom="0.5em" [ngStyle]="{'width': '41em', 'background': '#d4d4d557', 'border-radius': '5px'}">
-          <button class="ui button tiny primary">Add</button>
-        </generic-form-element>
-      </div>
-
-      <!-- Tags Contributors -->
-      <div fxLayout="row" fxLayoutGap="1em">
-        <div class="tags" class="form-group" [ngStyle]="{'width': '41em', 'background': '#d4d4d557', 'border-radius': '5px'}">
-          <!-- TODO: ngIf* -->
-          <a class="ui label">Contributor 1
-            <i class="delete icon"></i>
-          </a>
-          <a class="ui label">Contributor 2
-            <i class="delete icon"></i>
-          </a>
-        </div>
-
-        <!-- Tags Moderators   -->
-        <div class="tags" class="form-group" [ngStyle]="{'width': '41em', 'background': '#d4d4d557', 'border-radius': '5px'}">
-          <!-- TODO: ngIf* -->
-          <a class="ui label">Moderator 1
-            <i class="delete icon"></i>
-          </a>
-          <a class="ui label">Moderator 2
-            <i class="delete icon"></i>
-          </a>
-        </div>
-      </div>
-
-    </form>
+    <!-- Release Mainline State -->
+    <generic-form-element marginBottom="0.5em" label="Release Mainline State" width="auto">
+      <select class="ui dropdown" formControlName="releaseMainlineState">
+        <option *ngFor="let c of releaseMainlineState">{{c}}</option>
+      </select>
+    </generic-form-element>
   </div>
-<!--   <sw-ecc-details-create> </sw-ecc-details-create> -->
-  <button (click)="routeBack()" class="ui button icon">
-    <i class="left chevron icon"></i>
-  </button>
 
-  <button class="ui button positive" (click)="submit()" type="submit" [disabled]="!formValid">Submit</button>
+  <div fxLayout="row" fxLayoutGap="1em">
+    <!-- Programming Language -->
+    <generic-form-element marginBottom="0.5em" label="Programming Languages">
+      <div fxLayout="row">
+        <input type="text" formControlName="programmingLanguages">
+        <button class="ui icon button primary" [ngStyle]="{ 'margin-left': '0.5em' }" (click)="addProgrammingLanguages()">
+          <i class="plus icon"></i>
+        </button>
+      </div>
+    </generic-form-element>
 
-</div>
+    <!-- Operating Systems -->
+    <generic-form-element marginBottom="0.5em" label="Operating Systems">
+      <div fxLayout="row">
+        <input type="text" formControlName="operatingSystems">
+        <button class="ui icon button primary" [ngStyle]="{ 'margin-left': '0.5em' }" (click)="addOperatingSystems()">
+          <i class="plus icon"></i>
+        </button>
+      </div>
+    </generic-form-element>
+  </div>
+
+  <div fxLayout="row" fxLayoutGap="1em">
+    <!-- Tags Programming Languages -->
+    <div class="tags" class="form-group" [ngStyle]="{'width': '20em'}">
+      <a *ngFor="let c of programmingLanguagesArray" class="ui label">{{ c }}
+        <i class="delete icon" (click)="removeProgrammingLanguages(c)"></i>
+      </a>
+    </div>
+
+    <!-- Tags Operating Systems -->
+    <div class="tags" class="form-group" [ngStyle]="{'width': '20em'}">
+      <a *ngFor="let c of operatingSystemsArray" class="ui label" [ngStyle]="{ 'margin-bottom': '0.5em' }">{{ c }}
+        <i class="delete icon" (click)="removeOperatingSystems(c)"></i>
+      </a>
+    </div>
+  </div>
+
+  <div fxLayout="row" fxLayoutGap="1em">
+    <!-- Vendor -->
+    <div>
+      <generic-form-element label="Vendors" marginBottom="0.5em">
+        <!-- <button class="ui button tiny primary">Add</button> -->
+      </generic-form-element>
+
+      <div class="form-group tags" fxLayout="row" fxLayoutGap="0.5em" fxLayoutWrap>
+        <div>
+          <button class="ui icon button primary mini">
+            <i class="add icon"></i>
+          </button>
+        </div>
+        <sw-tag name="Elsiss"></sw-tag>
+        <sw-tag name="Chardon"></sw-tag>
+        <sw-tag name="Gamp Industries"></sw-tag>
+        <sw-tag name="Volume Buffer"></sw-tag>
+        <sw-tag name="Mutate restrict"></sw-tag>
+      </div>
+    </div>
+
+    <!-- Licences -->
+    <div>
+      <generic-form-element label="Licences" marginBottom="0.5em">
+        <!-- <button class="ui button tiny primary">Add</button> -->
+      </generic-form-element>
+
+      <div class="form-group tags" fxLayout="row" fxLayoutGap="0.5em" fxLayoutWrap>
+        <div>
+          <button class="ui icon button primary mini">
+            <i class="add icon"></i>
+          </button>
+        </div>
+        <sw-tag name="EPL"></sw-tag>
+        <sw-tag name="MIT"></sw-tag>
+      </div>
+    </div>
+  </div>
+
+  <div fxLayout="row" fxLayoutGap="1em">
+    <!-- Contributors -->
+    <div>
+      <generic-form-element label="Contributors" marginBottom="0.5em"></generic-form-element>
+
+      <div class="form-group tags" fxLayout="row" fxLayoutGap="0.5em" fxLayoutWrap>
+        <div>
+          <button class="ui icon button primary mini">
+            <i class="add icon"></i>
+          </button>
+        </div>
+        <sw-tag name="Michael Laschwasser"></sw-tag>
+        <sw-tag name="Grunert Hafner"></sw-tag>
+      </div>
+    </div>
+
+    <!-- Moderators -->
+    <div>
+      <generic-form-element label="Moderators" marginBottom="0.5em"></generic-form-element>
+      <!-- Tags Moderators -->
+      <div class="form-group tags" fxLayout="row" fxLayoutGap="0.5em" fxLayoutWrap>
+        <div>
+          <button class="ui icon button primary mini">
+            <i class="add icon"></i>
+          </button>
+        </div>
+        <sw-tag name="Leo Echtjetzt"></sw-tag>
+        <sw-tag name="Nina Wachsnagel"></sw-tag>
+      </div>
+    </div>
+  </div>
+
+</form>
+<!-- <sw-ecc-details-create> </sw-ecc-details-create> -->
+<button (click)="routeBack()" class="ui button icon">
+  <i class="left chevron icon"></i>
+</button>
+
+<button class="ui button positive" (click)="submit()" type="submit" [disabled]="!formValid">Submit</button>

@@ -1,51 +1,51 @@
 <ng-template #tableHeader>
 	<th>Filename</th>
 	<th>Attachment Type</th>
-	<th>Created by</th>
+	<!-- <th>Created by</th> -->
 	<th>Created comment</th>
-	<th>Created on</th>
-	<th>Checked by</th>
+	<!-- <th>Created on</th> -->
+	<!-- <th>Checked by</th> -->
 	<th>Checked comment</th>
 	<th>Checked on</th>
 	<th>Check Status</th>
 
 	<th class="right aligned" sw-table-select (selectEvent)="selectAll()"></th>
-  </ng-template>
+</ng-template>
 
-  <ng-template #tableBody>
+<ng-template #tableBody>
 	<tr *ngFor="let attachment of attachments | async" class="row-hover">
-	  <td (click)="go(attachment)">{{ attachment.filename }} </td>
-	  <td (click)="go(attachment)">{{ attachment.attachmentType }} </td>
-	  <td (click)="go(attachment)">{{ attachment.createdTeam }} </td>
-	  <td (click)="go(attachment)">{{ attachment.createdComment }} </td>
-	  <td (click)="go(attachment)">{{ attachment.createdOn }} </td>
-	  <td (click)="go(attachment)">{{ attachment.checkedTeam }} </td>
-	  <td (click)="go(attachment)">{{ attachment.checkedComment }} </td>
-	  <td (click)="go(attachment)">{{ attachment.checkedOn }} </td>
-	  <td (click)="go(attachment)">{{ attachment.checkStatus }} </td>
-	  <td class="right aligned" sw-table-select (selectEvent)="selectOne(attachment)"></td>
+		<td (click)="go(attachment)">{{ attachment.filename }} </td>
+		<td (click)="go(attachment)">{{ attachment.attachmentType }} </td>
+		<!-- <td (click)="go(attachment)">{{ attachment.createdTeam }} </td> -->
+		<td (click)="go(attachment)">{{ attachment.createdComment }} </td>
+		<!-- <td (click)="go(attachment)">{{ attachment.createdOn }} </td> -->
+		<!-- <td (click)="go(attachment)">{{ attachment.checkedTeam }} </td> -->
+		<td (click)="go(attachment)">{{ attachment.checkedComment }} </td>
+		<td (click)="go(attachment)">{{ attachment.checkedOn }} </td>
+		<td (click)="go(attachment)">{{ attachment.checkStatus }} </td>
+		<td class="right aligned" sw-table-select (selectEvent)="selectOne(attachment)"></td>
 	</tr>
-  </ng-template>
+</ng-template>
 
-  <div class="table-action-bar">
+<div class="table-action-bar">
 
 	<sw-search-filter></sw-search-filter>
 
-	<div fxLayout="row" >
-	  <sw-action-button [callback]="create" zero="true">
-		<i class="icon add"></i>
-		<span>Create</span>
-	  </sw-action-button>
-	  <sw-action-button [callback]="clone" one="true">
-		<i class="icon add"></i>
-		<span>Clone</span>
-	  </sw-action-button>
-	  <sw-action-button [callback]="delete" many="true">
-		<i class="icon add"></i>
-		<span>Delete</span>
-	  </sw-action-button>
+	<div fxLayout="row">
+		<sw-action-button [callback]="create" zero="true">
+			<i class="icon add"></i>
+			<span>Add</span>
+		</sw-action-button>
+		<sw-action-button [callback]="delete" many="true">
+			<i class="icon add"></i>
+			<span>Delete</span>
+		</sw-action-button>
+		<sw-action-button [callback]="delete" many="true">
+			<i class="icon add"></i>
+			<span>Download</span>
+		</sw-action-button>
 	</div>
 
-  </div>
+</div>
 
-  <sw-generic-table [tableHeader]="tableHeader" [tableBody]="tableBody"></sw-generic-table>
+<sw-generic-table [tableHeader]="tableHeader" [tableBody]="tableBody"></sw-generic-table>

@@ -9,10 +9,6 @@ export const getInitialState = (): fromTable.State => {
       currentPage: 1,
       elementsPerPage: 10,
       totalElementsAmount: 100
-    },
-    releaseContextRoute: {
-      type: '',
-      id: ''
     }
   }
 };

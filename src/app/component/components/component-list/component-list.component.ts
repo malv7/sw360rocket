@@ -9,6 +9,7 @@ import { State } from './../../../state';
 import * as RouterActions from './../../../router/state/router.actions';
 import * as fromComponent from './../../state/component.reducer';
 import * as ComponentActions from './../../state/component.actions';
+import * as fromTable from './../../../shared/tables/state/table.reducer';
 
 // Data
 import { EmbeddedSW360Component } from './../../../state/models';
@@ -41,12 +42,13 @@ export class ComponentListComponent implements OnInit {
 	}
 
 	selectAll() {
-		// this.tableService.selectAll(this.components);
+		this.tableService.selectAll(this.components);
 	}
 
 	// Actions
 	create = () => this.store.dispatch(new RouterActions.Go({ path: [UrlSegments.components + '/' + UrlSegments.create] }));
 	clone = () => console.log("ComponentListComponent clone action");
-	delete = () => console.log("ComponentListComponent delete action");
+	delete = () => this.store.select(fromTable.selectSelectedListElements).take(1).subscribe(selflinks => this.store.dispatch(new ComponentActions.Delete(selflinks)));
+
 
 };

@@ -123,11 +123,10 @@ export class ReleaseCreateComponent implements OnInit {
   evaluateForm() {
     if (this.projectForm.status === 'VALID' && this.dateValid) {
       this.formValid = true;
-    }
-    else {
+    } else {
       this.formValid = false;
     }
-    console.log(this.formValid);
+    // console.log(this.formValid);
   }
 
 

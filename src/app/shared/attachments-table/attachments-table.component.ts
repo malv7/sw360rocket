@@ -22,6 +22,8 @@ import { TableService } from '../../shared/tables/services/table.service';
 import { Links } from '../../state/models';
 
 
+import 'rxjs/add/observable/of';
+
 export interface SW360Attachment {
 	filename: string,
 	sha1: string,

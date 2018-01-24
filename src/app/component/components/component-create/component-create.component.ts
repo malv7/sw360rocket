@@ -9,6 +9,8 @@ import { Store } from '@ngrx/store';
 import { State } from './../../../state';
 import * as RouterActions from './../../../router/state/router.actions';
 import * as StructureActions from './../../../structure/state/structure.actions';
+import * as ComponentActions from './../../state/component.actions';
+import { SW360ComponentTypes } from '../../../resources/resources.api';
 
 //Interface data for input Fields
 export interface NewComponent {
@@ -65,7 +67,14 @@ export class ComponentCreateComponent implements OnInit {
 
 	constructor(
 		public formValidationService: FormValidationService,
-		private store: Store<State>) { }
+		private store: Store<State>) {
+			// this.store.dispatch(new ComponentActions.Create({
+			// 	componentType: SW360ComponentTypes.COTS,
+			// 	createdBy: "admin@sw360.org",
+			// 	description: "descriptioni",
+			// 	name: "teeeest"
+			// }));
+		}
 
 	ngOnInit() {
 		this.testbool = true;
@@ -143,22 +152,27 @@ export class ComponentCreateComponent implements OnInit {
 
 	//called by click on submit button
 	private submit() {
-		this.newComponent = {
-			name: this.projectForm.get(NAME).value,
-			//createdBy: this.projectForm.get(CREATED_BY).value,
-			categories: this.projectForm.get(CATEGORIES).value,
-			componentType: this.projectForm.get(COMPONENTTYPE).value,
-			hompageURL: this.projectForm.get(HOMEPAGEURL).value,
-			blogURL: this.projectForm.get(BLOGURL).value,
-			wikiURL: this.projectForm.get(WIKIURL).value,
-			mailingListURL: this.projectForm.get(MAILINGLISTURL).value,
-			shortDescription: this.projectForm.get(SHORTDESCRIPTION).value,
-			authorName: this.projectForm.get(AUTHORNAME).value,
-			ownerAccountingUnit: this.projectForm.get(OWNERACCOUNTINGUNIT).value,
-			ownerBillingGroup: this.projectForm.get(OWNERBILLINGGROUP).value,
-			Moderators: this.projectForm.get(MODERATORS).value
-		}
+		const name = this.projectForm.get(NAME).value;
+		// const createdBy = this.projectForm.get(CREATED_BY).value;
+		const categories = this.projectForm.get(CATEGORIES).value;
+		const componentType = this.projectForm.get(COMPONENTTYPE).value;
+		const hompageURL = this.projectForm.get(HOMEPAGEURL).value;
+		const blogURL = this.projectForm.get(BLOGURL).value;
+		const wikiURL = this.projectForm.get(WIKIURL).value;
+		const mailingListURL = this.projectForm.get(MAILINGLISTURL).value;
+		const shortDescription = this.projectForm.get(SHORTDESCRIPTION).value;
+		const authorName = this.projectForm.get(AUTHORNAME).value;
+		const ownerAccountingUnit = this.projectForm.get(OWNERACCOUNTINGUNIT).value;
+		const ownerBillingGroup = this.projectForm.get(OWNERBILLINGGROUP).value;
+		const Moderators = this.projectForm.get(MODERATORS).value;
+
 		console.log(this.newComponent);
+		this.store.dispatch(new ComponentActions.Create({
+			componentType: componentType,
+			createdBy: "admin@sw360.org",
+			description: shortDescription,
+			name: name
+		}));
 	}
 
 }

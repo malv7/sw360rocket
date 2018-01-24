@@ -23,6 +23,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { TableEffects } from './tables/state/table.effects';
 import { GenericContentComponent } from './global/generic-content/generic-content.component';
 import { AttachmentsTableComponent } from './attachments-table/attachments-table.component';
+import { TagComponent } from './forms/components/tag/tag.component';
 
 @NgModule({
 	imports: [
@@ -45,7 +46,8 @@ import { AttachmentsTableComponent } from './attachments-table/attachments-table
     TableSelectComponent,
     ActionButtonComponent,
     GenericContentComponent,
-    AttachmentsTableComponent
+    AttachmentsTableComponent,
+    TagComponent,
 	],
 	exports: [
 		// modules
@@ -62,7 +64,8 @@ import { AttachmentsTableComponent } from './attachments-table/attachments-table
     GenericTableComponent,
     TableSelectComponent,
 		ActionButtonComponent,
-		GenericContentComponent
+    GenericContentComponent,
+    TagComponent,
   ],
   providers: [TableService]
 })

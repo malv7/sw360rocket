@@ -12,29 +12,9 @@ import * as fromTable from './table.reducer';
 @Injectable()
 export class TableEffects {
 
-	// @Effect({dispatch:false})
-	// changePage$ = this.actions$.ofType(TableActions.CHANGE_PAGE)
-	// 	.map((action: TableActions.ChangePage) => action.pageNumber)
-	// 	.map(pageNumber => {
-	// 		if (this.evaluatePageNumber(pageNumber)) {
-	// 			return new TableActions.SetPage(pageNumber);
-	// 		}
-
-	// 	})
-	// .do(pageNumber => null /* network */ );
-
 	constructor(
 		private actions$: Actions,
 		private store: Store<State>
 	) { }
-
-	evaluatePageNumber(pageNumber: number) {
-		this.store.select(fromTable.selectPagination).subscribe(pagination => {
-			let maxPage = Math.ceil(pagination.totalElementsAmount / pagination.elementsPerPage);
-			if (pageNumber > 0 && pageNumber < maxPage)
-			return true; // pagination.currentPage = pageNumber;
-		});
-
-	}
 
 }

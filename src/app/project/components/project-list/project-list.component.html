@@ -1,12 +1,12 @@
 <ng-template #tableHeader>
   <th>Name</th>
-  <th class="right aligned" sw-table-select></th> <!-- (selectEvent)="selectAll()" -->
+  <th class="right aligned" sw-table-select (selectEvent)="selectAll()"></th>
 </ng-template>
 
 <ng-template #tableBody>
   <tr *ngFor="let project of projects | async" class="row-hover">
     <td (click)="go(project)">{{ project.name }} </td>
-    <td class="right aligned" sw-table-select></td> <!-- (selectEvent)="selectOne(project)" -->
+    <td class="right aligned" sw-table-select (selectEvent)="selectOne(project)"></td>
   </tr>
 </ng-template>
 
